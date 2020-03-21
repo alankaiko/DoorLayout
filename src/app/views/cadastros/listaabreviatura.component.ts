@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: 'listaconvenio.component.html'
+  templateUrl: 'listaabreviatura.component.html'
 })
 export class ListaabreviaturaComponent {
 

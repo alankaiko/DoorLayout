@@ -51,6 +51,85 @@ export const navItems: INavData[] = [
     ]
   },
   {
+    name: 'Cadastro',
+    url: '/cadastros',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: 'Pacientes',
+        url: '/cadastros/listapaciente',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Convênios',
+        url: '/cadastros/listaconvenio',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Grupos de Exame',
+        url: '/cadastros/grupoexame',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Ex. e Proc. Médico',
+        url: '/cadastros/exameprocmedico',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Prof. Executante',
+        url: '/cadastros/listaprofexecutante',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Prof. Solicitante',
+        url: '/cadastros/listaprofsolicitante',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Texto Pessoal',
+        url: '/cadastros/listatextopessoal',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Abreviaturas',
+        url: '/cadastros/listaabreviatura',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
+    name: 'Base de Dados',
+    url: '/basededados',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: 'CBHPM',
+        url: '/basededados/cbhpm',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'CID10',
+        url: '/basededados/cid10',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'CNES',
+        url: '/basededados/cnes',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'CRM',
+        url: '/basededados/crm',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Especialidade Médica',
+        url: '/basededados/especialidademedica',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
     name: 'Base',
     url: '/base',
     icon: 'icon-puzzle',
