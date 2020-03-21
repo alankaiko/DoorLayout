@@ -15,7 +15,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {TableModule} from 'primeng/components/table/table';
 
 
 @NgModule({
@@ -30,7 +30,8 @@ import { CommonModule } from '@angular/common';
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot(),
-    BasededadosRoutingModule
+    BasededadosRoutingModule,
+    TableModule
   ],
   declarations: [
     CbhpmComponent,

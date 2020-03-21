@@ -51,48 +51,48 @@ export const navItems: INavData[] = [
     ]
   },
   {
-    name: 'Cadastro',
-    url: '/cadastros',
+    name: 'Cadastros',
+    url: '/tabelas',
     icon: 'icon-puzzle',
     children: [
       {
         name: 'Pacientes',
-        url: '/cadastros/listapaciente',
+        url: '/tabelas/listapaciente',
         icon: 'icon-puzzle'
       },
       {
         name: 'Convênios',
-        url: '/cadastros/listaconvenio',
+        url: '/tabelas/listaconvenio',
         icon: 'icon-puzzle'
       },
       {
         name: 'Grupos de Exame',
-        url: '/cadastros/grupoexame',
+        url: '/tabelas/grupoexame',
         icon: 'icon-puzzle'
       },
       {
         name: 'Ex. e Proc. Médico',
-        url: '/cadastros/exameprocmedico',
+        url: '/tabelas/exameprocmedico',
         icon: 'icon-puzzle'
       },
       {
         name: 'Prof. Executante',
-        url: '/cadastros/listaprofexecutante',
+        url: '/tabelas/listaprofexecutante',
         icon: 'icon-puzzle'
       },
       {
         name: 'Prof. Solicitante',
-        url: '/cadastros/listaprofsolicitante',
+        url: '/tabelas/listaprofsolicitante',
         icon: 'icon-puzzle'
       },
       {
         name: 'Texto Pessoal',
-        url: '/cadastros/listatextopessoal',
+        url: '/tabelas/listatextopessoal',
         icon: 'icon-puzzle'
       },
       {
         name: 'Abreviaturas',
-        url: '/cadastros/listaabreviatura',
+        url: '/tabelas/listaabreviatura',
         icon: 'icon-puzzle'
       }
     ]

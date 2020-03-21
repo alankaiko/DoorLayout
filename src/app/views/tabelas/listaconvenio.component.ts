@@ -1,18 +1,18 @@
+import { Convenio } from './../../core/model';
 import { Router } from '@angular/router';
-import { CbhpmService, CbhpmFiltro } from './../../zservice/cbhpm.service';
-import { CBHPM } from './../../core/model';
+import { ConvenioFiltro, ConvenioService } from './../../zservice/convenio.service';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  templateUrl: 'cbhpm.component.html'
+  templateUrl: 'listaconvenio.component.html'
 })
-export class CbhpmComponent implements OnInit {
-  lista = [];
+export class ListaconvenioComponent implements OnInit {
+  convenios = [];
   totalRegistros = 0;
-  filtro = new CbhpmFiltro();
+  filtro = new ConvenioFiltro();
 
-  constructor(private service: CbhpmService, private route: Router) { }
+  constructor(private service: ConvenioService, private route: Router) { }
 
   ngOnInit() {}
 
@@ -22,15 +22,16 @@ export class CbhpmComponent implements OnInit {
     return this.service.Consultar(this.filtro)
       .then(response => {
         this.totalRegistros = response.total;
-        this.lista = response.cbhpms.content;
+        this.convenios = response.convenios.content;
       }).catch(erro => console.log(erro));
   }
 
-  Excluir(cbhpm: CBHPM) {
+
+  Excluir(convenio: Convenio) {
     try {
-      this.service.Remover(cbhpm.codigo);
-      alert(cbhpm.sku + ' foi excluído');
-      this.route.navigate(['/listacbhpm']);
+      this.service.Remover(convenio.codigo);
+      alert(convenio.nome + ' foi excluído');
+      this.route.navigate(['/convenios']);
     } catch (error) {
       console.log('erro ao excluir');
     }
@@ -41,4 +42,5 @@ export class CbhpmComponent implements OnInit {
     const pagina = event.first / event.rows;
     this.Consultar(pagina);
   }
+
 }

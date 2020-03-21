@@ -55,8 +55,8 @@ export const routes: Routes = [
         loadChildren: () => import('./views/operacoes/operacoes.module').then(m => m.OperacoesModule)
       },
       {
-        path: 'cadastros',
-        loadChildren: () => import('./views/cadastros/cadastros.module').then(m => m.CadastrosModule)
+        path: 'tabelas',
+        loadChildren: () => import('./views/tabelas/tabelas.module').then(m => m.TabelasModule)
       },
       {
         path: 'basededados',

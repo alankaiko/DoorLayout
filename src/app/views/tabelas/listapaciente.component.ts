@@ -1,18 +1,18 @@
 import { Router } from '@angular/router';
-import { CbhpmService, CbhpmFiltro } from './../../zservice/cbhpm.service';
-import { CBHPM } from './../../core/model';
+import { PacienteService, PacientesFiltro } from './../../zservice/paciente.service';
+import { Patient } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  templateUrl: 'cbhpm.component.html'
+  templateUrl: 'listapaciente.component.html'
 })
-export class CbhpmComponent implements OnInit {
-  lista = [];
+export class ListapacienteComponent implements OnInit {
+  patients = [];
   totalRegistros = 0;
-  filtro = new CbhpmFiltro();
+  filtro = new PacientesFiltro();
 
-  constructor(private service: CbhpmService, private route: Router) { }
+  constructor(private service: PacienteService, private route: Router) { }
 
   ngOnInit() {}
 
@@ -22,15 +22,15 @@ export class CbhpmComponent implements OnInit {
     return this.service.Consultar(this.filtro)
       .then(response => {
         this.totalRegistros = response.total;
-        this.lista = response.cbhpms.content;
+        this.patients = response.pacientes.content;
       }).catch(erro => console.log(erro));
   }
 
-  Excluir(cbhpm: CBHPM) {
+  Excluir(patient: Patient) {
     try {
-      this.service.Remover(cbhpm.codigo);
-      alert(cbhpm.sku + ' foi excluído');
-      this.route.navigate(['/listacbhpm']);
+      this.service.Remover(patient.idpatient);
+      alert(patient.patientname + ' foi excluído');
+      this.route.navigate(['/paciente']);
     } catch (error) {
       console.log('erro ao excluir');
     }

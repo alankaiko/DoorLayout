@@ -1,3 +1,4 @@
+import { TabelasRoutingModule } from './tabelas-routing.module';
 import { ListatextopessoalComponent } from './listatextopessoal.component';
 import { ListaprofsolicitanteComponent } from './listaprofsolicitante.component';
 import { ListaprofexecutanteComponent } from './listaprofexecutante.component';
@@ -6,7 +7,6 @@ import { ListagrupoexameComponent } from './listagrupoexame.component';
 import { ListaexameprocmedicoComponent } from './listaexameprocmedico.component';
 import { ListaconvenioComponent } from './listaconvenio.component';
 import { ListaabreviaturaComponent } from './listaabreviatura.component';
-import { CadastrosRoutingModule } from './cadastros-routing.module';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { PopoverModule } from 'ngx-bootstrap/popover';
@@ -18,6 +18,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {TableModule} from 'primeng/components/table/table';
 
 
 
@@ -33,7 +34,8 @@ import { CommonModule } from '@angular/common';
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot(),
-    CadastrosRoutingModule
+    TabelasRoutingModule,
+    TableModule
   ],
   declarations: [
     ListaabreviaturaComponent,
@@ -46,4 +48,4 @@ import { CommonModule } from '@angular/common';
     ListatextopessoalComponent
   ]
 })
-export class CadastrosModule { }
+export class TabelasModule { }

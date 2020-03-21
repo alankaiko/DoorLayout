@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Cadastros'
+      title: 'Cadastro'
     },
     children: [
       {
@@ -85,4 +85,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CadastrosRoutingModule {}
+export class TabelasRoutingModule {}
