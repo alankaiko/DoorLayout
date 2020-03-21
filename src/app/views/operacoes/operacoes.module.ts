@@ -1,3 +1,4 @@
+import { OperacoesRoutingModule } from './operacoes-routing.module';
 import { CapturaComponent } from './captura.component';
 import { LaudoComponent } from './laudo.component';
 import { ListaatendimentoComponent } from './listaatendimento.component';
@@ -9,7 +10,6 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BaseRoutingModule } from './../base/base-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,6 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     FormsModule,
-    BaseRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule,
     CarouselModule.forRoot(),
@@ -29,7 +28,8 @@ import { CommonModule } from '@angular/common';
     PaginationModule.forRoot(),
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    OperacoesRoutingModule
   ],
   declarations: [
     ListaatendimentoComponent,
