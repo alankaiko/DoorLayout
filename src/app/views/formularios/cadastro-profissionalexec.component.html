@@ -1,0 +1,100 @@
+<div class="conteudos">
+  <p-fieldset legend="{{ editando ? 'Editar' : 'Novo'}} Profissional Exec.">
+  <div class="classecad">
+      <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="formu">
+        <div class="ui-g">
+          <div class="ui-g-3 ui-fluid">
+            <label>Código</label>
+            <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Nome</label>
+            <input type="text" pInputText ng-model="text" name="nome" formControlName="nome">
+          </div>
+
+          <div class="ui-g-4 ui-fluid">
+            <label>Num no Conselho</label>
+            <input type="text" pInputText ng-model="text" name="numnoconselho" formControlName="numnoconselho">
+          </div>
+
+          <div class="ui-g-8 ui-fluid" formGroupName="contato">
+            <label>E-mail</label>
+            <input type="text" pInputText ng-model="text" name="email" formControlName="email" placeholder="seu-email@email.com">
+          </div>
+
+          <div class="ui-g-4 ui-fluid" formGroupName="contato">
+            <label>Telefone</label>
+            <p-inputMask mask="(99)9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
+          </div>
+
+          <div class="ui-g-4 ui-fluid" formGroupName="contato">
+            <label>Telefone 2</label>
+            <p-inputMask mask="(99)9999-9999" name="telefone2" formControlName="telefone2"></p-inputMask>
+          </div>
+
+          <div class="ui-g-4 ui-fluid" formGroupName="contato">
+            <label>Celular</label>
+            <p-inputMask mask="(99) 9 9999-9999" name="celular" formControlName="celular"></p-inputMask>
+          </div>
+
+          <div class="ui-g-12 ui-fluid" formGroupName="endereco">
+            <label>Logradouro</label>
+            <input type="text" pInputText ng-model="text" name="logradouro" formControlName="logradouro">
+          </div>
+
+          <div class="ui-g-12 ui-fluid" formGroupName="endereco">
+            <label>Complemento</label>
+            <input type="text" pInputText ng-model="text" name="complemento" formControlName="complemento">
+          </div>
+
+          <div class="ui-g-3 ui-fluid" formGroupName="endereco">
+            <label>Num.</label>
+            <input type="text" pInputText ng-model="text" name="numero" formControlName="numero">
+          </div>
+
+          <div class="ui-g-6 ui-fluid" formGroupName="endereco">
+            <label>Bairro</label>
+            <input type="text" pInputText ng-model="text" name="bairro" formControlName="bairro">
+          </div>
+
+          <div class="ui-g-3 ui-fluid" formGroupName="endereco">
+            <label>Cidade</label>
+            <input type="text" pInputText ng-model="text" name="cidade" formControlName="cidade">
+          </div>
+
+          <div class="ui-g-9 ui-fluid" formGroupName="endereco">
+            <label>Estado</label>
+            <input type="text" pInputText ng-model="text" name="estado" formControlName="estado">
+          </div>
+
+          <div class="ui-g-3 ui-fluid" formGroupName="endereco">
+            <label>CEP</label>
+            <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
+          </div>
+
+          <div class="ui-g-4 ui-fluid" formGroupName="conselho">
+            <label>Sigla</label>
+            <input type="text" pInputText ng-model="text" name="sigla" formControlName="sigla">
+          </div>
+
+          <div class="ui-g-8 ui-fluid" formGroupName="conselho">
+            <label>Descrição</label>
+            <input type="text" pInputText ng-model="text" name="descricao" formControlName="descricao">
+          </div>
+
+          <div class="ui-g-12 ui-fluid">
+            <div style="text-align: left;">
+              <button class="btn btn-primary" type="submit" style="margin-right: 8px;">Salvar</button>
+              <button class="btn btn-outline-secondary" routerLink="/profissionalexecutante">Cancelar</button>
+            </div>
+
+            <div style="text-align: right;">
+              <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </p-fieldset>
+</div>

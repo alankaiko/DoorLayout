@@ -1,0 +1,45 @@
+<div class="conteudos">
+  <p-fieldset legend="{{ editando ? 'Editar' : 'Novo'}} Profissional Sol.">
+  <div class="classecad">
+      <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="formu">
+        <div class="ui-g">
+          <div class="ui-g-3 ui-fluid">
+            <label>Código</label>
+            <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Nome</label>
+            <input type="text" pInputText ng-model="text" name="nome" formControlName="nome">
+          </div>
+
+          <div class="ui-g-12 ui-fluid">
+            <label>Num no Conselho</label>
+            <input type="text" pInputText ng-model="text" name="numnoconselho" formControlName="numnoconselho">
+          </div>
+
+          <div class="ui-g-4 ui-fluid" formGroupName="conselho">
+            <label>Sigla</label>
+            <input type="text" pInputText ng-model="text" name="sigla" formControlName="sigla">
+          </div>
+
+          <div class="ui-g-8 ui-fluid" formGroupName="conselho">
+            <label>Descrição</label>
+            <input type="text" pInputText ng-model="text" name="descricao" formControlName="descricao">
+          </div>
+
+          <div class="ui-g-12 ui-fluid">
+            <div style="text-align: left;">
+              <button class="btn btn-primary" type="submit" style="margin-right: 8px;">Salvar</button>
+            <button class="btn btn-outline-secondary" routerLink="/profissionalsolicitante">Cancelar</button>
+            </div>
+
+            <div style="text-align: right;">
+              <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </p-fieldset>
+</div>
