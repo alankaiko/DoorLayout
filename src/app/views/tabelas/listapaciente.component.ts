@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  templateUrl: 'listapaciente.component.html'
+  templateUrl: 'listapaciente.component.html',
+  styleUrls: ['./listapaciente.component.css']
 })
 export class ListapacienteComponent implements OnInit {
   patients = [];

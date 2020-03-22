@@ -72,7 +72,7 @@ export class CadastroConvenioComponent implements OnInit {
   AdicionarConvenios() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/convenios']);
+        this.route.navigate(['/tabelas/listaconvenio']);
       });
   }
 
@@ -80,7 +80,7 @@ export class CadastroConvenioComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(convenio => {
         this.formulario.patchValue(convenio);
-        this.route.navigate(['/convenios']);
+        this.route.navigate(['/tabelas/listaconvenio']);
       });
   }
 

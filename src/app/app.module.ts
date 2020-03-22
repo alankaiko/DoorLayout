@@ -1,12 +1,26 @@
+import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
+import { CadastroProfissionalexecComponent } from './views/formularios/cadastro-profissionalexec.component';
+import { CadastroProfissionalsolComponent } from './views/formularios/cadastro-profissionalsol.component';
+import { CadastroTextopessoalComponent } from './views/formularios/cadastro-textopessoal.component';
+import { CadastroGrupoprocedimentoComponent } from './views/formularios/cadastro-grupoprocedimento.component';
+import { CadastroPacienteComponent } from './views/formularios/cadastro-paciente.component';
+import { CadastroAbreviaturaComponent } from './views/formularios/cadastro-abreviatura.component';
 import { BrowserModule } from '@angular/platform-browser';
+import {CalendarModule} from 'primeng/components/calendar/calendar';
+import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
+import { CheckboxModule } from 'primeng/components/checkbox/checkbox';
+import {DropdownModule} from 'primeng/components/dropdown/dropdown';
+
+import {InputMaskModule} from 'primeng/components/inputmask/inputmask';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FieldsetModule } from 'primeng/components/fieldset/fieldset';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -41,6 +55,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
+import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastro-procedimentomedico.component';
 
 @NgModule({
   imports: [
@@ -56,7 +71,15 @@ import { HttpClientModule } from '@angular/common/http';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    FieldsetModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CalendarModule,
+    InputMaskModule,
+    ToolbarModule,
+    CheckboxModule,
+    DropdownModule
   ],
   declarations: [
     AppComponent,
@@ -64,7 +87,15 @@ import { HttpClientModule } from '@angular/common/http';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CadastroAbreviaturaComponent,
+    CadastroPacienteComponent,
+    CadastroGrupoprocedimentoComponent,
+    CadastroTextopessoalComponent,
+    CadastroProfissionalsolComponent,
+    CadastroProfissionalexecComponent,
+    CadastroConvenioComponent,
+    CadastroProcedimentomedicoComponent
   ],
   providers: [{
     provide: LocationStrategy,

@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  templateUrl: 'listaabreviatura.component.html'
+  templateUrl: 'listaabreviatura.component.html',
+  styleUrls: ['./listaabreviatura.component.css']
 })
 export class ListaabreviaturaComponent implements OnInit {
   abreviaturas = [];
@@ -32,7 +33,7 @@ export class ListaabreviaturaComponent implements OnInit {
       this.service.Remover(abreviatura.codigo)
         .then(() => {
           alert(abreviatura.texto + ' foi excluído');
-          this.route.navigate(['/abreviaturas']);
+          this.route.navigate(['/tabelas/listaabreviatura']);
         });
     } catch (error) {
       console.log('erro ao excluir');

@@ -1,3 +1,11 @@
+import { CadastroPacienteComponent } from './views/formularios/cadastro-paciente.component';
+import { CadastroTextopessoalComponent } from './views/formularios/cadastro-textopessoal.component';
+import { CadastroProfissionalsolComponent } from './views/formularios/cadastro-profissionalsol.component';
+import { CadastroProfissionalexecComponent } from './views/formularios/cadastro-profissionalexec.component';
+import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastro-procedimentomedico.component';
+import { CadastroGrupoprocedimentoComponent } from './views/formularios/cadastro-grupoprocedimento.component';
+import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
+import { CadastroAbreviaturaComponent } from './views/formularios/cadastro-abreviatura.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,6 +18,23 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 export const routes: Routes = [
+  { path: 'tabelas/listaabreviatura/novo', component: CadastroAbreviaturaComponent },
+  { path: 'tabelas/listaabreviatura/:cod', component: CadastroAbreviaturaComponent },
+  { path: 'tabelas/listaconvenio/novo', component: CadastroConvenioComponent },
+  { path: 'tabelas/listaconvenio/:cod', component: CadastroConvenioComponent },
+  { path: 'tabelas/grupoexame/novo', component: CadastroGrupoprocedimentoComponent },
+  { path: 'tabelas/grupoexame/:cod', component: CadastroGrupoprocedimentoComponent },
+  { path: 'tabelas/exameprocmedico/novo', component: CadastroProcedimentomedicoComponent },
+  { path: 'tabelas/exameprocmedico/:cod', component: CadastroProcedimentomedicoComponent },
+  { path: 'tabelas/listaprofexecutante/novo', component: CadastroProfissionalexecComponent },
+  { path: 'tabelas/listaprofexecutante/:cod', component: CadastroProfissionalexecComponent },
+  { path: 'tabelas/listaprofsolicitante/novo', component: CadastroProfissionalsolComponent },
+  { path: 'tabelas/listaprofsolicitante/:cod', component: CadastroProfissionalsolComponent },
+  { path: 'tabelas/listatextopessoal/novo', component: CadastroTextopessoalComponent },
+  { path: 'tabelas/listatextopessoal/:cod', component: CadastroTextopessoalComponent },
+  { path: 'tabelas/listapaciente/novo', component: CadastroPacienteComponent },
+  { path: 'tabelas/listapaciente/:cod', component: CadastroPacienteComponent },
+
   {
     path: '',
     redirectTo: 'dashboard',

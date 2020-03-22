@@ -1,8 +1,9 @@
+import { Abreviatura } from './../../core/model';
+
 import { AbreviaturaService } from './../../zservice/abreviatura.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Abreviatura } from 'src/app/core/model';
 import {Location} from '@angular/common';
 
 @Component({
@@ -58,7 +59,7 @@ export class CadastroAbreviaturaComponent implements OnInit {
   AdicionarAbreviatura() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/abreviaturas']);
+        this.route.navigate(['/tabelas/listaabreviatura']);
       });
 
   }
@@ -67,7 +68,7 @@ export class CadastroAbreviaturaComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(abreviatura => {
         this.formulario.patchValue(abreviatura);
-        this.route.navigate(['/abreviaturas']);
+        this.route.navigate(['/tabelas/listaabreviatura']);
       });
   }
 

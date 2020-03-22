@@ -1,8 +1,8 @@
+import { TextopessoalService } from './../../zservice/textopessoal.service';
 import { TextoPessoal } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TextopessoalService } from 'src/app/zservice/textopessoal.service';
 import {Location} from '@angular/common';
 
 @Component({
