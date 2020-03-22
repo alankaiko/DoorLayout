@@ -76,7 +76,7 @@ export class CadastroPacienteComponent implements OnInit {
   AdicionarPaciente() {
     return this.service.Adicionar(this.formulario.value)
       .then(response => {
-        this.route.navigate(['/paciente']);
+        this.route.navigate(['/tabelas/listapaciente']);
       });
   }
 
@@ -84,7 +84,7 @@ export class CadastroPacienteComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(patient => {
         this.formulario.patchValue(patient);
-        this.route.navigate(['/paciente']);
+        this.route.navigate(['/tabelas/listapaciente']);
       });
   }
 

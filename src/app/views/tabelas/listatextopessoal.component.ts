@@ -32,7 +32,7 @@ export class ListatextopessoalComponent implements OnInit {
     try {
       this.service.Remover(textopessoal.codigo);
       alert(textopessoal.abreviatura + ' foi excluído');
-      this.route.navigate(['/textopessoal']);
+      this.route.navigate(['/tabelas/listatextopessoal']);
     } catch (error) {
       console.log('erro ao excluir');
     }

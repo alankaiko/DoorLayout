@@ -32,7 +32,7 @@ export class ListaprofexecutanteComponent implements OnInit {
     try {
       this.service.Remover(profissionalexec.codigo);
       alert(profissionalexec.nome + ' foi excluído');
-      this.route.navigate(['/profissionalexecutante']);
+      this.route.navigate(['/tabelas/listaprofexecutante']);
     } catch (error) {
       console.log('erro ao excluir');
     }

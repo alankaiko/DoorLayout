@@ -1,6 +1,6 @@
 <div class="conteudos">
   <p-fieldset legend="{{ editando ? 'Editar' : 'Novo'}} Grupo de Proc.">
-  <div class="classecad">
+    <div class="classecad">
       <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="formu">
         <div class="p-grid">
           <div class="ui-g-3 ui-fluid">
@@ -16,7 +16,7 @@
           <div class="ui-g-12 ui-fluid">
             <div style="text-align: left;">
               <button class="btn btn-primary" type="submit" style="margin-right: 8px;">Salvar</button>
-            <button class="btn btn-outline-secondary" routerLink="/grupoprocedimento">Cancelar</button>
+            <button class="btn btn-outline-secondary" routerLink="/tabelas/listagrupoexame">Cancelar</button>
             </div>
 
             <div style="text-align: right;">

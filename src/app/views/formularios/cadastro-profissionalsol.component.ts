@@ -62,7 +62,7 @@ export class CadastroProfissionalsolComponent implements OnInit {
   AdicionarProfissionalSolicitante() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/profissionalsolicitante']);
+        this.route.navigate(['/tabelas/listaprofsolicitante']);
       });
   }
 
@@ -70,7 +70,7 @@ export class CadastroProfissionalsolComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(profissional => {
         this.formulario.patchValue(profissional);
-        this.route.navigate(['/profissionalsolicitante']);
+        this.route.navigate(['/tabelas/listaprofsolicitante']);
       });
   }
 

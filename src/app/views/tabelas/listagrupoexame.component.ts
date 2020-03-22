@@ -31,7 +31,7 @@ export class ListagrupoexameComponent implements OnInit {
     try {
       this.service.Remover(grupo.codigo);
       alert(grupo.nome + ' foi excluído');
-      this.route.navigate(['/grupoprocedimento']);
+      this.route.navigate(['/tabelas/listagrupoexame']);
     } catch (error) {
       console.log('erro ao excluir');
     }

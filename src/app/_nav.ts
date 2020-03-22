@@ -67,12 +67,12 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Grupos de Exame',
-        url: '/tabelas/grupoexame',
+        url: '/tabelas/listagrupoexame',
         icon: 'icon-puzzle'
       },
       {
         name: 'Ex. e Proc. Médico',
-        url: '/tabelas/exameprocmedico',
+        url: '/tabelas/listaexameprocmedico',
         icon: 'icon-puzzle'
       },
       {

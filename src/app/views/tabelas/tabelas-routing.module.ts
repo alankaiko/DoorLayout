@@ -36,14 +36,14 @@ const routes: Routes = [
         }
       },
       {
-        path: 'grupoexame',
+        path: 'listagrupoexame',
         component: ListagrupoexameComponent,
         data: {
           title: 'Grupos de Exame'
         }
       },
       {
-        path: 'exameprocmedico',
+        path: 'listaexameprocmedico',
         component: ListaexameprocmedicoComponent,
         data: {
           title: 'Ex. e Proc. Médicos'

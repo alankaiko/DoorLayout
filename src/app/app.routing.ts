@@ -18,22 +18,214 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 export const routes: Routes = [
-  { path: 'tabelas/listaabreviatura/novo', component: CadastroAbreviaturaComponent },
-  { path: 'tabelas/listaabreviatura/:cod', component: CadastroAbreviaturaComponent },
-  { path: 'tabelas/listaconvenio/novo', component: CadastroConvenioComponent },
-  { path: 'tabelas/listaconvenio/:cod', component: CadastroConvenioComponent },
-  { path: 'tabelas/grupoexame/novo', component: CadastroGrupoprocedimentoComponent },
-  { path: 'tabelas/grupoexame/:cod', component: CadastroGrupoprocedimentoComponent },
-  { path: 'tabelas/exameprocmedico/novo', component: CadastroProcedimentomedicoComponent },
-  { path: 'tabelas/exameprocmedico/:cod', component: CadastroProcedimentomedicoComponent },
-  { path: 'tabelas/listaprofexecutante/novo', component: CadastroProfissionalexecComponent },
-  { path: 'tabelas/listaprofexecutante/:cod', component: CadastroProfissionalexecComponent },
-  { path: 'tabelas/listaprofsolicitante/novo', component: CadastroProfissionalsolComponent },
-  { path: 'tabelas/listaprofsolicitante/:cod', component: CadastroProfissionalsolComponent },
-  { path: 'tabelas/listatextopessoal/novo', component: CadastroTextopessoalComponent },
-  { path: 'tabelas/listatextopessoal/:cod', component: CadastroTextopessoalComponent },
-  { path: 'tabelas/listapaciente/novo', component: CadastroPacienteComponent },
-  { path: 'tabelas/listapaciente/:cod', component: CadastroPacienteComponent },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Abreviatura'
+    },
+    children: [
+      {
+        path: 'tabelas/listaabreviatura/novo',
+        component: CadastroAbreviaturaComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Editar Abreviatura'
+    },
+    children: [
+      {
+        path: 'tabelas/listaabreviatura/:cod',
+        component: CadastroAbreviaturaComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Convênio'
+    },
+    children: [
+      {
+        path: 'tabelas/listaconvenio/novo',
+        component: CadastroConvenioComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Editar Convênio'
+    },
+    children: [
+      {
+        path: 'tabelas/listaconvenio/:cod',
+        component: CadastroConvenioComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Grupos de Procedimento'
+    },
+    children: [
+      {
+        path: 'tabelas/listagrupoexame/novo',
+        component: CadastroGrupoprocedimentoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Editar Grupos de Procedimento'
+    },
+    children: [
+      {
+        path: 'tabelas/listagrupoexame/:cod',
+        component: CadastroGrupoprocedimentoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Procedimento Médico'
+    },
+    children: [
+      {
+        path: 'tabelas/listaexameprocmedico/novo',
+        component: CadastroProcedimentomedicoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Procedimento Médico'
+    },
+    children: [
+      {
+        path: 'tabelas/listaexameprocmedico/:cod',
+        component: CadastroProcedimentomedicoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Profissional Executante'
+    },
+    children: [
+      {
+        path: 'tabelas/listaprofexecutante/novo',
+        component: CadastroProfissionalexecComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Editar Profissional Executante'
+    },
+    children: [
+      {
+        path: 'tabelas/listaprofexecutante/:cod',
+        component: CadastroProfissionalexecComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Profissional Solicitante'
+    },
+    children: [
+      {
+        path: 'tabelas/listaprofsolicitante/novo',
+        component: CadastroProfissionalsolComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Editar Profissional Solicitante'
+    },
+    children: [
+      {
+        path: 'tabelas/listaprofsolicitante/:cod',
+        component: CadastroProfissionalsolComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Texto Pessoal'
+    },
+    children: [
+      {
+        path: 'tabelas/listatextopessoal/novo',
+        component: CadastroTextopessoalComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Texto Pessoal'
+    },
+    children: [
+      {
+        path: 'tabelas/listatextopessoal/:cod',
+        component: CadastroTextopessoalComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Paciente'
+    },
+    children: [
+      {
+        path: 'tabelas/listapaciente/novo',
+        component: CadastroPacienteComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Paciente'
+    },
+    children: [
+      {
+        path: 'tabelas/listapaciente/:cod',
+        component: CadastroPacienteComponent
+      }
+    ]
+  },
 
   {
     path: '',
@@ -118,6 +310,10 @@ export const routes: Routes = [
       {
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
+      },
+      {
+        path: 'cadastro',
+        loadChildren: () => import('./views/formularios/formularios.module').then(m => m.FormulariosModule)
       }
     ]
   },

@@ -50,7 +50,7 @@ export class CadastroTextopessoalComponent implements OnInit {
       this.AtualizarTextoPessoal();
     } else {
       this.formulario.patchValue(this.AdicionarTextoPessoal());
-      this.route.navigate(['/textopessoal/novo']);
+      this.route.navigate(['/tabelas/listatextopessoal/novo']);
     }
     this.CriarFormulario(new TextoPessoal());
   }
@@ -58,7 +58,7 @@ export class CadastroTextopessoalComponent implements OnInit {
   AdicionarTextoPessoal() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/textopessoal']);
+        this.route.navigate(['/tabelas/listatextopessoal']);
       });
   }
 
@@ -66,7 +66,7 @@ export class CadastroTextopessoalComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(texto => {
         this.formulario.patchValue(texto);
-        this.route.navigate(['/textopessoal']);
+        this.route.navigate(['/tabelas/listatextopessoal']);
       });
   }
 

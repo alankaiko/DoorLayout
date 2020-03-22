@@ -32,7 +32,7 @@ export class ListaexameprocmedicoComponent implements OnInit {
     try {
       this.service.Remover(procedimento.codigo);
       alert(procedimento.nome + ' foi excluído');
-      this.route.navigate(['/procedimentomedico']);
+      this.route.navigate(['/tabelas/listaexameprocmedico']);
     } catch (error) {
       console.log('erro ao excluir');
     }

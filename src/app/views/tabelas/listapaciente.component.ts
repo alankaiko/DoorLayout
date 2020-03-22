@@ -31,7 +31,7 @@ export class ListapacienteComponent implements OnInit {
     try {
       this.service.Remover(patient.idpatient);
       alert(patient.patientname + ' foi excluído');
-      this.route.navigate(['/paciente']);
+      this.route.navigate(['/tabelas/listapaciente']);
     } catch (error) {
       console.log('erro ao excluir');
     }

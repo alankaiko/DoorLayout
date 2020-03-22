@@ -73,7 +73,7 @@ export class CadastroProcedimentomedicoComponent implements OnInit {
   AdicionarProcedimentoMedico() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/procedimentomedico']);
+        this.route.navigate(['/tabelas/listaexameprocmedico']);
       });
   }
 
@@ -81,7 +81,7 @@ export class CadastroProcedimentomedicoComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(procedimento => {
         this.formulario.patchValue(procedimento);
-        this.route.navigate(['/procedimentomedico']);
+        this.route.navigate(['/tabelas/listaexameprocmedico']);
       });
   }
 

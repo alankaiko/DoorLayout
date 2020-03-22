@@ -78,7 +78,7 @@ export class CadastroProfissionalexecComponent implements OnInit {
   AdicionarProfissionalExecutante() {
     return this.service.Adicionar(this.formulario.value)
       .then(response => {
-        this.route.navigate(['/profissionalexecutante']);
+        this.route.navigate(['/tabelas/listaprofexecutante']);
       });
   }
 
@@ -86,7 +86,7 @@ export class CadastroProfissionalexecComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(profissional => {
         this.formulario.patchValue(profissional);
-        this.route.navigate(['/profissionalexecutante']);
+        this.route.navigate(['/tabelas/listaprofexecutante']);
       });
   }
 

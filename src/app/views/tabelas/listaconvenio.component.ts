@@ -32,7 +32,7 @@ export class ListaconvenioComponent implements OnInit {
     try {
       this.service.Remover(convenio.codigo);
       alert(convenio.nome + ' foi excluído');
-      this.route.navigate(['/convenios']);
+      this.route.navigate(['/tabelas/listaconvenio']);
     } catch (error) {
       console.log('erro ao excluir');
     }

@@ -56,7 +56,7 @@ export class CadastroGrupoprocedimentoComponent implements OnInit {
   AdicionarGrupoProcedimento() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/grupoprocedimento']);
+        this.route.navigate(['/tabelas/listagrupoexame']);
       });
   }
 
@@ -64,7 +64,7 @@ export class CadastroGrupoprocedimentoComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(grupo => {
         this.formulario.patchValue(grupo);
-        this.route.navigate(['/grupoprocedimento']);
+        this.route.navigate(['/tabelas/listagrupoexame']);
       });
   }
 
