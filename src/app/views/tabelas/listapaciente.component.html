@@ -23,7 +23,7 @@
             <td>{{patient.patientage}}</td>
             <td>{{patient.patientsex}}</td>
             <td style="text-align: center;">
-              <button class="btn btn-outline-info" title="Editar" [routerLink]="['/tabelas/listapaciente', patient.codigo]"><i class="icon-pencil"></i></button>
+              <button class="btn btn-outline-info" title="Editar" [routerLink]="['/tabelas/listapaciente', patient.idpatient]"><i class="icon-pencil"></i></button>
               <button class="btn btn-outline-danger" title="Excluir" (click)="ConfirmarExclusao(patient)"><i class="icon-trash"></i></button>
             </td>
           </tr>

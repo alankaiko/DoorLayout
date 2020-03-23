@@ -10,6 +10,7 @@ export class PacientesFiltro {
   birthday: Date;
   patientage: string;
   patientsex: string;
+  servidor: boolean;
   pagina = 0;
   itensPorPagina = 7;
 }
@@ -44,6 +45,10 @@ export class PacienteService {
 
     if (filtro.patientage) {
       params = params.append('patientage', filtro.patientage);
+    }
+
+    if (filtro.servidor) {
+      params = params.append('servidor', 'true');
     }
 
    // if (filtro.birthday) {

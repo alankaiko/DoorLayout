@@ -25,6 +25,7 @@ export class ListapacienteComponent implements OnInit {
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
+    this.filtro.servidor = false;
 
     return this.service.Consultar(this.filtro)
       .then(response => {
