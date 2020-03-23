@@ -1,4 +1,3 @@
-import { ConfirmationService } from 'primeng/api';
 import { CoreModule } from './core/core.module';
 import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
 import { CadastroProfissionalexecComponent } from './views/formularios/cadastro-profissionalexec.component';

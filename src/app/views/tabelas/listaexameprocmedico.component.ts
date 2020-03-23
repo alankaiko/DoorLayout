@@ -1,19 +1,25 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
 import { ProcedimentomedicoService, ProcedimentoMedicoFiltro } from './../../zservice/procedimentomedico.service';
 import { ProcedimentoMedico } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 
 @Component({
   templateUrl: 'listaexameprocmedico.component.html',
-  styleUrls: ['./listaexameprocmedico.component.css']
+  styleUrls: ['./listaexameprocmedico.component.css'],
+  providers: [ MessageService , ConfirmationService]
 })
 export class ListaexameprocmedicoComponent implements OnInit {
   procedimentos = [];
   totalRegistros = 0;
   filtro = new ProcedimentoMedicoFiltro();
+  visible: boolean = true;
 
-  constructor(private service: ProcedimentomedicoService, private route: Router) { }
+  constructor(private service: ProcedimentomedicoService,
+              private route: Router,
+              private confirmation: ConfirmationService,
+              private messageService: MessageService) { }
 
   ngOnInit() {}
 
@@ -28,15 +34,23 @@ export class ListaexameprocmedicoComponent implements OnInit {
   }
 
 
-  Excluir(procedimento: ProcedimentoMedico) {
-    try {
-      this.service.Remover(procedimento.codigo);
-      alert(procedimento.nome + ' foi excluído');
-      this.route.navigate(['/tabelas/listaexameprocmedico']);
-    } catch (error) {
-      console.log('erro ao excluir');
-    }
+  ConfirmarExclusao(procedimento: ProcedimentoMedico) {
+    this.confirmation.confirm({
+      message: 'Deseja Excluir: ' + procedimento.nome.toUpperCase(),
+      accept: () => {
+        this.Excluir(procedimento);
+      }
+    });
+  }
 
+  Excluir(procedimento: ProcedimentoMedico) {
+    this.service.Remover(procedimento.codigo)
+      .then(() => {
+        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
+      })
+      .catch(erro => erro);
+      this.visible = false;
+      setTimeout (() => this.visible = true, 0);
   }
 
   aoMudarPagina(event: LazyLoadEvent) {

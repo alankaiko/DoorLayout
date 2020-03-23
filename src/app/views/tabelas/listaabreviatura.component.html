@@ -1,9 +1,10 @@
 <div class="card">
   <div class="card-body">
+    <p-confirmDialog></p-confirmDialog>
     <div class="row">
-      <p-table id="tabela" [value]="abreviaturas" [responsive]="true" [paginator]="true"
+      <p-table id="tabela" [value]="abreviaturas" [responsive]="true" [paginator]="true" *ngIf="visible"
         [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros"
-        (onLazyLoad)="aoMudarPagina($event)" class="table table-responsive-sm table-hover table-outline mb-0">
+        (onLazyLoad)="aoMudarPagina($event)" class="tabela table table-responsive-sm table-hover table-outline mb-0">
         <ng-template pTemplate="header">
           <tr>
             <th style="width: 8%;">Código</th>

@@ -94,8 +94,8 @@ export class PacienteService {
       });
   }
 
-  Remover(idpatient: number) {
-    this.http.delete(`${this.url}/${idpatient}`)
+  Remover(idpatient: number): Promise<any> {
+    return this.http.delete(`${this.url}/${idpatient}`)
       .toPromise()
       .then(() => null);
   }

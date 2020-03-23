@@ -1,5 +1,5 @@
 import { ConfirmationService } from 'primeng/api';
-import { CoreModule } from './../../core/core.module';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { TabelasRoutingModule } from './tabelas-routing.module';
 import { ListatextopessoalComponent } from './listatextopessoal.component';
 import { ListaprofsolicitanteComponent } from './listaprofsolicitante.component';
@@ -39,7 +39,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     TooltipModule.forRoot(),
     TabelasRoutingModule,
     TableModule,
-    ModalModule
+    ModalModule,
+    ConfirmDialogModule
   ],
   declarations: [
     ListaabreviaturaComponent,

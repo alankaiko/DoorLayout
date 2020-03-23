@@ -1,19 +1,25 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { ProfissionalexecutanteService, ProfissionalExecutanteFiltro } from './../../zservice/profissionalexecutante.service';
 import { Router } from '@angular/router';
 import { ProfissionalExecutante } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 
 @Component({
   templateUrl: 'listaprofexecutante.component.html',
-  styleUrls: ['./listaprofexecutante.component.css']
+  styleUrls: ['./listaprofexecutante.component.css'],
+  providers: [ MessageService , ConfirmationService]
 })
 export class ListaprofexecutanteComponent implements OnInit {
   profissionaisexec = [];
   totalRegistros = 0;
   filtro = new ProfissionalExecutanteFiltro();
+  visible: boolean = true;
 
-  constructor(private service: ProfissionalexecutanteService, private route: Router) { }
+  constructor(private service: ProfissionalexecutanteService,
+              private route: Router,
+              private confirmation: ConfirmationService,
+              private messageService: MessageService) { }
 
   ngOnInit() {}
 
@@ -28,16 +34,26 @@ export class ListaprofexecutanteComponent implements OnInit {
   }
 
 
-  Excluir(profissionalexec: ProfissionalExecutante) {
-    try {
-      this.service.Remover(profissionalexec.codigo);
-      alert(profissionalexec.nome + ' foi excluído');
-      this.route.navigate(['/tabelas/listaprofexecutante']);
-    } catch (error) {
-      console.log('erro ao excluir');
-    }
-
+  ConfirmarExclusao(executante: ProfissionalExecutante) {
+    this.confirmation.confirm({
+      message: 'Deseja Excluir: ' + executante.nome.toUpperCase(),
+      accept: () => {
+        this.Excluir(executante);
+      }
+    });
   }
+
+  Excluir(executante: ProfissionalExecutante) {
+    this.service.Remover(executante.codigo)
+      .then(() => {
+        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
+      })
+      .catch(erro => erro);
+      this.visible = false;
+      setTimeout (() => this.visible = true, 0);
+  }
+
+
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;

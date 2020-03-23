@@ -1,19 +1,25 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
 import { TextopessoalService, TextoPessoalFiltro } from './../../zservice/textopessoal.service';
 import { TextoPessoal } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 
 @Component({
   templateUrl: 'listatextopessoal.component.html',
-  styleUrls: ['./listatextopessoal.component.css']
+  styleUrls: ['./listatextopessoal.component.css'],
+  providers: [ MessageService , ConfirmationService]
 })
 export class ListatextopessoalComponent implements OnInit {
   textospessoais = [];
   totalRegistros = 0;
   filtro = new TextoPessoalFiltro();
+  visible: boolean = true;
 
-  constructor(private service: TextopessoalService, private route: Router) { }
+  constructor(private service: TextopessoalService,
+              private route: Router,
+              private confirmation: ConfirmationService,
+              private messageService: MessageService) { }
 
   ngOnInit() {}
 
@@ -28,16 +34,26 @@ export class ListatextopessoalComponent implements OnInit {
   }
 
 
-  Excluir(textopessoal: TextoPessoal) {
-    try {
-      this.service.Remover(textopessoal.codigo);
-      alert(textopessoal.abreviatura + ' foi excluído');
-      this.route.navigate(['/tabelas/listatextopessoal']);
-    } catch (error) {
-      console.log('erro ao excluir');
-    }
-
+  ConfirmarExclusao(texto: TextoPessoal) {
+    this.confirmation.confirm({
+      message: 'Deseja Excluir: ' + texto.abreviatura.toUpperCase(),
+      accept: () => {
+        this.Excluir(texto);
+      }
+    });
   }
+
+  Excluir(texto: TextoPessoal) {
+    this.service.Remover(texto.codigo)
+      .then(() => {
+        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
+      })
+      .catch(erro => erro);
+      this.visible = false;
+      setTimeout (() => this.visible = true, 0);
+  }
+
+
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;

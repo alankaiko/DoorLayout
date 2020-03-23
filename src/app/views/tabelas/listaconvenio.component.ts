@@ -1,19 +1,25 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Convenio } from './../../core/model';
 import { Router } from '@angular/router';
 import { ConvenioFiltro, ConvenioService } from './../../zservice/convenio.service';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 
 @Component({
   templateUrl: 'listaconvenio.component.html',
-  styleUrls: ['./listaconvenio.component.css']
+  styleUrls: ['./listaconvenio.component.css'],
+  providers: [ MessageService , ConfirmationService]
 })
 export class ListaconvenioComponent implements OnInit {
   convenios = [];
   totalRegistros = 0;
   filtro = new ConvenioFiltro();
+  visible: boolean = true;
 
-  constructor(private service: ConvenioService, private route: Router) { }
+  constructor(private service: ConvenioService,
+              private route: Router,
+              private confirmation: ConfirmationService,
+              private messageService: MessageService) { }
 
   ngOnInit() {}
 
@@ -28,15 +34,23 @@ export class ListaconvenioComponent implements OnInit {
   }
 
 
-  Excluir(convenio: Convenio) {
-    try {
-      this.service.Remover(convenio.codigo);
-      alert(convenio.nome + ' foi excluído');
-      this.route.navigate(['/tabelas/listaconvenio']);
-    } catch (error) {
-      console.log('erro ao excluir');
-    }
+  ConfirmarExclusao(convenio: Convenio) {
+    this.confirmation.confirm({
+      message: 'Deseja Excluir: ' + convenio.nome.toUpperCase(),
+      accept: () => {
+        this.Excluir(convenio);
+      }
+    });
+  }
 
+  Excluir(convenio: Convenio) {
+    this.service.Remover(convenio.codigo)
+      .then(() => {
+        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
+      })
+      .catch(erro => erro);
+      this.visible = false;
+      setTimeout (() => this.visible = true, 0);
   }
 
   aoMudarPagina(event: LazyLoadEvent) {

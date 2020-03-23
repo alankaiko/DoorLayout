@@ -1,7 +1,8 @@
 <div class="card">
   <div class="card-body">
+    <p-confirmDialog></p-confirmDialog>
     <div class="row">
-      <p-table id="tabela" [value]="convenios" [responsive]="true" [paginator]="true"
+      <p-table id="tabela" [value]="convenios" [responsive]="true" [paginator]="true" *ngIf="visible"
         [rows]="filtro.itensPorPagina" class="table table-responsive-sm table-hover table-outline mb-0"
         [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
         <ng-template pTemplate="header">
@@ -21,8 +22,15 @@
             <td>{{convenio.ativo}}</td>
             <td style="text-align: center;">
               <button class="btn btn-outline-info" title="Editar" [routerLink]="['/tabelas/listaconvenio', convenio.codigo]"><i class="icon-pencil"></i></button>
-              <button class="btn btn-outline-danger" title="Excluir" (click)="Excluir(convenio)"><i class="icon-trash"></i></button>
+              <button class="btn btn-outline-danger" title="Excluir" (click)="ConfirmarExclusao(convenio)"><i class="icon-trash"></i></button>
 
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="5">
+              Nenhuma pessoa encontrada
             </td>
           </tr>
         </ng-template>
