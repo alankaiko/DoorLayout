@@ -1,3 +1,5 @@
+import { ConfirmationService } from 'primeng/api';
+import { CoreModule } from './../../core/core.module';
 import { TabelasRoutingModule } from './tabelas-routing.module';
 import { ListatextopessoalComponent } from './listatextopessoal.component';
 import { ListaprofsolicitanteComponent } from './listaprofsolicitante.component';
@@ -19,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TableModule} from 'primeng/components/table/table';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -35,7 +38,8 @@ import {TableModule} from 'primeng/components/table/table';
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot(),
     TabelasRoutingModule,
-    TableModule
+    TableModule,
+    ModalModule
   ],
   declarations: [
     ListaabreviaturaComponent,

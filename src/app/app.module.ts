@@ -1,3 +1,5 @@
+import { ConfirmationService } from 'primeng/api';
+import { CoreModule } from './core/core.module';
 import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
 import { CadastroProfissionalexecComponent } from './views/formularios/cadastro-profissionalexec.component';
 import { CadastroProfissionalsolComponent } from './views/formularios/cadastro-profissionalsol.component';
@@ -79,7 +81,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     InputMaskModule,
     ToolbarModule,
     CheckboxModule,
-    DropdownModule
+    DropdownModule,
+    CoreModule
   ],
   declarations: [
     AppComponent,
