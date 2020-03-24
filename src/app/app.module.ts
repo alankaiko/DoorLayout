@@ -1,4 +1,17 @@
+import { CapturaComponent } from './capturas/captura/captura.component';
+import { ProcedimentoCadApendComponent } from './atendimentos/procedimento-cad-apend/procedimento-cad-apend.component';
+import { CardAtendimentoComponent } from './atendimentos/card-atendimento/card-atendimento.component';
+import { TelaAtendimentoComponent } from './atendimentos/tela-atendimento/tela-atendimento.component';
+import { ListaAtendimentoComponent } from './atendimentos/lista-atendimento/lista-atendimento.component';
+import { DataViewModule } from 'primeng/components/dataview/dataview';
+import { PanelModule } from 'primeng/components/panel/panel';
+import {RatingModule } from 'primeng/rating';
+import { CardModule } from 'primeng/components/card/card';
+import { TableModule } from 'primeng/components/table/table';
+import { DialogModule } from 'primeng/components/dialog/dialog';
+import {CarouselModule} from 'primeng/carousel';
 import { CoreModule } from './core/core.module';
+import {WebcamModule} from 'ngx-webcam';
 import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
 import { CadastroProfissionalexecComponent } from './views/formularios/cadastro-profissionalexec.component';
 import { CadastroProfissionalsolComponent } from './views/formularios/cadastro-profissionalsol.component';
@@ -7,11 +20,12 @@ import { CadastroGrupoprocedimentoComponent } from './views/formularios/cadastro
 import { CadastroPacienteComponent } from './views/formularios/cadastro-paciente.component';
 import { CadastroAbreviaturaComponent } from './views/formularios/cadastro-abreviatura.component';
 import { BrowserModule } from '@angular/platform-browser';
-import {CalendarModule} from 'primeng/components/calendar/calendar';
+import { CalendarModule } from 'primeng/components/calendar/calendar';
 import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
 import { CheckboxModule } from 'primeng/components/checkbox/checkbox';
-import {DropdownModule} from 'primeng/components/dropdown/dropdown';
-
+import { DropdownModule } from 'primeng/components/dropdown/dropdown';
+import { ConfirmationService } from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {InputMaskModule} from 'primeng/components/inputmask/inputmask';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -81,7 +95,16 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     ToolbarModule,
     CheckboxModule,
     DropdownModule,
-    CoreModule
+    CoreModule,
+    DataViewModule,
+    PanelModule,
+    RatingModule,
+    CardModule,
+    TableModule,
+    DialogModule,
+    ConfirmDialogModule,
+    CarouselModule,
+    WebcamModule
   ],
   declarations: [
     AppComponent,
@@ -97,7 +120,12 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     CadastroProfissionalsolComponent,
     CadastroProfissionalexecComponent,
     CadastroConvenioComponent,
-    CadastroProcedimentomedicoComponent
+    CadastroProcedimentomedicoComponent,
+    ListaAtendimentoComponent,
+    TelaAtendimentoComponent,
+    CardAtendimentoComponent,
+    ProcedimentoCadApendComponent,
+    CapturaComponent
   ],
   providers: [{
     provide: LocationStrategy,

@@ -35,12 +35,12 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Atendimentos',
-        url: '/operacoes/listaatendimento',
+        url: '/operacoes/atendimento',
         icon: 'icon-puzzle'
       },
       {
         name: 'Laudos',
-        url: '/operacoes/laudo',
+        url: '/operacoes/captura',
         icon: 'icon-puzzle'
       },
       {

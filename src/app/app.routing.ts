@@ -1,3 +1,6 @@
+import { CapturaComponent } from './capturas/captura/captura.component';
+import { ListaAtendimentoComponent } from './atendimentos/lista-atendimento/lista-atendimento.component';
+import { TelaAtendimentoComponent } from './atendimentos/tela-atendimento/tela-atendimento.component';
 import { CadastroPacienteComponent } from './views/formularios/cadastro-paciente.component';
 import { CadastroTextopessoalComponent } from './views/formularios/cadastro-textopessoal.component';
 import { CadastroProfissionalsolComponent } from './views/formularios/cadastro-profissionalsol.component';
@@ -18,6 +21,58 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Captura'
+    },
+    children: [
+      {
+        path: 'operacoes/captura',
+        component: CapturaComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Atendimentos'
+    },
+    children: [
+      {
+        path: 'operacoes/atendimento',
+        component: ListaAtendimentoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Incluir Atendimento'
+    },
+    children: [
+      {
+        path: 'operacoes/atendimento/novo',
+        component: TelaAtendimentoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Incluir Atendimento'
+    },
+    children: [
+      {
+        path: 'operacoes/atendimento/:cod',
+        component: TelaAtendimentoComponent
+      }
+    ]
+  },
   {
     path: '',
     component: DefaultLayoutComponent,
@@ -267,10 +322,6 @@ export const routes: Routes = [
       title: 'Home'
     },
     children: [
-      {
-        path: 'operacoes',
-        loadChildren: () => import('./views/operacoes/operacoes.module').then(m => m.OperacoesModule)
-      },
       {
         path: 'tabelas',
         loadChildren: () => import('./views/tabelas/tabelas.module').then(m => m.TabelasModule)

@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <p-dataView id="tabela" class="tabela ui-fluid" [value]="atendimentos" *ngIf="visible"
+        [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" layout="list"
+        [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
+        class="tabela table table-responsive-sm table-hover table-outline mb-0">
+
+        <ng-template let-atendimento pTemplate="listItem">
+          <app-card-atendimento [atend]="atendimento" class="ui-g-12 convenios" style="border-bottom: 1px solid #c7c4c4;"></app-card-atendimento>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="5">
+              Nenhum Atendimento encontrado
+            </td>
+          </tr>
+        </ng-template>
+      </p-dataView>
+
+      <div class="ui-g-2" style="text-align: right;">
+        <button type="button" class="btn btn-outline-dark" routerLink="/operacoes/atendimento/novo">Novo Atendimento</button>
+      </div>
+    </div>
+  </div>
+</div>

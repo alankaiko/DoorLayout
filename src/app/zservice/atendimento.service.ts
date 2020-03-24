@@ -77,11 +77,11 @@ export class AtendimentoService {
       });
    }
 
-   Remover(codigo: number) {
-     this.http.delete(`${this.url}/${codigo}`)
+   Remover(codigo: number): Promise<any> {
+    return this.http.delete(`${this.url}/${codigo}`)
       .toPromise()
       .then(() => null);
-   }
+  }
 
   ListarPacientes(): Promise<Patient[]> {
     return this.http.get<Patient[]>(this.pacienteurl).toPromise();

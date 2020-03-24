@@ -46,7 +46,7 @@ export class ListaabreviaturaComponent implements OnInit {
   Excluir(abreviatura: Abreviatura) {
     this.service.Remover(abreviatura.codigo)
       .then(() => {
-        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
+        this.messageService.add({ severity: 'success', detail: 'Abreviatura excluída com sucesso!' });
       })
       .catch(erro => erro);
       this.visible = false;
