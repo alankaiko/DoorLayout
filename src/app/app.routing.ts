@@ -1,3 +1,4 @@
+import { EdicaoimagemComponent } from './capturas/edicaoimagem/edicaoimagem.component';
 import { CapturaComponent } from './capturas/captura/captura.component';
 import { ListaAtendimentoComponent } from './atendimentos/lista-atendimento/lista-atendimento.component';
 import { TelaAtendimentoComponent } from './atendimentos/tela-atendimento/tela-atendimento.component';
@@ -21,6 +22,19 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Captura'
+    },
+    children: [
+      {
+        path: 'operacoes/editarimagem',
+        component: EdicaoimagemComponent
+      }
+    ]
+  },
   {
     path: '',
     component: DefaultLayoutComponent,

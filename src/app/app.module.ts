@@ -1,3 +1,4 @@
+import { EdicaoimagemComponent } from './capturas/edicaoimagem/edicaoimagem.component';
 import { CapturaComponent } from './capturas/captura/captura.component';
 import { ProcedimentoCadApendComponent } from './atendimentos/procedimento-cad-apend/procedimento-cad-apend.component';
 import { CardAtendimentoComponent } from './atendimentos/card-atendimento/card-atendimento.component';
@@ -125,7 +126,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     TelaAtendimentoComponent,
     CardAtendimentoComponent,
     ProcedimentoCadApendComponent,
-    CapturaComponent
+    CapturaComponent,
+    EdicaoimagemComponent
   ],
   providers: [{
     provide: LocationStrategy,

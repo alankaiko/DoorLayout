@@ -1,40 +1,50 @@
-<div style="text-align:center" class="ui-g geral">
+<p-confirmDialog></p-confirmDialog>
+<div style="text-align:left; margin-top: 0;" class="ui-g geral">
+  <div class="topoprocedimento ui-g-12">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar(f)" class="formu">
+      <div class="ui-g-5 ui-fluid" style="display: inline-flex;">
+        <label>Atendimento: </label>
+        <p-dropdown [options]="atendimentos" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
+          placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
+      </div>
 
+      <div class="ui-g-7 ui-fluid" style="display: inline-flex;">
+        <label>Procedimento: </label>
+        <p-dropdown [options]="procedimentosAtd" [autoWidth]="false" [filter]="true" [(ngModel)]="procedimentoAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
+          placeholder="Selecione..." (onChange)="ConfigurarVariavel(procedimentoAtdSelecionado)"></p-dropdown>
+      </div>
+    </form>
+  </div>
 
   <div class="menulateral">
-    <div class="topoproc">
-
-    </div>
-
-
-
     <div class="ui-g-12">
-      <p-carousel [value]="webcamImage" orientation="vertical" [style]="{'width':'100%', 'margin-top':'1em'}" verticalViewPortHeight="330px" [numVisible]="1" [numScroll]="1">
+      <p-carousel [value]="webcamImage" [numVisible]="1" [numScroll]="1">
         <ng-template let-web pTemplate="item">
-          <img style="width: 100%; height: 100%;" [src]="web.imageAsDataUrl"/>
+          <div class="thumbnail-wrapper">
+            <img style="width: 100%; height: 100%;" [src]="web.imageAsDataUrl"/>
+            <button class="btn btn-outline-warning" title="Excluir" (click)="ConfirmarExclusao(web)"><i class="fa fa-fw fa-trash-o"></i></button>
+          </div>
         </ng-template>
       </p-carousel>
     </div>
 
     <div class="ui-g-12">
       <p-toolbar>
-        <div class="ui-toolbar-group-left">
-          <button class="btn btn-success" type="button" (click)="triggerSnapshot();">Capturar</button>
-          <button class="btn btn-primary" (click)="toggleWebcam();">Alternar</button>
-          <button class="btn btn-secondary" type="button" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Prox Disp.</button>
-        </div>
+        <button class="btn btn-success" type="button" (click)="TiraFoto();">Capturar</button>
+        <button class="btn btn-outline-warning" type="button" routerLink="/operacoes/editarimagem">Editar</button>
 
-        <div class="ui-toolbar-group-right">
-          <button class="btn btn-danger" type="button">Gravar Imagens</button>
-        </div>
+        <button class="btn btn-primary" (click)="toggleWebcam();">Alternar</button>
+        <button class="btn btn-secondary" type="button" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Prox Disp.</button>
+        <button class="btn btn-danger" type="button" (click)="GravandoImagens();">Gravar Imagens</button>
+
       </p-toolbar>
     </div>
 
   </div>
 
   <div class="painelprincipal">
-    <div id="divisoria" style="width: 88%; height: 88%; margin-top: 10px;">
-      <webcam style="float: right; border: 2px solid;" [height]="PegaAltura()" [width]="PegaLargura()" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+    <div id="divisoria" style="margin-top: 10px;">
+      <webcam style="float: right; border: 2px solid;" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
       [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
       [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
       (initError)="handleInitError($event)"></webcam>

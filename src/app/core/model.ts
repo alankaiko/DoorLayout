@@ -217,6 +217,15 @@ export class ProcedimentoMedico {
   grupo = new GrupoProcedimento();
 }
 
+export class Imagem {
+  codigo: number;
+  caminho: string;
+  nomeimagem: string;
+  extensao: string;
+  imagem: any;
+  procedimentoatendimento = new ProcedimentoAtendimento();
+}
+
 export class ProfissionalExecutante {
   codigo: number;
   nome: string;
@@ -322,11 +331,12 @@ export class ProcedimentoAtendimento {
   preventregalaudo: Date;
   dataexecucao: Date;
   atendimento = new Atendimento();
+  listaimagem = new Array<Imagem>();
 
   constructor(codigo?: number, profexecutante?: ProfissionalExecutante,
               procedimentoMedico?: ProcedimentoMedico, valorpaciente?: string,
               valorconvenio?: string, preventreglaudo?: Date,
-              dataexecucao?: Date, atendimento?: Atendimento) {
+              dataexecucao?: Date, atendimento?: Atendimento, listaimagem?: Array<Imagem>) {
                 this.codigo = codigo;
                 this.profexecutante = profexecutante;
                 this.procedimentomedico = procedimentoMedico;
@@ -335,6 +345,7 @@ export class ProcedimentoAtendimento {
                 this.preventregalaudo = preventreglaudo;
                 this.dataexecucao = dataexecucao;
                 this.atendimento = atendimento;
+                this.listaimagem = listaimagem;
               }
 }
 

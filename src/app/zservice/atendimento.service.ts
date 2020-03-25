@@ -25,9 +25,6 @@ export class AtendimentoService {
     this.solicitanteurl = `${environment.apiUrl}/profissionaissolicitantes`;
    }
 
-   Listar() {
-     return this.http.get(`${this.url}`).toPromise().then(response => response);
-   }
 
    Consultar(filtro: AtendimentoFilter): Promise<any> {
     const params = new HttpParams({
@@ -85,6 +82,10 @@ export class AtendimentoService {
 
   ListarPacientes(): Promise<Patient[]> {
     return this.http.get<Patient[]>(this.pacienteurl).toPromise();
+  }
+
+  ListarAtendimentos(): Promise<Atendimento[]> {
+    return this.http.get<Atendimento[]>(this.url).toPromise();
   }
 
   ListarConvenios(): Promise<Convenio[]> {
