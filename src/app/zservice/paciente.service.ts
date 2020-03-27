@@ -1,19 +1,9 @@
+import { PatientFiltro } from './servidor.service';
 import { Patient } from './../core/model';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-
-export class PacientesFiltro {
-  patientid: string;
-  patientname: string;
-  birthday: Date;
-  patientage: string;
-  patientsex: string;
-  servidor: boolean;
-  pagina = 0;
-  itensPorPagina = 7;
-}
 
 
 @Injectable({
@@ -30,7 +20,7 @@ export class PacienteService {
     return this.http.get(`${this.url}`).toPromise().then(response => response);
   }
 
-  Consultar(filtro: PacientesFiltro): Promise<any> {
+  Consultar(filtro: PatientFiltro): Promise<any> {
     let params = new HttpParams({
       fromObject: {
         page: filtro.pagina.toString(),

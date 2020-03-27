@@ -1,3 +1,7 @@
+import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
+import { ViewerComponent } from './servidor/viewer/viewer.component';
+import { PrevisualizacaoComponent } from './servidor/previsualizacao/previsualizacao.component';
+import { ListaServidorComponent } from './servidor/lista-servidor/lista-servidor.component';
 import { EdicaoimagemComponent } from './capturas/edicaoimagem/edicaoimagem.component';
 import { CapturaComponent } from './capturas/captura/captura.component';
 import { ProcedimentoCadApendComponent } from './atendimentos/procedimento-cad-apend/procedimento-cad-apend.component';
@@ -26,6 +30,8 @@ import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
 import { CheckboxModule } from 'primeng/components/checkbox/checkbox';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { ConfirmationService } from 'primeng/api';
+import {TreeTableModule} from 'primeng/treetable';
+import {TreeNode} from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {InputMaskModule} from 'primeng/components/inputmask/inputmask';
 import { NgModule } from '@angular/core';
@@ -52,7 +58,8 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 const APP_CONTAINERS = [
-  DefaultLayoutComponent
+  DefaultLayoutComponent,
+  DefaultEspComponent
 ];
 
 import {
@@ -105,7 +112,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     DialogModule,
     ConfirmDialogModule,
     CarouselModule,
-    WebcamModule
+    WebcamModule,
+    TreeTableModule
   ],
   declarations: [
     AppComponent,
@@ -127,7 +135,10 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     CardAtendimentoComponent,
     ProcedimentoCadApendComponent,
     CapturaComponent,
-    EdicaoimagemComponent
+    EdicaoimagemComponent,
+    ListaServidorComponent,
+    PrevisualizacaoComponent,
+    ViewerComponent
   ],
   providers: [{
     provide: LocationStrategy,

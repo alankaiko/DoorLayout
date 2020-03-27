@@ -7,11 +7,14 @@ import { Patient } from '../core/model';
 export class PatientFiltro {
   patientid: string;
   patientname: string;
+  birthday: Date;
   patientage: string;
   patientsex: string;
+  servidor: boolean;
   pagina = 0;
-  itensPorPagina = 10;
+  itensPorPagina = 7;
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +40,10 @@ export class ServidorService {
 
     if (filtro.patientid) {
       params = params.append('patientid', filtro.patientid);
+    }
+
+    if (filtro.servidor) {
+      params = params.append('servidor', 'true');
     }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })

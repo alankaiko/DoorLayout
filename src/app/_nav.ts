@@ -29,6 +29,18 @@ export const navItems: INavData[] = [
     name: 'Components'
   },
   {
+    name: 'Servidor',
+    url: '/servidor',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: 'Servidor',
+        url: '/servidor/listagem',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
     name: 'Operações',
     url: '/operacoes',
     icon: 'icon-puzzle',

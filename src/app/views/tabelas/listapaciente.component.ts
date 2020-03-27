@@ -1,6 +1,7 @@
+import { PatientFiltro } from './../../zservice/servidor.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
-import { PacienteService, PacientesFiltro } from './../../zservice/paciente.service';
+import { PacienteService } from './../../zservice/paciente.service';
 import { Patient } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
@@ -13,7 +14,7 @@ import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 export class ListapacienteComponent implements OnInit {
   patients = [];
   totalRegistros = 0;
-  filtro = new PacientesFiltro();
+  filtro = new PatientFiltro();
   visible: boolean = true;
 
   constructor(private service: PacienteService,

@@ -1,3 +1,7 @@
+import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
+import { ViewerComponent } from './servidor/viewer/viewer.component';
+import { PrevisualizacaoComponent } from './servidor/previsualizacao/previsualizacao.component';
+import { ListaServidorComponent } from './servidor/lista-servidor/lista-servidor.component';
 import { EdicaoimagemComponent } from './capturas/edicaoimagem/edicaoimagem.component';
 import { CapturaComponent } from './capturas/captura/captura.component';
 import { ListaAtendimentoComponent } from './atendimentos/lista-atendimento/lista-atendimento.component';
@@ -22,6 +26,45 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Servidor'
+    },
+    children: [
+      {
+        path: 'servidor/listagem',
+        component: ListaServidorComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'PreVisualizar'
+    },
+    children: [
+      {
+        path: 'previsualizar/:idpatient',
+        component: PrevisualizacaoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultEspComponent,
+    data: {
+      title: 'Viewer'
+    },
+    children: [
+      {
+        path: 'viewer/:cod',
+        component: ViewerComponent
+      }
+    ]
+  },
   {
     path: '',
     component: DefaultLayoutComponent,

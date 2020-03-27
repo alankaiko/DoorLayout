@@ -65,7 +65,7 @@ export class CapturaComponent implements OnInit {
       if (element.codigo === this.procedimento.codigo) {
         const val = this.atendimento.procedimentos.indexOf(element);
         this.atendimento.procedimentos[val] = this.procedimento;
-        this.serviceproc.Atualizar(this.procedimento);
+        // this.service.Atualizar(this.atendimento);
       }
     });
   }

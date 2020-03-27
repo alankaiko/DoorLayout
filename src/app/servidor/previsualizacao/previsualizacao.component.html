@@ -1,0 +1,71 @@
+<div class="conteudogeral">
+  <section class="ui-g ui-fluid">
+    <section class="ui-g-12">
+      <div class="ui-g-11">
+        <h4>Patient: {{patient?.patientname}}</h4>
+      </div>
+
+      <div class="ui-g-1">
+        <a routerLink="/servidor">
+          <i class="fa fa-fw fa-undo" aria-hidden="true">Voltar</i>
+        </a>
+      </div>
+    </section>
+
+    <section class="ui-g-12">
+      <div>
+        <div>
+          {{patient?.patientname}}, possui um total de {{patient?.studyes.length}} Estudo(s)
+        </div>
+
+        <div>
+          <span>Nome: {{patient?.patientname}}</span>
+        </div>
+
+        <div>
+          <span>Id: {{patient?.patientid}} </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="ui-g-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <p-treeTable [value]="lista" selectionMode="single" [paginator]="true" [rows]="10" dataKey="codigo">
+              <ng-template pTemplate="caption">
+                Total de {{patient?.studyes.length}} Estudo(s)
+              </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 10%;">Id. Study</th>
+                  <th style="width: 40%;">Description</th>
+                  <th style="width: 35%;">Accession Number</th>
+                  <th style="width: 10%;">Date Create</th>
+                  <th style="width: 5%;">View</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                <tr [ttRow]="rowNode" [ttSelectableRow]="rowNode">
+                  <td>
+                      <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                      {{rowData?.codigo}}
+                  </td>
+                  <td>{{rowData?.descricao}}</td>
+                  <td>{{rowData?.chave}}</td>
+                  <td>{{rowData?.date}}</td>
+                  <td>
+                    <a *ngIf="rowData.viewer != null" pTooltip="Pré-Visualização" [routerLink]="['/viewer', rowData.codigo]">
+                      <i class="fa fa-fw fa-eye icone" aria-hidden="true">{{rowData?.viewer}}</i>
+                    </a>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-treeTable>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </section>
+</div>
