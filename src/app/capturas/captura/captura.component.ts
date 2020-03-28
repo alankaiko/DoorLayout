@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { AtendimentoService } from './../../zservice/atendimento.service';
@@ -27,6 +28,7 @@ export class CapturaComponent implements OnInit {
   cont: number;
   atendimentoSelecionado: number;
   procedimentosAtdSelecionado: number;
+  imagemant: any;
 
   public errors: WebcamInitError[] = [];
 
@@ -57,17 +59,10 @@ export class CapturaComponent implements OnInit {
   }
 
   GravandoImagens() {
-    this.webcamImage.forEach( (element) => {
-      this.CriarNomeImagens(element);
+    this.webcamImage.forEach( (el) => {
+      this.CriarNomeImagens(el);
     });
-
-    this.atendimento.procedimentos.filter((element) => {
-      if (element.codigo === this.procedimento.codigo) {
-        const val = this.atendimento.procedimentos.indexOf(element);
-        this.atendimento.procedimentos[val] = this.procedimento;
-        // this.service.Atualizar(this.atendimento);
-      }
-    });
+    this.serviceproc.Atualizar(this.procedimento);
   }
 
   CriarNomeImagens(web: WebcamImage) {
@@ -105,15 +100,40 @@ export class CapturaComponent implements OnInit {
     this.webcamImage = new Array<WebcamImage>();
     this.cont = 1;
 
-    this.atendimento.procedimentos.filter((element) => {
-      if (element.codigo === procedimentoatdselecionado) {
-        this.procedimento = element;
-        element.listaimagem.forEach((im) => {
-          this.webcamImage.push(im.imagem);
+    this.atendimento.procedimentos.filter((elo) => {
+      if (elo.codigo === procedimentoatdselecionado) {
+        this.procedimento = elo;
+        this.procedimento.codigoatdteste = this.atendimento.codigo;
+        this.procedimento.listaimagem.forEach((el) => {
+          this.getImageFromService(el.codigo);
+          const bytes = this.imagemant;
+          const uint = new Uint8Array(bytes);
+
+          const url = 'data:image/jpeg;base64,' + uint;
+
+
         });
       }
     });
+  }
 
+  getImageFromService(codigo: number) {
+    this.serviceproc.PegarImagem(codigo).subscribe(data => {
+      this.createImageFromBlob(data);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  createImageFromBlob(image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.imagemant = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 
   PegaAltura() {
@@ -128,6 +148,10 @@ export class CapturaComponent implements OnInit {
 
   public TiraFoto(): void {
     this.trigger.next();
+    this.webcamImage.forEach((el) => {
+      console.log('primeiro' + el.imageAsBase64);
+      console.log('segundo' + el.imageAsDataUrl);
+    });
   }
 
   public toggleWebcam(): void {
@@ -166,6 +190,7 @@ export class CapturaComponent implements OnInit {
   CarregarAtendimentos() {
     this.service.ListarAtendimentos().then(lista => {
       this.atendimentos = lista.map(atendimento => ({label: 'atend: ' + atendimento.codigo + ' ' + atendimento.patient.patientname, value: atendimento.codigo}));
+
     }).catch(erro => erro);
   }
 

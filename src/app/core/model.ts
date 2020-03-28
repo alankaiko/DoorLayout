@@ -332,6 +332,7 @@ export class ProcedimentoAtendimento {
   dataexecucao: Date;
   atendimento = new Atendimento();
   listaimagem = new Array<Imagem>();
+  codigoatdteste: number;
 
   constructor(codigo?: number, profexecutante?: ProfissionalExecutante,
               procedimentoMedico?: ProcedimentoMedico, valorpaciente?: string,

@@ -2,6 +2,191 @@
   <div class="ui-g-11 ui-fluid" style="text-align: right;">
     <a routerLink="/servidor"><i class="fa fa-fw fa-undo" aria-hidden="true"><span>Voltar</span> </i></a>
   </div>
+  <nav class="navbar navbar-static-top" style="background-color:#171819;">
+
+    <div class="navbar-custom-menu">
+        <!-- <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                </ul>
+            </div> -->
+        <ul class="nav navbar-nav" >
+            <li class="dropdown messages-menu">
+                <a title="Windowing" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                    aria-expanded="false" [ngClass]="{'active': activeBtn==='windowningDDL'}" (click)="btnActive('windowningDDL')">
+                    <i class="fa fa-adjust"></i> <i class="fa fa-sort-down arrow_down"></i>
+                    <span class="txt"><small>Windowing</small></span>
+                </a>
+                <ul class="dropdown-menu" style="text-align: center;top:60px;width: 5%;border-radius: 10px;">
+                    <li>
+                        <a title="Windowing" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false" (click)="enableTools('bright')">
+                            <i class="fa fa-adjust"></i><br>Windowing
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Invert" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            data-placement="bottom" aria-expanded="false" (click)="enableTools('invert')">
+                            <i class="fa fa-eercast"></i><br>Invert
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown notifications-menu">
+                <a title="Pan" href="" tabindex="1" class="dropdown-toggle" data-toggle="dropdown"
+                    aria-expanded="false" [ngClass]="{'active': activeBtn==='pan'}" (click)="btnActive('pan');enableTools('pan')">
+                    <i class="fa fa-hand-stop-o"></i>
+                    <span class="txt"><small>Pan</small></span>
+                </a>
+            </li>
+            <li class="dropdown notifications-menu">
+                <a title="Zoom" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                    aria-expanded="false" [ngClass]="{'active': activeBtn==='zoom'}"  (click)="btnActive('zoom');enableTools('zoom')">
+                    <i class="fa fa-2x fa-search"></i>
+                    <!-- <i class="fa fa-sort-down arrow_down"></i> -->
+                    <span class="txt"><small>Zoom</small></span>
+                </a>
+            </li>
+            <li class="dropdown notifications-menu">
+                <a title="Annotate" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                [ngClass]="{'active': activeBtn==='annotate'}"  (click)="btnActive('annotate');" aria-expanded="false">
+                    <i class="fa fa-2x fas fa-font"></i><i class="fa fa-sort-down arrow_down"></i>
+                    <span class="txt"><small>Annotate</small></span>
+                </a>
+                <ul class="dropdown-menu" style="text-align: center;top:60px;width: 10%;border-radius: 10px;">
+                    <li>
+                        <a title="Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false" (click)="enableTools('rectangleRoi')">
+                            <i class="fa fa-2x fa-square"></i><br>RectangleRoi
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Length Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            data-placement="bottom" aria-expanded="false" (click)="enableTools('length')">
+                            <i class="fa fa-arrows-v"></i><br>Length
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Cobb Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            data-placement="bottom" aria-expanded="false" (click)="enableTools('cobb')">
+                            <i class="fa fa-expand"></i><br>Cobb
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Angle" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false" (click)="enableTools('angle')">
+                            <i class="fa fa-2x fa-angle-left"></i><br>Angle
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Text" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            data-placement="bottom" aria-expanded="false" (click)="enableTools('text')">
+                            <i class="fa fa-2x fas fa-font"></i><br>Text
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Elliptical Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            data-placement="bottom" aria-expanded="false" (click)="enableTools('elliptical')">
+                            <i class="fa fa-circle-o"></i><br>Elliptical
+                        </a>
+                    </li>
+                    <li>
+                        <a title="BiDirectional Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            data-placement="bottom" aria-expanded="false"
+                            (click)="enableTools('bi-directional')">
+                            <i class="fa fa-plus"></i><br>Bi-Directional
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Arrow Annotation" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            data-placement="bottom" aria-expanded="false"
+                            (click)="enableTools('arrow-annotation')">
+                            <i class="fa fa-long-arrow-left"></i><br>Arrow
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Probe" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            data-placement="bottom" aria-expanded="false" (click)="enableTools('probe')">
+                            <i class="fa fa-dot-circle-o"></i><br>Probe
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="dropdown notifications-menu">
+                <a title="Rotate" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                    aria-expanded="false" [ngClass]="{'active': activeBtn==='rotateDDL'}" (click)="btnActive('rotateDDL')">
+                    <i class="fa fa-rotate-right"></i><i class="fa fa-sort-down arrow_down"></i>
+                    <span class="txt"><small>Rotate</small></span>
+                </a>
+                <ul class="dropdown-menu" style="text-align: center;top:60px;width: 10%;border-radius: 10px;">
+                    <li>
+                        <a title="Rotate" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false" (click)="enableTools('rotate')">
+                            <i class="fa fa-rotate-right"></i><br>Rotate
+                        </a>
+                    </li>
+                    <li>
+                        <a title="HFlip" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false" (click)="enableTools('hFlip')">
+                            <i class="fa fa-shield fa-flip-horizontal"></i><br>HFlip
+                        </a>
+                    </li>
+                    <li>
+                        <a title="VFlip" href="" class="dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false" (click)="enableTools('vFlip')">
+                            <i class="fa fa-shield fa-flip-vertical"></i><br>VFlip
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown notifications-menu">
+                <a title="Magnifier" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                    aria-expanded="false" [ngClass]="{'active': activeBtn==='magnify'}" (click)="btnActive('magnify');enableTools('magnify')">
+                    <i class="fa fa-search-plus"></i>
+                    <span class="txt"><small>Magnif..</small></span>
+                </a>
+            </li>
+            <li class="dropdown notifications-menu" style="display: none;">
+                <a title="Scroll" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fa fa-book"></i> <i class="fa fa-sort-down arrow_down"></i>
+                    <span class="txt"><small>Scroll</small></span>
+                </a>
+            </li>
+            <li class="dropdown notifications-menu">
+                <a title="Drag Probe" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                    data-placement="bottom" aria-expanded="false" [ngClass]="{'active': activeBtn==='dragprobe'}" (click)="btnActive('dragprobe');enableTools('dragprobe')">
+                    <i class="fa fa-mouse-pointer"></i>
+                    <span class="txt"><small>Drag</small></span>
+                </a>
+            </li>
+            <li class="dropdown notifications-menu">
+                <a title="Fullscreen" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                    aria-expanded="false" [ngClass]="{'active': activeBtn==='fullscreen'}" (click)="btnActive('fullscreen');openFullscreen()">
+                    <i class="fa fa-arrows-alt"></i>
+                    <span class="txt"><small>Fullsc..</small></span>
+                </a>
+            </li>
+            <li class="dropdown notifications-menu">
+                <a title="Reset" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
+                    aria-expanded="false" [ngClass]="{'active': activeBtn==='reset'}" (click)="btnActive('reset');enableTools('reset')">
+                    <i class="fa fa-refresh"></i>
+                    <span class="txt"><small>Reset</small></span>
+                </a>
+            </li>
+        </ul>
+        <div>
+            <button style="margin-top: 10px;" class="btn btn-primary pull-right customBtn" type="button" (click)="backClicked();"><i
+                    class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp; Back</button>
+        </div>
+    </div>
+
+</nav>
   <p-toolbar>
     <div class="ui-toolbar-group-left">
       <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('bright')">Windowing</button>

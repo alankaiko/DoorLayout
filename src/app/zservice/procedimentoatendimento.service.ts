@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ProcedimentoAtendimento } from './../core/model';
@@ -70,6 +71,10 @@ export class ProcedimentoatendimentoService {
     return this.http.delete(`${this.url}/${codigo}`)
       .toPromise()
       .then(() => null);
+  }
+
+  PegarImagem(codigo: number): Observable<Blob> {
+    return this.http.get(`${this.url}/imagem/${codigo}`, { responseType: 'blob' });
   }
 
 }
