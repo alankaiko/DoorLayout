@@ -1,6 +1,7 @@
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import * as RoosterJs from 'roosterjs';
-import { Watermark, Editor, EditorPlugin, ImageResize, DefaultFormat, Alignment, Direction, TableFormat } from 'roosterjs';
+import { Watermark, Editor, EditorPlugin, ImageResize, DefaultFormat, Alignment, Direction } from 'roosterjs';
 import { ContentEdit, HyperLink, Paste } from 'roosterjs-editor-plugins';
 import { EditorOptions } from 'roosterjs-editor-core';
 export * from 'roosterjs-editor-types';
@@ -19,14 +20,33 @@ export * from 'roosterjs-plugin-picker';
   styleUrls: ['./tela-laudo.component.css']
 })
 export class TelaLaudoComponent implements OnInit {
+  formulario: FormGroup;
   colunas: number;
   linhas: number;
 
-
-  constructor() { }
+  constructor(private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.AdicionarListener();
+    this.ConfBasicas();
+  }
+
+  Mudarestado(divtable) {
+    const display = document.getElementById(divtable).style.display;
+    if (display === 'block') {
+      document.getElementById(divtable).style.display = 'none';
+    } else {
+      document.getElementById(divtable).style.display = 'block';
+    }
+  }
+
+  Esconder(divtable) {
+    const display = document.getElementById(divtable).style.display = 'none';
+  }
+
+  ConfBasicas() {
+    this.linhas = 1;
+    this.colunas = 1;
   }
 
   AdicionarListener() {
@@ -66,8 +86,7 @@ export class TelaLaudoComponent implements OnInit {
       underline: true,
     };
 
-    const options: RoosterJs.EditorOptions = {plugins: plugins, defaultFormat: defaultFormat,
-    };
+    const options: RoosterJs.EditorOptions = {plugins: plugins, defaultFormat: defaultFormat};
 
     const editor = new RoosterJs.Editor(contentDiv, options);
 
@@ -84,14 +103,12 @@ export class TelaLaudoComponent implements OnInit {
     document.getElementById('buttonTextColor').addEventListener('click', () => RoosterJs.setTextColor(editor, '#994242'));
     document.getElementById('buttonFontName').addEventListener('click', () => RoosterJs.setFontName(editor, 'Arial'));
     document.getElementById('buttonAlignLeft').addEventListener('click', () => RoosterJs.setAlignment(editor, Alignment.Left));
-    document.getElementById('buttonAlignCenter').addEventListener('click', () => RoosterJs.setAlignment(editor, Alignment.Right));
+    document.getElementById('buttonAlignCenter').addEventListener('click', () => RoosterJs.setAlignment(editor, Alignment.Center));
     document.getElementById('buttonAlignRight').addEventListener('click', () => RoosterJs.setAlignment(editor, Alignment.Right));
     document.getElementById('buttonToRight').addEventListener('click', () => RoosterJs.setDirection(editor, Direction.LeftToRight));
     document.getElementById('buttonToLeft').addEventListener('click', () => RoosterJs.setDirection(editor, Direction.RightToLeft));
-    document.getElementById('buttonTable').addEventListener('click', () => RoosterJs.insertTable(editor, this.colunas, this.linhas, null));
-
-
-
+    document.getElementById('buttonTable').addEventListener('click', () => RoosterJs.insertTable(editor, this.colunas, this.linhas));
+    document.getElementById('buttonImagem').addEventListener('click', () => RoosterJs.insertImage(editor, this.colunas, this.linhas));
 
     document.getElementById('buttonUndo').addEventListener('click', () => editor.undo());
     document.getElementById('buttonRedo').addEventListener('click', () => editor.redo());

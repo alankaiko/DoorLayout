@@ -1,0 +1,36 @@
+#divtable {
+  display:none;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-left:-150px;
+  margin-top:-100px;
+  width:330px;
+  height:200px;
+  border:1px solid #d0d0d0
+}
+
+.titulopop {
+  border: 1px solid #c8c8c8;
+  background-color: #f4f4f4;
+  color: #333333;
+  padding: 1em;
+  font-weight: 700;
+  border-bottom: 0 none;
+}
+
+.corpopop {
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #c8c8c8;
+  padding: 0.571em 1em;
+}
+
+.footerpop {
+  border-top: 1px solid #c8c8c8;
+  background-color: #ffffff;
+  color: #333333;
+  text-align: right;
+  position: relative;
+  top: -1px;
+}

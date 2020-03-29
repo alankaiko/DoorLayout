@@ -1,6 +1,6 @@
 import { element } from 'protractor';
 import { ActivatedRoute } from '@angular/router';
-import { Patient, Series, Study, Instance } from './../../core/model';
+import { Patient, Series, Instance } from './../../core/model';
 import { ServidorService } from './../../zservice/servidor.service';
 import { Component, OnInit } from '@angular/core';
 
