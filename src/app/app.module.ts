@@ -1,3 +1,4 @@
+import { TelaLaudoComponent } from './laudos/tela-laudo/tela-laudo.component';
 import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
 import { ViewerComponent } from './servidor/viewer/viewer.component';
 import { PrevisualizacaoComponent } from './servidor/previsualizacao/previsualizacao.component';
@@ -138,7 +139,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     EdicaoimagemComponent,
     ListaServidorComponent,
     PrevisualizacaoComponent,
-    ViewerComponent
+    ViewerComponent,
+    TelaLaudoComponent
   ],
   providers: [{
     provide: LocationStrategy,

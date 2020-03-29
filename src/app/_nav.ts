@@ -47,7 +47,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Laudos',
-        url: '/operacoes/captura',
+        url: '/operacoes/laudos',
         icon: 'icon-puzzle'
       },
       {

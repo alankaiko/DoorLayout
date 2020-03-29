@@ -61,6 +61,7 @@
     "ngx-webcam": "^0.3.0",
     "primeicons": "^2.0.0",
     "primeng": "^8.1.1",
+    "roosterjs": "^7.11.0",
     "rxjs": "^6.5.4",
     "simple-line-icons": "^2.4.1",
     "ts-helpers": "^1.1.2",

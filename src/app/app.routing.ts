@@ -1,3 +1,4 @@
+import { TelaLaudoComponent } from './laudos/tela-laudo/tela-laudo.component';
 import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
 import { ViewerComponent } from './servidor/viewer/viewer.component';
 import { PrevisualizacaoComponent } from './servidor/previsualizacao/previsualizacao.component';
@@ -69,12 +70,25 @@ export const routes: Routes = [
     path: '',
     component: DefaultLayoutComponent,
     data: {
-      title: 'Captura'
+      title: 'Editar Imagem'
     },
     children: [
       {
         path: 'operacoes/editarimagem',
         component: EdicaoimagemComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Laudos'
+    },
+    children: [
+      {
+        path: 'operacoes/laudos',
+        component: TelaLaudoComponent
       }
     ]
   },
