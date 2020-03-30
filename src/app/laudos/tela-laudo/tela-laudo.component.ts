@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import * as RoosterJs from 'roosterjs';
 import { Watermark, Editor, EditorPlugin, ImageResize, DefaultFormat, Alignment, Direction } from 'roosterjs';
@@ -14,21 +14,27 @@ export * from 'roosterjs-html-sanitizer';
 export * from 'roosterjs-plugin-picker';
 
 
+
 @Component({
   selector: 'app-tela-laudo',
   templateUrl: './tela-laudo.component.html',
   styleUrls: ['./tela-laudo.component.css']
 })
 export class TelaLaudoComponent implements OnInit {
-  formulario: FormGroup;
   colunas: number;
   linhas: number;
+  arquivoselecionado: File;
+  editor: Editor;
+  fileUrl;
+  monte: HTMLElement;
 
-  constructor(private formbuilder: FormBuilder) { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.AdicionarListener();
     this.ConfBasicas();
+
+
   }
 
   Mudarestado(divtable) {
@@ -62,7 +68,7 @@ export class TelaLaudoComponent implements OnInit {
         unlinkWhenBackspaceAfterLink: true,
         smartOrderedList: true,
       })),
-      new RoosterJs.Watermark('Type content here ...'),
+      new RoosterJs.Watermark('Inserir Texto'),
       new RoosterJs.ImageResize(),
       new RoosterJs.TableResize(),
       new RoosterJs.PickerPlugin({
@@ -88,31 +94,46 @@ export class TelaLaudoComponent implements OnInit {
 
     const options: RoosterJs.EditorOptions = {plugins: plugins, defaultFormat: defaultFormat};
 
-    const editor = new RoosterJs.Editor(contentDiv, options);
+    this.editor = new RoosterJs.Editor(contentDiv, options);
 
-    document.getElementById('buttonB').addEventListener('click', () => RoosterJs.toggleBold(editor));
-    document.getElementById('buttonI').addEventListener('click', () => RoosterJs.toggleItalic(editor));
-    document.getElementById('buttonU').addEventListener('click', () => RoosterJs.toggleUnderline(editor));
-    document.getElementById('buttonBullet').addEventListener('click', () => RoosterJs.toggleBullet(editor));
-    document.getElementById('buttonNumbering').addEventListener('click', () => RoosterJs.toggleNumbering(editor));
-    document.getElementById('buttonQuote').addEventListener('click', () => RoosterJs.toggleBlockQuote(editor));
-    document.getElementById('buttonHeader').addEventListener('click', () => RoosterJs.toggleHeader(editor, 1));
-    document.getElementById('buttonStrike').addEventListener('click', () => RoosterJs.toggleStrikethrough(editor));
-    document.getElementById('buttonSubscript').addEventListener('click', () => RoosterJs.toggleSubscript(editor));
-    document.getElementById('buttonSuperscript').addEventListener('click', () => RoosterJs.toggleSuperscript(editor));
-    document.getElementById('buttonTextColor').addEventListener('click', () => RoosterJs.setTextColor(editor, '#994242'));
-    document.getElementById('buttonFontName').addEventListener('click', () => RoosterJs.setFontName(editor, 'Arial'));
-    document.getElementById('buttonAlignLeft').addEventListener('click', () => RoosterJs.setAlignment(editor, Alignment.Left));
-    document.getElementById('buttonAlignCenter').addEventListener('click', () => RoosterJs.setAlignment(editor, Alignment.Center));
-    document.getElementById('buttonAlignRight').addEventListener('click', () => RoosterJs.setAlignment(editor, Alignment.Right));
-    document.getElementById('buttonToRight').addEventListener('click', () => RoosterJs.setDirection(editor, Direction.LeftToRight));
-    document.getElementById('buttonToLeft').addEventListener('click', () => RoosterJs.setDirection(editor, Direction.RightToLeft));
-    document.getElementById('buttonTable').addEventListener('click', () => RoosterJs.insertTable(editor, this.colunas, this.linhas));
-    document.getElementById('buttonImagem').addEventListener('click', () => RoosterJs.insertImage(editor, this.colunas, this.linhas));
+    document.getElementById('buttonB').addEventListener('click', () => RoosterJs.toggleBold(this.editor));
+    document.getElementById('buttonI').addEventListener('click', () => RoosterJs.toggleItalic(this.editor));
+    document.getElementById('buttonU').addEventListener('click', () => RoosterJs.toggleUnderline(this.editor));
+    document.getElementById('buttonBullet').addEventListener('click', () => RoosterJs.toggleBullet(this.editor));
+    document.getElementById('buttonNumbering').addEventListener('click', () => RoosterJs.toggleNumbering(this.editor));
+    document.getElementById('buttonQuote').addEventListener('click', () => RoosterJs.toggleBlockQuote(this.editor));
+    document.getElementById('buttonHeader').addEventListener('click', () => RoosterJs.toggleHeader(this.editor, 1));
+    document.getElementById('buttonStrike').addEventListener('click', () => RoosterJs.toggleStrikethrough(this.editor));
+    document.getElementById('buttonSubscript').addEventListener('click', () => RoosterJs.toggleSubscript(this.editor));
+    document.getElementById('buttonSuperscript').addEventListener('click', () => RoosterJs.toggleSuperscript(this.editor));
+    document.getElementById('buttonTextColor').addEventListener('click', () => RoosterJs.setTextColor(this.editor, '#994242'));
+    document.getElementById('buttonFontName').addEventListener('click', () => RoosterJs.setFontName(this.editor, 'times new roman'));
+    document.getElementById('buttonAlignLeft').addEventListener('click', () => RoosterJs.setAlignment(this.editor, Alignment.Left));
+    document.getElementById('buttonAlignCenter').addEventListener('click', () => RoosterJs.setAlignment(this.editor, Alignment.Center));
+    document.getElementById('buttonAlignRight').addEventListener('click', () => RoosterJs.setAlignment(this.editor, Alignment.Right));
+    document.getElementById('buttonToRight').addEventListener('click', () => RoosterJs.setDirection(this.editor, Direction.LeftToRight));
+    document.getElementById('buttonToLeft').addEventListener('click', () => RoosterJs.setDirection(this.editor, Direction.RightToLeft));
+    document.getElementById('buttonTable').addEventListener('click', () => RoosterJs.insertTable(this.editor, this.colunas, this.linhas));
+    document.getElementById('buttonImagem').addEventListener('click', () => RoosterJs.insertImage(this.editor, this.arquivoselecionado));
 
-    document.getElementById('buttonUndo').addEventListener('click', () => editor.undo());
-    document.getElementById('buttonRedo').addEventListener('click', () => editor.redo());
+    document.getElementById('buttonUndo').addEventListener('click', () => this.editor.undo());
+    document.getElementById('buttonRedo').addEventListener('click', () => this.editor.redo());
 
+  }
+
+  inputFileChange(event) {
+    this.arquivoselecionado = event.target.files[0];
+  }
+
+
+
+  ExportarDocumento() {
+    const win = window.open();
+    win.document.write(this.editor.getContent());
+  }
+
+  LimparDocumento() {
+    this.editor.setContent('');
   }
 
 }

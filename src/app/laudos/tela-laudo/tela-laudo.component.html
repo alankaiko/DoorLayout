@@ -16,12 +16,11 @@
 <button id="buttonAlignRight" title="Align Right"><i class="fa fa-fw fa-align-right"></i></button>
 <button id="buttonToLeft" title="Left"><i class="fa fa-fw fa-caret-square-o-left"></i></button>
 <button id="buttonToRight" title="Right"><i class="fa fa-fw fa-caret-square-o-right"></i></button>
-<button id="buttonImagem" title="Table"><i class="fa fa-fw fa-picture-o"></i></button>
+<button (click)="Mudarestado('divimagem')"><i class="fa fa-fw fa-picture-o"></i></button>
+<button id="buttonExport" title="Exportar Doc" (click)="ExportarDocumento()">Export</button>
+<button id="buttonExport" title="Clear Doc" (click)="LimparDocumento()">Clear</button>
 <button id="buttonUndo" title="Back"><i class="cui-action-undo"></i></button>
 <button id="buttonRedo" title="Next"><i class="cui-action-redo"></i></button>
-
-
-
 
 
 
@@ -31,6 +30,27 @@
 
 </div>
 
+
+<div id="divimagem">
+  <div class="titulopop">
+    Escolha Imagem
+  </div>
+  <div class="ui-g corpopop">
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+
+      </div>
+
+      <div class="ui-g-12">
+        <input type="file" (change)="inputFileChange($event)"/>
+      </div>
+    </div>
+    <div class="ui-g-12 footerpop">
+      <button label="Yes" id="buttonImagem" title="Next" (click)="Esconder('divimagem')" type="button" pButton icon="pi pi-check"></button>
+      <button label="No" type="button" pButton icon="pi pi-times"  title="Next" (click)="Esconder('divimagem')"></button>
+    </div>
+  </div>
+</div>
 
 
 <div id="divtable">

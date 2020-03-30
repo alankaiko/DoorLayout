@@ -18,6 +18,8 @@ import { DialogModule } from 'primeng/components/dialog/dialog';
 import {CarouselModule} from 'primeng/carousel';
 import { CoreModule } from './core/core.module';
 import {WebcamModule} from 'ngx-webcam';
+
+import {FileUploadModule} from 'primeng/components/fileupload/fileupload';
 import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
 import { CadastroProfissionalexecComponent } from './views/formularios/cadastro-profissionalexec.component';
 import { CadastroProfissionalsolComponent } from './views/formularios/cadastro-profissionalsol.component';
@@ -114,7 +116,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     ConfirmDialogModule,
     CarouselModule,
     WebcamModule,
-    TreeTableModule
+    TreeTableModule,
+    FileUploadModule
   ],
   declarations: [
     AppComponent,
