@@ -1,3 +1,4 @@
+import { InserirImagensComponent } from './laudos/inserir-imagens/inserir-imagens.component';
 import { TelaLaudoComponent } from './laudos/tela-laudo/tela-laudo.component';
 import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
 import { ViewerComponent } from './servidor/viewer/viewer.component';
@@ -18,6 +19,7 @@ import { DialogModule } from 'primeng/components/dialog/dialog';
 import {CarouselModule} from 'primeng/carousel';
 import { CoreModule } from './core/core.module';
 import {WebcamModule} from 'ngx-webcam';
+import {TabViewModule} from 'primeng/components/tabview/tabview';
 
 import {FileUploadModule} from 'primeng/components/fileupload/fileupload';
 import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
@@ -117,7 +119,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     CarouselModule,
     WebcamModule,
     TreeTableModule,
-    FileUploadModule
+    FileUploadModule,
+    TabViewModule
   ],
   declarations: [
     AppComponent,
@@ -143,7 +146,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     ListaServidorComponent,
     PrevisualizacaoComponent,
     ViewerComponent,
-    TelaLaudoComponent
+    TelaLaudoComponent,
+    InserirImagensComponent
   ],
   providers: [{
     provide: LocationStrategy,

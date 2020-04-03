@@ -1,9 +1,7 @@
-import { DomSanitizer } from '@angular/platform-browser';
+import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { Component, OnInit } from '@angular/core';
 import * as RoosterJs from 'roosterjs';
-import { Watermark, Editor, EditorPlugin, ImageResize, DefaultFormat, Alignment, Direction } from 'roosterjs';
-import { ContentEdit, HyperLink, Paste } from 'roosterjs-editor-plugins';
-import { EditorOptions } from 'roosterjs-editor-core';
+import { Editor, DefaultFormat, Alignment, Direction } from 'roosterjs';
 export * from 'roosterjs-editor-types';
 export * from 'roosterjs-editor-dom';
 export * from 'roosterjs-editor-core';
@@ -12,7 +10,6 @@ export * from 'roosterjs-editor-plugins';
 export * from 'roosterjs-plugin-image-resize';
 export * from 'roosterjs-html-sanitizer';
 export * from 'roosterjs-plugin-picker';
-
 
 
 @Component({
@@ -27,13 +24,15 @@ export class TelaLaudoComponent implements OnInit {
   editor: Editor;
   fileUrl;
   monte: HTMLElement;
+  imagelogo: any;
 
-  constructor(private sanitizer: DomSanitizer) { }
+
+  constructor(private servicoparametro: ParametrodosistemaService) { }
 
   ngOnInit(): void {
     this.AdicionarListener();
     this.ConfBasicas();
-
+    this.getImagemFromService();
 
   }
 
@@ -125,7 +124,16 @@ export class TelaLaudoComponent implements OnInit {
     this.arquivoselecionado = event.target.files[0];
   }
 
+  GerarPDF() {
 
+  }
+
+  ImprimirDocumento() {
+    const win = window.open();
+    win.document.write(this.editor.getContent());
+    win.document.close();
+    win.print();
+  }
 
   ExportarDocumento() {
     const win = window.open();
@@ -136,4 +144,29 @@ export class TelaLaudoComponent implements OnInit {
     this.editor.setContent('');
   }
 
+  CriarTabb() {
+    const tague = document.querySelector('table');
+    if (tague !== null) {
+      tague.parentNode.removeChild(tague);
+    }
+  }
+
+  getImagemFromService() {
+    this.servicoparametro.PegarImagem(1).subscribe(data => {
+      this.createImageFromBlob(data);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  createImageFromBlob(image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.imagelogo = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
 }

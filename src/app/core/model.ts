@@ -358,3 +358,9 @@ export class Modality {
   port: number;
   timeout: number;
 }
+
+export class ParametrosDoSistema {
+  codigo: number;
+  logomarcalaudo: any;
+
+}

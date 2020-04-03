@@ -1,3 +1,4 @@
+import { InserirImagensComponent } from './laudos/inserir-imagens/inserir-imagens.component';
 import { TelaLaudoComponent } from './laudos/tela-laudo/tela-laudo.component';
 import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
 import { ViewerComponent } from './servidor/viewer/viewer.component';
@@ -89,6 +90,19 @@ export const routes: Routes = [
       {
         path: 'operacoes/laudos',
         component: TelaLaudoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Inserir Imagens'
+    },
+    children: [
+      {
+        path: 'operacoes/laudosimagem',
+        component: InserirImagensComponent
       }
     ]
   },
