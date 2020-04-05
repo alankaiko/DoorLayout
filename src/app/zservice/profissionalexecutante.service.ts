@@ -73,4 +73,9 @@ export class ProfissionalexecutanteService {
       .then(() => null);
   }
 
+  PorProfExecutante() {
+    return this.http.get(`${this.url}/relatorios/por-executante`,
+      { responseType: 'blob' })
+      .toPromise();
+  }
 }

@@ -1,29 +1,29 @@
-import { Convenio } from './../core/model';
+import { Estado } from './../core/model';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export class ConvenioFiltro {
+export class EstadosFiltro {
   pagina = 0;
-  itensPorPagina = 5;
+  itensPorPagina = 7;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConvenioService {
+export class EstadosService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = `${environment .apiUrl}/convenios`;
+    this.url = `${environment.apiUrl}/estados`;
   }
 
   Listar(): Promise<any> {
     return this.http.get(`${this.url}`).toPromise().then(response => response);
   }
 
-  Consultar(filtro: ConvenioFiltro): Promise<any> {
-    let params = new HttpParams({
+  Consultar(filtro: EstadosFiltro): Promise<any> {
+    const params = new HttpParams({
       fromObject: {
         page: filtro.pagina.toString(),
         size: filtro.itensPorPagina.toString()
@@ -33,10 +33,10 @@ export class ConvenioService {
     return this.http.get<any>(`${this.url}?resumo`, { params })
       .toPromise()
       .then(response => {
-        const convenios = response;
+        const estados = response;
 
         const resultado = {
-          convenios,
+          estados,
           total: response.totalElements
         };
 
@@ -44,26 +44,25 @@ export class ConvenioService {
       });
   }
 
-
-  Adicionar(convenio): Promise<Convenio> {
-    return this.http.post<Convenio>(`${this.url}`, convenio).toPromise();
+  Adicionar(estado): Promise<Estado> {
+    return this.http.post<Estado>(`${this.url}`, estado).toPromise();
   }
 
   BuscarPorId(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/${codigo}`)
       .toPromise()
       .then(response => {
-        const convenio = response as Convenio;
-        return convenio;
+        const estado = response as Estado;
+        return estado;
       });
   }
 
-  Atualizar(convenio: Convenio): Promise<any> {
-    return this.http.put(`${this.url}/${convenio.codigo}`, convenio)
+  Atualizar(estado: Estado): Promise<any> {
+    return this.http.put(`${this.url}/${estado.codigo}`, estado)
       .toPromise()
       .then(response => {
-        const convenioalterado = response as Convenio;
-        return convenioalterado;
+        const estadoalterado = response as Estado;
+        return estadoalterado;
       });
   }
 
@@ -72,12 +71,5 @@ export class ConvenioService {
       .toPromise()
       .then(() => null);
   }
-
-  PorConvenio() {
-    return this.http.get(`${this.url}/relatorios/por-convenio`,
-      { responseType: 'blob' })
-      .toPromise();
-  }
-
 
 }

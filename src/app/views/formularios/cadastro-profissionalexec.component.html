@@ -73,14 +73,20 @@
             <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
           </div>
 
-          <div class="ui-g-4 ui-fluid" formGroupName="conselho">
-            <label>Sigla</label>
-            <input type="text" pInputText ng-model="text" name="sigla" formControlName="sigla">
-          </div>
 
           <div class="ui-g-8 ui-fluid" formGroupName="conselho">
-            <label>Descrição</label>
+            <div formGroupName="sigla">
+              <label>Sigla</label>
+              <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
+            </div>
+
+            <label>Num do Conselho</label>
             <input type="text" pInputText ng-model="text" name="descricao" formControlName="descricao">
+
+            <div formGroupName="estado">
+              <label>UF</label>
+              <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
+            </div>
           </div>
 
           <div class="ui-g-12 ui-fluid">

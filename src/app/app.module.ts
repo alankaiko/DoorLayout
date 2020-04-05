@@ -1,3 +1,9 @@
+import { SiglaComponent } from './views/ferramentas/sigla.component';
+import { ListaEstadoComponent } from './views/ferramentas/lista-estado.component';
+import { EstadoComponent } from './views/ferramentas/estado.component';
+import { RelatorioConvenioComponent } from './views/relatorios/relatorio-convenio.component';
+import { ListalicenciadoComponent } from './views/ferramentas/lista-licenciado.component';
+import { LicenciadoComponent } from './views/ferramentas/licenciado.component';
 import { InserirImagensComponent } from './laudos/inserir-imagens/inserir-imagens.component';
 import { TelaLaudoComponent } from './laudos/tela-laudo/tela-laudo.component';
 import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
@@ -147,7 +153,10 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     PrevisualizacaoComponent,
     ViewerComponent,
     TelaLaudoComponent,
-    InserirImagensComponent
+    InserirImagensComponent,
+    LicenciadoComponent,
+    EstadoComponent,
+    SiglaComponent
   ],
   providers: [{
     provide: LocationStrategy,

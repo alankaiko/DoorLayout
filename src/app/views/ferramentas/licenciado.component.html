@@ -1,0 +1,122 @@
+<div class="conteudos">
+  <p-fieldset legend="{{ editando ? 'Editar' : 'Nova'}} Abreviatura">
+    <div class="classecad">
+      <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="formu">
+        <div class="p-grid">
+          <div class="ui-g-3 ui-fluid">
+            <label>Código</label>
+            <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>CNPJ</label>
+            <input type="text" pInputText ng-model="text" name="cnpj" formControlName="cnpj">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>CNES</label>
+            <input type="text" pInputText ng-model="text" name="cnes" formControlName="cnes">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>CPF</label>
+            <input type="text" pInputText ng-model="text" name="cpf" formControlName="cpf">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Licenciado Para</label>
+            <input type="text" pInputText ng-model="text" name="licenciadopara" formControlName="licenciadopara">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Razao Social</label>
+            <input type="text" pInputText ng-model="text" name="razaosocial" formControlName="razaosocial">
+          </div>
+
+          <div class="endereco">
+            <div class="ui-g-8 ui-fluid" formGroupName="endereco">
+              <label>Logradouro</label>
+              <input type="text" pInputText ng-model="text" name="logradouro" formControlName="logradouro">
+            </div>
+
+            <div class="ui-g-4 ui-fluid" formGroupName="endereco">
+              <label>Num.</label>
+              <input type="text" pInputText ng-model="text" name="numero" formControlName="numero">
+            </div>
+
+            <div class="ui-g-8 ui-fluid" formGroupName="endereco">
+              <label>Complemento</label>
+              <input type="text" pInputText ng-model="text" name="complemento" formControlName="complemento">
+            </div>
+
+            <div class="ui-g-4 ui-fluid" formGroupName="endereco">
+              <label>Bairro</label>
+              <input type="text" pInputText ng-model="text" name="bairro" formControlName="bairro">
+            </div>
+
+            <div class="ui-g-4 ui-fluid" formGroupName="endereco">
+              <label>Cidade</label>
+              <input type="text" pInputText ng-model="text" name="cidade" formControlName="cidade">
+            </div>
+
+            <div class="ui-g-4 ui-fluid" formGroupName="endereco">
+              <label>Estado</label>
+              <input type="text" pInputText ng-model="text" name="estado" formControlName="estado">
+            </div>
+
+            <div class="ui-g-4 ui-fluid" formGroupName="endereco">
+              <label>CEP</label>
+              <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
+            </div>
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Telefone 1</label>
+            <input type="text" pInputText ng-model="text" name="telefone1" formControlName="telefone1">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Telefone 2</label>
+            <input type="text" pInputText ng-model="text" name="telefone2" formControlName="telefone2">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>E-mail</label>
+            <input type="text" pInputText ng-model="text" name="email" formControlName="email">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Site</label>
+            <input type="text" pInputText ng-model="text" name="site" formControlName="site">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Serial</label>
+            <input type="text" pInputText ng-model="text" name="serial" formControlName="serial">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Qtd. de Acessos</label>
+            <input type="text" pInputText ng-model="text" name="qtdeacessos" formControlName="qtdeacessos">
+          </div>
+
+          <div class="ui-g-9 ui-fluid">
+            <label>Tipo de Licenca</label>
+            <input type="text" pInputText ng-model="text" name="tipodelicenca" formControlName="tipodelicenca">
+          </div>
+
+          <div class="ui-g-12 ui-fluid">
+            <div style="text-align: left;">
+              <button class="btn btn-primary" type="submit" style="margin-right: 8px;">Salvar</button>
+              <button class="btn btn-outline-secondary" routerLink="/ferramentas/listalicenciado">Cancelar</button>
+            </div>
+
+            <div style="text-align: right;">
+              <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </p-fieldset>
+</div>

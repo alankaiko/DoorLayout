@@ -51,9 +51,8 @@ export class CadastroProcedimentomedicoComponent implements OnInit {
       codigo: [null, procedimentomedico.codigo],
       nome: [null, procedimentomedico.nome],
       grupo: this.formbuilder.group({
-        codigo: [procedimentomedico.grupo.codigo],
-        nome: [procedimentomedico.grupo.nome],
-      }),
+        codigo: [procedimentomedico.grupo.codigo]
+      })
     });
   }
 

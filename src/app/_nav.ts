@@ -142,6 +142,45 @@ export const navItems: INavData[] = [
     ]
   },
   {
+    name: 'Ferramentas',
+    url: '/ferramentas',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: 'Dados Licenciado',
+        url: '/ferramentas/listalicenciado',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Estados',
+        url: '/ferramentas/listaestado',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Siglas',
+        url: '/ferramentas/listasigla',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
+    name: 'Relatorios',
+    url: '/relatorios',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: 'Rel Convênio',
+        url: '/relatorios/relatorioporconvenio',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Rel Prof. Executante',
+        url: '/relatorios/relatorioporexecutante',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
     name: 'Base',
     url: '/base',
     icon: 'icon-puzzle',

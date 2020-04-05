@@ -1,0 +1,25 @@
+:host /deep/ p-paginator .ui-paginator-bottom {
+  box-sizing: border-box;
+  border-top: 1px solid rgb(192, 184, 184);
+}
+
+:host /deep/ p-confirmdialog div {
+	outline: 0 none;
+	box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #c2c2c2;
+	-webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+	-moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+	box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+	z-index: 1000;
+}
+
+:host /deep/ p-confirmdialog div .ui-dialog-content{
+  border-bottom: 1px solid #c2c2c2;
+}
+
+:host /deep/ p-confirmdialog div .ui-dialog-content span{
+  font-weight: bold;
+  font-size: 108%;
+  color: #CC0000;
+}

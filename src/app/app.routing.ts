@@ -1,3 +1,6 @@
+import { SiglaComponent } from './views/ferramentas/sigla.component';
+import { EstadoComponent } from './views/ferramentas/estado.component';
+import { LicenciadoComponent } from './views/ferramentas/licenciado.component';
 import { InserirImagensComponent } from './laudos/inserir-imagens/inserir-imagens.component';
 import { TelaLaudoComponent } from './laudos/tela-laudo/tela-laudo.component';
 import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
@@ -366,6 +369,84 @@ export const routes: Routes = [
       }
     ]
   },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Licenciado'
+    },
+    children: [
+      {
+        path: 'ferramentas/listalicenciado/novo',
+        component: LicenciadoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Editar Licenciado'
+    },
+    children: [
+      {
+        path: 'ferramentas/listalicenciado/:cod',
+        component: LicenciadoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Estado'
+    },
+    children: [
+      {
+        path: 'ferramentas/listaestado/novo',
+        component: EstadoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Editar Estado'
+    },
+    children: [
+      {
+        path: 'ferramentas/listaestado/:cod',
+        component: EstadoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Cadastrar Sigla'
+    },
+    children: [
+      {
+        path: 'ferramentas/listasigla/novo',
+        component: SiglaComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Editar Sigla'
+    },
+    children: [
+      {
+        path: 'ferramentas/listasigla/:cod',
+        component: SiglaComponent
+      }
+    ]
+  },
 
   {
     path: '',
@@ -414,6 +495,14 @@ export const routes: Routes = [
       {
         path: 'basededados',
         loadChildren: () => import('./views/basededados/basededados.module').then(m => m.BasededadosModule)
+      },
+      {
+        path: 'ferramentas',
+        loadChildren: () => import('./views/ferramentas/ferramentas.module').then(m => m.FerramentasModule)
+      },
+      {
+        path: 'relatorios',
+        loadChildren: () => import('./views/relatorios/relatorios.module').then(m => m.RelatoriosModule)
       },
       {
         path: 'base',

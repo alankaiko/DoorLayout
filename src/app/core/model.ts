@@ -237,8 +237,9 @@ export class ProfissionalExecutante {
 
 export class TissConselho {
   codigo: number;
-  sigla: string;
+  sigla = new Sigla();
   descricao: string;
+  estado = new Estado();
 }
 
 export class ProfissionalSolicitante {
@@ -363,4 +364,32 @@ export class ParametrosDoSistema {
   codigo: number;
   logomarcalaudo: any;
 
+}
+
+export class Licenciado {
+  codigo: number;
+  cnpj: string;
+  cnes: string;
+  cpf: string;
+  licenciadopara: string;
+  razaosocial: string;
+  endereco = new Endereco();
+  telefone1: string;
+  telefone2: string;
+  email: string;
+  site: string;
+  serial: string;
+  qtdeacessos: number;
+  tipodelicenca: string;
+}
+
+export class Estado {
+  codigo: number;
+  uf: string;
+  descricao: string;
+}
+
+export class Sigla {
+  codigo: number;
+  descricao: string;
 }
