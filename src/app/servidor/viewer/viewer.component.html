@@ -1,243 +1,195 @@
-<div class="ui-g">
-  <div class="ui-g-11 ui-fluid" style="text-align: right;">
-    <a routerLink="/servidor"><i class="fa fa-fw fa-undo" aria-hidden="true"><span>Voltar</span> </i></a>
-  </div>
-  <nav class="navbar navbar-static-top" style="background-color:#171819;">
+<div class="ui-g principal">
+  <div class="ui-g-12" style="padding: 0;">
+    <nav class="navbar navbar-static-top" style="background-color:#171819; padding: 0; ">
+      <div class="navbar-custom-menu">
+        <ul class="navbar navbar-expand-lg" style="list-style: none;">
+          <li class="dropdown menuli">
+            <a title="Windowing" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-adjust"></i>
+              <span class="txt"><small>Windowing</small></span>
+            </a>
+            <ul class="dropdown-menu" style="text-align: center; top:60px; width: 5%; border-radius: 10px;">
+              <li>
+                <a title="Windowing" href="" tabIndex="1" data-toggle="dropdown"
+                  aria-expanded="false" (click)="AtivarToolEsp('bright')">
+                    <i class="fa fa-adjust"></i><br>Windowing
+                </a>
+              </li>
+              <li>
+                <a title="Invert" href="" data-toggle="dropdown" data-placement="bottom"
+                  aria-expanded="false" (click)="AtivarToolEsp('invert')">
+                    <i class="fa fa-eercast"></i><br>Invert
+                </a>
+              </li>
+            </ul>
+          </li>
 
-    <div class="navbar-custom-menu">
-        <!-- <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                </ul>
-            </div> -->
-        <ul class="nav navbar-nav" >
-            <li class="dropdown messages-menu">
-                <a title="Windowing" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                    aria-expanded="false" [ngClass]="{'active': activeBtn==='windowningDDL'}" (click)="btnActive('windowningDDL')">
-                    <i class="fa fa-adjust"></i> <i class="fa fa-sort-down arrow_down"></i>
-                    <span class="txt"><small>Windowing</small></span>
-                </a>
-                <ul class="dropdown-menu" style="text-align: center;top:60px;width: 5%;border-radius: 10px;">
-                    <li>
-                        <a title="Windowing" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false" (click)="enableTools('bright')">
-                            <i class="fa fa-adjust"></i><br>Windowing
-                        </a>
-                    </li>
-                    <li>
-                        <a title="Invert" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            data-placement="bottom" aria-expanded="false" (click)="enableTools('invert')">
-                            <i class="fa fa-eercast"></i><br>Invert
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown notifications-menu">
-                <a title="Pan" href="" tabindex="1" class="dropdown-toggle" data-toggle="dropdown"
-                    aria-expanded="false" [ngClass]="{'active': activeBtn==='pan'}" (click)="btnActive('pan');enableTools('pan')">
-                    <i class="fa fa-hand-stop-o"></i>
-                    <span class="txt"><small>Pan</small></span>
-                </a>
-            </li>
-            <li class="dropdown notifications-menu">
-                <a title="Zoom" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                    aria-expanded="false" [ngClass]="{'active': activeBtn==='zoom'}"  (click)="btnActive('zoom');enableTools('zoom')">
-                    <i class="fa fa-2x fa-search"></i>
-                    <!-- <i class="fa fa-sort-down arrow_down"></i> -->
-                    <span class="txt"><small>Zoom</small></span>
-                </a>
-            </li>
-            <li class="dropdown notifications-menu">
-                <a title="Annotate" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                [ngClass]="{'active': activeBtn==='annotate'}"  (click)="btnActive('annotate');" aria-expanded="false">
-                    <i class="fa fa-2x fas fa-font"></i><i class="fa fa-sort-down arrow_down"></i>
-                    <span class="txt"><small>Annotate</small></span>
-                </a>
-                <ul class="dropdown-menu" style="text-align: center;top:60px;width: 10%;border-radius: 10px;">
-                    <li>
-                        <a title="Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false" (click)="enableTools('rectangleRoi')">
-                            <i class="fa fa-2x fa-square"></i><br>RectangleRoi
-                        </a>
-                    </li>
-                    <li>
-                        <a title="Length Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            data-placement="bottom" aria-expanded="false" (click)="enableTools('length')">
-                            <i class="fa fa-arrows-v"></i><br>Length
-                        </a>
-                    </li>
-                    <li>
-                        <a title="Cobb Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            data-placement="bottom" aria-expanded="false" (click)="enableTools('cobb')">
-                            <i class="fa fa-expand"></i><br>Cobb
-                        </a>
-                    </li>
-                    <li>
-                        <a title="Angle" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false" (click)="enableTools('angle')">
-                            <i class="fa fa-2x fa-angle-left"></i><br>Angle
-                        </a>
-                    </li>
-                    <li>
-                        <a title="Text" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            data-placement="bottom" aria-expanded="false" (click)="enableTools('text')">
-                            <i class="fa fa-2x fas fa-font"></i><br>Text
-                        </a>
-                    </li>
-                    <li>
-                        <a title="Elliptical Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            data-placement="bottom" aria-expanded="false" (click)="enableTools('elliptical')">
-                            <i class="fa fa-circle-o"></i><br>Elliptical
-                        </a>
-                    </li>
-                    <li>
-                        <a title="BiDirectional Measure" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            data-placement="bottom" aria-expanded="false"
-                            (click)="enableTools('bi-directional')">
-                            <i class="fa fa-plus"></i><br>Bi-Directional
-                        </a>
-                    </li>
-                    <li>
-                        <a title="Arrow Annotation" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            data-placement="bottom" aria-expanded="false"
-                            (click)="enableTools('arrow-annotation')">
-                            <i class="fa fa-long-arrow-left"></i><br>Arrow
-                        </a>
-                    </li>
-                    <li>
-                        <a title="Probe" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            data-placement="bottom" aria-expanded="false" (click)="enableTools('probe')">
-                            <i class="fa fa-dot-circle-o"></i><br>Probe
-                        </a>
-                    </li>
+          <li class="dropdown menuli">
+            <a title="Pan" href="" tabindex="1" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('pan')">
+              <i class="fa fa-hand-stop-o"></i>
+              <span class="txt"><small>Pan</small></span>
+            </a>
+          </li>
 
-                </ul>
-            </li>
-            <li class="dropdown notifications-menu">
-                <a title="Rotate" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                    aria-expanded="false" [ngClass]="{'active': activeBtn==='rotateDDL'}" (click)="btnActive('rotateDDL')">
-                    <i class="fa fa-rotate-right"></i><i class="fa fa-sort-down arrow_down"></i>
-                    <span class="txt"><small>Rotate</small></span>
+          <li class="dropdown menuli">
+            <a title="Zoom" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('zoom')">
+                <i class="fa fa-2x fa-search"></i>
+                <span class="txt"><small>Zoom</small></span>
+            </a>
+          </li>
+
+          <li class="dropdown menuli">
+            <a title="Annotate" href="" tabIndex="1" class="dropdown-toggle"
+              data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-2x fas fa-font"></i>
+                <span class="txt"><small>Annotate</small></span>
+            </a>
+            <ul class="dropdown-menu" style="text-align: center; top:60px; width: 10%; border-radius: 10px;">
+              <li>
+                <a title="Measure" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('rectangleRoi')">
+                  <i class="fa fa-2x fa-square"></i><br>RectangleRoi
                 </a>
-                <ul class="dropdown-menu" style="text-align: center;top:60px;width: 10%;border-radius: 10px;">
-                    <li>
-                        <a title="Rotate" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false" (click)="enableTools('rotate')">
-                            <i class="fa fa-rotate-right"></i><br>Rotate
-                        </a>
-                    </li>
-                    <li>
-                        <a title="HFlip" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false" (click)="enableTools('hFlip')">
-                            <i class="fa fa-shield fa-flip-horizontal"></i><br>HFlip
-                        </a>
-                    </li>
-                    <li>
-                        <a title="VFlip" href="" class="dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false" (click)="enableTools('vFlip')">
-                            <i class="fa fa-shield fa-flip-vertical"></i><br>VFlip
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown notifications-menu">
-                <a title="Magnifier" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                    aria-expanded="false" [ngClass]="{'active': activeBtn==='magnify'}" (click)="btnActive('magnify');enableTools('magnify')">
-                    <i class="fa fa-search-plus"></i>
-                    <span class="txt"><small>Magnif..</small></span>
+              </li>
+              <li>
+                <a title="Length Measure" href="" data-toggle="dropdown" data-placement="bottom"
+                  aria-expanded="false" (click)="AtivarToolEsp('length')">
+                    <i class="fa fa-arrows-v"></i><br>Length
                 </a>
-            </li>
-            <li class="dropdown notifications-menu" style="display: none;">
-                <a title="Scroll" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="fa fa-book"></i> <i class="fa fa-sort-down arrow_down"></i>
-                    <span class="txt"><small>Scroll</small></span>
+              </li>
+              <li>
+                <a title="Cobb Measure" href="" data-toggle="dropdown" data-placement="bottom"
+                  aria-expanded="false" (click)="AtivarToolEsp('cobb')">
+                    <i class="fa fa-expand"></i><br>Cobb
                 </a>
-            </li>
-            <li class="dropdown notifications-menu">
-                <a title="Drag Probe" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                    data-placement="bottom" aria-expanded="false" [ngClass]="{'active': activeBtn==='dragprobe'}" (click)="btnActive('dragprobe');enableTools('dragprobe')">
-                    <i class="fa fa-mouse-pointer"></i>
-                    <span class="txt"><small>Drag</small></span>
+              </li>
+              <li>
+                <a title="Angle" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('angle')">
+                  <i class="fa fa-2x fa-angle-left"></i><br>Angle
                 </a>
-            </li>
-            <li class="dropdown notifications-menu">
-                <a title="Fullscreen" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                    aria-expanded="false" [ngClass]="{'active': activeBtn==='fullscreen'}" (click)="btnActive('fullscreen');openFullscreen()">
-                    <i class="fa fa-arrows-alt"></i>
-                    <span class="txt"><small>Fullsc..</small></span>
+              </li>
+              <li>
+                <a title="Text" href="" data-toggle="dropdown" data-placement="bottom"
+                  aria-expanded="false" (click)="AtivarToolEsp('text')">
+                    <i class="fa fa-2x fas fa-font"></i><br>Text
                 </a>
-            </li>
-            <li class="dropdown notifications-menu">
-                <a title="Reset" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown"
-                    aria-expanded="false" [ngClass]="{'active': activeBtn==='reset'}" (click)="btnActive('reset');enableTools('reset')">
-                    <i class="fa fa-refresh"></i>
-                    <span class="txt"><small>Reset</small></span>
+              </li>
+              <li>
+                <a title="Elliptical Measure" href="" data-toggle="dropdown" data-placement="bottom"
+                  aria-expanded="false" (click)="AtivarToolEsp('elliptical')">
+                    <i class="fa fa-circle-o"></i><br>Elliptical
                 </a>
-            </li>
+              </li>
+              <li>
+                <a title="BiDirectional Measure" href="" data-toggle="dropdown" data-placement="bottom"
+                  aria-expanded="false" (click)="AtivarToolEsp('bi-directional')">
+                    <i class="fa fa-plus"></i><br>Bi-Directional
+                </a>
+              </li>
+              <li>
+                <a title="Arrow Annotation" href="" data-toggle="dropdown" data-placement="bottom"
+                  aria-expanded="false" (click)="AtivarToolEsp('arrow-annotation')">
+                    <i class="fa fa-long-arrow-left"></i><br>Arrow
+                </a>
+              </li>
+              <li>
+                <a title="Probe" href="" data-toggle="dropdown" data-placement="bottom"
+                  aria-expanded="false" (click)="AtivarToolEsp('probe')">
+                    <i class="fa fa-dot-circle-o"></i><br>Probe
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="dropdown menuli">
+            <a title="Rotate" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-rotate-right"></i>
+              <span class="txt"><small>Rotate</small></span>
+            </a>
+            <ul class="dropdown-menu" style="text-align: center;top:60px;width: 10%;border-radius: 10px;">
+              <li>
+                <a title="Rotate" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('rotate')">
+                  <i class="fa fa-rotate-right"></i><br>Rotate
+                </a>
+              </li>
+              <li>
+                <a title="HFlip" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('hFlip')">
+                  <i class="fa fa-shield fa-flip-horizontal"></i><br>HFlip
+                </a>
+              </li>
+              <li>
+                <a title="VFlip" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('vFlip')">
+                  <i class="fa fa-shield fa-flip-vertical"></i><br>VFlip
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="dropdown menuli">
+            <a title="Magnifier" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('magnify')">
+              <i class="fa fa-search-plus"></i>
+              <span class="txt"><small>Magnifier</small></span>
+            </a>
+          </li>
+
+          <li class="dropdown menuli">
+            <a title="Drag Probe" href="" tabIndex="1" data-toggle="dropdown" data-placement="bottom"
+              aria-expanded="false" (click)="AtivarToolEsp('dragprobe')">
+                <i class="fa fa-mouse-pointer"></i>
+                <span class="txt"><small>Drag</small></span>
+            </a>
+          </li>
+
+          <li class="dropdown menuli">
+            <a title="Tags" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="MostrarTabela()">
+              <i class="fa fa-arrows-alt"></i>
+              <span class="txt"><small>Tags</small></span>
+            </a>
+          </li>
+
+          <li class="dropdown menuli">
+            <a title="Imagem PNG" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="RecuperarPng()">
+              <i class="fa fa-file-image-o"></i>
+              <span class="txt"><small>Imagem PNG</small></span>
+            </a>
+          </li>
+
+          <li class="dropdown menuli">
+            <a title="Reset" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('reset')">
+              <i class="fa fa-refresh"></i>
+              <span class="txt"><small>Reset</small></span>
+            </a>
+          </li>
         </ul>
-        <div>
-            <button style="margin-top: 10px;" class="btn btn-primary pull-right customBtn" type="button" (click)="backClicked();"><i
-                    class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp; Back</button>
-        </div>
-    </div>
 
-</nav>
-  <p-toolbar>
-    <div class="ui-toolbar-group-left">
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('bright')">Windowing</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('invert')">Invert</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('pan')">Pan</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('zoom')">Zoom</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('rectangleRoi')">RectangleRoi</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('length')">Length</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('cobb')">Cobb</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('angle')">Angle</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('text')">Text</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('elliptical')">Elliptical</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('bi-directional')">Bi-Directional</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('arrow-annotation')">Arrow</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('probe')">Probe</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('rotate')">Rotate</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('hFlip')">HFlip</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('vFlip')">VFlip</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('magnify')">Magnif</button>
-      <button class="btn btn-outline-dark" type="button" (click)="AtivarToolEsp('dragprobe')">Drag</button>
-      <button class="btn btn-outline-dark" type="button" (click)="MostrarTabela()">Tags</button>
-      <button class="btn btn-outline-warning" type="button" (click)="RecuperarPng()">Imagem PNG</button>
-      <button class="btn btn-outline-danger" type="button" (click)="AtivarToolEsp('reset')">Reset</button>
-    </div>
+      </div>
 
-    <div class="ui-toolbar-group-right">
-      <button class="btn btn-outline-dark" type="button" (click)="backClicked();">Back</button>
-    </div>
+      <div>
+        <button style="margin-top: 10px;" class="btn btn-primary pull-right customBtn" type="button" (click)="backClicked();">
+          <i class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp; Voltar</button>
+      </div>
+    </nav>
+  </div>
 
-  </p-toolbar>
-
-  <div class="ui-g-10">
-    <div class="image-canvas" id="image-canvas" style="min-height: 420px;width:90%; border: 2px solid;">
+  <div class="ui-g-12" style="padding: 0;">
+    <div class="image-canvas" id="image-canvas">
     </div>
   </div>
 
   <p-dialog header="Tabela de Tags" [style]="{width: '70%', minWidth: '200px'}" [(visible)]="display" [modal]="true" [responsive]="true" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
     <p-table [value]="tagsimagems">
       <ng-template pTemplate="header">
-          <tr>
-              <th style="width: 18%;">Tag</th>
-              <th style="width: 35;">Ident.</th>
-              <th style="width: 45%;">Valor</th>
-          </tr>
+        <tr>
+          <th style="width: 18%;">Tag</th>
+          <th style="width: 35;">Ident.</th>
+          <th style="width: 45%;">Valor</th>
+        </tr>
       </ng-template>
       <ng-template pTemplate="body" let-tags>
-          <tr>
-              <td>{{tags?.tag}}</td>
-              <td>{{tags?.identificacao}}</td>
-              <td>{{tags?.campo}}</td>
-          </tr>
+        <tr>
+          <td>{{tags?.tag}}</td>
+          <td>{{tags?.identificacao}}</td>
+          <td>{{tags?.campo}}</td>
+        </tr>
       </ng-template>
     </p-table>
   </p-dialog>

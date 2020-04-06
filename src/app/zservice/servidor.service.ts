@@ -76,4 +76,9 @@ export class ServidorService {
   BuscarInstanciasDoPaciente(idpatient: number): Promise<any> {
     return this.http.get<any>(`${this.url}/series/${idpatient}`).toPromise().then(response => response);
   }
+
+  urlUploadAnexo(valor) {
+    return this.http.post(`${this.url}/teste`, valor)
+        .subscribe(resposta => console.log('Upload ok.'));
+  }
 }

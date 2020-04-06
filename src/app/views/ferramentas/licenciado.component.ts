@@ -50,7 +50,6 @@ export class LicenciadoComponent implements OnInit {
       serial: [null, licenciado.serial],
       qtdeacessos: [null, licenciado.qtdeacessos],
       telefone1: [null, licenciado.telefone1],
-      tipodelicenca: [null, licenciado.tipodelicenca],
       endereco: this.formbuilder.group({
         logradouro: [null, licenciado.endereco.logradouro],
         complemento: [null, licenciado.endereco.complemento],

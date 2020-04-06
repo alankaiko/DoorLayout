@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './default-esp.component.html'
+  templateUrl: './default-esp.component.html',
+  styleUrls: ['./default-esp.component.css']
 })
 export class DefaultEspComponent {
   public sidebarMinimized = false;

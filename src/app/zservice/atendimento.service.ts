@@ -57,8 +57,7 @@ export class AtendimentoService {
       .toPromise()
       .then(response => {
         const atendimento = response as Atendimento;
-        this.converterStringsParaDatas([atendimento]);
-
+        // this.converterStringsParaDatas([atendimento]);
         return atendimento;
       });
 

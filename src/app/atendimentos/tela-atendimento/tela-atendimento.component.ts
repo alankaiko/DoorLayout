@@ -91,9 +91,6 @@ export class TelaAtendimentoComponent implements OnInit {
     this.route.navigate(['/operacoes/atendimento/novo']);
   }
 
-
-
-
   CarregarPacientes() {
     this.service.ListarPacientes().then(lista => {
       this.pacientes = lista.map(patient => ({label: patient.patientname, value: patient.idpatient}));

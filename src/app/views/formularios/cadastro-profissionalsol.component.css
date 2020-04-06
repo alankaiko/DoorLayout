@@ -1,3 +1,17 @@
 :host /deep/ p-fieldset .ui-fieldset{
   border:1px solid #428bca;
 }
+
+:host /deep/ p-dropdown .ui-dropdown{
+  border:1px solid #428bca;
+  background-color: #fff;
+}
+
+:host /deep/ p-dropdown .ui-dropdown-items {
+  background-color: #fff;
+}
+
+:host /deep/ p-dropdown .ui-dropdown-items li:hover {
+  background-color: rgb(158, 150, 150);
+  border: 1px solid rgb(158, 150, 150);
+}

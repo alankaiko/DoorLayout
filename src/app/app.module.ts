@@ -26,7 +26,7 @@ import {CarouselModule} from 'primeng/carousel';
 import { CoreModule } from './core/core.module';
 import {WebcamModule} from 'ngx-webcam';
 import {TabViewModule} from 'primeng/components/tabview/tabview';
-
+import * as $ from 'jquery';
 import {FileUploadModule} from 'primeng/components/fileupload/fileupload';
 import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
 import { CadastroProfissionalexecComponent } from './views/formularios/cadastro-profissionalexec.component';

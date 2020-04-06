@@ -30,12 +30,12 @@
 
     <div class="ui-g-12">
       <p-toolbar>
-        <button class="btn btn-success" type="button" (click)="TiraFoto();">Capturar</button>
-        <button class="btn btn-outline-warning" type="button" routerLink="/operacoes/editarimagem">Editar</button>
+        <button class="btn btn-success" type="button" (click)="TiraFoto();" *ngIf="verifica">Capturar</button>
+        <button class="btn btn-outline-warning" type="button" routerLink="/operacoes/editarimagem" *ngIf="verifica">Editar</button>
 
         <button class="btn btn-primary" (click)="toggleWebcam();">Alternar</button>
-        <button class="btn btn-secondary" type="button" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Prox Disp.</button>
-        <button class="btn btn-danger" type="button" (click)="GravandoImagens();">Gravar Imagens</button>
+        <button class="btn btn-secondary" type="button" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Prox.</button>
+        <button class="btn btn-danger" type="button" (click)="GravandoImagens();" *ngIf="verifica">Gravar</button>
 
       </p-toolbar>
     </div>
@@ -44,8 +44,8 @@
 
   <div class="painelprincipal">
     <div id="divisoria" style="margin-top: 10px;">
-      <webcam style="float: right; border: 2px solid;" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-      [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+      <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+      [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [height]="PegaLargura()" [width]="PegaLargura()"
       [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
       (initError)="handleInitError($event)"></webcam>
     </div>

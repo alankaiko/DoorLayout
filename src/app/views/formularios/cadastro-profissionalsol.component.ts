@@ -1,3 +1,5 @@
+import { EstadosService } from './../../zservice/estados.service';
+import { SiglaService } from './../../zservice/sigla.service';
 import { ProfissionalSolicitante } from './../../core/model';
 import { ProfissionalsolicitanteService } from './../../zservice/profissionalsolicitante.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,8 +14,12 @@ import {Location} from '@angular/common';
 })
 export class CadastroProfissionalsolComponent implements OnInit {
   formulario: FormGroup;
+  siglas = [];
+  estados = [];
 
   constructor(private service: ProfissionalsolicitanteService,
+              private serviceSigla: SiglaService,
+              private serviceEstado: EstadosService,
               private rota: ActivatedRoute,
               private formbuilder: FormBuilder,
               private route: Router,
@@ -27,6 +33,9 @@ export class CadastroProfissionalsolComponent implements OnInit {
     if (codprofissionalsol) {
       this.CarregarProfissionalSolicitante(codprofissionalsol);
     }
+
+    this.BuscarEstados();
+    this.BuscarSiglas();
   }
 
   get editando() {
@@ -40,9 +49,14 @@ export class CadastroProfissionalsolComponent implements OnInit {
       numnoconselho: [null, profissional.numnoconselho],
       conselho: this.formbuilder.group({
         codigo: [profissional.conselho.codigo],
-        sigla: [profissional.conselho.sigla],
-        descricao: [profissional.conselho.descricao]
-      }),
+        descricao: [profissional.conselho.descricao],
+        sigla: this.formbuilder.group({
+          codigo: [profissional.conselho.sigla.codigo]
+        }),
+        estado: this.formbuilder.group({
+          codigo: [profissional.conselho.estado.codigo]
+        })
+      })
     });
   }
 
@@ -76,5 +90,21 @@ export class CadastroProfissionalsolComponent implements OnInit {
 
   Voltar() {
     this.location.back();
+  }
+
+  BuscarSiglas() {
+    return this.serviceSigla.Listar()
+    .then(siglas => {
+      this.siglas = siglas
+        .map(g => ({ label: g.descricao, value: g.codigo }));
+    });
+  }
+
+  BuscarEstados() {
+    return this.serviceEstado.Listar()
+    .then(estados => {
+      this.estados = estados
+        .map(g => ({ label: g.uf, value: g.codigo }));
+    });
   }
 }

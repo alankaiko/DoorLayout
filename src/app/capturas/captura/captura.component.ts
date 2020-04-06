@@ -1,8 +1,9 @@
+import { ActivatedRoute } from '@angular/router';
 import { element } from 'protractor';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { AtendimentoService } from './../../zservice/atendimento.service';
-import { Atendimento, Imagem, ProcedimentoMedico, ProcedimentoAtendimento } from './../../core/model';
+import { Atendimento, Imagem, ProcedimentoAtendimento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { WebcamInitError, WebcamUtil, WebcamImage } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
@@ -29,6 +30,7 @@ export class CapturaComponent implements OnInit {
   atendimentoSelecionado: number;
   procedimentosAtdSelecionado: number;
   imagemant: any;
+  verifica = false;
 
   public errors: WebcamInitError[] = [];
 
@@ -46,11 +48,17 @@ export class CapturaComponent implements OnInit {
   };
 
   constructor(private service: AtendimentoService,
+              private rota: ActivatedRoute,
               private serviceproc: ProcedimentoatendimentoService,
               private confirmation: ConfirmationService,
               private messageService: MessageService) { }
 
   ngOnInit() {
+    const codabreviatura = this.rota.snapshot.params.cod;
+    if (codabreviatura) {
+
+    }
+
     this.CarregarAtendimentos();
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
@@ -99,6 +107,7 @@ export class CapturaComponent implements OnInit {
   ConfigurarVariavel(procedimentoatdselecionado) {
     this.webcamImage = new Array<WebcamImage>();
     this.cont = 1;
+    this.verifica = true;
 
     this.atendimento.procedimentos.filter((elo) => {
       if (elo.codigo === procedimentoatdselecionado) {
@@ -143,15 +152,12 @@ export class CapturaComponent implements OnInit {
 
   PegaLargura() {
     const larguraAtual = document.getElementById('divisoria').clientWidth;
-    return larguraAtual;
+    const final = (larguraAtual / 2) + 250;
+    return final;
   }
 
   public TiraFoto(): void {
     this.trigger.next();
-    this.webcamImage.forEach((el) => {
-      console.log('primeiro' + el.imageAsBase64);
-      console.log('segundo' + el.imageAsDataUrl);
-    });
   }
 
   public toggleWebcam(): void {

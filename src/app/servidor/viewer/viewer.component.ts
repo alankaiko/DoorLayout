@@ -212,7 +212,6 @@ export class ViewerComponent implements OnInit {
 
     const lnk = document.createElement('a');
     lnk.href = canvas.toDataURL(mimetype, 1);
-
     lnk.download = filename;
 
     if (document.createEvent) {
@@ -220,6 +219,11 @@ export class ViewerComponent implements OnInit {
       e.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
       lnk.dispatchEvent(e);
     }
+  }
+
+  PegaAltura() {
+    const alturaAtual = document.getElementById('image-canvas').clientHeight;
+    return alturaAtual;
   }
 
   backClicked() {
