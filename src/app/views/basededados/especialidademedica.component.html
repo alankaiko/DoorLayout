@@ -1,22 +1,37 @@
-<div class="card">
-  <div class="card-body">
+<div class="row">
+  <div class="col-xs-12">
+    <h3 class="header smaller lighter blue">Especialidade Médica</h3>
+    <div class="clearfix">
+      <div class="pull-right tableTools-container"></div>
+    </div>
+    <div class="table-header row">
+      Tabela de Especialidade Médicas
+    </div>
+    <div>
     <div class="row">
       <p-table id="tabela" [value]="especialidades" [responsive]="true"
-        [paginator]="true" [rows]="filtro.itensPorPagina" class="table table-responsive-sm table-hover table-outline mb-0"
+        [paginator]="true" [rows]="filtro.itensPorPagina" class="table table-striped table-bordered table-hover"
         [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
         <ng-template pTemplate="header">
           <tr>
-            <th style="width: 8%;">Código</th>
-            <th style="width: 15%;">Descrição</th>
+            <th class="center" style="width: 8%;">Código</th>
+            <th class="center" style="width: 15%;">Descrição</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-especialidade>
           <tr>
-            <td style="text-align: center;">{{especialidade.codigo}}</td>
-            <td>{{especialidade.nome}}</td>
+            <td class="center" style="text-align: center;">{{especialidade.codigo}}</td>
+            <td class="center">{{especialidade.nome}}</td>
           </tr>
         </ng-template>
       </p-table>
     </div>
   </div>
 </div>
+
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+<script src="assets/js/ace-extra.min.js"></script>

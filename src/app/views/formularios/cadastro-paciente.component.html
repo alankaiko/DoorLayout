@@ -1,106 +1,193 @@
-<div class="conteudos">
-  <p-fieldset legend="{{ editando ? 'Editar' : 'Novo'}} Paciente">
-  <div class="classecad">
-      <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="formu">
-        <div class="p-grid">
-          <div class="ui-g-3 ui-fluid">
-            <label>Código</label>
-            <input [readonly]= "true" type="text" pInputText ng-model="text" name="idpatient" formControlName="idpatient">
+<div class="page-content">
+  <div class="page-header">
+    <h1>
+      Paciente
+      <small>
+        <i class="ace-icon fa fa-angle-double-right"></i>
+        Cadastro
+      </small>
+    </h1>
+  </div><!-- /.page-header -->
+
+  <div class="row">
+    <div class="col-xs-12">
+      <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="form-horizontal">
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Código</label>
+          <div class="col-sm-9">
+            <input [readonly]= "true" id="form-field-1" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="idpatient" formControlName="idpatient">
           </div>
+        </div>
 
-          <div class="ui-g-9 ui-fluid">
-            <label>Cód. na Modality</label>
-            <input type="text" pInputText ng-model="text" name="patientid" formControlName="patientid" disabled="true">
+        <div class="form-group">
+          <label class="col-sm-3 control-label no-padding-right">Cód. na Modality</label>
+          <div class="col-sm-9">
+            <input type="text" pInputText ng-model="text" name="patientid" formControlName="patientid" disabled="true" class="form-control">
           </div>
+        </div>
 
-          <div class="ui-g-12 ui-fluid">
-            <label>Nome</label>
-            <input type="text" pInputText ng-model="text" name="patientname" formControlName="patientname">
+        <div class="form-group">
+          <label class="col-sm-3 control-label no-padding-right" for="form-texto">Nome</label>
+          <div class="col-sm-9">
+            <input type="text" pInputText ng-model="text" name="patientname" formControlName="patientname" class="form-control">
           </div>
+        </div>
 
-          <div class="ui-g-4 ui-fluid">
-            <label>Data Nasc.</label>
-            <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true"
-              yearRange="1930:2020"  name="birthday" formControlName="birthday"></p-calendar>
-          </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label no-padding-right">Data Nasc.</label>
+          <div class="controls col-xs-12 col-sm-9">
+            <div class="row">
+              <div class="col-xs-6">
+                <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true"
+                  yearRange="1930:2020"  name="birthday" formControlName="birthday"></p-calendar>
+              </div>
 
-          <div class="ui-g-4 ui-fluid">
-            <label>Idade</label>
-            <p-inputMask mask="99" name="patientage" formControlName="patientage"></p-inputMask>
-          </div>
-
-          <div class="ui-g-4 ui-fluid">
-            <label>Sexo</label>
-            <input type="text" pInputText ng-model="text" name="patientsex" formControlName="patientsex">
-          </div>
-
-          <div class="ui-g-4 ui-fluid" formGroupName="contato">
-            <label>Telefone</label>
-            <input type="text" pInputText ng-model="text" name="telefone" formControlName="telefone">
-          </div>
-
-          <div class="ui-g-4 ui-fluid" formGroupName="contato">
-            <label>2 Telefone</label>
-            <input type="text" pInputText ng-model="text" name="telefone2" formControlName="telefone2">
-          </div>
-
-          <div class="ui-g-4 ui-fluid" formGroupName="contato">
-            <label>Celular</label>
-            <input type="text" pInputText ng-model="text" name="celular" formControlName="celular">
-          </div>
-
-          <div class="ui-g-12 ui-fluid" formGroupName="contato">
-            <label>E-mail</label>
-            <input type="text" pInputText ng-model="text" name="email" formControlName="email">
-          </div>
-
-          <div class="ui-g-12 ui-fluid" formGroupName="endereco">
-            <label>Logradouro</label>
-            <input type="text" pInputText ng-model="text" name="logradouro" formControlName="logradouro">
-          </div>
-
-          <div class="ui-g-12 ui-fluid" formGroupName="endereco">
-            <label>Complemento</label>
-            <input type="text" pInputText ng-model="text" name="complemento" formControlName="complemento">
-          </div>
-
-          <div class="ui-g-2 ui-fluid" formGroupName="endereco">
-            <label>Número</label>
-            <input type="text" pInputText ng-model="text" name="numero" formControlName="numero">
-          </div>
-
-          <div class="ui-g-4 ui-fluid" formGroupName="endereco">
-            <label>Bairro</label>
-            <input type="text" pInputText ng-model="text" name="bairro" formControlName="bairro">
-          </div>
-
-          <div class="ui-g-6 ui-fluid" formGroupName="endereco">
-            <label>Cidade</label>
-            <input type="text" pInputText ng-model="text" name="cidade" formControlName="cidade">
-          </div>
-
-          <div class="ui-g-6 ui-fluid" formGroupName="endereco">
-            <label>UF</label>
-            <input type="text" pInputText ng-model="text" name="estado" formControlName="estado">
-          </div>
-
-          <div class="ui-g-6 ui-fluid" formGroupName="endereco">
-            <label>CEP</label>
-            <input type="text" pInputText ng-model="text" name="cep" formControlName="cep">
-          </div>
-
-          <div class="ui-g-12 ui-fluid">
-            <div style="text-align: left;">
-              <button class="btn btn-primary" type="submit" style="margin-right: 8px;">Salvar</button>
-            <button class="btn btn-outline-secondary" routerLink="/tabelas/listapaciente">Cancelar</button>
-            </div>
-
-            <div style="text-align: right;">
-              <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
+              <div class="col-xs-6">
+                <label class="col-sm-3 control-label no-padding-right" for="form-texto">Idade</label>
+                <p-inputMask mask="99" name="patientage" formControlName="patientage"></p-inputMask>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label no-padding-right" for="form-texto">Sexo</label>
+          <div class="col-sm-9">
+            <input type="text" pInputText ng-model="text" name="patientsex" formControlName="patientsex" class="form-control">
+          </div>
+        </div>
+
+        <div class="space-4"></div>
+
+        <div class="form-group" formGroupName="contato">
+          <label class="col-sm-3 control-label">Telefone</label>
+          <div class="controls col-xs-12 col-sm-9">
+            <div class="row">
+              <div class="col-xs-4">
+                <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
+              </div>
+
+              <div class="col-xs-4">
+                <span>Telefone 2</span>
+                <p-inputMask placeholder="telefone" mask="(99) 9999-9999" name="telefone2" formControlName="telefone2"></p-inputMask>
+              </div>
+
+              <div class="col-xs-4">
+                <span>Celular</span>
+                <p-inputMask placeholder="telefone" mask="(99) 9999-9999" name="celular" formControlName="celular"></p-inputMask>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group" formGroupName="contato">
+          <label class="col-sm-3 control-label no-padding-right">E-mail</label>
+          <div class="col-sm-9">
+            <input pInputText ng-model="text" name="email" formControlName="email" class="form-control"/>
+          </div>
+        </div>
+
+        <div class="space-4"></div>
+
+        <div class="form-group" formGroupName="endereco">
+          <label class="col-sm-3 control-label no-padding-right">Logradouro</label>
+          <div class="col-sm-9">
+            <input pInputText ng-model="text" name="logradouro" formControlName="logradouro" class="form-control"/>
+          </div>
+        </div>
+
+        <div class="form-group" formGroupName="endereco">
+          <label class="col-sm-3 control-label no-padding-right">CEP</label>
+          <div class="controls col-xs-12 col-sm-9">
+            <div class="row">
+              <div class="col-xs-6">
+                <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
+              </div>
+
+              <div class="col-xs-6">
+                <span>Num.</span>
+                <input type="text" pInputText ng-model="text" name="numero" formControlName="numero">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" formGroupName="endereco">
+          <label class="col-sm-3 control-label no-padding-right">Complemento</label>
+          <div class="col-sm-9">
+            <input pInputText ng-model="text" name="complemento" formControlName="complemento" class="form-control"/>
+          </div>
+        </div>
+
+        <div class="form-group" formGroupName="endereco">
+          <label class="col-sm-3 control-label no-padding-right">Bairro</label>
+          <div class="col-sm-9">
+            <input pInputText ng-model="text" name="bairro" formControlName="bairro" class="form-control"/>
+          </div>
+        </div>
+
+        <div class="form-group" formGroupName="endereco">
+          <label class="col-sm-3 control-label no-padding-right">Cidade</label>
+          <div class="col-sm-9">
+            <input pInputText ng-model="text" name="cidade" formControlName="cidade" class="form-control"/>
+          </div>
+        </div>
+
+        <div class="form-group" formGroupName="endereco">
+          <label class="col-sm-3 control-label no-padding-right">Estado</label>
+          <div class="col-sm-9">
+            <input pInputText ng-model="text" name="estado" formControlName="estado" class="form-control"/>
+          </div>
+        </div>
+
+
+        <div class="clearfix form-actions">
+          <div class="col-md-offset-3 col-md-9">
+            <button class="btn btn-info" type="submit">
+              <i class="ace-icon fa fa-check bigger-110"></i>
+              Salvar
+            </button>
+
+            &nbsp; &nbsp; &nbsp;
+            <button class="btn" type="reset">
+              <i class="ace-icon fa fa-undo bigger-110"></i>
+              Limpar
+            </button>
+          </div>
+          <div style="text-align: right;">
+            <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
+          </div>
+        </div>
       </form>
-    </div>
-  </p-fieldset>
-</div>
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+</div><!-- /.page-content -->
+
+
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
+<link rel="stylesheet" href="assets/css/chosen.min.css" />
+<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+<script src="assets/js/ace-extra.min.js"></script>
+
+<script type="text/javascript">
+  if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery-ui.custom.min.js"></script>
+<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="assets/js/chosen.jquery.min.js"></script>
+<script src="assets/js/spinbox.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/jquery.knob.min.js"></script>
+<script src="assets/js/autosize.min.js"></script>
+<script src="assets/js/jquery.inputlimiter.min.js"></script>
+<script src="assets/js/jquery.maskedinput.min.js"></script>
+<script src="assets/js/bootstrap-tag.min.js"></script>
+<script src="assets/js/ace-elements.min.js"></script>
+<script src="assets/js/ace.min.js"></script>

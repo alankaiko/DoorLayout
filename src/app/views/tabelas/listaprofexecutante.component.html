@@ -1,28 +1,45 @@
-<div class="card">
-  <div class="card-body">
+<div class="row">
+  <div class="col-xs-12">
+    <h3 class="header smaller lighter blue">Profissional Executante</h3>
     <p-confirmDialog></p-confirmDialog>
+    <div class="clearfix">
+      <div class="pull-right tableTools-container"></div>
+    </div>
+    <div class="table-header row">
+      Tabela de Profissional Executante
+    </div>
+    <div>
     <div class="row">
       <p-table id="tabela" [value]="profissionaisexec" [responsive]="true" [paginator]="true" *ngIf="visible"
-        [rows]="filtro.itensPorPagina" class="table table-responsive-sm table-hover table-outline mb-0"
+        [rows]="filtro.itensPorPagina" class="table table-striped table-bordered table-hover"
         [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
         <ng-template pTemplate="header">
           <tr>
-            <th style="width: 10%;">Código</th>
-            <th style="width: 45%;">Nome</th>
-            <th style="width: 15%;">Num. do Conselho</th>
-            <th style="width: 20%;">E-mail</th>
-            <th style="width: 10%; text-align: center;">Opções</th>
+            <th class="center" style="width: 10%;">Código</th>
+            <th class="center" style="width: 45%;">Nome</th>
+            <th class="center" style="width: 15%;">Num. do Conselho</th>
+            <th class="center" style="width: 20%;">E-mail</th>
+            <th class="center" style="width: 10%; text-align: center;">Opções</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-profissional>
           <tr>
-            <td style="text-align: center;">{{profissional.codigo}}</td>
-            <td>{{profissional.nome}}</td>
-            <td>{{profissional.numnoconselho}}</td>
-            <td>{{profissional?.contato?.email}}</td>
-            <td style="text-align: center;">
-              <button class="btn btn-outline-info" title="Editar" [routerLink]="['/tabelas/listaprofexecutante', profissional.codigo]"><i class="icon-pencil"></i></button>
-              <button class="btn btn-outline-danger" title="Excluir" (click)="ConfirmarExclusao(profissional)"><i class="icon-trash"></i></button>
+            <td class="center" style="text-align: center;">{{profissional.codigo}}</td>
+            <td class="center"><a [routerLink]="['/tabelas/listaprofexecutante', profissional.codigo]">{{profissional.nome}}</a></td>
+            <td class="center">{{profissional.numnoconselho}}</td>
+            <td class="center">{{profissional?.contato?.email}}</td>
+            <td class="center">
+              <a class="tooltip-success" data-rel="tooltip" title="Editar" [routerLink]="['/tabelas/listaprofexecutante', profissional.codigo]">
+                <span class="blue">
+                  <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                </span>
+              </a>
+
+              <a class="tooltip-error" data-rel="tooltip" title="Excluir" (click)="ConfirmarExclusao(profissional)">
+                <span class="red">
+                  <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                </span>
+              </a>
             </td>
           </tr>
         </ng-template>
@@ -37,7 +54,14 @@
     </div>
 
     <div class="ui-g-12" style="text-align: right;">
-      <button type="button" class="btn btn-outline-dark" routerLink="/tabelas/listaprofexecutante/novo">Adicionar</button>
+      <button pButton type="button" label="Adicionar" routerLink="/tabelas/listaprofexecutante/novo"></button>
     </div>
   </div>
 </div>
+
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+<script src="assets/js/ace-extra.min.js"></script>

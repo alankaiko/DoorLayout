@@ -29,32 +29,40 @@
     </section>
 
     <section class="ui-g-12">
-      <div class="card">
-        <div class="card-body">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="clearfix">
+            <div class="pull-right tableTools-container"></div>
+          </div>
+          <div class="table-header row">
+            Visualizar Instances
+          </div>
+          <div>
           <div class="row">
-            <p-treeTable [value]="lista" selectionMode="single" [paginator]="true" [rows]="10" dataKey="codigo">
+            <p-treeTable [value]="lista" selectionMode="single" [paginator]="true" [rows]="10"
+              dataKey="codigo" class="table table-striped table-bordered table-hover">
               <ng-template pTemplate="caption">
                 Total de {{patient?.studyes.length}} Estudo(s)
               </ng-template>
               <ng-template pTemplate="header">
                 <tr>
-                  <th style="width: 10%;">Id. Study</th>
-                  <th style="width: 40%;">Description</th>
-                  <th style="width: 35%;">Accession Number</th>
-                  <th style="width: 10%;">Date Create</th>
-                  <th style="width: 5%;">View</th>
+                  <th class="center" style="width: 10%;">Id. Study</th>
+                  <th class="center" style="width: 40%;">Description</th>
+                  <th class="center" style="width: 35%;">Accession Number</th>
+                  <th class="center" style="width: 10%;">Date Create</th>
+                  <th class="center" style="width: 5%;">View</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
                 <tr [ttRow]="rowNode" [ttSelectableRow]="rowNode">
-                  <td>
+                  <td class="center">
                       <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
                       {{rowData?.codigo}}
                   </td>
-                  <td>{{rowData?.descricao}}</td>
-                  <td>{{rowData?.chave}}</td>
-                  <td>{{rowData?.date}}</td>
-                  <td>
+                  <td class="center">{{rowData?.descricao}}</td>
+                  <td class="center">{{rowData?.chave}}</td>
+                  <td class="center">{{rowData?.date}}</td>
+                  <td class="center">
                     <a *ngIf="rowData.viewer != null" pTooltip="Pré-Visualização" [routerLink]="['/viewer', rowData.codigo]">
                       <i class="fa fa-fw fa-eye icone" aria-hidden="true">{{rowData?.viewer}}</i>
                     </a>
@@ -65,7 +73,15 @@
           </div>
         </div>
       </div>
+    </div>
     </section>
 
   </section>
 </div>
+
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+<script src="assets/js/ace-extra.min.js"></script>

@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  templateUrl: 'crm.component.html'
+  templateUrl: 'crm.component.html',
+  styleUrls: ['./crm.component.css']
 })
 export class CrmComponent implements OnInit {
   listacrm = [];

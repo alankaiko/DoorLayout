@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  templateUrl: 'especialidademedica.component.html'
+  templateUrl: 'especialidademedica.component.html',
+  styleUrls: ['./especialidademedica.component.css']
 })
 export class EspecialidademedicaComponent implements OnInit {
   especialidades = [];

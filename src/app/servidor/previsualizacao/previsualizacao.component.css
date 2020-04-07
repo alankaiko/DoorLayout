@@ -13,3 +13,31 @@
 	-webkit-transition: color 0.3s;
 	transition: color 0.3s;
 }
+
+:host /deep/ p-paginator .ui-paginator-bottom {
+  box-sizing: border-box;
+  border-top: 1px solid #b9b8b8;
+}
+
+:host /deep/ p-table {
+  background-color:#ffffff;
+  border: 1px solid #b9b8b8;
+  margin-top: -1px;
+}
+
+:host /deep/ p-paginator .ui-paginator-bottom {
+  box-sizing: border-box;
+  border-top: 1px solid #b9b8b8;
+}
+
+:host /deep/ p-treetable {
+  background-color:#ffffff;
+  border: 1px solid #b9b8b8;
+  margin-top: -1px;
+}
+
+:host /deep/ p-treetable .ui-treetable-table .pi-chevron-down{
+  color: #007ad9;
+  font-weight: bold;
+  font-size: 115%;
+}

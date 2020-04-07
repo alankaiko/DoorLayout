@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  templateUrl: 'cbhpm.component.html'
+  templateUrl: 'cbhpm.component.html',
+  styleUrls: ['./cbhpm.component.css']
 })
 export class CbhpmComponent implements OnInit {
   lista = [];

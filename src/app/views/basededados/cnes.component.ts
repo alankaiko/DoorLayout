@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  templateUrl: 'cnes.component.html'
+  templateUrl: 'cnes.component.html',
+  styleUrls: ['./cnes.component.css']
 })
 export class CnesComponent implements OnInit {
   listacnes = [];

@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
-  templateUrl: 'cid10.component.html'
+  templateUrl: 'cid10.component.html',
+  styleUrls: ['./cid10.component.css']
 })
 export class Cid10Component implements OnInit {
   listacid = [];
