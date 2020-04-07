@@ -1,8 +1,7 @@
 import { Abreviatura } from './../../core/model';
-
 import { AbreviaturaService } from './../../zservice/abreviatura.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -15,11 +14,11 @@ export class CadastroAbreviaturaComponent implements OnInit {
   formulario: FormGroup;
 
   constructor(
-    private service: AbreviaturaService,
-    private rota: ActivatedRoute,
-    private formbuilder: FormBuilder,
-    private route: Router,
-    private location: Location) {
+              private service: AbreviaturaService,
+              private rota: ActivatedRoute,
+              private formbuilder: FormBuilder,
+              private route: Router,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -37,7 +36,7 @@ export class CadastroAbreviaturaComponent implements OnInit {
 
   CriarFormulario(abreviatura: Abreviatura) {
     this.formulario = this.formbuilder.group({
-      codigo: [null, abreviatura.codigo],
+      codigo: [null, Validators.required],
       titulo: [null, abreviatura.titulo],
       texto: [null, abreviatura.texto]
     });

@@ -1,8 +1,5 @@
 import { SiglaComponent } from './views/ferramentas/sigla.component';
-import { ListaEstadoComponent } from './views/ferramentas/lista-estado.component';
 import { EstadoComponent } from './views/ferramentas/estado.component';
-import { RelatorioConvenioComponent } from './views/relatorios/relatorio-convenio.component';
-import { ListalicenciadoComponent } from './views/ferramentas/lista-licenciado.component';
 import { LicenciadoComponent } from './views/ferramentas/licenciado.component';
 import { InserirImagensComponent } from './laudos/inserir-imagens/inserir-imagens.component';
 import { TelaLaudoComponent } from './laudos/tela-laudo/tela-laudo.component';
@@ -40,9 +37,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
 import { CheckboxModule } from 'primeng/components/checkbox/checkbox';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
-import { ConfirmationService } from 'primeng/api';
 import {TreeTableModule} from 'primeng/treetable';
-import {TreeNode} from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {InputMaskModule} from 'primeng/components/inputmask/inputmask';
 import { NgModule } from '@angular/core';
@@ -126,7 +121,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     WebcamModule,
     TreeTableModule,
     FileUploadModule,
-    TabViewModule
+    TabViewModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
