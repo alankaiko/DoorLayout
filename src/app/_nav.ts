@@ -147,6 +147,11 @@ export const navItems: INavData[] = [
         name: 'Siglas',
         url: '/ferramentas/listasigla',
         icon: 'fa fa-angle-double-right'
+      },
+      {
+        name: 'Backup',
+        url: '/ferramentas/backup',
+        icon: 'fa fa-angle-double-right'
       }
     ]
   },

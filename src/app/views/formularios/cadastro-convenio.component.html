@@ -14,11 +14,11 @@
       <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="form-horizontal">
 
         <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Código</label>
+          <label class="col-sm-3 control-label no-padding-right">Código</label>
           <div class="controls col-xs-12 col-sm-9">
             <div class="row">
               <div class="col-xs-10">
-                <input [readonly]= "true" id="form-field-1" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+                <input [readonly]= "true" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
               </div>
 
               <div class="col-xs-2">
@@ -37,9 +37,9 @@
         </div>
 
         <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right" for="form-texto">Nome do contato</label>
+          <label class="col-sm-3 control-label no-padding-right">Nome do contato</label>
           <div class="col-sm-9">
-            <input id="form-texto" pInputText ng-model="text" name="nomedocontato" formControlName="nomedocontato" class="form-control"/>
+            <input pInputText ng-model="text" name="nomedocontato" formControlName="nomedocontato" class="form-control"/>
           </div>
         </div>
 
@@ -153,9 +153,3 @@
 
 
 
-<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
-<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
-<script src="assets/js/ace-extra.min.js"></script>

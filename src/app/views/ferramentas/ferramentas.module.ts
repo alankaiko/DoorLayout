@@ -1,3 +1,5 @@
+import { BackupComponent } from './backup.component';
+import { BackupService } from './../../zservice/backup.service';
 import { ListaSiglaComponent } from './lista-sigla.component';
 import { ListaEstadoComponent } from './lista-estado.component';
 import { TableModule } from 'primeng/components/table/table';
@@ -19,7 +21,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     ListalicenciadoComponent,
     ListaEstadoComponent,
-    ListaSiglaComponent
+    ListaSiglaComponent,
+    BackupComponent
 
   ]
 })

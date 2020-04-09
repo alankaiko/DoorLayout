@@ -1,3 +1,4 @@
+import { LaudoComponent } from './laudos/laudo/laudo.component';
 import { SiglaComponent } from './views/ferramentas/sigla.component';
 import { EstadoComponent } from './views/ferramentas/estado.component';
 import { LicenciadoComponent } from './views/ferramentas/licenciado.component';
@@ -16,6 +17,7 @@ import { ListaAtendimentoComponent } from './atendimentos/lista-atendimento/list
 import { DataViewModule } from 'primeng/components/dataview/dataview';
 import { PanelModule } from 'primeng/components/panel/panel';
 import {RatingModule } from 'primeng/rating';
+import { QuillModule } from 'ngx-quill'
 import { CardModule } from 'primeng/components/card/card';
 import { TableModule } from 'primeng/components/table/table';
 import { DialogModule } from 'primeng/components/dialog/dialog';
@@ -39,6 +41,7 @@ import { CheckboxModule } from 'primeng/components/checkbox/checkbox';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import {TreeTableModule} from 'primeng/treetable';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {EditorModule} from 'primeng/components/editor/editor';
 import {InputMaskModule} from 'primeng/components/inputmask/inputmask';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -122,7 +125,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     TreeTableModule,
     FileUploadModule,
     TabViewModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EditorModule
   ],
   declarations: [
     AppComponent,
@@ -152,7 +156,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     InserirImagensComponent,
     LicenciadoComponent,
     EstadoComponent,
-    SiglaComponent
+    SiglaComponent,
+    LaudoComponent
   ],
   providers: [{
     provide: LocationStrategy,

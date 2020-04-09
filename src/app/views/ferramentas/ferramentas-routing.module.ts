@@ -1,3 +1,4 @@
+import { BackupComponent } from './backup.component';
 import { ListaSiglaComponent } from './lista-sigla.component';
 import { ListaEstadoComponent } from './lista-estado.component';
 import { ListalicenciadoComponent } from './lista-licenciado.component';
@@ -35,6 +36,13 @@ const routes: Routes = [
         component: ListaSiglaComponent,
         data: {
           title: 'Siglas'
+        }
+      },
+      {
+        path: 'backup',
+        component: BackupComponent,
+        data: {
+          title: 'Backup'
         }
       }
     ]

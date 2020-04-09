@@ -1,3 +1,4 @@
+import { LaudoComponent } from './laudos/laudo/laudo.component';
 import { SiglaComponent } from './views/ferramentas/sigla.component';
 import { EstadoComponent } from './views/ferramentas/estado.component';
 import { LicenciadoComponent } from './views/ferramentas/licenciado.component';

@@ -1,3 +1,7 @@
+import { AtendimentoService } from './../../zservice/atendimento.service';
+import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
+import { ModelolaudoprocService } from './../../zservice/modelolaudoproc.service';
+import { ModeloLaudoProc, Atendimento, ProcedimentoAtendimento } from './../../core/model';
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { Component, OnInit } from '@angular/core';
 import * as RoosterJs from 'roosterjs';
@@ -25,15 +29,28 @@ export class TelaLaudoComponent implements OnInit {
   fileUrl;
   monte: HTMLElement;
   imagelogo: any;
+  modelos: any[];
+  modelo = new ModeloLaudoProc();
+  atendimentos: any[];
+  procedimentosAtd: any[];
+  atendimento = new Atendimento();
+  procedimento = new ProcedimentoAtendimento();
+  atendimentoSelecionado: number;
+  procedimentosAtdSelecionado: number;
+  modeloselecionado: number;
 
 
-  constructor(private servicoparametro: ParametrodosistemaService) { }
+  constructor(private servicoparametro: ParametrodosistemaService,
+              private servicemodelo: ModelolaudoprocService,
+              private serviceproc: ProcedimentoatendimentoService,
+              private service: AtendimentoService) { }
 
   ngOnInit(): void {
     this.AdicionarListener();
     this.ConfBasicas();
     this.getImagemFromService();
-
+    this.MontarLaudo();
+    this.CarregarAtendimentos();
   }
 
   Mudarestado(divtable) {
@@ -125,7 +142,8 @@ export class TelaLaudoComponent implements OnInit {
   }
 
   GerarPDF() {
-
+    document.querySelector('.corpo').setAttribute('style', 'width: 250px; height: 150px; border: 1px solid; margin: 0 auto; margin-top: 150px;');
+    window.open(this.editor.getContent());
   }
 
   ImprimirDocumento() {
@@ -168,5 +186,58 @@ export class TelaLaudoComponent implements OnInit {
     if (image) {
       reader.readAsDataURL(image);
     }
+  }
+
+
+
+  CarregarAtendimentos() {
+    this.service.ListarAtendimentos().then(lista => {
+      this.atendimentos = lista.map(atendimento => ({label: 'atend: ' + atendimento.codigo + ' ' + atendimento.patient.patientname, value: atendimento.codigo}));
+
+    }).catch(erro => erro);
+  }
+
+  CarregarProcedimentos() {
+    this.service.BuscarPorId(this.atendimentoSelecionado)
+      .then(
+        response => {
+          this.atendimento = response;
+          this.procedimentosAtd = this.atendimento.procedimentos.map(procedimento => ({label: procedimento.procedimentomedico.nome, value: procedimento.codigo}));
+        }
+      );
+  }
+
+  ConfigurarVariavel(procedimentoatdselecionado) {
+    this.servicemodelo.ListarPorProcedimento(procedimentoatdselecionado)
+      .then(
+        response => {
+          this.modelos = response.map(modelo => ({label: modelo.descricao, value: modelo.codigo}));
+        }
+      );
+  }
+
+  ConfiguraModelo(modeloselecionado) {
+    const corpo = document.getElementById('corpo');
+    corpo.innerHTML = '';
+
+    this.servicemodelo.BuscarPorId(modeloselecionado)
+      .then(response => {
+        this.modelo = response;
+        this.modelo.customstring = this.modelo.customstring.replace('2;;setValor;;', '');
+        corpo.innerHTML = this.modelo.customstring;
+      });
+  }
+
+  MontarLaudo() {
+    const tague = document.querySelector('.cabecalho');
+    tague.setAttribute('style', 'width: 100%; height: 250px;');
+
+    document.querySelector('.dados').setAttribute('style', 'width: 90%; margin: 0 auto; margin-top: 15px; border-top: 1px solid; border-bottom: 1px solid; display: inline-table;');
+
+
+  }
+
+  SalvandoDocumento() {
+
   }
 }

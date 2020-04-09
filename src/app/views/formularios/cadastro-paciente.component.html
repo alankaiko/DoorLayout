@@ -14,9 +14,9 @@
       <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="form-horizontal">
 
         <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Código</label>
+          <label class="col-sm-3 control-label no-padding-right">Código</label>
           <div class="col-sm-9">
-            <input [readonly]= "true" id="form-field-1" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="idpatient" formControlName="idpatient">
+            <input [readonly]= "true" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="idpatient" formControlName="idpatient">
           </div>
         </div>
 
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right" for="form-texto">Nome</label>
+          <label class="col-sm-3 control-label no-padding-right">Nome</label>
           <div class="col-sm-9">
             <input type="text" pInputText ng-model="text" name="patientname" formControlName="patientname" class="form-control">
           </div>
@@ -44,7 +44,7 @@
               </div>
 
               <div class="col-xs-6">
-                <label class="col-sm-3 control-label no-padding-right" for="form-texto">Idade</label>
+                <label class="col-sm-3 control-label no-padding-right">Idade</label>
                 <p-inputMask mask="99" name="patientage" formControlName="patientage"></p-inputMask>
               </div>
             </div>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right" for="form-texto">Sexo</label>
+          <label class="col-sm-3 control-label no-padding-right">Sexo</label>
           <div class="col-sm-9">
             <input type="text" pInputText ng-model="text" name="patientsex" formControlName="patientsex" class="form-control">
           </div>
@@ -165,10 +165,3 @@
   </div><!-- /.row -->
 </div><!-- /.page-content -->
 
-
-<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
-<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
-<script src="assets/js/ace-extra.min.js"></script>

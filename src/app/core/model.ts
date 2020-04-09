@@ -393,3 +393,13 @@ export class Sigla {
   codigo: number;
   descricao: string;
 }
+
+
+export class ModeloLaudoProc {
+  codigo: number;
+  descricao: string;
+  customstring: string;
+  prioridade: number;
+  procedimentomedico = new ProcedimentoMedico();
+}
+
