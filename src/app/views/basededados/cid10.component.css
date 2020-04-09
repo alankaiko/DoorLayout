@@ -8,3 +8,27 @@
   border: 1px solid #b9b8b8;
   margin-top: -1px;
 }
+
+.header {
+  line-height: 28px;
+  margin-bottom: 16px;
+  margin-top: 18px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #CCC;
+  border-bottom-color: #b9bec2;
+  color: #478FCA;
+  font-weight: lighter;
+}
+
+.table-header {
+  background-color: #307ECC;
+  color: #FFF;
+  font-size: 14px;
+  line-height: 38px;
+  padding-left: 12px;
+  margin-bottom: 1px;
+}
+
+.center {
+  text-align: center;
+}

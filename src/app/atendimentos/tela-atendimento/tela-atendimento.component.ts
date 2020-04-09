@@ -108,4 +108,12 @@ export class TelaAtendimentoComponent implements OnInit {
       this.solicitantes = lista.map(solicitante => ({label: solicitante.nome, value: solicitante.codigo}));
     }).catch(erro => erro);
   }
+
+  GerarAtendimento() {
+    this.service.PorAtestado(this.atendimento.patient.idpatient)
+      .then(relatorio => {
+        const url = window.URL.createObjectURL(relatorio);
+        window.open(url);
+      });
+  }
 }

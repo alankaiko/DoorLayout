@@ -45,20 +45,20 @@
 
 <p-dialog [header]="'Novo Procedimento'" [(visible)]="exbindoFormularioProcedimento" modal="modal">
   <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="ConfirmarProcedimento()" class="formu">
-    <div class="ui-g">
-      <div class="ui-g-3 ui-fluid" formGroupName="profexecutante">
-        <label>Profissional Executante</label>
+    <div class="ui-g-12 ui-fluid" style="border: 1px solid;">
+      <div class="ui-g-12" formGroupName="profexecutante">
+        <label style="text-align: right;">Profissional Executante</label>
         <p-dropdown [options]="profissionalexecutantes" [autoWidth]="false" [filter]="true"  formControlName="codigo"
           placeholder="Selecione..." name="codigo" (onChange)="CarregaProfissionalExecutante()"></p-dropdown>
       </div>
 
-      <div class="ui-g-3 ui-fluid" formGroupName="procedimentomedico">
+      <div class="ui-g-12" formGroupName="procedimentomedico">
         <label>Procedimento Médico</label>
         <p-dropdown [options]="procedimentomedicos" [autoWidth]="false" [filter]="true"  formControlName="codigo"
           placeholder="Selecione..." name="codigo" (onChange)="CarregarProcedimentosMedico()"></p-dropdown>
       </div>
 
-      <div class="ui-g-3 ui-fluid">
+      <div class="ui-g-12">
         <label>Valor Paciente</label>
         <input type="text" pInputText ng-model="text" name="valorpaciente" formControlName="valorpaciente" placeholder="0.00">
       </div>
@@ -68,13 +68,13 @@
         <input type="text" pInputText ng-model="text" name="valorconvenio" formControlName="valorconvenio" placeholder="0.00">
       </div>
 
-      <div class="ui-g-3 ui-fluid">
+      <div class="ui-g-12">
         <label>Prev. Ent. Laudo</label>
         <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="preventregalaudo"
           yearRange="1930:2020" name="preventregalaudo" class="preventregalaudo"></p-calendar>
       </div>
 
-      <div class="ui-g-3 ui-fluid">
+      <div class="ui-g-12">
         <label>Data Execução</label>
         <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="dataexecucao"
           yearRange="1930:2020" name="dataexecucao"></p-calendar>

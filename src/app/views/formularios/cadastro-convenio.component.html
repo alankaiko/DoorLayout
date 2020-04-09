@@ -9,58 +9,48 @@
     </h1>
   </div><!-- /.page-header -->
 
-  <div class="row">
-    <div class="col-xs-12">
-      <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="form-horizontal">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
 
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">Código</label>
-          <div class="controls col-xs-12 col-sm-9">
-            <div class="row">
-              <div class="col-xs-10">
-                <input [readonly]= "true" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
-              </div>
+        <div class="ui-g-12">
+          <label class="ui-g-3" style="text-align: right;">Código</label>
+          <div class="ui-g-9">
+            <div class="ui-g-9">
+              <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+            </div>
 
-              <div class="col-xs-2">
-                <span class="badge badge-warning" style="text-align: right;">Ativo?</span>
-                <p-checkbox ng-model="ativo" name="ativo" binary="true" formControlName="ativo"></p-checkbox>
-              </div>
+            <div class="ui-g-3">
+              <span class="badge badge-warning" style="text-align: right;">Ativo?</span>
+              <p-checkbox class="ui-g-9" ng-model="ativo" name="ativo" binary="true" formControlName="ativo"></p-checkbox>
             </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">Descrição</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="nome" formControlName="nome" class="form-control"/>
-          </div>
+        <div class="ui-g-12">
+          <label class="ui-g-3" style="text-align: right;">Descrição</label>
+          <input pInputText ng-model="text" name="nome" formControlName="nome" class="ui-g-9"/>
         </div>
 
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">Nome do contato</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="nomedocontato" formControlName="nomedocontato" class="form-control"/>
-          </div>
+        <div class="ui-g-12">
+          <label class="ui-g-3" style="text-align: right;">Nome do contato</label>
+          <input pInputText ng-model="text" name="nomedocontato" formControlName="nomedocontato" class="ui-g-9"/>
         </div>
 
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">Observações</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="observacoes" formControlName="observacoes" class="form-control"/>
-          </div>
+        <div class="ui-g-12">
+          <label class="ui-g-3" style="text-align: right;">Observações</label>
+          <input pInputText ng-model="text" name="observacoes" formControlName="observacoes" class="ui-g-9"/>
         </div>
 
-        <div class="space-4"></div>
-
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">Telefone</label>
-          <div class="controls col-xs-12 col-sm-9">
+        <div class="ui-g-12">
+          <label class="ui-g-3" style="text-align: right;">Telefone</label>
+          <div class="ui-g-9">
             <div class="row">
-              <div class="col-xs-4">
+              <div class="ui-g-6">
                 <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
               </div>
 
-              <div class="col-xs-8">
+              <div class="ui-g-6">
                 <label class="col-sm-3 control-label no-padding-right">Fax</label>
                 <p-inputMask placeholder="fax" mask="(99) 9999-9999" name="fax" formControlName="fax"></p-inputMask>
               </div>
@@ -68,31 +58,25 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">E-mail</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="email" formControlName="email" class="form-control"/>
-          </div>
+        <div class="ui-g-12">
+          <label class="ui-g-3" style="text-align: right;">E-mail</label>
+            <input pInputText ng-model="text" name="email" formControlName="email" class="ui-g-9"/>
         </div>
 
-        <div class="space-4"></div>
-
-        <div class="form-group" formGroupName="endereco">
-          <label class="col-sm-3 control-label no-padding-right">Logradouro</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="logradouro" formControlName="logradouro" class="form-control"/>
-          </div>
+        <div class="ui-g-12" formGroupName="endereco">
+          <label class="ui-g-3" style="text-align: right;">Logradouro</label>
+          <input pInputText ng-model="text" name="logradouro" formControlName="logradouro" class="ui-g-9"/>
         </div>
 
-        <div class="form-group" formGroupName="endereco">
-          <label class="col-sm-3 control-label no-padding-right">CEP</label>
-          <div class="controls col-xs-12 col-sm-9">
+        <div class="ui-g-12" formGroupName="endereco">
+          <label class="ui-g-3" style="text-align: right;">CEP</label>
+          <div class="ui-g-9">
             <div class="row">
-              <div class="col-xs-6">
+              <div class="ui-g-6">
                 <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
               </div>
 
-              <div class="col-xs-6">
+              <div class="ui-g-6">
                 <span>Num.</span>
                 <input type="text" pInputText ng-model="text" name="numero" formControlName="numero">
               </div>
@@ -100,43 +84,34 @@
           </div>
         </div>
 
-        <div class="form-group" formGroupName="endereco">
-          <label class="col-sm-3 control-label no-padding-right">Complemento</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="complemento" formControlName="complemento" class="form-control"/>
-          </div>
+        <div class="ui-g-12" formGroupName="endereco">
+          <label class="ui-g-3" style="text-align: right;">Complemento</label>
+          <input pInputText ng-model="text" name="complemento" formControlName="complemento" class="ui-g-9"/>
         </div>
 
-        <div class="form-group" formGroupName="endereco">
-          <label class="col-sm-3 control-label no-padding-right">Bairro</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="bairro" formControlName="bairro" class="form-control"/>
-          </div>
+        <div class="ui-g-12" formGroupName="endereco">
+          <label class="ui-g-3" style="text-align: right;">Bairro</label>
+          <input pInputText ng-model="text" name="bairro" formControlName="bairro" class="ui-g-9"/>
         </div>
 
-        <div class="form-group" formGroupName="endereco">
-          <label class="col-sm-3 control-label no-padding-right">Cidade</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="cidade" formControlName="cidade" class="form-control"/>
-          </div>
+        <div class="ui-g-12" formGroupName="endereco">
+          <label class="ui-g-3" style="text-align: right;">Cidade</label>
+          <input pInputText ng-model="text" name="cidade" formControlName="cidade" class="ui-g-9"/>
         </div>
 
-        <div class="form-group" formGroupName="endereco">
-          <label class="col-sm-3 control-label no-padding-right">Estado</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="estado" formControlName="estado" class="form-control"/>
-          </div>
+        <div class="ui-g-12" formGroupName="endereco">
+          <label class="ui-g-3" style="text-align: right;">Estado</label>
+          <input pInputText ng-model="text" name="estado" formControlName="estado" class="ui-g-9"/>
         </div>
 
 
-        <div class="clearfix form-actions">
-          <div class="col-md-offset-3 col-md-9">
+        <div class="ui-g-12">
+          <div class="ui-g-9">
             <button class="btn btn-info" type="submit">
               <i class="ace-icon fa fa-check bigger-110"></i>
               Salvar
             </button>
 
-            &nbsp; &nbsp; &nbsp;
             <button class="btn" type="reset">
               <i class="ace-icon fa fa-undo bigger-110"></i>
               Limpar

@@ -9,46 +9,38 @@
     </h1>
   </div><!-- /.page-header -->
 
-  <div class="row">
-    <div class="col-xs-12">
-      <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">Código</label>
-          <div class="col-sm-9">
-            <input [readonly]= "true" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
-          </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+        <div class="ui-g-12">
+          <label class="ui-g-3" style="text-align: right;">Código</label>
+          <input [readonly]= "true" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
         </div>
 
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">Nome</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="nome" formControlName="nome" class="form-control"/>
-          </div>
+        <div class="ui-g-12">
+          <label class="ui-g-3" style="text-align: right;">Nome</label>
+          <input pInputText ng-model="text" name="nome" formControlName="nome" class="ui-g-9"/>
         </div>
 
-        <div class="form-group" formGroupName="conselho">
-          <label class="col-sm-3 control-label no-padding-right">Sigla</label>
-          <div class="controls col-xs-12 col-sm-9">
-            <div class="row">
-              <div class="col-xs-4" formGroupName="sigla">
+        <div class="ui-g-12" formGroupName="conselho">
+          <label class="ui-g-3" style="text-align: right;">Sigla</label>
+          <div class="ui-g-9">
+              <div class="ui-g-4" formGroupName="sigla">
                 <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
               </div>
 
-              <div class="col-xs-4">
+              <div class="ui-g-4">
                 <input type="text" placeholder="num. do conselho" pInputText ng-model="text" name="descricao" formControlName="descricao">
               </div>
 
-              <div class="col-xs-4" formGroupName="estado">
+              <div class="ui-g-4" formGroupName="estado">
                 <span>UF</span>
                 <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
               </div>
             </div>
-          </div>
         </div>
 
-        <div class="space-4"></div>
-
-        <div class="clearfix form-actions">
+        <div class="ui-g-12">
           <div class="col-md-offset-3 col-md-9">
             <button class="btn btn-info" type="submit">
               <i class="ace-icon fa fa-check bigger-110"></i>

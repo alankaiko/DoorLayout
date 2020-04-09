@@ -13,7 +13,6 @@ declare var Quill: any;
 })
 export class LaudoComponent implements OnInit {
 
-
   ngOnInit() {
 
   }

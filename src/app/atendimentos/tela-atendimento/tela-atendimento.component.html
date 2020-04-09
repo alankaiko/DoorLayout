@@ -50,6 +50,7 @@
                   <div style="text-align: left;">
                     <button class="btn btn-primary" type="submit" style="margin-right: 8px;">Salvar</button>
                     <button class="btn btn-outline-secondary" routerLink="/operacoes/atendimento">Cancelar</button>
+                    <button class="btn btn-outline-danger" (click)="GerarAtendimento()" *ngIf="editando">Gerar Atestado</button>
                   </div>
 
                   <div style="text-align: right;">

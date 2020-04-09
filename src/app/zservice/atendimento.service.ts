@@ -105,4 +105,10 @@ export class AtendimentoService {
       }
     }
   }
+
+  PorAtestado(idpatient: number) {
+    return this.http.get(`${this.url}/relatorios/atestado/${idpatient}`,
+      { responseType: 'blob' })
+      .toPromise();
+  }
 }
