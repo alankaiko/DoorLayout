@@ -34,6 +34,7 @@
 :host /deep/ p-dropdown .ui-dropdown{
   border:1px solid #428bca;
   background-color: #fff;
+  border-radius: 5px;
 }
 
 :host /deep/ p-dropdown .ui-dropdown-items {
@@ -45,54 +46,37 @@
   border: 1px solid rgb(158, 150, 150);
 }
 
-.header {
-  line-height: 28px;
-  margin-bottom: 16px;
-  margin-top: 18px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #CCC;
-  border-bottom-color: #b9bec2;
-  color: #478FCA;
-  font-weight: lighter;
+
+:host /deep/ p-dialog .ui-dialog {
+  border-bottom: 3px solid #B4B8C1;
+  border-left: 3px solid #B4B8C1;
+  border-right: 3px solid #B4B8C1;
+  background-color: #D6D9DF;
 }
 
-.table-header {
-  background-color: #307ECC;
-  color: #FFF;
-  font-size: 14px;
-  line-height: 38px;
-  padding-left: 12px;
-  margin-bottom: 1px;
-}
-
-.center {
-  text-align: center;
+:host /deep/ p-dialog .ui-dialog-titlebar {
+  margin: 0 auto;
   vertical-align: middle;
-
-}
-
-
-.divtudo {
-  width: 65%;
-  height: 365px;
-  border: 2px solid #0c0c0c;
-  margin: 0 auto;
-  background-color: #fff;
-  position: relative;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-}
-
-.barratitulo {
-  margin: 0 auto;
+  font-weight: bold;
   text-align: center;
-  height: 25px;
-  border: 1px solid rgb(129, 129, 129);
-  background: #919191;
-  background: -moz-linear-gradient(-206deg, #919191 5%, #919191 100%);
-  background: -webkit-linear-gradient(-206deg, #919191 5%, #919191 100%);
-  background: linear-gradient(-206deg, #919191 5%, #919191 100%);
+  background: #B4B8C1;
+  background: -moz-linear-gradient(-206deg, #B4B8C1 5%, #C5C5C6 100%);
+  background: -webkit-linear-gradient(-206deg, #B4B8C1 5%, #C5C5C6 100%);
+  background: linear-gradient(-206deg, #B4B8C1 5%, #C5C5C6 100%);
+}
+
+:host /deep/ p-dialog .ui-dialog-titlebar > a {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 4%;
+  border: 1px solid #ccc;
+  background-color: #CC0000;
+  color: rgb(250, 246, 246);
+  font-weight: bold;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
 }
 
 .menubuscar {
@@ -102,9 +86,13 @@
   border: 1px solid #838383;
 }
 
+#buscando {
+  border-radius: 5px;
+}
+
 .corpo {
   width: 99%;
-  height: 200px;
+
   margin: 5px;
   border: 1px solid #838383;
 }
@@ -122,9 +110,18 @@
   font-size: 82%;
 }
 
+:host /deep/ p-table .ui-table  .ui-table-scrollable-body{
+  font-size: 82%;
+  background-color: #fff;
+}
 
 :host /deep/ p-table .ui-table-tbody .ui-selectable-row:hover{
   background-color: rgba(84, 104, 138, 0.342);
+}
+
+:host /deep/ p-checkbox {
+  border: 1px solid;
+  border-radius: 2px;
 }
 
 .botao {

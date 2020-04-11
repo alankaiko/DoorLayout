@@ -11,6 +11,7 @@ import { ListaexameprocmedicoComponent } from './listaexameprocmedico.component'
 import { ListaconvenioComponent } from './listaconvenio.component';
 import { ListaabreviaturaComponent } from './listaabreviatura.component';
 import { DialogModule } from 'primeng/components/dialog/dialog';
+import {CheckboxModule} from 'primeng/components/checkbox/checkbox';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TableModule} from 'primeng/components/table/table';
@@ -30,7 +31,8 @@ import {DropdownModule} from 'primeng/dropdown';
     ConfirmDialogModule,
     DialogModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    CheckboxModule
   ],
   declarations: [
     ListaabreviaturaComponent,

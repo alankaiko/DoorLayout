@@ -1,3 +1,4 @@
+import { SelectItem } from 'primeng/api';
 import { ConvenioService } from './../../zservice/convenio.service';
 import { Component, OnInit } from '@angular/core';
 import { Convenio } from './../../core/model';
@@ -12,6 +13,8 @@ import {Location} from '@angular/common';
 })
 export class CadastroConvenioComponent implements OnInit {
   formulario: FormGroup;
+  display: boolean = true;
+  camposbusca: SelectItem[];
 
   constructor(private service: ConvenioService,
               private rota: ActivatedRoute,

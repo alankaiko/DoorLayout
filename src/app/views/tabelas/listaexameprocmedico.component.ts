@@ -1,27 +1,45 @@
-import { MessageService } from 'primeng/components/common/messageservice';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProcedimentomedicoService, ProcedimentoMedicoFiltro } from './../../zservice/procedimentomedico.service';
 import { ProcedimentoMedico } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent, SelectItem } from 'primeng/api';
 
 @Component({
   templateUrl: 'listaexameprocmedico.component.html',
-  styleUrls: ['./listaexameprocmedico.component.css'],
-  providers: [ MessageService , ConfirmationService]
+  styleUrls: ['./listaexameprocmedico.component.css']
 })
 export class ListaexameprocmedicoComponent implements OnInit {
   procedimentos = [];
+  procedimento = new ProcedimentoMedico();
   totalRegistros = 0;
   filtro = new ProcedimentoMedicoFiltro();
   visible: boolean = true;
+  camposbusca: SelectItem[];
+  formulario: FormGroup;
+  display: boolean = true;
+  exclusao: boolean = false;
 
   constructor(private service: ProcedimentomedicoService,
-              private route: Router,
-              private confirmation: ConfirmationService,
-              private messageService: MessageService) { }
+              private route: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.camposbusca = [
+      {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
+      {label: 'Grupo', value: {id: 2, name: 'Grupo', code: '2'}},
+      {label: 'Codigo', value: {id: 3, name: 'Codigo', code: '3'}}
+    ];
+  }
+
+  onRowSelect(event) {
+    this.procedimento = event.data;
+  }
+
+  Alterar() {
+    if (this.procedimento.codigo != null) {
+      this.route.navigate(['/tabelas/listaexameprocmedico', this.procedimento.codigo]);
+    }
+  }
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
@@ -34,23 +52,25 @@ export class ListaexameprocmedicoComponent implements OnInit {
   }
 
 
-  ConfirmarExclusao(procedimento: ProcedimentoMedico) {
-    this.confirmation.confirm({
-      message: 'Deseja Excluir: ' + procedimento.nome.toUpperCase(),
-      accept: () => {
-        this.Excluir(procedimento);
-      }
-    });
+  ConfigurarVariavel(event) {
+    const texto = document.getElementById('buscando') as HTMLInputElement;
+    this.filtro.nome = texto.value;
+    this.Consultar();
+
   }
 
-  Excluir(procedimento: ProcedimentoMedico) {
-    this.service.Remover(procedimento.codigo)
-      .then(() => {
-        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
-      })
+  AtivarExcluir() {
+    this.exclusao = true;
+  }
+
+
+  Excluir() {
+    this.service.Remover(this.procedimento.codigo)
+      .then(() => {})
       .catch(erro => erro);
-      this.visible = false;
-      setTimeout (() => this.visible = true, 0);
+      this.exclusao = false;
+      setTimeout (() => this.Consultar(), 0
+      );
   }
 
   aoMudarPagina(event: LazyLoadEvent) {

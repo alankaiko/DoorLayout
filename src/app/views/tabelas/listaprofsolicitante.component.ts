@@ -1,27 +1,46 @@
+import { FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
 import { ProfissionalsolicitanteService, ProfissionalSolicitanteFiltro } from './../../zservice/profissionalsolicitante.service';
 import { ProfissionalSolicitante } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
 
 @Component({
   templateUrl: 'listaprofsolicitante.component.html',
-  styleUrls: ['./listaprofsolicitante.component.css'],
-  providers: [ MessageService , ConfirmationService]
+  styleUrls: ['./listaprofsolicitante.component.css']
 })
 export class ListaprofsolicitanteComponent implements OnInit {
   profissionaissol = [];
+  profissional = new ProfissionalSolicitante();
   totalRegistros = 0;
   filtro = new ProfissionalSolicitanteFiltro();
   visible: boolean = true;
+  camposbusca: SelectItem[];
+  formulario: FormGroup;
+  display: boolean = true;
+  exclusao: boolean = false;
 
   constructor(private service: ProfissionalsolicitanteService,
-              private route: Router,
-              private confirmation: ConfirmationService,
-              private messageService: MessageService) { }
+              private route: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.camposbusca = [
+      {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
+      {label: 'Num Conselho', value: {id: 2, name: 'Num Conselho', code: '2'}}
+    ];
+  }
+
+  onRowSelect(event) {
+    this.profissional = event.data;
+  }
+
+  Alterar() {
+    if (this.profissional.codigo != null) {
+      this.route.navigate(['/tabelas/listaprofsolicitante', this.profissional.codigo]);
+    }
+  }
+
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
@@ -34,25 +53,26 @@ export class ListaprofsolicitanteComponent implements OnInit {
   }
 
 
-  ConfirmarExclusao(solicitante: ProfissionalSolicitante) {
-    this.confirmation.confirm({
-      message: 'Deseja Excluir: ' + solicitante.nome.toUpperCase(),
-      accept: () => {
-        this.Excluir(solicitante);
-      }
-    });
+  ConfigurarVariavel(event) {
+    const texto = document.getElementById('buscando') as HTMLInputElement;
+    this.filtro.nome = texto.value;
+    this.Consultar();
+
   }
 
-  Excluir(solicitante: ProfissionalSolicitante) {
-    this.service.Remover(solicitante.codigo)
-      .then(() => {
-        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
-      })
+  AtivarExcluir() {
+    this.exclusao = true;
+  }
+
+
+  Excluir() {
+    this.service.Remover(this.profissional.codigo)
+      .then(() => {})
       .catch(erro => erro);
-      this.visible = false;
-      setTimeout (() => this.visible = true, 0);
+      this.exclusao = false;
+      setTimeout (() => this.Consultar(), 0
+      );
   }
-
 
 
   aoMudarPagina(event: LazyLoadEvent) {

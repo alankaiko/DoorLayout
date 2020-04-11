@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 
 export class ProcedimentoMedicoFiltro {
   pagina = 0;
-  itensPorPagina = 7;
+  itensPorPagina = 20;
+  nome: string;
 }
 
 @Injectable({

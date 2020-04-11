@@ -1,58 +1,134 @@
-<div class="ui-g">
-  <div class="ui-g-12">
-    <h3 class="header smaller lighter blue">Exames e Procedimentos Médico</h3>
-    <p-confirmDialog></p-confirmDialog>
-    <div class="clearfix">
-      <div class="pull-right tableTools-container"></div>
-    </div>
-    <div class="table-header row">
-      Tabela de Procedimentos Médicos
-    </div>
-    <div>
-    <div class="row">
-      <p-table id="tabela" [value]="procedimentos" [responsive]="true" [paginator]="true" *ngIf="visible"
-        [rows]="filtro.itensPorPagina" class="table table-striped table-bordered table-hover"
-        [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
-        <ng-template pTemplate="header">
-          <tr>
-            <th class="center" style="width: 10%;">Código</th>
-            <th class="center" style="width: 50%;">Título</th>
-            <th class="center" style="width: 20%;">Grupo Pert.</th>
-            <th class="center" style="width: 10%; text-align: center;">Opções</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-procedimento>
-          <tr>
-            <td class="center" style="text-align: center;">{{procedimento.codigo}}</td>
-            <td class="center"><a [routerLink]="['/tabelas/listaexameprocmedico', procedimento.codigo]">{{procedimento.nome}}</a></td>
-            <td class="center">{{procedimento.grupo.nome}}</td>
-            <td class="center">
-              <a class="tooltip-success" data-rel="tooltip" title="Editar" [routerLink]="['/tabelas/listaexameprocmedico', procedimento.codigo]">
-                <span class="blue">
-                  <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                </span>
-              </a>
+<p-dialog header="Exames e Procedimentos Médicos" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
+  <div class="menubuscar">
+    <div class="topoprocedimento ui-g-12">
+      <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar(f)" class="formu">
+        <div class="ui-g-6">
+          <label>Buscar: </label>
+          <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="ConfigurarVariavel($event)"/>
+        </div>
 
-              <a class="tooltip-error" data-rel="tooltip" title="Excluir" (click)="ConfirmarExclusao(procedimento)">
-                <span class="red">
-                  <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                </span>
-              </a>
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="5">
-              Nenhuma pessoa encontrada
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
+        <div class="ui-g-6">
+          <label>no campo: </label>
+          <p-dropdown id="chato" [options]="camposbusca" [autoWidth]="false" [(ngModel)]="codigocampo" #atendimentocodigo="ngModel" name="atendimentocodigo"></p-dropdown>
+        </div>
 
-    <div class="ui-g-12" style="text-align: right;">
-      <button pButton type="button" label="Adicionar" routerLink="/tabelas/listaexameprocmedico/novo"></button>
+      </form>
     </div>
   </div>
-</div>
+
+  <div class="table-responsive corpo">
+    <p-table [value]="procedimentos" [responsive]="true" *ngIf="visible" scrollHeight="154px"
+      class="table table-striped table-bordered table-hover" [scrollable]="true"
+      [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
+      selectionMode="single" [(selection)]="procedimento" dataKey="codigo" [virtualScroll]="true"
+      (onRowSelect)="onRowSelect($event)">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 10%;">Código</th>
+          <th>Título</th>
+          <th style="width: 20%;">Título</th>
+          <th style="width: 10%;">Grupo Pert.</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-procedimento>
+        <tr [pSelectableRow]="procedimento">
+          <td style="text-align: right; width: 10%;">{{procedimento.codigo}}</td>
+          <td><a [routerLink]="['/tabelas/listaexameprocmedico', procedimento.codigo]">{{procedimento.nome}}</a></td>
+          <td style="width: 20%;">{{procedimento.grupo.nome}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">
+            Nenhum Procedimento Encontrado
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/tabelas/listaexameprocmedico/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="AtivarExcluir()">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Cancelar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal">
+          <img src="/assets/img/VISUALIZAR.png">
+          <span>Visualizar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+
+
+<p-dialog header="Excluir {{procedimento.nome}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{procedimento.nome}}?</span>
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

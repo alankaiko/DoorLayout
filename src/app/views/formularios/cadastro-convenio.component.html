@@ -1,130 +1,178 @@
-<div class="page-content">
-  <div class="page-header">
-    <h1>
-      Convênio
-      <small>
-        <i class="ace-icon fa fa-angle-double-right"></i>
-        Cadastro
-      </small>
-    </h1>
-  </div><!-- /.page-header -->
-
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
-
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Código</label>
-          <div class="ui-g-9">
-            <div class="ui-g-9">
-              <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
-            </div>
-
-            <div class="ui-g-3">
-              <span class="badge badge-warning" style="text-align: right;">Ativo?</span>
-              <p-checkbox class="ui-g-9" ng-model="ativo" name="ativo" binary="true" formControlName="ativo"></p-checkbox>
-            </div>
-          </div>
-        </div>
-
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Descrição</label>
-          <input pInputText ng-model="text" name="nome" formControlName="nome" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Nome do contato</label>
-          <input pInputText ng-model="text" name="nomedocontato" formControlName="nomedocontato" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Observações</label>
-          <input pInputText ng-model="text" name="observacoes" formControlName="observacoes" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Telefone</label>
-          <div class="ui-g-9">
-            <div class="row">
-              <div class="ui-g-6">
-                <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
+<p-dialog header="Convênios" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
+  <div>
+    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+      <p-tabView>
+        <p-tabPanel header="Dados Principais">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 linhas">
+              <div class="ui-g-2">
+                <label>Código</label>
+                <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
               </div>
 
-              <div class="ui-g-6">
-                <label class="col-sm-3 control-label no-padding-right">Fax</label>
-                <p-inputMask placeholder="fax" mask="(99) 9999-9999" name="fax" formControlName="fax"></p-inputMask>
+              <div class="ui-g-8">
+              </div>
+
+              <div class="ui-g-2" style="margin-top: 10px;">
+                <label>Convênio Ativo</label>
+                <p-checkbox ng-model="ativo" name="ativo" binary="true" formControlName="ativo"></p-checkbox>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">E-mail</label>
-            <input pInputText ng-model="text" name="email" formControlName="email" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Logradouro</label>
-          <input pInputText ng-model="text" name="logradouro" formControlName="logradouro" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">CEP</label>
-          <div class="ui-g-9">
-            <div class="row">
-              <div class="ui-g-6">
-                <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
-              </div>
-
-              <div class="ui-g-6">
-                <span>Num.</span>
-                <input type="text" pInputText ng-model="text" name="numero" formControlName="numero">
+            <div class="ui-g-12 linhas">
+              <div class="ui-g-12">
+                <label>Nome</label>
+                <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
               </div>
             </div>
+
+            <div class="ui-g-12 linhas">
+              <label>Observações</label>
+              <textarea style="width: 100% ;height: 50px;" pInputTextarea ng-model="text" name="observacoes" formControlName="observacoes"></textarea>
+            </div>
           </div>
-        </div>
+        </p-tabPanel>
+        <p-tabPanel header="Dados para contato">
+            <div class="ui-g">
+              <div class="ui-g-12 linhas" formGroupName="endereco">
+                <div class="ui-g-3" style="display: inline-grid;">
+                  <label>CEP</label>
+                    <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
+                </div>
 
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Complemento</label>
-          <input pInputText ng-model="text" name="complemento" formControlName="complemento" class="ui-g-9"/>
-        </div>
+                <div class="ui-g-1" style="display: inline-grid;">
+                  <label>Estado</label>
+                  <input pInputText ng-model="text" name="estado" formControlName="estado" style="width: 30px;"/>
+                </div>
 
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Bairro</label>
-          <input pInputText ng-model="text" name="bairro" formControlName="bairro" class="ui-g-9"/>
-        </div>
+                <div class="ui-g-4" style="display: inline-grid;">
+                  <label>Cidade</label>
+                  <input pInputText ng-model="text" name="cidade" formControlName="cidade"/>
+                </div>
 
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Cidade</label>
-          <input pInputText ng-model="text" name="cidade" formControlName="cidade" class="ui-g-9"/>
-        </div>
+                <div class="ui-g-4" style="display: inline-grid;">
+                  <label>Bairro</label>
+                  <input pInputText ng-model="text" name="bairro" formControlName="bairro"/>
+                </div>
+              </div>
 
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Estado</label>
-          <input pInputText ng-model="text" name="estado" formControlName="estado" class="ui-g-9"/>
-        </div>
+              <div class="ui-g-12 linhas" formGroupName="endereco">
+                <div class="ui-g-6" style="display: inline-grid;">
+                  <label>Logradouro</label>
+                  <input pInputText ng-model="text" name="logradouro" formControlName="logradouro"/>
+                </div>
+
+                <div class="ui-g-6" style="display: inline-grid;">
+                  <label>Complemento</label>
+                  <input pInputText ng-model="text" name="complemento" formControlName="complemento"/>
+                </div>
+              </div>
+
+              <div class="ui-g-12 linhas">
+                  <div class="ui-g-3" style="display: inline-grid;">
+                    <label>Telefone</label>
+                    <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
+                  </div>
+
+                  <div class="ui-g-3" style="display: inline-grid;">
+                    <label>Fax</label>
+                    <p-inputMask placeholder="fax" mask="(99) 9999-9999" name="fax" formControlName="fax"></p-inputMask>
+                  </div>
+
+                  <div class="ui-g-6" style="display: inline-grid;">
+                    <label>E-mail</label>
+                    <input style="width: 100%;" pInputText ng-model="text" name="email" formControlName="email"/>
+                  </div>
+              </div>
+
+              <div class="ui-g-12 linhas" style="display: inline-grid;">
+                <label>Nome do contato</label>
+                <input pInputText ng-model="text" name="nomedocontato" formControlName="nomedocontato"/>
+              </div>
+            </div>
+        </p-tabPanel>
+      </p-tabView>
+    </form>
+  </div>
+
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/tabelas/listaconvenio/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Salvar()">
+          <img src="/assets/img/SALVAR.png">
+          <span>Salvar</span>
+        </button>
+      </div>
 
 
-        <div class="ui-g-12">
-          <div class="ui-g-9">
-            <button class="btn btn-info" type="submit">
-              <i class="ace-icon fa fa-check bigger-110"></i>
-              Salvar
-            </button>
+      <div>
+        <button class="botaoprincipal" (click)="AtivarExcluir()">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
 
-            <button class="btn" type="reset">
-              <i class="ace-icon fa fa-undo bigger-110"></i>
-              Limpar
-            </button>
-          </div>
-          <div style="text-align: right;">
-            <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
-          </div>
-        </div>
-      </form>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-</div><!-- /.page-content -->
+      <div>
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Cancelar</span>
+        </button>
+      </div>
 
+      <div>
+        <button class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
 
-
+      <div>
+        <button class="botaoprincipal">
+          <img src="/assets/img/VISUALIZAR.png">
+          <span>Visualizar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</p-dialog>

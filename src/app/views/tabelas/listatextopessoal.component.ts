@@ -1,27 +1,45 @@
+import { FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
 import { TextopessoalService, TextoPessoalFiltro } from './../../zservice/textopessoal.service';
 import { TextoPessoal } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
 
 @Component({
   templateUrl: 'listatextopessoal.component.html',
-  styleUrls: ['./listatextopessoal.component.css'],
-  providers: [ MessageService , ConfirmationService]
+  styleUrls: ['./listatextopessoal.component.css']
 })
 export class ListatextopessoalComponent implements OnInit {
   textospessoais = [];
+  texto = new TextoPessoal();
   totalRegistros = 0;
   filtro = new TextoPessoalFiltro();
   visible: boolean = true;
+  camposbusca: SelectItem[];
+  formulario: FormGroup;
+  display: boolean = true;
+  exclusao: boolean = false;
 
   constructor(private service: TextopessoalService,
-              private route: Router,
-              private confirmation: ConfirmationService,
-              private messageService: MessageService) { }
+              private route: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.camposbusca = [
+      {label: 'Abreviatura', value: {id: 1, name: 'Abreviatura', code: '1'}},
+      {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}}
+    ];
+  }
+
+  onRowSelect(event) {
+    this.texto = event.data;
+  }
+
+  Alterar() {
+    if (this.texto.codigo != null) {
+      this.route.navigate(['/tabelas/listatextopessoal', this.texto.codigo]);
+    }
+  }
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
@@ -34,25 +52,26 @@ export class ListatextopessoalComponent implements OnInit {
   }
 
 
-  ConfirmarExclusao(texto: TextoPessoal) {
-    this.confirmation.confirm({
-      message: 'Deseja Excluir: ' + texto.abreviatura.toUpperCase(),
-      accept: () => {
-        this.Excluir(texto);
-      }
-    });
+  ConfigurarVariavel(event) {
+    const texto = document.getElementById('buscando') as HTMLInputElement;
+    this.filtro.nome = texto.value;
+    this.Consultar();
+
   }
 
-  Excluir(texto: TextoPessoal) {
-    this.service.Remover(texto.codigo)
-      .then(() => {
-        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
-      })
+  AtivarExcluir() {
+    this.exclusao = true;
+  }
+
+
+  Excluir() {
+    this.service.Remover(this.texto.codigo)
+      .then(() => {})
       .catch(erro => erro);
-      this.visible = false;
-      setTimeout (() => this.visible = true, 0);
+      this.exclusao = false;
+      setTimeout (() => this.Consultar(), 0
+      );
   }
-
 
 
   aoMudarPagina(event: LazyLoadEvent) {

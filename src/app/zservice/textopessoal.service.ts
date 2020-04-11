@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class TextoPessoalFiltro {
   pagina = 0;
   itensPorPagina = 7;
+  nome: string;
 }
 
 @Injectable({

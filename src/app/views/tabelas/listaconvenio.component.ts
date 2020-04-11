@@ -1,41 +1,32 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MessageService } from 'primeng/components/common/messageservice';
-import { Convenio, Atendimento, ProcedimentoAtendimento } from './../../core/model';
+import { Convenio } from './../../core/model';
 import { Router } from '@angular/router';
 import { ConvenioFiltro, ConvenioService } from './../../zservice/convenio.service';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
-import { strict } from 'assert';
+import { LazyLoadEvent, SelectItem } from 'primeng/api';
 
 
 
 @Component({
   templateUrl: 'listaconvenio.component.html',
-  styleUrls: ['./listaconvenio.component.css'],
-  providers: [ MessageService , ConfirmationService]
+  styleUrls: ['./listaconvenio.component.css']
 })
 export class ListaconvenioComponent implements OnInit {
   convenios = [];
   convenio = new Convenio();
-  codigoconvenio: number;
   totalRegistros = 0;
   filtro = new ConvenioFiltro();
   visible: boolean = true;
   camposbusca: SelectItem[];
-  codigocampo: any;
-  campobusca: string;
   formulario: FormGroup;
-  teste: boolean = true;
+  display: boolean = true;
+  exclusao: boolean = false;
 
 
 
   constructor(private service: ConvenioService,
               private route: Router,
-              private formbuilder: FormBuilder,
-              private confirmation: ConfirmationService,
-              private messageService: MessageService) {
-
-
+              private formbuilder: FormBuilder) {
               }
 
   ngOnInit() {
@@ -44,7 +35,6 @@ export class ListaconvenioComponent implements OnInit {
       {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}}
     ];
   }
-
 
   onRowSelect(event) {
     this.convenio = event.data;
@@ -74,25 +64,18 @@ export class ListaconvenioComponent implements OnInit {
 
   }
 
-  ConfirmarExclusao() {
-    if (this.convenio.codigo != null) {
-      this.confirmation.confirm({
-        message: 'Deseja Excluir: ' + this.convenio.nome.toUpperCase(),
-        accept: () => {
-          this.Excluir(this.convenio);
-        }
-      });
-    }
+  AtivarExcluir() {
+    this.exclusao = true;
   }
 
-  Excluir(convenio: Convenio) {
-    this.service.Remover(convenio.codigo)
-      .then(() => {
-        this.messageService.add({ severity: 'success', detail: 'Convênio excluído com sucesso!' });
-      })
+
+  Excluir() {
+    this.service.Remover(this.convenio.codigo)
+      .then(() => {})
       .catch(erro => erro);
-      this.visible = false;
-      setTimeout (() => this.visible = true, 0);
+      this.exclusao = false;
+      setTimeout (() => this.Consultar(), 0
+      );
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
