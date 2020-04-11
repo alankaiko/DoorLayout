@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 
 export class ConvenioFiltro {
   pagina = 0;
-  itensPorPagina = 5;
+  itensPorPagina = 20;
+  nome: string;
 }
 
 @Injectable({
@@ -29,6 +30,10 @@ export class ConvenioService {
         size: filtro.itensPorPagina.toString()
       }
     });
+
+    if (filtro.nome) {
+      params = params.append('nome', filtro.nome);
+    }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })
       .toPromise()

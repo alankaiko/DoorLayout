@@ -1,5 +1,4 @@
 import { ActivatedRoute } from '@angular/router';
-import { element } from 'protractor';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { AtendimentoService } from './../../zservice/atendimento.service';

@@ -17,7 +17,7 @@ import { ListaAtendimentoComponent } from './atendimentos/lista-atendimento/list
 import { DataViewModule } from 'primeng/components/dataview/dataview';
 import { PanelModule } from 'primeng/components/panel/panel';
 import {RatingModule } from 'primeng/rating';
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
 import { CardModule } from 'primeng/components/card/card';
 import { TableModule } from 'primeng/components/table/table';
 import { DialogModule } from 'primeng/components/dialog/dialog';
@@ -122,6 +122,7 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     ConfirmDialogModule,
     CarouselModule,
     WebcamModule,
+    DialogModule,
     TreeTableModule,
     FileUploadModule,
     TabViewModule,

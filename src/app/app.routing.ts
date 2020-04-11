@@ -34,7 +34,7 @@ import { RegisterComponent } from './views/register/register.component';
 export const routes: Routes = [
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Servidor'
     },
@@ -47,7 +47,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'PreVisualizar'
     },
@@ -73,7 +73,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Editar Imagem'
     },
@@ -86,7 +86,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Laudos'
     },
@@ -99,7 +99,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Inserir Imagens'
     },
@@ -112,7 +112,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Captura'
     },
@@ -125,7 +125,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Atendimentos'
     },
@@ -138,7 +138,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Incluir Atendimento'
     },
@@ -151,7 +151,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Incluir Atendimento'
     },
@@ -164,7 +164,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Abreviatura'
     },
@@ -177,7 +177,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Editar Abreviatura'
     },
@@ -190,7 +190,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Convênio'
     },
@@ -203,7 +203,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Editar Convênio'
     },
@@ -216,7 +216,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Grupos de Procedimento'
     },
@@ -229,7 +229,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Editar Grupos de Procedimento'
     },
@@ -242,7 +242,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Procedimento Médico'
     },
@@ -255,7 +255,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Procedimento Médico'
     },
@@ -268,7 +268,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Profissional Executante'
     },
@@ -281,7 +281,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Editar Profissional Executante'
     },
@@ -294,7 +294,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Profissional Solicitante'
     },
@@ -307,7 +307,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Editar Profissional Solicitante'
     },
@@ -320,7 +320,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Texto Pessoal'
     },
@@ -333,7 +333,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Texto Pessoal'
     },
@@ -346,7 +346,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Paciente'
     },
@@ -359,7 +359,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Paciente'
     },
@@ -372,7 +372,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Licenciado'
     },
@@ -385,7 +385,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Editar Licenciado'
     },
@@ -398,7 +398,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Estado'
     },
@@ -411,7 +411,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Editar Estado'
     },
@@ -424,7 +424,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Cadastrar Sigla'
     },
@@ -437,7 +437,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Editar Sigla'
     },
@@ -484,7 +484,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DefaultEspComponent,
     data: {
       title: 'Home'
     },

@@ -30,6 +30,21 @@
   margin-top: -1px;
 }
 
+
+:host /deep/ p-dropdown .ui-dropdown{
+  border:1px solid #428bca;
+  background-color: #fff;
+}
+
+:host /deep/ p-dropdown .ui-dropdown-items {
+  background-color: #fff;
+}
+
+:host /deep/ p-dropdown .ui-dropdown-items li:hover {
+  background-color: rgb(158, 150, 150);
+  border: 1px solid rgb(158, 150, 150);
+}
+
 .header {
   line-height: 28px;
   margin-bottom: 16px;
@@ -52,4 +67,106 @@
 
 .center {
   text-align: center;
+  vertical-align: middle;
+
+}
+
+
+.divtudo {
+  width: 65%;
+  height: 365px;
+  border: 2px solid #0c0c0c;
+  margin: 0 auto;
+  background-color: #fff;
+  position: relative;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.barratitulo {
+  margin: 0 auto;
+  text-align: center;
+  height: 25px;
+  border: 1px solid rgb(129, 129, 129);
+  background: #919191;
+  background: -moz-linear-gradient(-206deg, #919191 5%, #919191 100%);
+  background: -webkit-linear-gradient(-206deg, #919191 5%, #919191 100%);
+  background: linear-gradient(-206deg, #919191 5%, #919191 100%);
+}
+
+.menubuscar {
+  width: 99%;
+  height: 50px;
+  margin: 5px;
+  border: 1px solid #838383;
+}
+
+.corpo {
+  width: 99%;
+  height: 200px;
+  margin: 5px;
+  border: 1px solid #838383;
+}
+
+.botoes {
+  width: 99%;
+  height: 54px;
+  margin: 5px;
+  text-align: right;
+  padding-right: 4%;
+  border: 1px solid #838383;
+}
+
+:host /deep/ p-table {
+  font-size: 82%;
+}
+
+
+:host /deep/ p-table .ui-table-tbody .ui-selectable-row:hover{
+  background-color: rgba(84, 104, 138, 0.342);
+}
+
+.botao {
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-flex;
+}
+
+.botaoprincipal {
+  width: 65px;
+  display: inline-grid;
+  font-size: 78%;
+  font-weight: bold;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-align: center;
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  padding: 2px 0 2px;
+  line-height: 1.7;
+  position: relative;
+  margin: 0 auto;
+}
+
+.botaoprincipal:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+
+.botaoprincipal > img {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+.botaoprincipal > a {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
 }

@@ -15,14 +15,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   declarations: [
-    CadastroAbreviaturaComponent,
-    CadastroConvenioComponent,
-    CadastroGrupoprocedimentoComponent,
-    CadastroPacienteComponent,
-    CadastroProcedimentomedicoComponent,
-    CadastroProfissionalsolComponent,
-    CadastroProfissionalexecComponent,
-    CadastroTextopessoalComponent
+
   ]
 })
 export class FormulariosModule { }
