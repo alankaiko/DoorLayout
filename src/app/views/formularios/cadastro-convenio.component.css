@@ -186,6 +186,13 @@ input {
   margin: 0 auto;
 }
 
+:host /deep/ p-tabview .ui-tabview-nav .ui-tabview-selected{
+  border: 1px solid;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #B4B8C1;
+}
+
 :host /deep/ p-tabview .ui-tabview .ui-tabview-panels {
   border: 1px solid #646464;
   -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);

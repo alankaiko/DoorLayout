@@ -14,7 +14,6 @@ import {Location} from '@angular/common';
 export class CadastroConvenioComponent implements OnInit {
   formulario: FormGroup;
   display: boolean = true;
-  camposbusca: SelectItem[];
 
   constructor(private service: ConvenioService,
               private rota: ActivatedRoute,

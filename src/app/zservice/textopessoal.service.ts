@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class TextoPessoalFiltro {
   pagina = 0;
   itensPorPagina = 7;
-  nome: string;
+  abreviatura: string;
 }
 
 @Injectable({
@@ -24,12 +24,16 @@ export class TextopessoalService {
   }
 
   Consultar(filtro: TextoPessoalFiltro): Promise<any> {
-    const params = new HttpParams({
+    let params = new HttpParams({
       fromObject: {
         page: filtro.pagina.toString(),
         size: filtro.itensPorPagina.toString()
       }
     });
+
+    if (filtro.abreviatura) {
+      params = params.append('abreviatura', filtro.abreviatura);
+    }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })
       .toPromise()

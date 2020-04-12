@@ -24,12 +24,16 @@ export class ProfissionalexecutanteService {
   }
 
   Consultar(filtro: ProfissionalExecutanteFiltro): Promise<any> {
-    const params = new HttpParams({
+    let params = new HttpParams({
       fromObject: {
         page: filtro.pagina.toString(),
         size: filtro.itensPorPagina.toString()
       }
     });
+
+    if (filtro.nome) {
+      params = params.append('nome', filtro.nome);
+    }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })
       .toPromise()

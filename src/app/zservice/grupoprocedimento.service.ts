@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class GrupoProcedimentoFiltro {
   pagina = 0;
   itensPorPagina = 7;
+  nome: string;
 }
 
 @Injectable({
@@ -29,6 +30,10 @@ export class GrupoprocedimentoService {
         size: filtro.itensPorPagina.toString()
       }
     });
+
+    if (filtro.nome) {
+      params = params.append('nome', filtro.nome);
+    }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })
       .toPromise()

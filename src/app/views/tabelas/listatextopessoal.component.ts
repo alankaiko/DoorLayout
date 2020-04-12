@@ -54,7 +54,7 @@ export class ListatextopessoalComponent implements OnInit {
 
   ConfigurarVariavel(event) {
     const texto = document.getElementById('buscando') as HTMLInputElement;
-    this.filtro.nome = texto.value;
+    this.filtro.abreviatura = texto.value;
     this.Consultar();
 
   }

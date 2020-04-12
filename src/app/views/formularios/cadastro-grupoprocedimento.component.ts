@@ -12,6 +12,7 @@ import {Location} from '@angular/common';
 })
 export class CadastroGrupoprocedimentoComponent implements OnInit {
   formulario: FormGroup;
+  display: boolean = true;
 
   constructor(private service: GrupoprocedimentoService,
               private rota: ActivatedRoute,

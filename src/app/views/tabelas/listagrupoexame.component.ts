@@ -1,27 +1,46 @@
+import { FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { GrupoprocedimentoService, GrupoProcedimentoFiltro } from './../../zservice/grupoprocedimento.service';
 import { Router } from '@angular/router';
 import { GrupoProcedimento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
 
 @Component({
   templateUrl: 'listagrupoexame.component.html',
-  styleUrls: ['./listagrupoexame.component.css'],
-  providers: [ MessageService , ConfirmationService]
+  styleUrls: ['./listagrupoexame.component.css']
 })
 export class ListagrupoexameComponent implements OnInit {
   grupos = [];
+  grupo: GrupoProcedimento;
   totalRegistros = 0;
   filtro = new GrupoProcedimentoFiltro();
   visible: boolean = true;
+  camposbusca: SelectItem[];
+  formulario: FormGroup;
+  display: boolean = true;
+  exclusao: boolean = false;
 
   constructor(private service: GrupoprocedimentoService,
-              private route: Router,
-              private confirmation: ConfirmationService,
-              private messageService: MessageService) { }
+              private route: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.camposbusca = [
+      {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
+      {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}}
+    ];
+  }
+
+  onRowSelect(event) {
+    this.grupo = event.data;
+  }
+
+  Alterar() {
+    if (this.grupo?.codigo != null) {
+      this.route.navigate(['/tabelas/listagrupoexame', this.grupo.codigo]);
+    }
+  }
+
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
@@ -33,25 +52,27 @@ export class ListagrupoexameComponent implements OnInit {
       }).catch(erro => console.log(erro));
   }
 
-  ConfirmarExclusao(grupo: GrupoProcedimento) {
-    this.confirmation.confirm({
-      message: 'Deseja Excluir: ' + grupo.nome.toUpperCase(),
-      accept: () => {
-        this.Excluir(grupo);
-      }
-    });
+
+  ConfigurarVariavel(event) {
+    const texto = document.getElementById('buscando') as HTMLInputElement;
+    this.filtro.nome = texto.value;
+    this.Consultar();
+
   }
 
-  Excluir(grupo: GrupoProcedimento) {
-    this.service.Remover(grupo.codigo)
-      .then(() => {
-        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
-      })
+  AtivarExcluir() {
+    this.exclusao = true;
+  }
+
+
+  Excluir() {
+    this.service.Remover(this.grupo.codigo)
+      .then(() => {})
       .catch(erro => erro);
-      this.visible = false;
-      setTimeout (() => this.visible = true, 0);
+      this.exclusao = false;
+      setTimeout (() => this.Consultar(), 0
+      );
   }
-
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;

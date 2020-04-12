@@ -1,49 +1,126 @@
-<div class="page-content">
-  <div class="page-header">
-    <h1>
-      Abreviatura
-      <small>
-        <i class="ace-icon fa fa-angle-double-right"></i>
-        Cadastro
-      </small>
-    </h1>
-  </div><!-- /.page-header -->
+<p-dialog header="Exames e Procedimentos Médicos" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
+  <div>
+    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+      <p-tabView>
+        <p-tabPanel header="Dados Principais">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 linhas">
+              <div class="ui-g-2">
+                <label>Código</label>
+                <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+              </div>
 
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="formu">
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Código</label>
-          <input [readonly]= "editando" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
-        </div>
-
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Descrição</label>
-          <input type="text" pInputText ng-model="text" name="nome" formControlName="nome" class="ui-g-9">
-        </div>
-
-        <div class="ui-g-12" formGroupName="grupo">
-          <label class="ui-g-3" style="text-align: right;">Grupo</label>
-          <div class="ui-g-9">
-            <div class="ui-g-10">
-              <p-dropdown required formControlName="codigo" [options]="grupos" [autoWidth]="false" placeholder="Selecione o grupo" name="grupo"></p-dropdown>
             </div>
 
-            <div class="ui-g-2"></div>
-            <a routerLink="/tabelas/listagrupoexame/novo">Cadastrar Grupo?</a>
-          </div>
-        </div>
+            <div class="ui-g-12 linhas">
+              <div class="ui-g-12">
+                <label>Nome</label>
+                <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+              </div>
+            </div>
 
-        <div class="ui-g-12">
-          <div style="text-align: left;">
-            <button class="btn btn-primary" type="submit" style="margin-right: 8px;">Salvar</button>
-          <button class="btn btn-outline-secondary" routerLink="/tabelas/listaexameprocmedico">Cancelar</button>
-          </div>
+            <div class="ui-g-12">
+              <div class="ui-g-4" formGroupName="grupo">
+                <label>Grupo</label>
+                <p-dropdown required formControlName="codigo" [options]="grupos" [autoWidth]="false" placeholder="Selecione o grupo" name="grupo"></p-dropdown>
+              </div>
 
-          <div style="text-align: right;">
-            <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
+              <div class="ui-g-1" style="display: inline-grid; margin-top: 5px;">
+                <label style="opacity: 1%;">_</label>
+                <button type="button" class="minibotao" routerLink="/tabelas/listagrupoexame/novo">
+                  <img src="/assets/img/FKEY_WINDOW.png">
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </form>
+        </p-tabPanel>
+
+      </p-tabView>
+    </form>
+  </div>
+
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/tabelas/listaexameprocmedico/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Salvar()">
+          <img src="/assets/img/SALVAR.png">
+          <span>Salvar</span>
+        </button>
+      </div>
+
+
+      <div>
+        <button disabled="true" class="botaoprincipal" (click)="AtivarExcluir()">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Cancelar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" routerLink="/tabelas/listaexameprocmedico">
+          <img src="/assets/img/PRINT_VIEW.png">
+          <span>Voltar</span>
+        </button>
+      </div>
     </div>
-</div>
+  </div>
+</p-dialog>
+
+
+
+

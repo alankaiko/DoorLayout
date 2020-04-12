@@ -14,6 +14,7 @@ import {Location} from '@angular/common';
 export class CadastroProcedimentomedicoComponent implements OnInit {
   formulario: FormGroup;
   grupos = [];
+  display: boolean = true;
 
   constructor(private service: ProcedimentomedicoService,
               private rota: ActivatedRoute,

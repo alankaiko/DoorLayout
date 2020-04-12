@@ -12,6 +12,7 @@ import {Location} from '@angular/common';
 })
 export class CadastroTextopessoalComponent implements OnInit {
   formulario: FormGroup;
+  display: boolean = true;
 
   constructor(private service: TextopessoalService,
               private rota: ActivatedRoute,

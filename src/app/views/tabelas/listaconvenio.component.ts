@@ -25,8 +25,7 @@ export class ListaconvenioComponent implements OnInit {
 
 
   constructor(private service: ConvenioService,
-              private route: Router,
-              private formbuilder: FormBuilder) {
+              private route: Router) {
               }
 
   ngOnInit() {
