@@ -15,7 +15,7 @@
 
               <div class="ui-g-2" style="margin-top: 10px;">
                 <label>Convênio Ativo</label>
-                <p-checkbox ng-model="ativo" name="ativo" binary="true" formControlName="ativo"></p-checkbox>
+                <p-checkbox ng-model="ativo" name="ativo" [binary]="true" formControlName="ativo"></p-checkbox>
               </div>
             </div>
 
@@ -105,21 +105,21 @@
       </div>
 
       <div>
-        <button type="button" class="botaoprincipal">
+        <button disabled="true" type="button" class="botaoprincipal">
           <img src="/assets/img/ANTERIOR.png">
           <span>Anterior</span>
         </button>
       </div>
 
       <div>
-        <button type="button" class="botaoprincipal">
+        <button disabled="true" type="button" class="botaoprincipal">
           <img src="/assets/img/PROXIMO.png">
           <span>Próximo</span>
         </button>
       </div>
 
       <div>
-        <button type="button" class="botaoprincipal" style="margin-right: 10px;">
+        <button disabled="true" type="button" class="botaoprincipal" style="margin-right: 10px;">
           <img src="/assets/img/ultimo.png">
           <span>Último</span>
         </button>
@@ -132,7 +132,7 @@
       </div>
 
       <div>
-        <button class="botaoprincipal" (click)="Alterar()">
+        <button disabled="true" class="botaoprincipal" (click)="Alterar()">
           <img src="/assets/img/ALTERAR.png">
           <span>Alterar</span>
         </button>
@@ -147,7 +147,7 @@
 
 
       <div>
-        <button class="botaoprincipal" (click)="AtivarExcluir()">
+        <button disabled="true" class="botaoprincipal" (click)="AtivarExcluir()">
           <img src="/assets/img/APAGAR.png">
           <span>Apagar</span>
         </button>
@@ -161,16 +161,16 @@
       </div>
 
       <div>
-        <button class="botaoprincipal">
+        <button disabled="true" class="botaoprincipal">
           <img src="/assets/img/IMPRESSORA.png">
           <span>Imprimir</span>
         </button>
       </div>
 
       <div>
-        <button class="botaoprincipal">
-          <img src="/assets/img/VISUALIZAR.png">
-          <span>Visualizar</span>
+        <button class="botaoprincipal" routerLink="/tabelas/listaconvenio">
+          <img src="/assets/img/PRINT_VIEW.png">
+          <span>Voltar</span>
         </button>
       </div>
     </div>

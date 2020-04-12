@@ -13,7 +13,7 @@ import { LazyLoadEvent, SelectItem } from 'primeng/api';
 })
 export class ListaconvenioComponent implements OnInit {
   convenios = [];
-  convenio = new Convenio();
+  convenio: Convenio;
   totalRegistros = 0;
   filtro = new ConvenioFiltro();
   visible: boolean = true;
@@ -41,7 +41,7 @@ export class ListaconvenioComponent implements OnInit {
   }
 
   Alterar() {
-    if (this.convenio.codigo != null) {
+    if (this.convenio?.codigo != null) {
       this.route.navigate(['/tabelas/listaconvenio', this.convenio.codigo]);
     }
   }

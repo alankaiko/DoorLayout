@@ -34,10 +34,10 @@
 
       <ng-template pTemplate="body" let-patient>
         <tr [pSelectableRow]="patient">
-          <td style="text-align: right; width: 10%;">{{patient.idpatient}}</td>
-          <td><a [routerLink]="['/tabelas/listapaciente', patient.idpatient]">{{patient.patientname}}</a></td>
-          <td style="width: 20%;">{{patient.birthday | date:'dd/MM/yyyy' }}</td>
-          <td style="width: 20%;">{{patient.datecreate | date:'dd/MM/yyyy' }}</td>
+          <td style="text-align: right; width: 10%;">{{patient?.idpatient}}</td>
+          <td><a [routerLink]="['/tabelas/listapaciente', patient.idpatient]">{{patient?.patientname}}</a></td>
+          <td style="width: 20%;">{{patient?.birthday | date:'dd/MM/yyyy' }}</td>
+          <td style="width: 20%;">{{patient?.datecreate | date:'dd/MM/yyyy' }}</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
@@ -125,11 +125,11 @@
 </p-dialog>
 
 
-<p-dialog header="Excluir {{patient.patientname}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
-  <span>DESEJA EXCLUIR O REGISTRO => {{patient.patientname}}?</span>
+<p-dialog header="Excluir {{patient?.patientname}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{patient?.patientname}}?</span>
 
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-check" *ngIf="patient?.codigo != null" (click)="Excluir()" label="Yes"></button>
     <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

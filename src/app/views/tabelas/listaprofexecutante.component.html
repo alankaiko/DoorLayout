@@ -35,8 +35,8 @@
 
       <ng-template pTemplate="body" let-profissional>
         <tr [pSelectableRow]="profissional">
-          <td style="text-align: right; width: 10%;">{{profissional.codigo}}</td>
-          <td><a [routerLink]="['/tabelas/listaprofexecutante', profissional.codigo]">{{profissional.nome}}</a></td>
+          <td style="text-align: right; width: 10%;">{{profissional?.codigo}}</td>
+          <td><a [routerLink]="['/tabelas/listaprofexecutante', profissional.codigo]">{{profissional?.nome}}</a></td>
           <td style="width: 20%;">{{profissional?.conselho?.descricao}}</td>
           <td style="width: 20%;">{{profissional?.conselho?.sigla.descricao}}</td>
           <td style="width: 20%;">{{profissional?.conselho?.estado.uf}}</td>
@@ -127,11 +127,11 @@
 </p-dialog>
 
 
-<p-dialog header="Excluir {{profissional.nome}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
-  <span>DESEJA EXCLUIR O REGISTRO => {{profissional.nome}}?</span>
+<p-dialog header="Excluir {{profissional?.nome}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{profissional?.nome}}?</span>
 
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-check" *ngIf="profissional?.codigo != null" (click)="Excluir()" label="Yes"></button>
     <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

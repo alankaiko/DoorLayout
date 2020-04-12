@@ -11,7 +11,7 @@ import { LazyLoadEvent, SelectItem } from 'primeng/api';
 })
 export class ListaprofexecutanteComponent implements OnInit {
   profissionaisexec = [];
-  profissional = new ProfissionalExecutante();
+  profissional: ProfissionalExecutante;
   totalRegistros = 0;
   filtro = new ProfissionalExecutanteFiltro();
   visible: boolean = true;

@@ -32,8 +32,8 @@
 
       <ng-template pTemplate="body" let-texto>
         <tr [pSelectableRow]="texto">
-          <td style="text-align: right; width: 10%;">{{texto.codigo}}</td>
-          <td><a [routerLink]="['/tabelas/listatextopessoal', texto.codigo]">{{texto.abreviatura}}</a></td>
+          <td style="text-align: right; width: 10%;">{{texto?.codigo}}</td>
+          <td><a [routerLink]="['/tabelas/listatextopessoal', texto.codigo]">{{texto?.abreviatura}}</a></td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
@@ -121,11 +121,11 @@
 </p-dialog>
 
 
-<p-dialog header="Excluir {{texto.abreviatura}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
-  <span>DESEJA EXCLUIR O REGISTRO => {{texto.abreviatura}}?</span>
+<p-dialog header="Excluir {{texto?.abreviatura}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{texto?.abreviatura}}?</span>
 
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-check" *ngIf="texto?.codigo != null" (click)="Excluir()" label="Yes"></button>
     <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

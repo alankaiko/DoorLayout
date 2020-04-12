@@ -12,7 +12,7 @@ import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
 })
 export class ListaprofsolicitanteComponent implements OnInit {
   profissionaissol = [];
-  profissional = new ProfissionalSolicitante();
+  profissional: ProfissionalSolicitante;
   totalRegistros = 0;
   filtro = new ProfissionalSolicitanteFiltro();
   visible: boolean = true;

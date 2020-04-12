@@ -11,7 +11,7 @@ import { LazyLoadEvent, SelectItem } from 'primeng/api';
 })
 export class ListaexameprocmedicoComponent implements OnInit {
   procedimentos = [];
-  procedimento = new ProcedimentoMedico();
+  procedimento: ProcedimentoMedico;
   totalRegistros = 0;
   filtro = new ProcedimentoMedicoFiltro();
   visible: boolean = true;

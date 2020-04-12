@@ -12,7 +12,7 @@ import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
 })
 export class ListatextopessoalComponent implements OnInit {
   textospessoais = [];
-  texto = new TextoPessoal();
+  texto: TextoPessoal;
   totalRegistros = 0;
   filtro = new TextoPessoalFiltro();
   visible: boolean = true;

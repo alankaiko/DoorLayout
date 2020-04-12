@@ -12,7 +12,7 @@ import { LazyLoadEvent, SelectItem } from 'primeng/api';
 })
 export class ListapacienteComponent implements OnInit {
   patients = [];
-  patient = new Patient();
+  patient: Patient;
   totalRegistros = 0;
   filtro = new PatientFiltro();
   visible: boolean = true;

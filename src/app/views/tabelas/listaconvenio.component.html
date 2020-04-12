@@ -34,9 +34,9 @@
 
       <ng-template pTemplate="body" let-convenio>
         <tr [pSelectableRow]="convenio">
-          <td style="text-align: right; width: 10%;">{{convenio.codigo}}</td>
-          <td><a [routerLink]="['/tabelas/listaconvenio', convenio.codigo]">{{convenio.nome}}</a></td>
-          <td style="width: 20%;">{{convenio.telefone}}</td>
+          <td style="text-align: right; width: 10%;">{{convenio?.codigo}}</td>
+          <td><a [routerLink]="['/tabelas/listaconvenio', convenio.codigo]">{{convenio?.nome}}</a></td>
+          <td style="width: 20%;">{{convenio?.telefone}}</td>
           <td style="width: 10%; text-align: center;"><p-checkbox [readonly]= "true" [(ngModel)]="convenio.ativo" binary="true"></p-checkbox></td>
         </tr>
       </ng-template>
@@ -125,11 +125,11 @@
 </p-dialog>
 
 
-<p-dialog header="Excluir {{convenio.nome}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
-  <span>DESEJA EXCLUIR O REGISTRO => {{convenio.nome}}?</span>
+<p-dialog header="Excluir {{convenio?.nome}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{convenio?.nome}}?</span>
 
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-check" *ngIf="convenio?.codigo != null" (click)="Excluir()" label="Yes"></button>
     <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
