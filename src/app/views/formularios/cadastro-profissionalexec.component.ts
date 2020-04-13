@@ -14,6 +14,7 @@ import {Location} from '@angular/common';
 })
 export class CadastroProfissionalexecComponent implements OnInit {
   formulario: FormGroup;
+  display: boolean = true;
   siglas = [];
   estados = [];
 
@@ -46,7 +47,11 @@ export class CadastroProfissionalexecComponent implements OnInit {
     this.formulario = this.formbuilder.group({
       codigo: [null, profissional.codigo],
       nome: [null, profissional.nome],
+      frasepessoal: [null, profissional.frasepessoal],
       numnoconselho: [null, profissional.numnoconselho],
+      asswidth: [null, profissional.asswidth],
+      assheight: [null, profissional.assheight],
+      espacoass: [null, profissional.espacoass],
       contato: this.formbuilder.group({
         email: [profissional.contato.email],
         telefone: [profissional.contato.telefone],

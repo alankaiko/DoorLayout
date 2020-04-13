@@ -1,3 +1,5 @@
+import { CadastroSubcategoriacidComponent } from './views/formularios/cadastro-subcategoriacid.component';
+import { ListasubcategoriacidComponent } from './views/tabelas/listasubcategoriacid.component';
 import { LaudoComponent } from './laudos/laudo/laudo.component';
 import { SiglaComponent } from './views/ferramentas/sigla.component';
 import { EstadoComponent } from './views/ferramentas/estado.component';
@@ -68,6 +70,32 @@ export const routes: Routes = [
       {
         path: 'viewer/:cod',
         component: ViewerComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultEspComponent,
+    data: {
+      title: 'Lista CID10'
+    },
+    children: [
+      {
+        path: 'operacoes/listasubcategoriacid',
+        component: ListasubcategoriacidComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultEspComponent,
+    data: {
+      title: 'Lista CID10'
+    },
+    children: [
+      {
+        path: 'operacoes/subcategoriacid/:cod',
+        component: CadastroSubcategoriacidComponent
       }
     ]
   },

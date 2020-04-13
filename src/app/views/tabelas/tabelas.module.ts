@@ -1,3 +1,4 @@
+import { ListasubcategoriacidComponent } from './listasubcategoriacid.component';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';

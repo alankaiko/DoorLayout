@@ -1,4 +1,6 @@
-import { LazyLoadEvent } from 'primeng/api';
+import { FormGroup } from '@angular/forms';
+import { Atendimento } from './../../core/model';
+import { LazyLoadEvent, SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { AtendimentoFilter, AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,14 +12,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaAtendimentoComponent implements OnInit {
   atendimentos = [];
+  atendimento: Atendimento;
   totalRegistros = 0;
   filtro = new AtendimentoFilter();
   visible: boolean = true;
+  camposbusca: SelectItem[];
+  formulario: FormGroup;
+  display: boolean = true;
+  exclusao: boolean = false;
 
   constructor(private service: AtendimentoService,
               private route: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.camposbusca = [
+      {label: 'Código', value: {id: 1, name: 'Código', code: '1'}},
+      {label: 'Paciente', value: {id: 2, name: 'Paciente', code: '2'}},
+      {label: 'Prof. Executante', value: {id: 2, name: 'Prof. Executante', code: '3'}}
+    ];
+   }
+
+   onRowSelect(event) {
+    this.atendimento = event.data;
+  }
+
+  Alterar() {
+    if (this.atendimento?.codigo != null) {
+      this.route.navigate(['/operacoes/atendimento', this.atendimento.codigo]);
+    }
+  }
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
@@ -27,6 +50,27 @@ export class ListaAtendimentoComponent implements OnInit {
         this.totalRegistros = response.total;
         this.atendimentos = response.atendimentos.content;
       }).catch(erro => console.log(erro));
+  }
+
+  ConfigurarVariavel(event) {
+    const texto = document.getElementById('buscando') as HTMLInputElement;
+    this.filtro.patientname = texto.value;
+    this.Consultar();
+
+  }
+
+  AtivarExcluir() {
+    this.exclusao = true;
+  }
+
+
+  Excluir() {
+    this.service.Remover(this.atendimento.codigo)
+      .then(() => {})
+      .catch(erro => erro);
+      this.exclusao = false;
+      setTimeout (() => this.Consultar(), 0
+      );
   }
 
   aoMudarPagina(event: LazyLoadEvent) {

@@ -1,129 +1,218 @@
-<div class="page-content">
-  <div class="page-header">
-    <h1>
-      Profissional Executante
-      <small>
-        <i class="ace-icon fa fa-angle-double-right"></i>
-        Cadastro
-      </small>
-    </h1>
-  </div><!-- /.page-header -->
+<p-dialog header="Profissional Executante" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
+  <div>
+    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+      <p-tabView>
+        <p-tabPanel header="Dados Principais">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-8">
+              <div class="ui-g-12 linhas">
+                <div class="ui-g-2">
+                  <label>Código</label>
+                  <input style="width: 50%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+                </div>
 
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Código</label>
-          <div class="ui-g-9">
-            <input [readonly]= "true" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
-          </div>
-        </div>
+                <div class="ui-g-3" formGroupName="conselho">
+                  <label style="text-align: right;">Sigla</label>
+                  <div formGroupName="sigla">
+                    <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
+                  </div>
+                </div>
 
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Nome</label>
-            <input pInputText ng-model="text" name="nome" formControlName="nome" class="ui-g-9"/>
-        </div>
+                <div class="ui-g-3" formGroupName="conselho">
+                  <label>UF</label>
+                  <div formGroupName="estado">
+                    <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
+                  </div>
+                </div>
 
-        <div class="ui-g-12" formGroupName="contato">
-          <label class="ui-g-3" style="text-align: right;">Telefone</label>
-          <div class="ui-g-9">
-              <div class="ui-g-4">
-                <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
+                <div class="ui-g-2" formGroupName="conselho">
+                  <label>N. Cons.</label>
+                  <input type="text" placeholder="num. do conselho" pInputText ng-model="text" name="descricao" formControlName="descricao">
+                </div>
               </div>
 
-              <div class="ui-g-4">
-                <span>Telefone 2</span>
-                <p-inputMask placeholder="telefone" mask="(99) 9999-9999" name="telefone2" formControlName="telefone2"></p-inputMask>
+              <div class="ui-g-12 linhas">
+                <label>Nome do Profissional</label>
+                <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
               </div>
 
-              <div class="ui-g-4">
-                <span>Celular</span>
-                <p-inputMask placeholder="telefone" mask="(99) 9999-9999" name="celular" formControlName="celular"></p-inputMask>
-              </div>
-          </div>
-        </div>
-
-        <div class="ui-g-12" formGroupName="contato">
-          <label class="ui-g-3" style="text-align: right;">E-mail</label>
-          <input pInputText ng-model="text" name="email" formControlName="email" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Logradouro</label>
-          <input pInputText ng-model="text" name="logradouro" formControlName="logradouro" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">CEP</label>
-          <div class="ui-g-9">
-              <div class="ui-g-6">
-                <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
-              </div>
-
-              <div class="ui-g-6">
-                <span>Num.</span>
-                <input type="text" pInputText ng-model="text" name="numero" formControlName="numero">
-              </div>
-          </div>
-        </div>
-
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Complemento</label>
-            <input pInputText ng-model="text" name="complemento" formControlName="complemento" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Bairro</label>
-          <input pInputText ng-model="text" name="bairro" formControlName="bairro" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Cidade</label>
-          <input pInputText ng-model="text" name="cidade" formControlName="cidade" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12" formGroupName="endereco">
-          <label class="ui-g-3" style="text-align: right;">Estado</label>
-          <input pInputText ng-model="text" name="estado" formControlName="estado" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12" formGroupName="conselho">
-          <label class="ui-g-3" style="text-align: right;">Sigla</label>
-          <div class="ui-g-9">
-              <div class="ui-g-4" formGroupName="sigla">
-                <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
-              </div>
-
-              <div class="ui-g-4">
-                <input type="text" placeholder="num. do conselho" pInputText ng-model="text" name="descricao" formControlName="descricao">
-              </div>
-
-              <div class="ui-g-4" formGroupName="estado">
-                <span>UF</span>
-                <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
+              <div class="ui-g-12 linhas">
+                <label>Frase Pessoal</label>
+                <input style="width: 100%;" pInputTextarea  ng-model="text" name="frasepessoal" formControlName="frasepessoal"/>
               </div>
             </div>
-        </div>
 
-        <div class="ui-g-12">
-          <div class="col-md-offset-3 col-md-9">
-            <button class="btn btn-info" type="submit">
-              <i class="ace-icon fa fa-check bigger-110"></i>
-              Salvar
-            </button>
+            <div class="ui-g-4" style="border: 1px solid;">
+              <div class="ui-g-12" style="border: 1px solid; height: 50px;">
 
-            &nbsp; &nbsp; &nbsp;
-            <button class="btn" type="reset">
-              <i class="ace-icon fa fa-undo bigger-110"></i>
-              Limpar
-            </button>
+              </div>
+
+              <div class="ui-g-12" style="text-align: center;">
+                <button type="button" class="minibotao">
+                  <img src="/assets/img/ADICIONAR.png">
+                </button>
+
+                <button type="button" class="minibotao">
+                  <img src="/assets/img/APAGAR.png">
+                </button>
+              </div>
+
+              <div class="ui-g-12">
+                <div class="ui-g-4">
+                  <label>Largura</label>
+                  <p-inputMask mask="99.999-999" name="asswidth" formControlName="asswidth"></p-inputMask>
+                </div>
+
+                <div class="ui-g-4">
+                  <label>Largura</label>
+                  <p-inputMask mask="999" name="assheight" formControlName="assheight"></p-inputMask>
+                </div>
+
+                <div class="ui-g-4">
+                  <label>Margem ass</label>
+                  <p-inputMask mask="999" name="espacoass" formControlName="espacoass"></p-inputMask>
+                </div>
+              </div>
+            </div>
           </div>
-          <div style="text-align: right;">
-            <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
-          </div>
-        </div>
-      </form>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-</div><!-- /.page-content -->
+        </p-tabPanel>
+        <p-tabPanel header="Dados para contato">
+            <div class="ui-g">
+              <div class="ui-g-12 linhas" formGroupName="endereco">
+                <div class="ui-g-3" style="display: inline-grid;">
+                  <label>CEP</label>
+                    <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
+                </div>
+
+                <div class="ui-g-1" style="display: inline-grid;">
+                  <label>Estado</label>
+                  <input pInputText ng-model="text" name="estado" formControlName="estado" style="width: 30px;"/>
+                </div>
+
+                <div class="ui-g-4" style="display: inline-grid;">
+                  <label>Cidade</label>
+                  <input pInputText ng-model="text" name="cidade" formControlName="cidade"/>
+                </div>
+
+                <div class="ui-g-4" style="display: inline-grid;">
+                  <label>Bairro</label>
+                  <input pInputText ng-model="text" name="bairro" formControlName="bairro"/>
+                </div>
+              </div>
+
+              <div class="ui-g-12 linhas" formGroupName="endereco">
+                <div class="ui-g-6" style="display: inline-grid;">
+                  <label>Logradouro</label>
+                  <input pInputText ng-model="text" name="logradouro" formControlName="logradouro"/>
+                </div>
+
+                <div class="ui-g-6" style="display: inline-grid;">
+                  <label>Complemento</label>
+                  <input pInputText ng-model="text" name="complemento" formControlName="complemento"/>
+                </div>
+              </div>
+
+              <div class="ui-g-12 linhas" formGroupName="contato">
+                  <div class="ui-g-3" style="display: inline-grid;">
+                    <label>Telefone</label>
+                    <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
+                  </div>
+
+                  <div class="ui-g-3" style="display: inline-grid;">
+                    <label>Telefone 2</label>
+                    <p-inputMask placeholder="fax" mask="(99) 9999-9999" name="telefone2" formControlName="telefone2"></p-inputMask>
+                  </div>
+
+                  <div class="ui-g-6" style="display: inline-grid;">
+                    <label>E-mail</label>
+                    <input style="width: 100%;" pInputText ng-model="text" name="email" formControlName="email"/>
+                  </div>
+              </div>
+            </div>
+        </p-tabPanel>
+      </p-tabView>
+    </form>
+  </div>
+
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/tabelas/listaprofexecutante/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Salvar()">
+          <img src="/assets/img/SALVAR.png">
+          <span>Salvar</span>
+        </button>
+      </div>
+
+
+      <div>
+        <button disabled="true" class="botaoprincipal" (click)="AtivarExcluir()">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Cancelar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" routerLink="/tabelas/listaprofexecutante">
+          <img src="/assets/img/PRINT_VIEW.png">
+          <span>Voltar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</p-dialog>
 

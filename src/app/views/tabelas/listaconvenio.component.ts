@@ -1,3 +1,5 @@
+import { Subcategoriacid10Service } from './../../zservice/subcategoriacid10.service';
+import { Categoriacid10Service } from './../../zservice/categoriacid10.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Convenio } from './../../core/model';
 import { Router } from '@angular/router';
@@ -48,7 +50,6 @@ export class ListaconvenioComponent implements OnInit {
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
-
     return this.service.Consultar(this.filtro)
       .then(response => {
         this.totalRegistros = response.total;

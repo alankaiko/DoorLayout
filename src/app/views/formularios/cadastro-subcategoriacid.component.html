@@ -1,0 +1,94 @@
+<p-dialog header="CID10" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
+  <div>
+    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 linhas">
+          <label>Nome da doença/ Subcategoria</label>
+          <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+        </div>
+
+        <div class="ui-g-12 linhas" formGroupName="categoriacid10">
+          <label>Categoria</label>
+          <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+        </div>
+
+        <div class="ui-g-12 linhas" formGroupName="categoriacid10">
+          <div formGroupName="grupocid10">
+            <label>Grupo</label>
+            <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+          </div>
+        </div>
+
+        <div class="ui-g-12 linhas" formGroupName="categoriacid10">
+          <div formGroupName="grupocid10">
+            <div formGroupName="capitulocid">
+              <label>Assunto/ Capítulo</label>
+              <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-g-12 linhas">
+          <div class="ui-g-3 linhas">
+            <label>Referência</label>
+            <input style="width: 90%;" pInputTextarea  ng-model="text" name="referencia" formControlName="referencia"/>
+          </div>
+
+          <div class="ui-g-3 linhas">
+            <label>Causa Óbito</label>
+            <input style="width: 90%;" pInputTextarea  ng-model="text" name="causaobito" formControlName="causaobito"/>
+          </div>
+
+          <div class="ui-g-3 linhas">
+            <label>Restriç Sexo</label>
+            <input style="width: 90%;" pInputTextarea  ng-model="text" name="restrsexo" formControlName="restrsexo"/>
+          </div>
+
+          <div class="ui-g-3 linhas">
+            <label>Cód. CID</label>
+            <input style="width: 90%;" pInputTextarea  ng-model="text" name="codigotexto" formControlName="codigotexto"/>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" routerLink="/tabelas/listaconvenio">
+          <img src="/assets/img/PRINT_VIEW.png">
+          <span>Voltar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</p-dialog>

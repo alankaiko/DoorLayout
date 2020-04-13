@@ -14,6 +14,7 @@ import {Location} from '@angular/common';
 })
 export class CadastroProfissionalsolComponent implements OnInit {
   formulario: FormGroup;
+  display: boolean = true;
   siglas = [];
   estados = [];
 

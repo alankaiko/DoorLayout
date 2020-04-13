@@ -1,46 +1,50 @@
+import { Subcategoriacid10Service } from './../../zservice/subcategoriacid10.service';
 import { FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
-import { ProfissionalsolicitanteService, ProfissionalSolicitanteFiltro } from './../../zservice/profissionalsolicitante.service';
-import { ProfissionalSolicitante } from './../../core/model';
+import { TextopessoalService, TextoPessoalFiltro } from './../../zservice/textopessoal.service';
+import { TextoPessoal, SubcategoriaCid10 } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
+import { SubcategoriascidFiltro } from '../../zservice/subcategoriacid10.service';
 
 @Component({
-  templateUrl: 'listaprofsolicitante.component.html',
-  styleUrls: ['./listaprofsolicitante.component.css']
+  templateUrl: 'Listasubcategoriacid.component.html',
+  styleUrls: ['./Listasubcategoriacid.component.css']
 })
-export class ListaprofsolicitanteComponent implements OnInit {
-  profissionaissol = [];
-  profissional: ProfissionalSolicitante;
+export class ListasubcategoriacidComponent implements OnInit {
+  subcategorias = [];
+  subcategoria: SubcategoriaCid10;
   totalRegistros = 0;
-  filtro = new ProfissionalSolicitanteFiltro();
+  filtro = new SubcategoriascidFiltro();
   visible: boolean = true;
   camposbusca: SelectItem[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
 
-  constructor(private service: ProfissionalsolicitanteService,
+  constructor(private service: Subcategoriacid10Service,
               private route: Router) { }
 
   ngOnInit() {
     this.camposbusca = [
       {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
-      {label: 'Num Conselho', value: {id: 2, name: 'Num Conselho', code: '2'}}
+      {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}},
+      {label: 'Categoria', value: {id: 1, name: 'Categoria', code: '3'}},
+      {label: 'Grupo', value: {id: 2, name: 'Grupo', code: '4'}},
+      {label: 'Assunto/capitulo', value: {id: 1, name: 'Assunto/capitulo', code: '5'}}
     ];
   }
 
   onRowSelect(event) {
-    this.profissional = event.data;
+    this.subcategoria = event.data;
   }
 
   Alterar() {
-    if (this.profissional?.codigo != null) {
-      this.route.navigate(['/tabelas/listaprofsolicitante', this.profissional.codigo]);
+    if (this.subcategoria?.codigo != null) {
+      this.route.navigate(['/operacoes/listasubcategoriacid', this.subcategoria.codigo]);
     }
   }
-
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
@@ -48,7 +52,7 @@ export class ListaprofsolicitanteComponent implements OnInit {
     return this.service.Consultar(this.filtro)
       .then(response => {
         this.totalRegistros = response.total;
-        this.profissionaissol = response.profissionalsolicitantes.content;
+        this.subcategorias = response.subcategorias.content;
       }).catch(erro => console.log(erro));
   }
 
@@ -66,7 +70,7 @@ export class ListaprofsolicitanteComponent implements OnInit {
 
 
   Excluir() {
-    this.service.Remover(this.profissional.codigo)
+    this.service.Remover(this.subcategoria.codigo)
       .then(() => {})
       .catch(erro => erro);
       this.exclusao = false;
@@ -79,5 +83,4 @@ export class ListaprofsolicitanteComponent implements OnInit {
     const pagina = event.first / event.rows;
     this.Consultar(pagina);
   }
-
 }

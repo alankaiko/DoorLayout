@@ -7,6 +7,7 @@ import * as moment from 'moment';
 export class AtendimentoFilter {
   pagina = 0;
   itensPorPagina = 7;
+  patientname: string;
 }
 
 @Injectable({

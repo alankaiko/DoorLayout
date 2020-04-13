@@ -35,7 +35,7 @@ export class ListaprofexecutanteComponent implements OnInit {
   }
 
   Alterar() {
-    if (this.profissional.codigo != null) {
+    if (this.profissional?.codigo != null) {
       this.route.navigate(['/tabelas/listaprofexecutante', this.profissional.codigo]);
     }
   }

@@ -1,64 +1,125 @@
-<div class="page-content">
-  <div class="page-header">
-    <h1>
-      Profissional Solicitante
-      <small>
-        <i class="ace-icon fa fa-angle-double-right"></i>
-        Cadastro
-      </small>
-    </h1>
-  </div><!-- /.page-header -->
+<p-dialog header="Profissional Solicitante" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
+  <div>
+    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+      <p-tabView>
+        <p-tabPanel header="Dados Principais">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 linhas">
+              <label>Código</label>
+              <input style="width: 20%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+            </div>
 
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Código</label>
-          <input [readonly]= "true" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
-        </div>
-
-        <div class="ui-g-12">
-          <label class="ui-g-3" style="text-align: right;">Nome</label>
-          <input pInputText ng-model="text" name="nome" formControlName="nome" class="ui-g-9"/>
-        </div>
-
-        <div class="ui-g-12" formGroupName="conselho">
-          <label class="ui-g-3" style="text-align: right;">Sigla</label>
-          <div class="ui-g-9">
-              <div class="ui-g-4" formGroupName="sigla">
-                <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
+            <div class="ui-g-12 linhas">
+              <div class="ui-g-3" formGroupName="conselho">
+                <label style="text-align: right;">Sigla</label>
+                <div formGroupName="sigla">
+                  <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
+                </div>
               </div>
 
-              <div class="ui-g-4">
+              <div class="ui-g-3" formGroupName="conselho">
+                <label>UF</label>
+                <div formGroupName="estado">
+                  <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
+                </div>
+              </div>
+
+              <div class="ui-g-2" formGroupName="conselho">
+                <label>N. Cons.</label>
                 <input type="text" placeholder="num. do conselho" pInputText ng-model="text" name="descricao" formControlName="descricao">
               </div>
+            </div>
 
-              <div class="ui-g-4" formGroupName="estado">
-                <span>UF</span>
-                <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
+            <div class="ui-g-12 linhas">
+              <div class="ui-g-12">
+                <label>Nome</label>
+                <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
               </div>
             </div>
-        </div>
-
-        <div class="ui-g-12">
-          <div class="col-md-offset-3 col-md-9">
-            <button class="btn btn-info" type="submit">
-              <i class="ace-icon fa fa-check bigger-110"></i>
-              Salvar
-            </button>
-
-            &nbsp; &nbsp; &nbsp;
-            <button class="btn" type="reset">
-              <i class="ace-icon fa fa-undo bigger-110"></i>
-              Limpar
-            </button>
           </div>
-          <div style="text-align: right;">
-            <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
-          </div>
-        </div>
-      </form>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-</div><!-- /.page-content -->
+        </p-tabPanel>
+      </p-tabView>
+    </form>
+  </div>
 
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/tabelas/listaprofsolicitante/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Salvar()">
+          <img src="/assets/img/SALVAR.png">
+          <span>Salvar</span>
+        </button>
+      </div>
+
+
+      <div>
+        <button disabled="true" class="botaoprincipal" (click)="AtivarExcluir()">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Cancelar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" routerLink="/tabelas/listaprofsolicitante">
+          <img src="/assets/img/PRINT_VIEW.png">
+          <span>Voltar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</p-dialog>

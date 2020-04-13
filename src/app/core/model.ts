@@ -188,14 +188,34 @@ export class EspecialidadeMedica {
 
 export class GrupoCID10 {
   codigo: number;
-  sku: string;
+  codigotexto: string;
   nome: string;
   capitulocid = new CapituloCID10();
 }
 
+export class CategoriaCID10 {
+  codigo: number;
+  codigotexto: string;
+  nome: string;
+  grupocid10 = new GrupoCID10();
+}
+
+export class SubcategoriaCid10 {
+  codigo: number;
+  codigotexto: string;
+  nome: string;
+  nome50: string;
+  restrsexo: string;
+  classificacao: string;
+  causaobito: string;
+  referencia: string;
+  excluidos: string;
+  categoriacid10 = new CategoriaCID10();
+}
+
 export class CapituloCID10 {
   codigo: number;
-  sku: string;
+  codigotexto: string;
   nome: string;
 }
 
@@ -233,6 +253,10 @@ export class ProfissionalExecutante {
   contato = new Contato();
   endereco = new Endereco();
   conselho = new TissConselho();
+  frasepessoal: string;
+  asswidth: number;
+  assheight: number;
+  espacoass: number;
 }
 
 export class TissConselho {

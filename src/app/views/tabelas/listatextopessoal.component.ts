@@ -36,7 +36,7 @@ export class ListatextopessoalComponent implements OnInit {
   }
 
   Alterar() {
-    if (this.texto.codigo != null) {
+    if (this.texto?.codigo != null) {
       this.route.navigate(['/tabelas/listatextopessoal', this.texto.codigo]);
     }
   }

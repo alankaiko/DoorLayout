@@ -25,7 +25,6 @@ export class ListaServidorComponent implements OnInit {
       .then(response => {
         this.totalRegistros = response.total;
         this.patients = response.patients.content;
-        console.log(this.filtro.servidor);
     }).catch(erro => console.log(erro));
   }
 
