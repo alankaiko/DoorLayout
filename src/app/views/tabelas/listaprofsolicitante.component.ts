@@ -29,6 +29,8 @@ export class ListaprofsolicitanteComponent implements OnInit {
       {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
       {label: 'Num Conselho', value: {id: 2, name: 'Num Conselho', code: '2'}}
     ];
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   onRowSelect(event) {
@@ -78,6 +80,10 @@ export class ListaprofsolicitanteComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.Consultar(pagina);
+  }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
   }
 
 }

@@ -73,7 +73,7 @@ export class PacienteService {
       .toPromise()
       .then(response => {
         const patient = response as Patient;
-        // this.converterStringsParaDatas([patient]);
+        this.converterStringsParaDatas([patient]);
         return patient;
       });
   }

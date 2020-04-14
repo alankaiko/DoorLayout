@@ -1,68 +1,245 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="conteudos">
-        <p-fieldset legend="{{ editando ? 'Editar' : 'Novo'}} Atendimento">
-          <div class="classecad">
-            <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar(f)" class="formu">
-              <div class="p-grid">
-                <div class="ui-g-3 ui-fluid">
-                  <label>Código Atend.</label>
-                  <input [readonly]= "true" type="text" pInputText [(ngModel)]="atendimento.codigo" #codigo="ngModel" name="codigo">
-                </div>
+<p-dialog header="Atendimentos" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
+  <div>
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar(f)" class="formu">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 linhas" style="width: 100%; display: inline-flex;">
+              <div style="display: grid; width: 20%;">
+                <label>Código Atend.</label>
+                <input style="width: 96%;" [readonly]= "true" type="text" pInputText [(ngModel)]="atendimento.codigo" #codigo="ngModel" name="codigo">
+              </div>
 
-                <div class="ui-g-3 ui-fluid">
-                  <label>Data Atend.</label>
-                  <p-calendar placeholder="00/00/0000" [readonlyInput]="true" showOn="false" dateFormat="dd/mm/yy" name="dataatendimento"
-                    [(ngModel)]="atendimento.dataatendimento" #dataatendimento="ngModel"></p-calendar>
-                </div>
+              <div style="display: grid; width: 25%;">
+                <label>Data Atend.</label>
+                <p-calendar placeholder="00/00/0000" [readonlyInput]="true" showOn="false" dateFormat="dd/mm/yy" name="datacadastro"
+                  [(ngModel)]="atendimento.datacadastro" #datacadastro="ngModel"></p-calendar>
+              </div>
 
-                <div class="ui-g-10 ui-fluid">
-                  <label>Paciente</label>
-                  <p-dropdown [options]="pacientes" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.patient.idpatient" #idpatient="ngModel" name="idpatient"
-                    placeholder="Selecione..." (onChange)="CarregarPacientes()"></p-dropdown>
-                </div>
-
-                <div class="ui-g-5 ui-fluid">
-                  <label>Convênio</label>
+              <div style="display: grid; width: 50%; padding-left: 5px; padding-right: 5px;">
+                <label>Convênio</label>
                   <p-dropdown [options]="convenios" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.convenio.codigo" #codigo="ngModel" name="codigo"
                     placeholder="Selecione..." (onChange)="CarregarConvenios()"></p-dropdown>
-                </div>
-
-                <div class="ui-g-5 ui-fluid">
-                  <label>Prof. Solicitante</label>
-                  <p-dropdown [options]="solicitantes" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.solicitante.codigo" #codigo="ngModel" name="codigo"
-                    placeholder="Selecione..." (onChange)="CarregarSolicitantes()"></p-dropdown>
-                </div>
-
-                <div class="ui-g-10 ui-fluid">
-                  <label>Observações</label>
-                  <input type="text" pInputText [(ngModel)]="atendimento.observacoes" #observacoes="ngModel" name="observacoes">
-                </div>
-
-                <div class="ui-g-10">
-                  <p-panel header="Procedimentos">
-                    <app-procedimento-cad-apend [procedimentos]="atendimento.procedimentos"></app-procedimento-cad-apend>
-                  </p-panel>
-                </div>
-
-                <div class="ui-g-10 ui-fluid">
-                  <div style="text-align: left;">
-                    <button class="btn btn-primary" type="submit" style="margin-right: 8px;">Salvar</button>
-                    <button class="btn btn-outline-secondary" routerLink="/operacoes/atendimento">Cancelar</button>
-                    <button class="btn btn-outline-danger" (click)="GerarAtendimento()" *ngIf="editando">Gerar Atestado</button>
-                  </div>
-
-                  <div style="text-align: right;">
-                    <a routerLink="/operacoes/atendimento">Voltar para a pesquisa</a>
-                  </div>
-                </div>
               </div>
-            </form>
+
+              <div style="display: grid; width: 5%;">
+                <label style="opacity: 1%; ">
+                  -
+                </label>
+                <button style="width: 96%;" type="button" class="minibotao" routerLink="/tabelas/listaconvenio">
+                  <img src="/assets/img/FKEY_WINDOW.png">
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-g-12 linhas" style="width: 100%; display: inline-flex;">
+              <div style="display: grid; width: 50%;">
+                <label>Paciente</label>
+                <p-dropdown [options]="pacientes" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.patient.idpatient" #idpatient="ngModel" name="idpatient"
+                  placeholder="Selecione..." (onChange)="CarregarPacientes()"></p-dropdown>
+              </div>
+
+              <div style="display: grid; width: 5%;">
+                <label style="opacity: 1%;">
+                  -
+                </label>
+                <button type="button" class="minibotao" routerLink="/tabelas/listapaciente">
+                  <img src="/assets/img/FKEY_WINDOW.png">
+                </button>
+              </div>
+
+              <div style="display: grid; width: 15%;">
+                <label>Data Nasc.</label>
+                <p-calendar placeholder="00/00/0000" [readonlyInput]="true" showOn="false" dateFormat="dd/mm/yy" name="birthday"
+                  [(ngModel)]="atendimento.patient.birthday" #birthday="ngModel"></p-calendar>
+              </div>
+
+              <div style="display: grid; width: 15%; padding-left: 5px; padding-right: 5px;">
+                <label>Sexo</label>
+                <input style="width: 99%;" type="text" pInputText [(ngModel)]="atendimento.patient.patientsex" #patientsex="ngModel" name="patientsex">
+              </div>
+
+              <div style="display: grid; width: 15%;">
+                <label>Telefone</label>
+                <input style="width: 99%;" type="text" pInputText [(ngModel)]="atendimento.patient.contato.telefone" #telefone="ngModel" name="telefone">
+              </div>
+            </div>
+
+
+            <div class="ui-g-12 linhas" style="width: 100%; display: inline-flex;">
+              <div style="display: grid; width: 20%;">
+                <label>Conselho</label>
+                <p-dropdown [options]="conselhos" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.solicitante.conselho.sigla.descricao" #descricao="ngModel" name="descricao"
+                  placeholder="Selecione..." (onChange)="CarregarConselhos()"></p-dropdown>
+              </div>
+
+              <div style="display: grid; width: 20%; padding-left: 5px; padding-right: 5px;">
+                <label>UF</label>
+                <p-dropdown [options]="estados" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.solicitante.conselho.estado.uf" #uf="ngModel" name="uf"
+                  placeholder="Selecione..." (onChange)="CarregarEstados()"></p-dropdown>
+              </div>
+
+              <div style="display: grid; width: 20%;">
+                <label>N. Conselho</label>
+                <input type="text" pInputText [(ngModel)]="atendimento.solicitante.conselho.descricao" #descricao="ngModel" name="descricao">
+              </div>
+
+              <div style="display: grid; width: 40%; padding-left: 5px; padding-right: 5px;">
+                <label>Prof. Solicitante</label>
+                <p-dropdown [options]="solicitantes" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.solicitante.codigo" #codigo="ngModel" name="codigo"
+                  placeholder="Selecione..." (onChange)="CarregarSolicitantes()"></p-dropdown>
+              </div>
+            </div>
+
+            <div class="ui-g-12 linhas">
+              <p-panel>
+                <app-procedimento-cad-apend [procedimentos]="atendimento.procedimentos"></app-procedimento-cad-apend>
+              </p-panel>
+            </div>
+
+            <div class="ui-g-12 linhas">
+
+              <div style="text-align: right;">
+                <button *ngIf="atendimento?.patient?.idpatient != null">
+                  <span>Imp. Atestado</span>
+                </button>
+
+                <button (click)="VaiParaLaudos()" *ngIf="atendimento?.patient?.idpatient != null">
+                  <span>Laudo/ Foto</span>
+                </button>
+
+                <button (click)="Atualizar()" *ngIf="atendimento?.patient?.idpatient != null">
+                  <span>Captura</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-g-12 linhas">
+              <div class="ui-g-6">
+                <label>Observações</label>
+                <input style="width: 70%;" type="text" pInputText [(ngModel)]="atendimento.observacoes" #observacoes="ngModel" name="observacoes">
+              </div>
+
+              <div class="ui-g-6" style="text-align: right;">
+                <label>Valor Total paciente</label>
+                <input type="text" pInputText [(ngModel)]="atendimento.patient.valorpaciente" #valorpaciente="ngModel" name="valorpaciente">
+              </div>
+            </div>
           </div>
-        </p-fieldset>
+
+
+    </form>
+  </div>
+
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button  disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
       </div>
 
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/operacoes/atendimento/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Salvar()">
+          <img src="/assets/img/SALVAR.png">
+          <span>Salvar</span>
+        </button>
+      </div>
+
+
+      <div>
+        <button disabled="true" class="botaoprincipal" (click)="Excluir()">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Cancelar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" routerLink="/operacoes/atendimento">
+          <img src="/assets/img/PRINT_VIEW.png">
+          <span>Voltar</span>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</p-dialog>
+
+
+<p-dialog [header]="'Imprimir Atestado'" [style]="{width: '30vw'}" [(visible)]="exibiratestado"  [baseZIndex]="10001">
+  <div class="ui-g-12 ui-fluid" style="border: 1px solid;">
+    <form>
+      <div style="width: 30%; display: inline-grid;">
+        <label>Data Atestado</label>
+        <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
+      </div>
+
+      <div style="width: 100%; display: inline-grid;">
+        <label>Profissional Executante</label>
+        <p-dropdown [options]="executantes" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.codigoprofexecutante" #codigoprofexecutante="ngModel" name="codigoprofexecutante"
+          placeholder="Selecione..."></p-dropdown>
+      </div>
+
+      <div style="width: 100%; display: inline-grid;">
+        <label>Cid</label>
+        <p-dropdown [options]="subcategoriacids" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.codigodecid" #codigodecid="ngModel" name="codigodecid"
+          placeholder="Selecione..."></p-dropdown>
+      </div>
+
+      <div style="width: 100%; display: inline-grid;">
+        <label>Paciente</label>
+        <input readonly="true" type="text" pInputText value="{{atendimento.patient.patientname}}">
+      </div>
+
+    <div class="ui-g-4">
+      <button pButton type="button" label="Confirmar" (click)="GerarAtendimento(f)"></button>
+    </div>
+    </form>
+  </div>
+</p-dialog>

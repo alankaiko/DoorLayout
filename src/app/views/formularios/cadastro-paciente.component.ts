@@ -12,6 +12,7 @@ import {Location} from '@angular/common';
 })
 export class CadastroPacienteComponent implements OnInit {
   formulario: FormGroup;
+  display: boolean = true;
 
   constructor(private service: PacienteService,
               private rota: ActivatedRoute,
@@ -27,6 +28,8 @@ export class CadastroPacienteComponent implements OnInit {
     if (idpatient) {
       this.CarregarPaciente(idpatient);
     }
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {
@@ -40,7 +43,9 @@ export class CadastroPacienteComponent implements OnInit {
       patientname: [null, paciente.patientname],
       birthday: [null, paciente.birthday],
       patientage: [null, paciente.patientage],
+      datecreate: [null, paciente.datecreate],
       patientsex: [null, paciente.patientsex],
+      observacoes: [null, paciente.observacoes],
       contato: this.formbuilder.group({
         email: [paciente.contato.email],
         telefone: [paciente.contato.telefone],
@@ -91,4 +96,9 @@ export class CadastroPacienteComponent implements OnInit {
   Voltar() {
     this.location.back();
   }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
+  }
+
 }

@@ -29,6 +29,8 @@ export class CadastroSubcategoriacidComponent implements OnInit {
     if (codconvenio) {
       this.CarregarSubcategoriaCid10(codconvenio);
     }
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {
@@ -72,6 +74,10 @@ export class CadastroSubcategoriacidComponent implements OnInit {
 
   Voltar() {
     this.location.back();
+  }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
   }
 
 }

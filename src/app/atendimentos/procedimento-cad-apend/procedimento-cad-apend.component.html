@@ -1,17 +1,12 @@
-<div class="ui-g">
-  <div class="ui-g-12">
-    <button pButton label="Novo" icon="fa fa-plus" type="button"
-      class="ui-button-secondary" (click)="PrepararNovoProcedimento()"></button>
-  </div>
-
-  <div class="ui-g-12">
-    <p-table [value]="procedimentos" [responsive]="true">
+<div class="ui-g corpo">
+  <div class="linhas">
+    <p-table [value]="procedimentos" [responsive]="true"  [paginator]="true" [rows]="2">
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 50%;">Procedimento</th>
+          <th style="width: 40%;">Procedimento</th>
           <th style="width: 20%;">Data Exec.</th>
           <th style="width: 16%;">Prev. Ent. Laudo</th>
-          <th style="width: 14%;" class="col-acoes-header">Opções</th>
+          <th style="width: 10%;" class="col-acoes-header">Opções</th>
         </tr>
       </ng-template>
 
@@ -20,9 +15,9 @@
           <td>{{ procedimento.procedimentomedico.nome }}</td>
           <td>{{ procedimento.dataexecucao | date:'dd/MM/yyyy' }}</td>
           <td>{{ procedimento.preventregalaudo | date:'dd/MM/yyyy' }}</td>
-          <td class="col-acoes">
-            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
-                (click)="PrepararEdicaoProcedimento(procedimento)"></a>
+          <td style="display: inline-flex;">
+            <button pButton icon="fa fa-pencil-square-o" pTooltip="Editar" tooltipPosition="top"
+                (click)="PrepararEdicaoProcedimento(procedimento)"></button>
 
             <button pButton icon="fa fa-trash" type="button"
               pTooltip="Excluir" tooltipPosition="top"
@@ -40,44 +35,46 @@
       </ng-template>
     </p-table>
   </div>
+
+  <div class="ui-g-2">
+    <button pButton label="Novo" icon="fa fa-plus" type="button"
+      class="ui-button-secondary" (click)="PrepararNovoProcedimento()"></button>
+  </div>
 </div>
 
 
-<p-dialog [header]="'Novo Procedimento'" [(visible)]="exbindoFormularioProcedimento" modal="modal">
+<p-dialog [header]="'Novo Procedimento'" [style]="{width: '50vw'}" [(visible)]="exbindoFormularioProcedimento" modal="modal">
   <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="ConfirmarProcedimento()" class="formu">
     <div class="ui-g-12 ui-fluid" style="border: 1px solid;">
-      <div class="ui-g-12" formGroupName="profexecutante">
-        <label style="text-align: right;">Profissional Executante</label>
-        <p-dropdown [options]="profissionalexecutantes" [autoWidth]="false" [filter]="true"  formControlName="codigo"
-          placeholder="Selecione..." name="codigo" (onChange)="CarregaProfissionalExecutante()"></p-dropdown>
-      </div>
-
       <div class="ui-g-12" formGroupName="procedimentomedico">
         <label>Procedimento Médico</label>
         <p-dropdown [options]="procedimentomedicos" [autoWidth]="false" [filter]="true"  formControlName="codigo"
           placeholder="Selecione..." name="codigo" (onChange)="CarregarProcedimentosMedico()"></p-dropdown>
       </div>
 
-      <div class="ui-g-12">
-        <label>Valor Paciente</label>
-        <input type="text" pInputText ng-model="text" name="valorpaciente" formControlName="valorpaciente" placeholder="0.00">
-      </div>
-
-      <div class="ui-g-3 ui-fluid">
-        <label>Valor Convênio</label>
-        <input type="text" pInputText ng-model="text" name="valorconvenio" formControlName="valorconvenio" placeholder="0.00">
+      <div class="ui-g-12" formGroupName="profexecutante">
+        <label style="text-align: right;">Profissional Executante</label>
+        <p-dropdown [options]="profissionalexecutantes" [autoWidth]="false" [filter]="true"  formControlName="codigo"
+          placeholder="Selecione..." name="codigo" (onChange)="CarregaProfissionalExecutante()"></p-dropdown>
       </div>
 
       <div class="ui-g-12">
-        <label>Prev. Ent. Laudo</label>
-        <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="preventregalaudo"
-          yearRange="1930:2020" name="preventregalaudo" class="preventregalaudo"></p-calendar>
-      </div>
+        <div class="ui-g-4">
+          <label>Valor Paciente</label>
+          <input type="text" pInputText ng-model="text" name="valorpaciente" formControlName="valorpaciente" placeholder="0.00">
+        </div>
 
-      <div class="ui-g-12">
-        <label>Data Execução</label>
-        <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="dataexecucao"
-          yearRange="1930:2020" name="dataexecucao"></p-calendar>
+        <div class="ui-g-4">
+          <label>Prev. Ent. Laudo</label>
+          <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="preventregalaudo"
+            yearRange="1930:2020" name="preventregalaudo" class="preventregalaudo"></p-calendar>
+        </div>
+
+        <div class="ui-g-4">
+          <label>Data Execução</label>
+          <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="dataexecucao"
+            yearRange="1930:2020" name="dataexecucao"></p-calendar>
+        </div>
       </div>
 
       <div class="ui-g-12">

@@ -28,6 +28,8 @@ export class CadastroGrupoprocedimentoComponent implements OnInit {
     if (codigogrupo) {
       this.CarregarGrupoProcedimento(codigogrupo);
     }
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {
@@ -71,5 +73,9 @@ export class CadastroGrupoprocedimentoComponent implements OnInit {
 
   Voltar() {
     this.location.back();
+  }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
   }
 }

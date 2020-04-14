@@ -30,6 +30,8 @@ export class CadastroConvenioComponent implements OnInit {
     if (codconvenio) {
       this.CarregarConvenios(codconvenio);
     }
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {
@@ -89,6 +91,10 @@ export class CadastroConvenioComponent implements OnInit {
 
   Voltar() {
     this.location.back();
+  }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
   }
 
 }

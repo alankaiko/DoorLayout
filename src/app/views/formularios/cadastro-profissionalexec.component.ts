@@ -37,6 +37,7 @@ export class CadastroProfissionalexecComponent implements OnInit {
 
     this.BuscarEstados();
     this.BuscarSiglas();
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {
@@ -127,5 +128,9 @@ export class CadastroProfissionalexecComponent implements OnInit {
       this.estados = estados
         .map(g => ({ label: g.uf, value: g.codigo }));
     });
+  }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
   }
 }

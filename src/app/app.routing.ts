@@ -129,6 +129,19 @@ export const routes: Routes = [
     path: '',
     component: DefaultEspComponent,
     data: {
+      title: 'Laudos'
+    },
+    children: [
+      {
+        path: 'operacoes/laudos/:cod',
+        component: TelaLaudoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultEspComponent,
+    data: {
       title: 'Inserir Imagens'
     },
     children: [
@@ -147,6 +160,19 @@ export const routes: Routes = [
     children: [
       {
         path: 'operacoes/captura',
+        component: CapturaComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultEspComponent,
+    data: {
+      title: 'Captura'
+    },
+    children: [
+      {
+        path: 'operacoes/captura/:cod',
         component: CapturaComponent
       }
     ]

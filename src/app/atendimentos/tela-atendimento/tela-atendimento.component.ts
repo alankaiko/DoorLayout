@@ -1,4 +1,4 @@
-import { Atendimento } from './../../core/model';
+import { Atendimento, SubcategoriaCid10 } from './../../core/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { FormArray, FormControl } from '@angular/forms';
@@ -14,12 +14,21 @@ import * as moment from 'moment';
 export class TelaAtendimentoComponent implements OnInit {
   atendimento = new Atendimento();
   items: FormArray;
+  display: boolean = true;
+  exibiratestado: boolean = false;
   pacientes: any[];
   convenios: any[];
+  conselhos: any[];
+  subcategoriacids: any[];
+  estados: any[];
+  executantes: any[];
   solicitantes: any[];
   pacienteselecionado: number;
   convenioselecionado: number;
   solicitanteselecionado: number;
+  codigodecid: number;
+  codigoprofexecutante: number;
+
 
   constructor(private service: AtendimentoService,
               private rota: ActivatedRoute,
@@ -32,12 +41,23 @@ export class TelaAtendimentoComponent implements OnInit {
     this.CarregarConvenios();
     this.CarregarPacientes();
     this.CarregarSolicitantes();
+    this.CarregarConselhos();
+    this.CarregarEstados();
+    this.CarregarCids();
+    this.CarregarExecutantes();
 
     if (codatendimento) {
       this.CarregaAtendimento(codatendimento);
     } else {
       this.VerificarData();
     }
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
+
+  }
+
+  AbrirDialogo() {
+    this.exibiratestado = true;
   }
 
   get editando() {
@@ -72,6 +92,7 @@ export class TelaAtendimentoComponent implements OnInit {
       .catch(erro => erro);
   }
 
+
   Atualizar(form: FormControl) {
     this.service.Atualizar(this.atendimento)
       .then(atendimento => {
@@ -89,6 +110,18 @@ export class TelaAtendimentoComponent implements OnInit {
     }.bind(this), 1);
 
     this.route.navigate(['/operacoes/atendimento/novo']);
+  }
+
+  CarregarConselhos() {
+    this.service.ListarSigla().then(lista => {
+      this.conselhos = lista.map(sigla => ({label: sigla.descricao, value: sigla.codigo}));
+    }).catch(erro => erro);
+  }
+
+  CarregarEstados() {
+    this.service.ListarEstados().then(lista => {
+      this.estados = lista.map(estado => ({label: estado.uf, value: estado.codigo}));
+    }).catch(erro => erro);
   }
 
   CarregarPacientes() {
@@ -109,11 +142,37 @@ export class TelaAtendimentoComponent implements OnInit {
     }).catch(erro => erro);
   }
 
-  GerarAtendimento() {
-    this.service.PorAtestado(this.atendimento.patient.idpatient)
+  CarregarExecutantes() {
+    this.service.ListarExecutantes().then(lista => {
+      this.executantes = lista.map(executante => ({label: executante.nome, value: executante.codigo}));
+    }).catch(erro => erro);
+  }
+
+  CarregarCids() {
+    this.service.ListarSubcategoriaCid().then(lista => {
+      this.subcategoriacids = lista.map(cid => ({label: cid.nome, value: cid.codigo}));
+    }).catch(erro => erro);
+  }
+
+  VaiParaLaudos() {
+    this.route.navigate(['/operacoes/laudos', this.atendimento.codigo]);
+  }
+
+  GerarAtendimento(form: FormControl) {
+    this.Salvar(form);
+
+    this.service.PorAtestado(1)
       .then(relatorio => {
         const url = window.URL.createObjectURL(relatorio);
         window.open(url);
       });
+
+      this.exibiratestado = false;
   }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
+  }
+
+
 }

@@ -31,6 +31,8 @@ export class ListapacienteComponent implements OnInit {
       {label: 'Prontuario', value: {id: 2, name: 'Prontuario', code: '3'}},
       {label: 'Data Nasc', value: {id: 2, name: 'Data Nasc', code: '4'}}
     ];
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   onRowSelect(event) {
@@ -80,5 +82,9 @@ export class ListapacienteComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.Consultar(pagina);
+  }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
   }
 }

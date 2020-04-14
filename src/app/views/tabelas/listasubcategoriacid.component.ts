@@ -34,6 +34,8 @@ export class ListasubcategoriacidComponent implements OnInit {
       {label: 'Grupo', value: {id: 2, name: 'Grupo', code: '4'}},
       {label: 'Assunto/capitulo', value: {id: 1, name: 'Assunto/capitulo', code: '5'}}
     ];
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   onRowSelect(event) {
@@ -82,5 +84,9 @@ export class ListasubcategoriacidComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.Consultar(pagina);
+  }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
   }
 }

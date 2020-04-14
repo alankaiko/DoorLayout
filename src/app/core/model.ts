@@ -46,6 +46,7 @@ export class Patient {
   contato = new Contato();
   datecreate: Date;
   datemodify: Date;
+  observacoes: string;
 }
 
 export class Instance {
@@ -342,7 +343,11 @@ export class Atendimento {
   solicitante = new ProfissionalSolicitante();
   procedimentos = new Array<ProcedimentoAtendimento>();
   dataatendimento: Date;
+  datacadastro: Date;
   observacoes: string;
+  codigoprofexecutante: number;
+  codigodecid: number;
+  dataatestado: Date;
 }
 
 export class ProcedimentoAtendimento {

@@ -1,6 +1,61 @@
+
 :host /deep/ p-paginator .ui-paginator-bottom {
   box-sizing: border-box;
   border-top: 1px solid #b9b8b8;
+}
+
+:host /deep/ p-inputmask .ui-inputtext{
+  font-size: 82%;
+}
+
+:host /deep/ p-calendar .ui-calendar {
+  border:1px solid #428bca;
+  background-color: #fff;
+  padding: 0;
+  border-radius: 5px;
+}
+
+
+:host /deep/ p-calendar .ui-calendar {
+  background-color: #fff;
+
+}
+
+:host /deep/ p-calendar .ui-datepicker{
+  background-color: #fff;
+
+}
+
+:host /deep/ p-calendar .ui-datepicker .ui-datepicker-calendar-container .ui-datepicker-calendar .ng-tns-c3-2 td:hover{
+  background-color: #a3a2a2;
+  color: #CC0000;
+}
+
+:host /deep/ p-calendar .ui-calendar input{
+  padding: 0;
+}
+
+:host /deep/  p-calendar .ui-calendar:hover {
+  background-color: rgb(158, 150, 150);
+  border: 1px solid rgb(158, 150, 150);
+}
+
+.linhas {
+  padding: 0;
+  margin-top: -10px;
+}
+
+
+label {
+  font-size: 85%;
+  padding-bottom: 0;
+  padding-top: 15px;
+  font-weight: bold;
+}
+
+input {
+  padding-top: 0;
+  margin-top: -10px;
 }
 
 :host /deep/ p-confirmdialog div {
@@ -31,10 +86,13 @@
 }
 
 
+
 :host /deep/ p-dropdown .ui-dropdown{
   border:1px solid #428bca;
   background-color: #fff;
-  border-radius: 5px;
+  padding: 0;
+  font-size: 92%;
+  border-radius: 4px;
 }
 
 :host /deep/ p-dropdown .ui-dropdown-items {
@@ -92,7 +150,7 @@
 
 .corpo {
   width: 99%;
-
+  height: 230px;
   margin: 5px;
   border: 1px solid #838383;
 }
@@ -123,6 +181,7 @@
   border: 1px solid;
   border-radius: 2px;
 }
+
 
 .botao {
   margin: 0 auto;
@@ -167,3 +226,49 @@
   vertical-align: middle;
   margin: 0 auto;
 }
+
+:host /deep/ p-tabview .ui-tabview-nav .ui-tabview-selected{
+  border: 1px solid;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #B4B8C1;
+}
+
+:host /deep/ p-tabview .ui-tabview .ui-tabview-panels {
+  border: 1px solid #646464;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
+  -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
+}
+
+
+
+.testessss {
+  -webkit-box-shadow: 0 0 28px 0 rgba(0, 0, 0, 0.24), 0 25px 55px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 0 28px 0 rgba(0, 0, 0, 0.24), 0 25px 55px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 0 28px 0 rgba(0, 0, 0, 0.24), 0 25px 55px 0 rgba(0, 0, 0, 0.19);
+  z-index: 100;
+  -moz-transition: width 0.3s;
+  -o-transition: width 0.3s;
+  -webkit-transition: width 0.3s;
+  transition: width 0.3s;
+}
+
+.minibotao {
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  line-height: 1.7;
+  margin: 0 auto;
+}
+
+.minibotao:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+

@@ -17,6 +17,7 @@ export class ListaAtendimentoComponent implements OnInit {
   filtro = new AtendimentoFilter();
   visible: boolean = true;
   camposbusca: SelectItem[];
+  periodo: SelectItem[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
@@ -29,6 +30,13 @@ export class ListaAtendimentoComponent implements OnInit {
       {label: 'Código', value: {id: 1, name: 'Código', code: '1'}},
       {label: 'Paciente', value: {id: 2, name: 'Paciente', code: '2'}},
       {label: 'Prof. Executante', value: {id: 2, name: 'Prof. Executante', code: '3'}}
+    ];
+
+    this.periodo = [
+      {label: 'Personalizado(todos)', value: {id: 1, name: 'Personalizado(todos)', code: '1'}},
+      {label: 'Hoje', value: {id: 2, name: 'Hoje', code: '2'}},
+      {label: 'Ultima Semana', value: {id: 2, name: 'Ultima Semana', code: '3'}},
+      {label: 'Ultimo mês', value: {id: 2, name: 'Ultimo mês', code: '4'}}
     ];
    }
 
@@ -61,6 +69,10 @@ export class ListaAtendimentoComponent implements OnInit {
 
   AtivarExcluir() {
     this.exclusao = true;
+  }
+
+  Atualizar() {
+    setTimeout (() => this.Consultar(), 0);
   }
 
 

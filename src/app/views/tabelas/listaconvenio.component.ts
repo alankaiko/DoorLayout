@@ -1,12 +1,10 @@
-import { Subcategoriacid10Service } from './../../zservice/subcategoriacid10.service';
-import { Categoriacid10Service } from './../../zservice/categoriacid10.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {  FormGroup } from '@angular/forms';
 import { Convenio } from './../../core/model';
 import { Router } from '@angular/router';
 import { ConvenioFiltro, ConvenioService } from './../../zservice/convenio.service';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent, SelectItem } from 'primeng/api';
-
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -27,7 +25,8 @@ export class ListaconvenioComponent implements OnInit {
 
 
   constructor(private service: ConvenioService,
-              private route: Router) {
+              private route: Router,
+              private location: Location) {
               }
 
   ngOnInit() {
@@ -35,6 +34,8 @@ export class ListaconvenioComponent implements OnInit {
       {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
       {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}}
     ];
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   onRowSelect(event) {
@@ -83,4 +84,11 @@ export class ListaconvenioComponent implements OnInit {
     this.Consultar(pagina);
   }
 
+  Voltar() {
+    this.location.back();
+  }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
+  }
 }

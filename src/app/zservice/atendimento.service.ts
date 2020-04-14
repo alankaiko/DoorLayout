@@ -1,4 +1,4 @@
-import { Atendimento, Patient, Convenio, ProfissionalSolicitante } from './../core/model';
+import { Atendimento, Patient, Convenio, ProfissionalSolicitante, Crm, Sigla, Estado, SubcategoriaCid10, ProfissionalExecutante } from './../core/model';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,6 +8,8 @@ export class AtendimentoFilter {
   pagina = 0;
   itensPorPagina = 7;
   patientname: string;
+  datainicial: Date;
+  datafinal: Date;
 }
 
 @Injectable({
@@ -18,12 +20,20 @@ export class AtendimentoService {
   conveniourl: string;
   pacienteurl: string;
   solicitanteurl: string;
+  siglaurl: string;
+  estadosurl: string;
+  urlcids: string;
+  executanteurl: string;
 
   constructor(private http: HttpClient) {
     this.url = `${environment.apiUrl}/atendimentos`;
     this.conveniourl = `${environment.apiUrl}/convenios`;
     this.pacienteurl = `${environment.apiUrl}/servidor`;
     this.solicitanteurl = `${environment.apiUrl}/profissionaissolicitantes`;
+    this.siglaurl = `${environment.apiUrl}/siglas`;
+    this.urlcids = `${environment.apiUrl}/subcategoriacid`;
+    this.estadosurl = `${environment.apiUrl}/estados`;
+    this.executanteurl = `${environment.apiUrl}/profissionaisexecutantes`;
    }
 
 
@@ -58,7 +68,7 @@ export class AtendimentoService {
       .toPromise()
       .then(response => {
         const atendimento = response as Atendimento;
-        // this.converterStringsParaDatas([atendimento]);
+        this.converterStringsParaDatas([atendimento]);
         return atendimento;
       });
 
@@ -92,8 +102,24 @@ export class AtendimentoService {
     return this.http.get<Convenio[]>(this.conveniourl).toPromise();
   }
 
+  ListarEstados(): Promise<Estado[]> {
+    return this.http.get<Estado[]>(this.estadosurl).toPromise();
+  }
+
+  ListarExecutantes(): Promise<ProfissionalExecutante[]> {
+    return this.http.get<ProfissionalExecutante[]>(this.executanteurl).toPromise();
+  }
+
   ListarSolicitantes(): Promise<ProfissionalSolicitante[]> {
     return this.http.get<ProfissionalSolicitante[]>(this.solicitanteurl).toPromise();
+  }
+
+  ListarSigla(): Promise<Sigla[]> {
+    return this.http.get<Sigla[]>(this.siglaurl).toPromise();
+  }
+
+  ListarSubcategoriaCid(): Promise<SubcategoriaCid10[]> {
+    return this.http.get<SubcategoriaCid10[]>(this.urlcids).toPromise();
   }
 
   private converterStringsParaDatas(atendimentos: Atendimento[]) {
@@ -107,8 +133,8 @@ export class AtendimentoService {
     }
   }
 
-  PorAtestado(idpatient: number) {
-    return this.http.get(`${this.url}/relatorios/atestado/${idpatient}`,
+  PorAtestado(codigo: number) {
+    return this.http.get(`${this.url}/relatorios/atestado/${codigo}`,
       { responseType: 'blob' })
       .toPromise();
   }
