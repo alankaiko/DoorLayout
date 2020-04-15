@@ -3,7 +3,7 @@ import { Convenio } from './../../core/model';
 import { Router } from '@angular/router';
 import { ConvenioFiltro, ConvenioService } from './../../zservice/convenio.service';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, SelectItem } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/api';
 import {Location} from '@angular/common';
 
 
@@ -17,11 +17,10 @@ export class ListaconvenioComponent implements OnInit {
   totalRegistros = 0;
   filtro = new ConvenioFiltro();
   visible: boolean = true;
-  camposbusca: SelectItem[];
+  camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
-
 
 
   constructor(private service: ConvenioService,
@@ -31,11 +30,11 @@ export class ListaconvenioComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
-      {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}}
+      {label: 'Nome'},
+      {label: 'Codigo'}
     ];
 
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   onRowSelect(event) {
@@ -58,11 +57,24 @@ export class ListaconvenioComponent implements OnInit {
       }).catch(erro => console.log(erro));
   }
 
-  ConfigurarVariavel(event) {
+  BuscaDinamica() {
+    const drop = $('#codigodrop :selected').text();
     const texto = document.getElementById('buscando') as HTMLInputElement;
-    this.filtro.nome = texto.value;
-    this.Consultar();
 
+    setTimeout (() => {
+      if (drop === 'Nome') {
+        this.filtro.nome = texto.value;
+        this.Consultar();
+      }
+
+      if ((drop === 'Codigo') && (texto.value !== '')) {
+        const numero = +texto.value;
+        return this.service.BuscarListaPorId(numero)
+          .then(response => {
+            this.convenios = response;
+          }).catch(erro => console.log(erro));
+      }
+    }, 0);
   }
 
   AtivarExcluir() {

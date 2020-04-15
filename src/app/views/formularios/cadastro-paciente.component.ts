@@ -32,6 +32,7 @@ export class CadastroPacienteComponent implements OnInit {
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
+
   get editando() {
     return Boolean(this.formulario.get('idpatient').value);
   }
@@ -62,7 +63,6 @@ export class CadastroPacienteComponent implements OnInit {
         cep: [paciente.endereco.cep]
       })
     });
-
   }
 
   CarregarPaciente(idpatient: number) {

@@ -222,7 +222,7 @@ export class CapituloCID10 {
 
 export class GrupoProcedimento {
   codigo: number;
-  nome: string;
+  nomegrupo: string;
 }
 
 export class ProcedimentoMedico {

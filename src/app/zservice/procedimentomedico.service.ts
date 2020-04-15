@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 export class ProcedimentoMedicoFiltro {
   pagina = 0;
-  itensPorPagina = 20;
+  itensPorPagina = 30;
   nome: string;
 }
 
@@ -49,6 +49,13 @@ export class ProcedimentomedicoService {
       });
   }
 
+  BuscarListaPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
+  }
+
+  BuscarListaPorGrupoNomeGrupo(nomegrupo: string): Promise<any> {
+    return this.http.get(`${this.url}/lista/grupo/${nomegrupo}`).toPromise().then(response => response);
+  }
 
   Adicionar(procedimento): Promise<ProcedimentoMedico> {
     return this.http.post<ProcedimentoMedico>(`${this.url}`, procedimento).toPromise();

@@ -63,6 +63,10 @@ export class ConvenioService {
       });
   }
 
+  BuscarListaPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
+  }
+
   Atualizar(convenio: Convenio): Promise<any> {
     return this.http.put(`${this.url}/${convenio.codigo}`, convenio)
       .toPromise()

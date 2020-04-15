@@ -1,17 +1,16 @@
 <p-dialog header="Exames e Procedimentos Médicos" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
   <div class="menubuscar">
     <div class="topoprocedimento ui-g-12">
-      <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar(f)" class="formu">
+      <form #f="ngForm" autocomplete="off" class="formu">
         <div class="ui-g-6">
           <label>Buscar: </label>
-          <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="ConfigurarVariavel($event)"/>
+          <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="BuscaDinamica()"/>
         </div>
 
         <div class="ui-g-6">
           <label>no campo: </label>
-          <p-dropdown id="chato" [options]="camposbusca" [autoWidth]="false" [(ngModel)]="codigocampo" #atendimentocodigo="ngModel" name="atendimentocodigo"></p-dropdown>
+          <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
         </div>
-
       </form>
     </div>
   </div>
@@ -26,26 +25,19 @@
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 10%;">Código</th>
-          <th>Título</th>
-          <th style="width: 20%;">Título</th>
-          <th style="width: 10%;">Grupo Pert.</th>
+          <th style="width: 35%;">Título</th>
+          <th style="width: 15%;">Grupo Pert.</th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-procedimento>
         <tr [pSelectableRow]="procedimento">
-          <td style="text-align: right; width: 10%;">{{procedimento?.codigo}}</td>
-          <td><a [routerLink]="['/tabelas/listaexameprocmedico', procedimento.codigo]">{{procedimento?.nome}}</a></td>
-          <td style="width: 20%;">{{procedimento?.grupo?.nome}}</td>
+          <td style="width: 10%;">{{procedimento?.codigo}}</td>
+          <td style="width: 35%;"><a [routerLink]="['/tabelas/listaexameprocmedico', procedimento.codigo]">{{procedimento?.nome}}</a></td>
+          <td style="width: 15%;">{{procedimento?.grupo?.nomegrupo}}</td>
         </tr>
       </ng-template>
-      <ng-template pTemplate="emptymessage">
-        <tr>
-          <td colspan="5">
-            Nenhum Procedimento Encontrado
-          </td>
-        </tr>
-      </ng-template>
+
     </p-table>
   </div>
 

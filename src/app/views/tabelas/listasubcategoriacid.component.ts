@@ -35,7 +35,7 @@ export class ListasubcategoriacidComponent implements OnInit {
       {label: 'Assunto/capitulo', value: {id: 1, name: 'Assunto/capitulo', code: '5'}}
     ];
 
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   onRowSelect(event) {

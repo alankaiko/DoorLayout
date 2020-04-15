@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { PacienteService } from './../../zservice/paciente.service';
 import { Patient } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, SelectItem } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/api';
+import * as moment from 'moment';
 
 @Component({
   templateUrl: 'listapaciente.component.html',
@@ -16,7 +17,7 @@ export class ListapacienteComponent implements OnInit {
   totalRegistros = 0;
   filtro = new PatientFiltro();
   visible: boolean = true;
-  camposbusca: SelectItem[];
+  camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
@@ -26,13 +27,13 @@ export class ListapacienteComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
-      {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}},
-      {label: 'Prontuario', value: {id: 2, name: 'Prontuario', code: '3'}},
-      {label: 'Data Nasc', value: {id: 2, name: 'Data Nasc', code: '4'}}
+      {label: 'Nome'},
+      {label: 'Prontuario'},
+      {label: 'Data Nasc'},
+      {label: 'Data Cad'}
     ];
 
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   onRowSelect(event) {
@@ -57,11 +58,25 @@ export class ListapacienteComponent implements OnInit {
       }).catch(erro => console.log(erro));
   }
 
-  ConfigurarVariavel(event) {
+  BuscaDinamica() {
+    const drop = $('#codigodrop :selected').text();
     const texto = document.getElementById('buscando') as HTMLInputElement;
-    this.filtro.patientname = texto.value;
-    this.Consultar();
 
+    setTimeout (() => {
+      if (drop === 'Nome') {
+        this.filtro.birthday = null;
+        this.filtro.patientname = texto.value;
+        this.Consultar();
+      }
+
+      if ((drop === 'Prontuario') && (texto.value !== '')) {
+        const numero = +texto.value;
+        return this.service.BuscarListaPorId(numero)
+          .then(response => {
+            this.patients = response;
+          }).catch(erro => console.log(erro));
+      }
+    }, 0);
   }
 
   AtivarExcluir() {

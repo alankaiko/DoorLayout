@@ -23,6 +23,10 @@ export class TextopessoalService {
     return this.http.get(`${this.url}`).toPromise().then(response => response);
   }
 
+  BuscarListaPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
+  }
+
   Consultar(filtro: TextoPessoalFiltro): Promise<any> {
     let params = new HttpParams({
       fromObject: {

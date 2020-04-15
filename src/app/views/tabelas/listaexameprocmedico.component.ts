@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ProcedimentomedicoService, ProcedimentoMedicoFiltro } from './../../zservice/procedimentomedico.service';
 import { ProcedimentoMedico } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, SelectItem } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
   templateUrl: 'listaexameprocmedico.component.html',
@@ -15,7 +15,7 @@ export class ListaexameprocmedicoComponent implements OnInit {
   totalRegistros = 0;
   filtro = new ProcedimentoMedicoFiltro();
   visible: boolean = true;
-  camposbusca: SelectItem[];
+  camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
@@ -25,12 +25,12 @@ export class ListaexameprocmedicoComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
-      {label: 'Grupo', value: {id: 2, name: 'Grupo', code: '2'}},
-      {label: 'Codigo', value: {id: 3, name: 'Codigo', code: '3'}}
+      {label: 'Nome'},
+      {label: 'Grupo'},
+      {label: 'Codigo'}
     ];
 
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   onRowSelect(event) {
@@ -53,13 +53,33 @@ export class ListaexameprocmedicoComponent implements OnInit {
       }).catch(erro => console.log(erro));
   }
 
-
-  ConfigurarVariavel(event) {
+  BuscaDinamica() {
+    const drop = $('#codigodrop :selected').text();
     const texto = document.getElementById('buscando') as HTMLInputElement;
-    this.filtro.nome = texto.value;
-    this.Consultar();
 
+    setTimeout (() => {
+      if (drop === 'Nome') {
+        this.filtro.nome = texto.value;
+        this.Consultar();
+      }
+
+      if ((drop === 'Codigo') && (texto.value !== '')) {
+        const numero = +texto.value;
+        return this.service.BuscarListaPorId(numero)
+          .then(response => {
+            this.procedimentos = response;
+          }).catch(erro => console.log(erro));
+      }
+
+      if ((drop === 'Grupo') && (texto.value !== '')) {
+        this.service.BuscarListaPorGrupoNomeGrupo(texto.value)
+          .then(response => {
+            this.procedimentos = response;
+          }).catch(erro => console.log(erro));
+      }
+    }, 0);
   }
+
 
   AtivarExcluir() {
     this.exclusao = true;

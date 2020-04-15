@@ -39,7 +39,7 @@ export class CadastroGrupoprocedimentoComponent implements OnInit {
   CriarFormulario(grupo: GrupoProcedimento) {
     this.formulario = this.formbuilder.group({
       codigo: [null, grupo.codigo],
-      nome: [null, grupo.nome]
+      nomegrupo: [null, grupo.nomegrupo]
     });
   }
 

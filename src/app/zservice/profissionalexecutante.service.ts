@@ -23,6 +23,10 @@ export class ProfissionalexecutanteService {
     return this.http.get(`${this.url}`).toPromise().then(response => response);
   }
 
+  BuscarListaPorId(descricao: string): Promise<any> {
+    return this.http.get(`${this.url}/lista/${descricao}`).toPromise().then(response => response);
+  }
+
   Consultar(filtro: ProfissionalExecutanteFiltro): Promise<any> {
     let params = new HttpParams({
       fromObject: {

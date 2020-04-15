@@ -1,17 +1,16 @@
 <p-dialog header="Profissional Executantes" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
   <div class="menubuscar">
     <div class="topoprocedimento ui-g-12">
-      <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar(f)" class="formu">
+      <form #f="ngForm" autocomplete="off" class="formu">
         <div class="ui-g-6">
           <label>Buscar: </label>
-          <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="ConfigurarVariavel($event)"/>
+          <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="BuscaDinamica()"/>
         </div>
 
         <div class="ui-g-6">
           <label>no campo: </label>
-          <p-dropdown id="chato" [options]="camposbusca" [autoWidth]="false" [(ngModel)]="codigocampo" #atendimentocodigo="ngModel" name="atendimentocodigo"></p-dropdown>
+          <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
         </div>
-
       </form>
     </div>
   </div>
@@ -26,27 +25,20 @@
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 10%;">Código</th>
-          <th>Nome</th>
+          <th style="width: 35%;">Nome</th>
+          <th style="width: 20%;">Conselho</th>
           <th style="width: 20%;">Num Conselho</th>
-          <th style="width: 10%;">Conselho</th>
           <th style="width: 10%;">UF</th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-profissional>
         <tr [pSelectableRow]="profissional">
-          <td style="text-align: right; width: 10%;">{{profissional?.codigo}}</td>
-          <td><a [routerLink]="['/tabelas/listaprofexecutante', profissional.codigo]">{{profissional?.nome}}</a></td>
+          <td style="width: 10%;">{{profissional?.codigo}}</td>
+          <td style="width: 35%;"><a [routerLink]="['/tabelas/listaprofexecutante', profissional.codigo]">{{profissional?.nome}}</a></td>
+          <td style="width: 20%;">{{profissional?.conselho?.sigla?.descricao}}</td>
           <td style="width: 20%;">{{profissional?.conselho?.descricao}}</td>
-          <td style="width: 20%;">{{profissional?.conselho?.sigla.descricao}}</td>
-          <td style="width: 20%;">{{profissional?.conselho?.estado.uf}}</td>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="emptymessage">
-        <tr>
-          <td colspan="5">
-            Nenhum Profissional Exec encontrado
-          </td>
+          <td style="width: 10%;">{{profissional?.conselho?.estado.uf}}</td>
         </tr>
       </ng-template>
     </p-table>

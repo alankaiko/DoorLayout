@@ -30,7 +30,7 @@ export class ListagrupoexameComponent implements OnInit {
       {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}}
     ];
 
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   onRowSelect(event) {

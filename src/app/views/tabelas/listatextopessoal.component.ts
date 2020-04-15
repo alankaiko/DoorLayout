@@ -1,10 +1,9 @@
 import { FormGroup } from '@angular/forms';
-import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
 import { TextopessoalService, TextoPessoalFiltro } from './../../zservice/textopessoal.service';
 import { TextoPessoal } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
   templateUrl: 'listatextopessoal.component.html',
@@ -16,7 +15,7 @@ export class ListatextopessoalComponent implements OnInit {
   totalRegistros = 0;
   filtro = new TextoPessoalFiltro();
   visible: boolean = true;
-  camposbusca: SelectItem[];
+  camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
@@ -26,11 +25,12 @@ export class ListatextopessoalComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Abreviatura', value: {id: 1, name: 'Abreviatura', code: '1'}},
-      {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}}
+      {label: 'Abreviatura'},
+      {label: 'Codigo'}
     ];
 
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   onRowSelect(event) {
@@ -54,12 +54,25 @@ export class ListatextopessoalComponent implements OnInit {
   }
 
 
-  ConfigurarVariavel(event) {
+  BuscaDinamica() {
+    const drop = $('#codigodrop :selected').text();
     const texto = document.getElementById('buscando') as HTMLInputElement;
-    this.filtro.abreviatura = texto.value;
-    this.Consultar();
+    setTimeout (() => {
+      if (drop === 'Abreviatura') {
+        this.filtro.abreviatura = texto.value;
+        this.Consultar();
+      }
 
+      if ((drop === 'Codigo') && (texto.value !== '')) {
+        const numero = +texto.value;
+        return this.service.BuscarListaPorId(numero)
+          .then(response => {
+            this.textospessoais = response;
+          }).catch(erro => console.log(erro));
+      }
+    }, 10);
   }
+
 
   AtivarExcluir() {
     this.exclusao = true;

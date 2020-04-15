@@ -19,6 +19,7 @@ import {TableModule} from 'primeng/components/table/table';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {ButtonModule} from 'primeng/components/button/button';
 import {DropdownModule} from 'primeng/dropdown';
+import {CalendarModule} from 'primeng/calendar';
 
 
 
@@ -33,7 +34,8 @@ import {DropdownModule} from 'primeng/dropdown';
     DialogModule,
     DropdownModule,
     FormsModule,
-    CheckboxModule
+    CheckboxModule,
+    CalendarModule
   ],
   declarations: [
     ListaabreviaturaComponent,

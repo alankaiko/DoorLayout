@@ -1,7 +1,7 @@
 <p-dialog header="Grupo de Exames" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
   <div class="menubuscar">
     <div class="topoprocedimento ui-g-12">
-      <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar(f)" class="formu">
+      <form #f="ngForm" autocomplete="off" class="formu">
         <div class="ui-g-6">
           <label>Buscar: </label>
           <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="ConfigurarVariavel($event)"/>
@@ -9,7 +9,7 @@
 
         <div class="ui-g-6">
           <label>no campo: </label>
-          <p-dropdown id="chato" [options]="camposbusca" [autoWidth]="false" [(ngModel)]="codigocampo" #atendimentocodigo="ngModel" name="atendimentocodigo"></p-dropdown>
+          <p-dropdown id="chato" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
         </div>
 
       </form>
@@ -33,7 +33,7 @@
       <ng-template pTemplate="body" let-grupo>
         <tr [pSelectableRow]="convenio">
           <td style="text-align: right; width: 10%;">{{grupo?.codigo}}</td>
-          <td><a [routerLink]="['/tabelas/listagrupoexame', grupo.codigo]">{{grupo?.nome}}</a></td>
+          <td><a [routerLink]="['/tabelas/listagrupoexame', grupo.codigo]">{{grupo?.nomegrupo}}</a></td>
         </tr>
       </ng-template>
 
@@ -115,8 +115,8 @@
 </p-dialog>
 
 
-<p-dialog header="Excluir {{grupo?.nome}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
-  <span>DESEJA EXCLUIR O REGISTRO => {{grupo?.nome}}?</span>
+<p-dialog header="Excluir {{grupo?.nomegrupo}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{grupo?.nomegrupo}}?</span>
 
   <p-footer>
     <button type="button" pButton icon="pi pi-check" *ngIf="grupo?.codigo != null" (click)="Excluir()" label="Yes"></button>

@@ -41,10 +41,10 @@ export class PacienteService {
       params = params.append('servidor', 'true');
     }
 
-   // if (filtro.birthday) {
-    //  params.set('birthday',
-   //     moment(filtro.birthday).format('YYYY-MM-DD'));
-   // }
+    if (filtro.birthday) {
+      params = params.append('birthday',
+        moment(filtro.birthday).format('YYYY-MM-DD'));
+    }
 
     if (filtro.patientsex) {
       params = params.append('patientsex', filtro.patientsex);
@@ -76,6 +76,10 @@ export class PacienteService {
         this.converterStringsParaDatas([patient]);
         return patient;
       });
+  }
+
+  BuscarListaPorId(idpatient: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${idpatient}`).toPromise().then(response => response);
   }
 
   Atualizar(patient: Patient): Promise<any> {
