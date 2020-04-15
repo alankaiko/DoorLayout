@@ -1,8 +1,9 @@
-import { Atendimento, SubcategoriaCid10 } from './../../core/model';
+import { Atendimento } from './../../core/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { FormArray, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 
 import * as moment from 'moment';
 
@@ -32,7 +33,8 @@ export class TelaAtendimentoComponent implements OnInit {
 
   constructor(private service: AtendimentoService,
               private rota: ActivatedRoute,
-              private route: Router) {
+              private route: Router,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -174,5 +176,8 @@ export class TelaAtendimentoComponent implements OnInit {
     this.route.navigate(['/dashboard']);
   }
 
+  Voltar() {
+    this.location.back();
+  }
 
 }

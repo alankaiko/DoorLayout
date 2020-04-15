@@ -1,7 +1,7 @@
 
 <div class="card">
   <div style="border: 1px solid;">
-    <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar(f)" class="formu ui-g">
+    <form #f="ngForm" autocomplete="off" class="formu ui-g">
       <div class="ui-g-4">
         <label>Atendimento: </label>
         <p-dropdown [options]="atendimentos" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
@@ -11,7 +11,7 @@
       <div class="ui-g-4 ui-fluid" style="display: inline-flex;">
         <label>Procedimento: </label>
         <p-dropdown [options]="procedimentosAtd" [autoWidth]="false" [filter]="true" [(ngModel)]="procedimentoAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
-          placeholder="Selecione..." (onChange)="ConfigurarVariavel(procedimentoAtdSelecionado)"></p-dropdown>
+          placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
       </div>
 
       <div class="ui-g-4 ui-fluid" style="display: inline-flex;">

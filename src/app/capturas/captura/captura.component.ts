@@ -103,13 +103,13 @@ export class CapturaComponent implements OnInit {
     }
   }
 
-  ConfigurarVariavel(procedimentoatdselecionado) {
+  ConfigurarVariavel() {
     this.webcamImage = new Array<WebcamImage>();
     this.cont = 1;
     this.verifica = true;
 
     this.atendimento.procedimentos.filter((elo) => {
-      if (elo.codigo === procedimentoatdselecionado) {
+      if (elo.codigo === this.procedimentosAtdSelecionado) {
         this.procedimento = elo;
         this.procedimento.codigoatdteste = this.atendimento.codigo;
         this.procedimento.listaimagem.forEach((el) => {

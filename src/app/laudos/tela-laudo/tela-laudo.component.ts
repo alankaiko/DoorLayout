@@ -36,7 +36,7 @@ export class TelaLaudoComponent implements OnInit {
   atendimento = new Atendimento();
   procedimento = new ProcedimentoAtendimento();
   atendimentoSelecionado: number;
-  procedimentosAtdSelecionado: number;
+  procedimentoAtdSelecionado: number;
   modeloselecionado: number;
 
 
@@ -207,8 +207,8 @@ export class TelaLaudoComponent implements OnInit {
       );
   }
 
-  ConfigurarVariavel(procedimentoatdselecionado) {
-    this.servicemodelo.ListarPorProcedimento(procedimentoatdselecionado)
+  ConfigurarVariavel() {
+    this.servicemodelo.ListarPorProcedimento(this.procedimentoAtdSelecionado)
       .then(
         response => {
           this.modelos = response.map(modelo => ({label: modelo.descricao, value: modelo.codigo}));

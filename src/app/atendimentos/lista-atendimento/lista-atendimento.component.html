@@ -3,14 +3,14 @@
     <div class="topoprocedimento ui-g-12">
       <form #f="ngForm" autocomplete="off" class="formu">
         <div class="ui-g-12 linhas">
-          <div class="ui-g-5">
+          <div class="ui-g-6">
             <label>Buscar: </label>
-            <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="ConfigurarVariavel($event)"/>
+            <input id="buscando" pInputText ng-model="text" style="width: 85%;" (keypress)="BuscaDinamica()"/>
           </div>
 
-          <div class="ui-g-5">
+          <div class="ui-g-6">
             <label>no campo: </label>
-            <p-dropdown [options]="camposbusca" [(ngModel)]="codigocampo" #atendimentocodigo="ngModel" name="atendimentocodigo"></p-dropdown>
+            <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
           </div>
 
           <div class="ui-g-2">
@@ -23,7 +23,7 @@
         <div class="ui-g-12 linhas">
           <div class="ui-g-6">
             <label>no período de: </label>
-            <p-dropdown [options]="periodo" [autoWidth]="false" [(ngModel)]="codigoperiodo" #periodocodigo="ngModel" name="periodocodigo"></p-dropdown>
+            <p-dropdown id="codigoperiodo" [options]="periodo" [autoWidth]="false"></p-dropdown>
           </div>
 
           <div class="ui-g-6">

@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
 import { Atendimento } from './../../core/model';
-import { LazyLoadEvent, SelectItem } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/api';
 import { Router } from '@angular/router';
 import { AtendimentoFilter, AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,8 +16,8 @@ export class ListaAtendimentoComponent implements OnInit {
   totalRegistros = 0;
   filtro = new AtendimentoFilter();
   visible: boolean = true;
-  camposbusca: SelectItem[];
-  periodo: SelectItem[];
+  camposbusca: any[];
+  periodo: any[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
@@ -27,16 +27,16 @@ export class ListaAtendimentoComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Código', value: {id: 1, name: 'Código', code: '1'}},
-      {label: 'Paciente', value: {id: 2, name: 'Paciente', code: '2'}},
-      {label: 'Prof. Executante', value: {id: 2, name: 'Prof. Executante', code: '3'}}
+      {label: 'Codigo'},
+      {label: 'Paciente'},
+      {label: 'Prof. Executante'}
     ];
 
     this.periodo = [
-      {label: 'Personalizado(todos)', value: {id: 1, name: 'Personalizado(todos)', code: '1'}},
-      {label: 'Hoje', value: {id: 2, name: 'Hoje', code: '2'}},
-      {label: 'Ultima Semana', value: {id: 2, name: 'Ultima Semana', code: '3'}},
-      {label: 'Ultimo mês', value: {id: 2, name: 'Ultimo mês', code: '4'}}
+      {label: 'Personalizado(todos)'},
+      {label: 'Hoje'},
+      {label: 'Ultima Semana'},
+      {label: 'Ultimo mês'}
     ];
    }
 
@@ -60,11 +60,13 @@ export class ListaAtendimentoComponent implements OnInit {
       }).catch(erro => console.log(erro));
   }
 
-  ConfigurarVariavel(event) {
+  BuscaDinamica() {
+    const drop = $('#codigodrop :selected').text();
     const texto = document.getElementById('buscando') as HTMLInputElement;
-    this.filtro.patientname = texto.value;
-    this.Consultar();
 
+    setTimeout (() => {
+
+    }, 0);
   }
 
   AtivarExcluir() {

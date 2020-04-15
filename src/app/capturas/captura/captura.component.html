@@ -1,7 +1,7 @@
 <p-confirmDialog></p-confirmDialog>
 <div style="text-align:left; margin-top: 0;" class="ui-g geral">
   <div class="topoprocedimento ui-g-12">
-    <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar(f)" class="formu">
+    <form #f="ngForm" autocomplete="off" class="formu">
       <div class="ui-g-5 ui-fluid" style="display: inline-flex;">
         <label>Atendimento: </label>
         <p-dropdown [options]="atendimentos" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
@@ -10,8 +10,8 @@
 
       <div class="ui-g-7 ui-fluid" style="display: inline-flex;">
         <label>Procedimento: </label>
-        <p-dropdown [options]="procedimentosAtd" [autoWidth]="false" [filter]="true" [(ngModel)]="procedimentoAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
-          placeholder="Selecione..." (onChange)="ConfigurarVariavel(procedimentoAtdSelecionado)"></p-dropdown>
+        <p-dropdown [options]="procedimentosAtd" [autoWidth]="false" [filter]="true" [(ngModel)]="procedimentosAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
+          placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
       </div>
     </form>
   </div>

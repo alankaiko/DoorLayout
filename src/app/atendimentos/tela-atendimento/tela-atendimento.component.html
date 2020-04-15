@@ -120,7 +120,7 @@
 
               <div class="ui-g-6" style="text-align: right;">
                 <label>Valor Total paciente</label>
-                <input type="text" pInputText [(ngModel)]="atendimento.patient.valorpaciente" #valorpaciente="ngModel" name="valorpaciente">
+                <input type="text" pInputText>
               </div>
             </div>
           </div>
@@ -166,14 +166,14 @@
       </div>
 
       <div>
-        <button disabled="true" class="botaoprincipal" (click)="Alterar()">
+        <button disabled="true" class="botaoprincipal">
           <img src="/assets/img/ALTERAR.png">
           <span>Alterar</span>
         </button>
       </div>
 
       <div>
-        <button class="botaoprincipal" (click)="Salvar()">
+        <button class="botaoprincipal" (click)="Salvar(f)">
           <img src="/assets/img/SALVAR.png">
           <span>Salvar</span>
         </button>
@@ -181,7 +181,7 @@
 
 
       <div>
-        <button disabled="true" class="botaoprincipal" (click)="Excluir()">
+        <button disabled="true" class="botaoprincipal">
           <img src="/assets/img/APAGAR.png">
           <span>Apagar</span>
         </button>
