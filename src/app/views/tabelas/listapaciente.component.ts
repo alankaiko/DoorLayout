@@ -76,7 +76,7 @@ export class ListapacienteComponent implements OnInit {
             this.patients = response;
           }).catch(erro => console.log(erro));
       }
-    }, 0);
+    }, 1000);
   }
 
   AtivarExcluir() {

@@ -10,9 +10,6 @@ export class SubcategoriascidFiltro {
   itensPorPagina = 30;
   nome: string;
   codigotexto: string;
-  nomecategoria: string;
-  nomegrupo: string;
-  nomecapitulo: string;
 }
 
 @Injectable({
@@ -54,8 +51,20 @@ export class Subcategoriacid10Service {
       });
   }
 
+  BuscarListaPorCategoriaNome(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/lista/${nome}`).toPromise().then(response => response);
+  }
+
   Adicionar(subcategoria): Promise<SubcategoriaCid10> {
     return this.http.post<SubcategoriaCid10>(`${this.url}`, subcategoria).toPromise();
+  }
+
+  BuscarListaPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
+  }
+
+  BuscarListaPorNomeCategoria(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/porcategoria/${nome}`).toPromise().then(response => response);
   }
 
   BuscarPorId(codigo: number): Promise<any> {

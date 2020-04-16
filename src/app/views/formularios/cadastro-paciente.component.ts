@@ -4,6 +4,7 @@ import { Patient } from './../../core/model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -63,6 +64,10 @@ export class CadastroPacienteComponent implements OnInit {
         cep: [paciente.endereco.cep]
       })
     });
+
+    if (paciente.datecreate === undefined) {
+      this.formulario.get('datecreate').setValue(new Date());
+    }
   }
 
   CarregarPaciente(idpatient: number) {

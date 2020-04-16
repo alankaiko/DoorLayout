@@ -59,6 +59,10 @@ export class AtendimentoService {
       });
   }
 
+  BuscarListaPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
+  }
+
    Adicionar(atendimento: Atendimento): Promise<Atendimento> {
     return this.http.post<Atendimento>(this.url, atendimento).toPromise();
    }
@@ -125,6 +129,7 @@ export class AtendimentoService {
   private converterStringsParaDatas(atendimentos: Atendimento[]) {
     for (const atendimento of atendimentos) {
       atendimento.dataatendimento = moment(atendimento.dataatendimento, 'YYYY-MM-DD').toDate();
+      atendimento.datacadastro = moment(atendimento.datacadastro, 'YYYY-MM-DD').toDate();
 
       for (const proc of atendimento.procedimentos) {
         proc.dataexecucao = moment(proc.dataexecucao, 'YYYY-MM-DD').toDate();

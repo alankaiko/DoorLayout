@@ -69,7 +69,7 @@ export class ListaprofexecutanteComponent implements OnInit {
             this.profissionaisexec = response;
           }).catch(erro => console.log(erro));
       }
-    }, 0);
+    }, 1000);
   }
 
   AtivarExcluir() {

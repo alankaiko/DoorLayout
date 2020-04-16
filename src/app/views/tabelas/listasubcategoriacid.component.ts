@@ -18,7 +18,7 @@ export class ListasubcategoriacidComponent implements OnInit {
   totalRegistros = 0;
   filtro = new SubcategoriascidFiltro();
   visible: boolean = true;
-  camposbusca: SelectItem[];
+  camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
@@ -28,11 +28,11 @@ export class ListasubcategoriacidComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
-      {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}},
-      {label: 'Categoria', value: {id: 1, name: 'Categoria', code: '3'}},
-      {label: 'Grupo', value: {id: 2, name: 'Grupo', code: '4'}},
-      {label: 'Assunto/capitulo', value: {id: 1, name: 'Assunto/capitulo', code: '5'}}
+      {label: 'Nome'},
+      {label: 'Codigo'},
+      {label: 'Categoria'},
+      {label: 'Grupo'},
+      {label: 'Assunto/capitulo'}
     ];
 
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
@@ -44,7 +44,7 @@ export class ListasubcategoriacidComponent implements OnInit {
 
   Alterar() {
     if (this.subcategoria?.codigo != null) {
-      this.route.navigate(['/operacoes/listasubcategoriacid', this.subcategoria.codigo]);
+      this.route.navigate(['/operacoes/subcategoriacid', this.subcategoria.codigo]);
     }
   }
 
@@ -59,11 +59,31 @@ export class ListasubcategoriacidComponent implements OnInit {
   }
 
 
-  ConfigurarVariavel(event) {
+  BuscaDinamica() {
+    const drop = $('#codigodrop :selected').text();
     const texto = document.getElementById('buscando') as HTMLInputElement;
-    this.filtro.nome = texto.value;
-    this.Consultar();
 
+    setTimeout (() => {
+      if ((drop === 'Nome')) {
+        this.filtro.nome = texto.value;
+        this.Consultar();
+      }
+
+      if ((drop === 'Categoria') && (texto.value !== '')) {
+        return this.service.BuscarListaPorNomeCategoria(texto.value)
+          .then(response => {
+            this.subcategorias = response;
+          }).catch(erro => console.log(erro));
+      }
+
+      if ((drop === 'Codigo') && (texto.value !== '')) {
+        const numero = +texto.value;
+        return this.service.BuscarListaPorId(numero)
+          .then(response => {
+            this.subcategorias = response;
+          }).catch(erro => console.log(erro));
+      }
+    }, 1000);
   }
 
   AtivarExcluir() {

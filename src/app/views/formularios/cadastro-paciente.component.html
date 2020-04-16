@@ -13,7 +13,7 @@
 
                 <div style="width: 40%;">
                   <label>Data Cad.</label>
-                  <p-calendar id="datadecadastro" placeholder="00/00/0000" dateFormat="dd/mm/yy"
+                  <p-calendar id="datadecadastro" [showOnFocus]="false" [readonlyInput]="true" placeholder="00/00/0000" dateFormat="dd/mm/yy"
                     name="datecreate" formControlName="datecreate"></p-calendar>
                 </div>
               </div>
@@ -136,7 +136,7 @@
         </button>
       </div>
       <div>
-        <button type="button" class="botaoprincipal" routerLink="/tabelas/listaconvenio/novo">
+        <button type="button" class="botaoprincipal" routerLink="/tabelas/listapaciente/novo">
           <img src="/assets/img/ADICIONAR.png">
           <span>Adicionar</span>
         </button>
@@ -179,7 +179,7 @@
       </div>
 
       <div>
-        <button class="botaoprincipal" routerLink="/tabelas/listaconvenio">
+        <button class="botaoprincipal" routerLink="/tabelas/listapaciente">
           <img src="/assets/img/PRINT_VIEW.png">
           <span>Voltar</span>
         </button>

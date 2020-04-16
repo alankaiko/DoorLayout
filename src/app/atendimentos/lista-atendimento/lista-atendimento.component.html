@@ -3,12 +3,12 @@
     <div class="topoprocedimento ui-g-12">
       <form #f="ngForm" autocomplete="off" class="formu">
         <div class="ui-g-12 linhas">
-          <div class="ui-g-6">
+          <div class="ui-g-5">
             <label>Buscar: </label>
             <input id="buscando" pInputText ng-model="text" style="width: 85%;" (keypress)="BuscaDinamica()"/>
           </div>
 
-          <div class="ui-g-6">
+          <div class="ui-g-5">
             <label>no campo: </label>
             <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
           </div>

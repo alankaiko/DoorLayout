@@ -71,7 +71,7 @@ export class ListaprofsolicitanteComponent implements OnInit {
             this.profissionaissol = response;
           }).catch(erro => console.log(erro));
       }
-    }, 0);
+    }, 1000);
   }
 
 

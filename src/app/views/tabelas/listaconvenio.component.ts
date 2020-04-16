@@ -74,7 +74,7 @@ export class ListaconvenioComponent implements OnInit {
             this.convenios = response;
           }).catch(erro => console.log(erro));
       }
-    }, 0);
+    }, 1000);
   }
 
   AtivarExcluir() {

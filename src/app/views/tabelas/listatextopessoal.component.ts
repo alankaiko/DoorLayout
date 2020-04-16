@@ -70,7 +70,7 @@ export class ListatextopessoalComponent implements OnInit {
             this.textospessoais = response;
           }).catch(erro => console.log(erro));
       }
-    }, 10);
+    }, 1000);
   }
 
 

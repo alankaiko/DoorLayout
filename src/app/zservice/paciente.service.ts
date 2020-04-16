@@ -102,6 +102,7 @@ export class PacienteService {
   private converterStringsParaDatas(patients: Patient[]) {
     for (const patient of patients) {
       patient.birthday = moment(patient.birthday, 'YYYY-MM-DD').toDate();
+      patient.datecreate = moment(patient.datecreate, 'YYYY-MM-DD').toDate();
     }
   }
 

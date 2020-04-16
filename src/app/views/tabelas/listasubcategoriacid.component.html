@@ -4,21 +4,20 @@
       <form #f="ngForm" autocomplete="off" class="formu">
         <div class="ui-g-6">
           <label>Buscar: </label>
-          <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="ConfigurarVariavel($event)"/>
+          <input id="buscando" pInputText ng-model="text" style="width: 85%;" (keypress)="BuscaDinamica()"/>
         </div>
 
         <div class="ui-g-6">
           <label>no campo: </label>
-          <p-dropdown id="chato" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
+          <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
         </div>
-
       </form>
     </div>
   </div>
 
   <div class="table-responsive corpo">
     <p-table [value]="subcategorias" [responsive]="true" *ngIf="visible"
-      class="table table-striped table-bordered table-hover" [scrollable]="true" scrollHeight="154px" [virtualScroll]="true"
+      class="table table-striped table-bordered table-hover" [scrollable]="true" scrollHeight="154px"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
       selectionMode="single" [(selection)]="subcategoria" dataKey="codigo"
       (onRowSelect)="onRowSelect($event)">
@@ -27,13 +26,15 @@
         <tr>
           <th style="width: 10%;">Código</th>
           <th>Nome</th>
+          <th>Categoria</th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-subcategoria>
         <tr [pSelectableRow]="subcategoria">
           <td style="text-align: right; width: 10%;">{{subcategoria?.codigo}}</td>
-          <td><a [routerLink]="['/operacoes/subcategoriacid', subcategoria.codigo]">{{subcategoria?.nome}}</a></td>
+          <td>{{subcategoria?.nome}}</td>
+          <td>{{subcategoria?.categoriacid10?.nome}}</td>
         </tr>
       </ng-template>
 

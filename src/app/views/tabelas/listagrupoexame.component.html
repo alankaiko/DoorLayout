@@ -18,7 +18,7 @@
 
   <div class="table-responsive corpo">
     <p-table [value]="grupos" [responsive]="true" *ngIf="visible"
-      class="table table-striped table-bordered table-hover" [scrollable]="true" scrollHeight="154px" [virtualScroll]="true"
+      class="table table-striped table-bordered table-hover" [scrollable]="true" scrollHeight="154px"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
       selectionMode="single" [(selection)]="grupo" dataKey="codigo"
       (onRowSelect)="onRowSelect($event)">

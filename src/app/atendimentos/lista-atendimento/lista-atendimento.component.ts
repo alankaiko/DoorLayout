@@ -38,6 +38,8 @@ export class ListaAtendimentoComponent implements OnInit {
       {label: 'Ultima Semana'},
       {label: 'Ultimo mês'}
     ];
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
    }
 
    onRowSelect(event) {
@@ -65,9 +67,21 @@ export class ListaAtendimentoComponent implements OnInit {
     const texto = document.getElementById('buscando') as HTMLInputElement;
 
     setTimeout (() => {
+      if (drop === 'Paciente') {
+        this.filtro.patientname = texto.value;
+        this.Consultar();
+      }
 
+      if ((drop === 'Codigo') && (texto.value !== '')) {
+        const numero = +texto.value;
+        return this.service.BuscarListaPorId(numero)
+          .then(response => {
+            this.atendimentos = response;
+          }).catch(erro => console.log(erro));
+      }
     }, 0);
   }
+
 
   AtivarExcluir() {
     this.exclusao = true;
@@ -90,5 +104,9 @@ export class ListaAtendimentoComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.Consultar(pagina);
+  }
+
+  Fechar() {
+    this.route.navigate(['/dashboard']);
   }
 }

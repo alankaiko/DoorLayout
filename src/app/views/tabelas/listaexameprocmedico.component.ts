@@ -77,7 +77,7 @@ export class ListaexameprocmedicoComponent implements OnInit {
             this.procedimentos = response;
           }).catch(erro => console.log(erro));
       }
-    }, 0);
+    }, 1000);
   }
 
 

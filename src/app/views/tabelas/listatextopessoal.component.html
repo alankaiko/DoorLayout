@@ -19,7 +19,7 @@
     <p-table [value]="textospessoais" [responsive]="true" *ngIf="visible" [scrollable]="true"
       class="table table-striped table-bordered table-hover" scrollHeight="154px"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
-      selectionMode="single" [(selection)]="texto" dataKey="codigo" [virtualScroll]="true"
+      selectionMode="single" [(selection)]="texto" dataKey="codigo"
       (onRowSelect)="onRowSelect($event)">
 
       <ng-template pTemplate="header">

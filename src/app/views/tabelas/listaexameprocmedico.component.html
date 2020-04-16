@@ -19,7 +19,7 @@
     <p-table [value]="procedimentos" [responsive]="true" *ngIf="visible" scrollHeight="154px"
       class="table table-striped table-bordered table-hover" [scrollable]="true"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
-      selectionMode="single" [(selection)]="procedimento" dataKey="codigo" [virtualScroll]="true"
+      selectionMode="single" [(selection)]="procedimento" dataKey="codigo"
       (onRowSelect)="onRowSelect($event)">
 
       <ng-template pTemplate="header">
