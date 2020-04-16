@@ -54,7 +54,12 @@ export class TelaAtendimentoComponent implements OnInit {
       this.VerificarData();
     }
 
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
+    setTimeout (() => {
+      document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar());
+      if (this.atendimento.datacadastro === undefined) {
+        this.atendimento.datacadastro = new Date();
+      }
+    }, 10);
 
   }
 
@@ -130,9 +135,26 @@ export class TelaAtendimentoComponent implements OnInit {
     this.service.ListarPacientes().then(lista => {
       this.pacientes = lista.map(patient => ({label: patient.patientname, value: patient.idpatient}));
     }).catch(erro => erro);
+
+
   }
 
-  CarregarConvenios() {
+  InserirPacientes () {
+    this.service.BuscarPorIdPatient(this.pacienteselecionado)
+    .then( response => {
+      this.atendimento.patient = response;
+    }
+    );
+  }
+
+  InserirProfSolicitante() {
+    this.service.BuscarPorIdProf(this.solicitanteselecionado)
+      .then(response => {
+        this.atendimento.solicitante = response;
+      });
+  }
+
+  CarregarConvenios () {
     this.service.ListarConvenios().then(lista => {
       this.convenios = lista.map(convenio => ({label: convenio.nome, value: convenio.codigo}));
     }).catch(erro => erro);

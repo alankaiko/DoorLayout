@@ -45,6 +45,11 @@ export class ProcedimentoCadApendComponent implements OnInit {
         codigo: [null, Validators.required]
       })
     });
+
+    // if (procedimento.preventregalaudo === undefined) {
+    //  const dataprevi = new Date(new Date().getTime() + 8);
+    //  procedimento.preventregalaudo = dataprevi;
+    // }
   }
 
   PrepararNovoProcedimento() {

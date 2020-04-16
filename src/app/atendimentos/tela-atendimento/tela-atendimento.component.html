@@ -10,7 +10,7 @@
 
               <div style="display: grid; width: 25%;">
                 <label>Data Atend.</label>
-                <p-calendar placeholder="00/00/0000" [readonlyInput]="true" showOn="false" dateFormat="dd/mm/yy" name="datacadastro"
+                <p-calendar placeholder="00/00/0000" [showOnFocus]="false" [readonlyInput]="true" dateFormat="dd/mm/yy" name="datacadastro"
                   [(ngModel)]="atendimento.datacadastro" #datacadastro="ngModel"></p-calendar>
               </div>
 
@@ -33,8 +33,8 @@
             <div class="ui-g-12 linhas" style="width: 100%; display: inline-flex;">
               <div style="display: grid; width: 50%;">
                 <label>Paciente</label>
-                <p-dropdown [options]="pacientes" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.patient.idpatient" #idpatient="ngModel" name="idpatient"
-                  placeholder="Selecione..." (onChange)="CarregarPacientes()"></p-dropdown>
+                <p-dropdown [options]="pacientes" [filter]="true" [autoWidth]="false" [filter]="true" [(ngModel)]="pacienteselecionado" #idpatient="ngModel" name="idpatient"
+                  placeholder="Selecione..." (onChange)="InserirPacientes()"></p-dropdown>
               </div>
 
               <div style="display: grid; width: 5%;">
@@ -48,18 +48,18 @@
 
               <div style="display: grid; width: 15%;">
                 <label>Data Nasc.</label>
-                <p-calendar placeholder="00/00/0000" [readonlyInput]="true" showOn="false" dateFormat="dd/mm/yy" name="birthday"
+                <p-calendar placeholder="00/00/0000" [showOnFocus]="false" [readonlyInput]="true" dateFormat="dd/mm/yy" name="birthday"
                   [(ngModel)]="atendimento.patient.birthday" #birthday="ngModel"></p-calendar>
               </div>
 
               <div style="display: grid; width: 15%; padding-left: 5px; padding-right: 5px;">
                 <label>Sexo</label>
-                <input style="width: 99%;" type="text" pInputText [(ngModel)]="atendimento.patient.patientsex" #patientsex="ngModel" name="patientsex">
+                <input readonly="true" style="width: 99%;" type="text" pInputText [(ngModel)]="atendimento.patient.patientsex" #patientsex="ngModel" name="patientsex">
               </div>
 
               <div style="display: grid; width: 15%;">
                 <label>Telefone</label>
-                <input style="width: 99%;" type="text" pInputText [(ngModel)]="atendimento.patient.contato.telefone" #telefone="ngModel" name="telefone">
+                <input readonly="true" style="width: 99%;" type="text" pInputText [(ngModel)]="atendimento.patient.contato.telefone" #telefone="ngModel" name="telefone">
               </div>
             </div>
 
@@ -84,8 +84,8 @@
 
               <div style="display: grid; width: 40%; padding-left: 5px; padding-right: 5px;">
                 <label>Prof. Solicitante</label>
-                <p-dropdown [options]="solicitantes" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimento.solicitante.codigo" #codigo="ngModel" name="codigo"
-                  placeholder="Selecione..." (onChange)="CarregarSolicitantes()"></p-dropdown>
+                <p-dropdown [options]="solicitantes" [autoWidth]="false" [filter]="true" [(ngModel)]="solicitanteselecionado" #codigo="ngModel" name="codigo"
+                  placeholder="Selecione..." (onChange)="InserirProfSolicitante()"></p-dropdown>
               </div>
             </div>
 

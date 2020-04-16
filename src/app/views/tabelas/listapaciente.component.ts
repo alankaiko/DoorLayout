@@ -5,7 +5,7 @@ import { PacienteService } from './../../zservice/paciente.service';
 import { Patient } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
-import * as moment from 'moment';
+import {Location} from '@angular/common';
 
 @Component({
   templateUrl: 'listapaciente.component.html',
@@ -23,7 +23,8 @@ export class ListapacienteComponent implements OnInit {
   exclusao: boolean = false;
 
   constructor(private service: PacienteService,
-              private route: Router) { }
+              private route: Router,
+              private location: Location) { }
 
   ngOnInit() {
     this.camposbusca = [
@@ -101,5 +102,9 @@ export class ListapacienteComponent implements OnInit {
 
   Fechar() {
     this.route.navigate(['/dashboard']);
+  }
+
+  Voltar() {
+    this.location.back();
   }
 }

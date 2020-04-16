@@ -12,9 +12,9 @@
 
       <ng-template pTemplate="body" let-procedimento let-rowIndex="rowIndex">
         <tr>
-          <td>{{ procedimento.procedimentomedico.nome }}</td>
-          <td>{{ procedimento.dataexecucao | date:'dd/MM/yyyy' }}</td>
-          <td>{{ procedimento.preventregalaudo | date:'dd/MM/yyyy' }}</td>
+          <td>{{ procedimento?.procedimentomedico.nome }}</td>
+          <td>{{ procedimento?.dataexecucao | date:'dd/MM/yyyy' }}</td>
+          <td>{{ procedimento?.preventregalaudo | date:'dd/MM/yyyy' }}</td>
           <td style="display: inline-flex;">
             <button pButton icon="fa fa-pencil-square-o" pTooltip="Editar" tooltipPosition="top"
                 (click)="PrepararEdicaoProcedimento(procedimento)"></button>
@@ -43,7 +43,7 @@
 </div>
 
 
-<p-dialog [header]="'Novo Procedimento'" [style]="{width: '50vw'}" [(visible)]="exbindoFormularioProcedimento" modal="modal">
+<p-dialog [header]="'Novo Procedimento'" [style]="{width: '50vw'}" [(visible)]="exbindoFormularioProcedimento">
   <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="ConfirmarProcedimento()" class="formu">
     <div class="ui-g-12 ui-fluid" style="border: 1px solid;">
       <div class="ui-g-12" formGroupName="procedimentomedico">

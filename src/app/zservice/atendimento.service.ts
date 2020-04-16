@@ -126,10 +126,37 @@ export class AtendimentoService {
     return this.http.get<SubcategoriaCid10[]>(this.urlcids).toPromise();
   }
 
+  BuscarPorIdPatient(idpatient: number): Promise<Patient> {
+    return this.http.get<Patient>(`${this.pacienteurl}/${idpatient}`)
+      .toPromise()
+      .then(response => {
+        const patient = response as Patient;
+        this.converterStringsParaDatasPat([patient]);
+        return patient;
+      });
+  }
+
+  BuscarPorIdProf(codigo: number): Promise<any> {
+    return this.http.get(`${this.solicitanteurl}/${codigo}`)
+      .toPromise()
+      .then(response => {
+        const profissionalsolicitante = response as ProfissionalSolicitante;
+        return profissionalsolicitante;
+      });
+  }
+
+  private converterStringsParaDatasPat(patients: Patient[]) {
+    for (const patient of patients) {
+      patient.birthday = moment(patient.birthday, 'YYYY-MM-DD').toDate();
+      patient.datecreate = moment(patient.datecreate, 'YYYY-MM-DD').toDate();
+    }
+  }
+
   private converterStringsParaDatas(atendimentos: Atendimento[]) {
     for (const atendimento of atendimentos) {
       atendimento.dataatendimento = moment(atendimento.dataatendimento, 'YYYY-MM-DD').toDate();
       atendimento.datacadastro = moment(atendimento.datacadastro, 'YYYY-MM-DD').toDate();
+      atendimento.patient.birthday = moment(atendimento.patient.birthday, 'YYYY-MM-DD').toDate();
 
       for (const proc of atendimento.procedimentos) {
         proc.dataexecucao = moment(proc.dataexecucao, 'YYYY-MM-DD').toDate();
@@ -143,4 +170,5 @@ export class AtendimentoService {
       { responseType: 'blob' })
       .toPromise();
   }
+
 }
