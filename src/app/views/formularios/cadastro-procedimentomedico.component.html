@@ -3,9 +3,9 @@
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
-          <div class="ui-g ui-fluid">
+          <div class="ui-g">
             <div class="ui-g-12 linhas">
-              <div class="ui-g-2">
+              <div class="ui-g-2 linhas">
                 <label>Código</label>
                 <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
               </div>
@@ -13,19 +13,19 @@
             </div>
 
             <div class="ui-g-12 linhas">
-              <div class="ui-g-12">
+              <div class="ui-g-12 linhas">
                 <label>Nome</label>
                 <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
               </div>
             </div>
 
-            <div class="ui-g-12">
-              <div class="ui-g-4" formGroupName="grupo">
+            <div class="ui-g-12 linhas">
+              <div class="ui-g-3 linhas" style="display: inline-grid;" formGroupName="grupo">
                 <label>Grupo</label>
                 <p-dropdown required formControlName="codigo" [options]="grupos" [autoWidth]="false" placeholder="Selecione o grupo" name="grupo"></p-dropdown>
               </div>
 
-              <div class="ui-g-1" style="display: inline-grid; margin-top: 5px;">
+              <div class="ui-g-1 linhas" style="display: inline-grid;">
                 <label style="opacity: 1%;">_</label>
                 <button type="button" class="minibotao" routerLink="/tabelas/listagrupoexame/novo">
                   <img src="/assets/img/FKEY_WINDOW.png">

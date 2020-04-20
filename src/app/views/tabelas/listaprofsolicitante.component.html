@@ -25,9 +25,9 @@
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 10%;">Código</th>
-          <th>Nome</th>
+          <th style="width: 40%;">Nome</th>
           <th style="width: 20%;">Num Conselho</th>
-          <th style="width: 10%;">Conselho</th>
+          <th style="width: 20%;">Conselho</th>
           <th style="width: 10%;">UF</th>
         </tr>
       </ng-template>
@@ -35,10 +35,10 @@
       <ng-template pTemplate="body" let-profissional>
         <tr [pSelectableRow]="profissional">
           <td style="text-align: right; width: 10%;">{{profissional?.codigo}}</td>
-          <td><a [routerLink]="['/tabelas/listaprofsolicitante', profissional.codigo]">{{profissional?.nome}}</a></td>
+          <td style="width: 40%;"><a [routerLink]="['/tabelas/listaprofsolicitante', profissional.codigo]">{{profissional?.nome}}</a></td>
           <td style="width: 20%;">{{profissional?.conselho?.descricao}}</td>
           <td style="width: 20%;">{{profissional?.conselho?.sigla.descricao}}</td>
-          <td style="width: 20%;">{{profissional?.conselho?.estado.uf}}</td>
+          <td style="width: 10%;">{{profissional?.conselho?.estado.uf}}</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">

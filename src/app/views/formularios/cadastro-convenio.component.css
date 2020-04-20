@@ -1,11 +1,11 @@
-
 :host /deep/ p-paginator .ui-paginator-bottom {
   box-sizing: border-box;
   border-top: 1px solid #b9b8b8;
 }
 
 :host /deep/ p-inputmask .ui-inputtext{
-  font-size: 82%;
+  font-size: 72%;
+  width: 95%;
 }
 
 .linhas {
@@ -138,7 +138,7 @@ input {
   background-color: rgba(84, 104, 138, 0.342);
 }
 
-:host /deep/ p-checkbox {
+:host /deep/ p-checkbox .ui-chkbox-box {
   border: 1px solid;
   border-radius: 2px;
 }
@@ -190,8 +190,8 @@ input {
 
 :host /deep/ p-tabview .ui-tabview-nav .ui-tabview-selected{
   border: 1px solid;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background-color: #B4B8C1;
 }
 
@@ -201,8 +201,6 @@ input {
   -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
 }
-
-
 
 .testessss {
   -webkit-box-shadow: 0 0 28px 0 rgba(0, 0, 0, 0.24), 0 25px 55px 0 rgba(0, 0, 0, 0.19);

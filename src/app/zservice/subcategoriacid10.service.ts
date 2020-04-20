@@ -37,6 +37,10 @@ export class Subcategoriacid10Service {
       params = params.append('nome', filtro.nome);
     }
 
+    if (filtro.codigotexto) {
+      params = params.append('codigotexto', filtro.codigotexto);
+    }
+
     return this.http.get<any>(`${this.url}?resumo`, { params })
       .toPromise()
       .then(response => {

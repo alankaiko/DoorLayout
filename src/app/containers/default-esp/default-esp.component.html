@@ -3,10 +3,15 @@
       <img src="/assets/img/IMAGEM_DE_FUNDO.jpg" alt="" />
   </div>
 </div>
+
+<div id="logomeio" style="width: 100%; position: absolute; margin: 0 auto; text-align: center; vertical-align: middle; margin-top: 250px;">
+  <img src="assets/img/brand/logo.png">
+</div>
+
 <app-header
   [navbarBrandRouterLink]="['/dashboard']"
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/brand/logo.png', width: 50, height: 35, alt: 'LaudoeCia'}"
   [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
@@ -14,7 +19,7 @@
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item dropdown" dropdown placement="bottom right" style="margin-left: 10px;">
       <a class="nav-link" data-toggle="dropdown" routerLink="/servidor/listagem" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-        <span>Servidor</span>
+        <span>Dicom</span>
       </a>
     </li>
 

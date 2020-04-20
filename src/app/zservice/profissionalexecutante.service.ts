@@ -1,4 +1,4 @@
-import { ProfissionalExecutante } from './../core/model';
+import { ProfissionalExecutante, Sigla, Estado } from './../core/model';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -14,9 +14,13 @@ export class ProfissionalExecutanteFiltro {
 })
 export class ProfissionalexecutanteService {
   url: string;
+  urlcrm: string;
+  urlestado: string;
 
   constructor(private http: HttpClient) {
     this.url = `${environment.apiUrl}/profissionaisexecutantes`;
+    this.urlcrm = `${environment.apiUrl}/siglas`;
+    this.urlestado = `${environment.apiUrl}/estados`;
   }
 
   Listar(): Promise<any> {
@@ -82,9 +86,17 @@ export class ProfissionalexecutanteService {
       .then(() => null);
   }
 
-  PorProfExecutante() {
-    return this.http.get(`${this.url}/relatorios/por-executante`,
+  PorProfExecutante(descricao: string, uf: string) {
+    return this.http.get(`${this.url}/relatorios/por-executante/${descricao}/${uf}`,
       { responseType: 'blob' })
       .toPromise();
+  }
+
+  BuscarSiglasCrm() {
+    return this.http.get<Sigla[]>(this.urlcrm).toPromise();
+  }
+
+  BuscarEstados() {
+    return this.http.get<Estado[]>(this.urlestado).toPromise();
   }
 }

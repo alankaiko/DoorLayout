@@ -25,17 +25,17 @@
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 10%;">Código</th>
-          <th>Nome</th>
-          <th style="width: 20%;">Nascimento</th>
-          <th style="width: 10%;">Data Cad.</th>
+          <th style="width: 45%;">Nome</th>
+          <th style="width: 25%;">Nascimento</th>
+          <th style="width: 20%;">Data Cad.</th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-patient>
         <tr [pSelectableRow]="patient">
-          <td style="text-align: right; width: 10%;">{{patient?.idpatient}}</td>
-          <td><a [routerLink]="['/tabelas/listapaciente', patient.idpatient]">{{patient?.patientname}}</a></td>
-          <td style="width: 20%;">{{patient?.birthday | date:'dd/MM/yyyy' }}</td>
+          <td style="width: 10%;">{{patient?.idpatient}}</td>
+          <td style="width: 45%;"><a [routerLink]="['/tabelas/listapaciente', patient.idpatient]">{{patient?.patientname}}</a></td>
+          <td style="width: 25%;">{{patient?.birthday | date:'dd/MM/yyyy' }}</td>
           <td style="width: 20%;">{{patient?.datecreate | date:'dd/MM/yyyy' }}</td>
         </tr>
       </ng-template>

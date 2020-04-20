@@ -1,3 +1,4 @@
+import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { RelatorioProfexecutanteComponent } from './relatorio-profexecutante.component';
 import { RelatorioRoutingModule } from './relatorios-routing.module';
 import { NgModule } from '@angular/core';
@@ -9,7 +10,8 @@ import { RelatorioConvenioComponent } from './relatorio-convenio.component';
 @NgModule({
   imports: [
     CommonModule,
-    RelatorioRoutingModule
+    RelatorioRoutingModule,
+    DropdownModule
   ],
   declarations: [
     RelatorioConvenioComponent,

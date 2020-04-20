@@ -65,6 +65,7 @@ export class ListasubcategoriacidComponent implements OnInit {
 
     setTimeout (() => {
       if ((drop === 'Nome')) {
+        this.filtro.codigotexto = undefined;
         this.filtro.nome = texto.value;
         this.Consultar();
       }
@@ -76,12 +77,10 @@ export class ListasubcategoriacidComponent implements OnInit {
           }).catch(erro => console.log(erro));
       }
 
-      if ((drop === 'Codigo') && (texto.value !== '')) {
-        const numero = +texto.value;
-        return this.service.BuscarListaPorId(numero)
-          .then(response => {
-            this.subcategorias = response;
-          }).catch(erro => console.log(erro));
+      if ((drop === 'Codigo')) {
+        this.filtro.nome = undefined;
+        this.filtro.codigotexto = texto.value;
+        this.Consultar();
       }
     }, 1000);
   }

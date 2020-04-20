@@ -3,85 +3,92 @@
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
-          <div class="ui-g ui-fluid">
+          <div class="ui-g">
             <div class="ui-g-12 linhas">
-              <div class="ui-g-2">
+              <div class="ui-g-2 linhas">
                 <label>Código</label>
-                <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+                <input style="width: 90%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
               </div>
 
-              <div class="ui-g-8">
+              <div class="ui-g-2 linhas">
+                <label>Num copias Laudo</label>
+                <input type="text" pInputText ng-model="text" name="numcopiasdolaudo" formControlName="numcopiasdolaudo">
               </div>
 
-              <div class="ui-g-2" style="margin-top: 10px;">
+              <div class="ui-g-6">
+              </div>
+
+              <div class="ui-g-2 linhas" style="margin-top: 10px;">
                 <label>Convênio Ativo</label>
                 <p-checkbox ng-model="ativo" name="ativo" [binary]="true" formControlName="ativo"></p-checkbox>
               </div>
             </div>
 
             <div class="ui-g-12 linhas">
-              <div class="ui-g-12">
+              <div class="ui-g-12 linhas">
                 <label>Nome</label>
                 <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
               </div>
             </div>
 
             <div class="ui-g-12 linhas">
-              <label>Observações</label>
-              <textarea style="width: 100% ;height: 50px;" pInputTextarea ng-model="text" name="observacoes" formControlName="observacoes"></textarea>
+              <div class="ui-g-12 linhas">
+                <label>Observações</label>
+                <textarea style="width: 100% ;height: 60px;" pInputTextarea ng-model="text" name="observacoes" formControlName="observacoes"></textarea>
+              </div>
             </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="Dados para contato">
             <div class="ui-g">
               <div class="ui-g-12 linhas" formGroupName="endereco">
-                <div class="ui-g-3" style="display: inline-grid;">
+                <div class="ui-g-2 linhas" style="display: inline-grid;">
                   <label>CEP</label>
                     <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
                 </div>
 
-                <div class="ui-g-1" style="display: inline-grid;">
+                <div class="ui-g-2 linhas" style="display: inline-grid;">
                   <label>Estado</label>
-                  <input pInputText ng-model="text" name="estado" formControlName="estado" style="width: 30px;"/>
+                  <input style="width: 95%;" pInputText ng-model="text" name="estado" formControlName="estado"/>
                 </div>
 
-                <div class="ui-g-4" style="display: inline-grid;">
+                <div class="ui-g-4 linhas" style="display: inline-grid;">
                   <label>Cidade</label>
-                  <input pInputText ng-model="text" name="cidade" formControlName="cidade"/>
+                  <input style="width: 95%;" pInputText ng-model="text" name="cidade" formControlName="cidade"/>
                 </div>
 
-                <div class="ui-g-4" style="display: inline-grid;">
+                <div class="ui-g-4 linhas" style="display: inline-grid;">
                   <label>Bairro</label>
                   <input pInputText ng-model="text" name="bairro" formControlName="bairro"/>
                 </div>
               </div>
 
               <div class="ui-g-12 linhas" formGroupName="endereco">
-                <div class="ui-g-6" style="display: inline-grid;">
+                <div class="ui-g-6 linhas" style="display: inline-grid;">
                   <label>Logradouro</label>
-                  <input pInputText ng-model="text" name="logradouro" formControlName="logradouro"/>
+                  <input style="width: 95%;" pInputText ng-model="text" name="logradouro" formControlName="logradouro"/>
                 </div>
 
-                <div class="ui-g-6" style="display: inline-grid;">
+                <div class="ui-g-6 linhas" style="display: inline-grid;">
                   <label>Complemento</label>
                   <input pInputText ng-model="text" name="complemento" formControlName="complemento"/>
                 </div>
               </div>
 
               <div class="ui-g-12 linhas">
-                  <div class="ui-g-3" style="display: inline-grid;">
+                  <div class="ui-g-2 linhas" style="display: inline-grid;">
                     <label>Telefone</label>
                     <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
                   </div>
 
-                  <div class="ui-g-3" style="display: inline-grid;">
+                  <div class="ui-g-2 linhas" style="display: inline-grid;">
                     <label>Fax</label>
                     <p-inputMask placeholder="fax" mask="(99) 9999-9999" name="fax" formControlName="fax"></p-inputMask>
                   </div>
 
-                  <div class="ui-g-6" style="display: inline-grid;">
+                  <div class="ui-g-8 linhas" style="display: inline-grid;">
                     <label>E-mail</label>
-                    <input style="width: 100%;" pInputText ng-model="text" name="email" formControlName="email"/>
+                    <input pInputText ng-model="text" name="email" formControlName="email"/>
                   </div>
               </div>
 

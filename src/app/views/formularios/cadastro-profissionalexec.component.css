@@ -49,11 +49,11 @@ input {
   margin-top: -1px;
 }
 
-
 :host /deep/ p-dropdown .ui-dropdown{
   border:1px solid #428bca;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-size: 80%;
 }
 
 :host /deep/ p-dropdown .ui-dropdown-items {

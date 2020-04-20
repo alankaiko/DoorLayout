@@ -7,6 +7,7 @@ export class ConvenioFiltro {
   pagina = 0;
   itensPorPagina = 20;
   nome: string;
+  ativo: boolean;
 }
 
 @Injectable({
@@ -31,8 +32,12 @@ export class ConvenioService {
       }
     });
 
-    if (filtro.nome) {
-      params = params.append('nome', filtro.nome);
+    if (filtro.ativo) {
+      params = params.append('ativo', 'true');
+    }
+
+    if (filtro.ativo) {
+      params = params.append('ativo', filtro.nome);
     }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })

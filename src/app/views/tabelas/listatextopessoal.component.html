@@ -32,7 +32,7 @@
       <ng-template pTemplate="body" let-texto>
         <tr [pSelectableRow]="texto">
           <td style="text-align: right; width: 10%;">{{texto?.codigo}}</td>
-          <td><a [routerLink]="['/tabelas/listatextopessoal', texto.codigo]">{{texto?.abreviatura}}</a></td>
+          <td style="text-transform: uppercase;"><a [routerLink]="['/tabelas/listatextopessoal', texto.codigo]">{{texto?.abreviatura}}</a></td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">

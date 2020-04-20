@@ -1,3 +1,4 @@
+import { ConvenioService, ConvenioFiltro } from './../../zservice/convenio.service';
 import { Atendimento } from './../../core/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AtendimentoService } from './../../zservice/atendimento.service';
@@ -15,6 +16,7 @@ import * as moment from 'moment';
 export class TelaAtendimentoComponent implements OnInit {
   atendimento = new Atendimento();
   items: FormArray;
+  filtroconvenio = new ConvenioFiltro();
   display: boolean = true;
   exibiratestado: boolean = false;
   pacientes: any[];
@@ -32,6 +34,7 @@ export class TelaAtendimentoComponent implements OnInit {
 
 
   constructor(private service: AtendimentoService,
+              private serviceconv: ConvenioService,
               private rota: ActivatedRoute,
               private route: Router,
               private location: Location) {
@@ -155,9 +158,11 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   CarregarConvenios () {
-    this.service.ListarConvenios().then(lista => {
-      this.convenios = lista.map(convenio => ({label: convenio.nome, value: convenio.codigo}));
-    }).catch(erro => erro);
+    this.filtroconvenio.ativo = true;
+    return this.serviceconv.Consultar(this.filtroconvenio)
+      .then(response => {
+        this.convenios = response.convenios.content.map(conv => ({label: conv.nome, value: conv.codigo}));
+      }).catch(erro => console.log(erro));
   }
 
   CarregarSolicitantes() {

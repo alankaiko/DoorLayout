@@ -3,10 +3,12 @@
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
-          <div class="ui-g ui-fluid">
+          <div class="ui-g">
             <div class="ui-g-12 linhas">
-              <label>Código</label>
-              <input style="width: 20%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+              <div class="ui-g-12" style="display: inline-grid;">
+                <label>Código</label>
+                <input style="width: 20%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+              </div>
             </div>
 
             <div class="ui-g-12 linhas">

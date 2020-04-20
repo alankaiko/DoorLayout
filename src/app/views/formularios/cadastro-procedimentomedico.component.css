@@ -54,6 +54,7 @@ input {
   border:1px solid #428bca;
   background-color: #fff;
   border-radius: 5px;
+  font-size: 92%;
 }
 
 :host /deep/ p-dropdown .ui-dropdown-items {
