@@ -18,6 +18,8 @@ export class ListaAtendimentoComponent implements OnInit {
   visible: boolean = true;
   camposbusca: any[];
   periodo: any[];
+  status: any[];
+  quantidades: any[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
@@ -37,6 +39,21 @@ export class ListaAtendimentoComponent implements OnInit {
       {label: 'Hoje'},
       {label: 'Ultima Semana'},
       {label: 'Ultimo mês'}
+    ];
+
+    this.status = [
+      {label: 'Indiferente'},
+      {label: 'Pendente'},
+      {label: 'Pronto'}
+    ];
+
+    this.quantidades = [
+      {label: '100'},
+      {label: '5'},
+      {label: '30'},
+      {label: '50'},
+      {label: '70'},
+      {label: '500'}
     ];
 
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
@@ -65,11 +82,14 @@ export class ListaAtendimentoComponent implements OnInit {
   BuscaDinamica() {
     const drop = $('#codigodrop :selected').text();
     const texto = document.getElementById('buscando') as HTMLInputElement;
+    const dropperiodo = $('#codigoperiodo :selected').text();
 
     setTimeout (() => {
       if (drop === 'Paciente') {
-        this.filtro.patientname = texto.value;
-        this.Consultar();
+        return this.service.BuscarListaPorNomePaciente(texto.value)
+          .then(response => {
+            this.atendimentos = response;
+          }).catch(erro => console.log(erro));
       }
 
       if ((drop === 'Codigo') && (texto.value !== '')) {
@@ -78,6 +98,32 @@ export class ListaAtendimentoComponent implements OnInit {
           .then(response => {
             this.atendimentos = response;
           }).catch(erro => console.log(erro));
+      }
+
+      if (dropperiodo === 'Personalizado(todos)') {
+        this.Consultar();
+      }
+
+      if (dropperiodo === 'Hoje') {
+        const data = new Date();
+        this.filtro.datafinal = data;
+        this.filtro.datainicial = data;
+      }
+
+      if (dropperiodo === 'Ultima Semana') {
+        const data = new Date();
+        const outraData = new Date(data.getTime() - 7);
+
+        this.filtro.datafinal = data;
+        this.filtro.datafinal = outraData;
+      }
+
+      if (dropperiodo === 'Ultimo mês') {
+        const data = new Date();
+        const outraData = new Date(data.getTime() - 30);
+
+        this.filtro.datafinal = data;
+        this.filtro.datafinal = outraData;
       }
     }, 0);
   }

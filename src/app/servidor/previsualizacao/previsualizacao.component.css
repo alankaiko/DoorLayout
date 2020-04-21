@@ -65,7 +65,8 @@
 }
 
 .row {
-  margin-left: -12px;
-  margin-right: -12px;
+  width: 95%;
+  margin: 0 auto;
+  background-color: #fff;
 }
 

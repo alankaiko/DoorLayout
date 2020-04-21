@@ -38,9 +38,9 @@ export class CadastroProcedimentomedicoComponent implements OnInit {
 
   BuscarGrupos() {
     return this.serviceGrupo.Listar()
-    .then(grupos => {
-      this.grupos = grupos
-        .map(g => ({ label: g.nome, value: g.codigo }));
+    .then(response => {
+      this.grupos = response
+        .map(g => ({ label: g.nomegrupo, value: g.codigo }));
     });
   }
 

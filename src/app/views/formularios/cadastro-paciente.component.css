@@ -10,7 +10,6 @@
 }
 
 .linhas {
-
   padding: 0;
 }
 
@@ -234,7 +233,6 @@ input {
   border: 1px solid rgb(80, 78, 78);
 }
 
-
 :host /deep/ p-calendar .ui-calendar {
   border:1px solid #428bca;
   background-color: #fff;
@@ -245,7 +243,6 @@ input {
 
 :host /deep/ p-calendar .ui-datepicker{
   background-color: #fff;
-
 }
 
 :host /deep/ p-calendar .ui-datepicker .ui-datepicker-calendar-container .ui-datepicker-calendar .ng-tns-c3-2 td:hover{

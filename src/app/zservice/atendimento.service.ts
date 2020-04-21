@@ -8,6 +8,7 @@ export class AtendimentoFilter {
   pagina = 0;
   itensPorPagina = 7;
   patientname: string;
+  solicitantename: string;
   datainicial: Date;
   datafinal: Date;
 }
@@ -61,6 +62,10 @@ export class AtendimentoService {
 
   BuscarListaPorId(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
+  }
+
+  BuscarListaPorNomePaciente(patientname: string): Promise<any> {
+    return this.http.get(`${this.url}/listapac/${patientname}`).toPromise().then(response => response);
   }
 
    Adicionar(atendimento: Atendimento): Promise<Atendimento> {
@@ -147,7 +152,10 @@ export class AtendimentoService {
 
   private converterStringsParaDatasPat(patients: Patient[]) {
     for (const patient of patients) {
-      patient.birthday = moment(patient.birthday, 'YYYY-MM-DD').toDate();
+      if (patient.birthday !== null) {
+        patient.birthday = moment(patient.birthday, 'YYYY-MM-DD').toDate();
+      }
+
       patient.datecreate = moment(patient.datecreate, 'YYYY-MM-DD').toDate();
     }
   }
