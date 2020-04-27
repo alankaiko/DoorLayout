@@ -18,6 +18,7 @@ import { TelaAtendimentoComponent } from './atendimentos/tela-atendimento/tela-a
 import { ListaAtendimentoComponent } from './atendimentos/lista-atendimento/lista-atendimento.component';
 import { DataViewModule } from 'primeng/components/dataview/dataview';
 import { PanelModule } from 'primeng/components/panel/panel';
+import {ScrollPanelModule} from 'primeng/components/scrollpanel/scrollpanel';
 import {RatingModule } from 'primeng/rating';
 import { QuillModule } from 'ngx-quill';
 import { CardModule } from 'primeng/components/card/card';
@@ -129,7 +130,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     FileUploadModule,
     TabViewModule,
     ReactiveFormsModule,
-    EditorModule
+    EditorModule,
+    ScrollPanelModule
   ],
   declarations: [
     AppComponent,

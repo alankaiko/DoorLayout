@@ -2,44 +2,23 @@
 <div style="text-align:left; margin-top: 0;" class="ui-g geral">
   <div class="topoprocedimento ui-g-12">
     <form #f="ngForm" autocomplete="off" class="formu">
-      <div class="ui-g-5 ui-fluid" style="display: inline-flex;">
+      <div class="ui-g-4 ui-fluid" style="display: inline-flex; padding: 0;">
         <label>Atendimento: </label>
         <p-dropdown [options]="atendimentos" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
           placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
       </div>
 
-      <div class="ui-g-7 ui-fluid" style="display: inline-flex;">
-        <label>Procedimento: </label>
+      <div class="ui-g-8 ui-fluid" style="display: inline-flex; padding: 0;">
         <p-dropdown [options]="procedimentosAtd" [autoWidth]="false" [filter]="true" [(ngModel)]="procedimentosAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
           placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
+
+          <button class="botaosair" routerLink="/dashboard">
+            <img src="/assets/img/SAIR.png">
+            <span>Sair</span>
+          </button>
       </div>
+
     </form>
-  </div>
-
-  <div class="menulateral">
-    <div class="ui-g-12">
-      <p-carousel [value]="webcamImage" [numVisible]="1" [numScroll]="1">
-        <ng-template let-web pTemplate="item">
-          <div class="thumbnail-wrapper">
-            <img style="width: 100%; height: 100%;" [src]="web.imageAsDataUrl"/>
-            <button class="btn btn-outline-warning" title="Excluir" (click)="ConfirmarExclusao(web)"><i class="fa fa-fw fa-trash-o"></i></button>
-          </div>
-        </ng-template>
-      </p-carousel>
-    </div>
-
-    <div class="ui-g-12">
-      <p-toolbar>
-        <button class="btn btn-success" type="button" (click)="TiraFoto();" *ngIf="verifica">Capturar</button>
-        <button class="btn btn-outline-warning" type="button" routerLink="/operacoes/editarimagem" *ngIf="verifica">Editar</button>
-
-        <button class="btn btn-primary" (click)="toggleWebcam();">Alternar</button>
-        <button class="btn btn-secondary" type="button" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Prox.</button>
-        <button class="btn btn-danger" type="button" (click)="GravandoImagens();" *ngIf="verifica">Gravar</button>
-
-      </p-toolbar>
-    </div>
-
   </div>
 
   <div class="painelprincipal">
@@ -51,6 +30,77 @@
     </div>
   </div>
 
+  <div class="menulateral">
+    <div style="border: 1px solid; width: 100%; height: 195px;">
+      <p-carousel [value]="webcamImage" [numVisible]="1" [numScroll]="1" (onPage)="PegarPagina($event)">
+        <ng-template let-web pTemplate="item">
+          <div class="thumbnail-wrapper">
+            <img style="width: 100%; height: 165px;" [src]="web.imageAsDataUrl"/>
+            <button class="btn btn-outline-warning" title="Excluir" (click)="ConfirmarExclusao(web)"><i class="fa fa-fw fa-trash-o"></i></button>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+
+    <div style="border: 1px solid; width: 100%;">
+      <p-toolbar>
+        <div style="display: inline-flex; float: left;">
+          <button class="botaoprincipal" style="padding-top: 15px; padding-bottom: 15px;"
+             routerLink="/operacoes/editarimagem" disabled="true" type="button">
+
+            <img src="/assets/img/IMG_EDIT.png">
+            <span>Editar</span>
+          </button>
+
+          <button disabled="true" type="button" class="botaoprincipal">
+            <span>Importar</span>
+            <span>ou</span>
+            <span>Mover</span>
+          </button>
+        </div>
+
+        <div class="quantidadedoarray">
+          <div id="quantidade">
+            <span>{{item}} de {{webcamImage.length}}</span>
+          </div>
+
+        </div>
+      </p-toolbar>
+    </div>
+
+    <div style="border: 1px solid; width: 100%;">
+      <p-toolbar>
+        <button class="btn btn-success" type="button" (click)="TiraFoto();" *ngIf="verifica">Capturar</button>
+
+        <button class="btn btn-primary" (click)="toggleWebcam();">Alternar</button>
+        <button class="btn btn-danger" type="button" (click)="GravandoImagens();" *ngIf="verifica">Gravar</button>
+      </p-toolbar>
+    </div>
+
+    <div style="border: 1px solid; width: 100%;">
+      <button type="button" class="minibotao">
+        <img src="/assets/img/RECORD_RED.png">
+      </button>
+
+      <button type="button" class="minibotao">
+        <img src="/assets/img/PAUSE.png">
+      </button>
+
+      <button type="button" class="minibotao">
+        <img src="/assets/img/SOUND_OFF.png">
+      </button>
+
+      <button type="button" class="minibotao">
+        <img src="/assets/img/TV_CAPTURA.png">
+      </button>
+    </div>
+  </div>
+
+  <div style="border: 1px solid; width: 100%;">
+    <div class="conta" *ngFor="let web of webcamImage">
+      <img class="imagem" [src]="web.imageAsDataUrl"/>
+    </div>
+  </div>
 
 </div>
 

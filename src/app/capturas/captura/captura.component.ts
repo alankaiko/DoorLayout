@@ -30,6 +30,7 @@ export class CapturaComponent implements OnInit {
   procedimentosAtdSelecionado: number;
   imagemant: any;
   verifica = false;
+  item: number = 0;
 
   public errors: WebcamInitError[] = [];
 
@@ -83,6 +84,10 @@ export class CapturaComponent implements OnInit {
     imagem.extensao = extensao;
     imagem.imagem = web.imageAsBase64;
     this.procedimento.listaimagem.push(imagem);
+  }
+
+  PegarPagina(event) {
+    this.item = event.page + 1;
   }
 
   ConfirmarExclusao(web: WebcamImage) {
@@ -157,6 +162,10 @@ export class CapturaComponent implements OnInit {
 
   public TiraFoto(): void {
     this.trigger.next();
+
+    if (this.item === 0) {
+      this.item = 1;
+    }
   }
 
   public toggleWebcam(): void {
@@ -194,7 +203,7 @@ export class CapturaComponent implements OnInit {
 
   CarregarAtendimentos() {
     this.service.ListarAtendimentos().then(lista => {
-      this.atendimentos = lista.map(atendimento => ({label: 'atend: ' + atendimento.codigo + ' ' + atendimento.patient.patientname, value: atendimento.codigo}));
+      this.atendimentos = lista.map(atendimento => ({label: atendimento.codigo + ' ' + atendimento.patient.patientname, value: atendimento.codigo}));
 
     }).catch(erro => erro);
   }

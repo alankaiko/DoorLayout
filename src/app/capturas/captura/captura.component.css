@@ -1,11 +1,13 @@
 .geral {
   color: #fff;
-  background-color: #27272b;
-  width: 101%;
+  background-color: #D6D9DF;
+  width: 100%;
   height: 100%;
   position: fixed;
-  margin-left: -8px;
-  margin-top:  -22px;
+}
+
+label {
+  color: #27272b;
 }
 
 .container-fluid {
@@ -23,7 +25,7 @@
 .topoprocedimento {
   width: 100%;
   border-bottom: 1px solid #acaaaa;
-  height: 40px;
+  height: 33px;
 
 }
 
@@ -49,13 +51,13 @@
   width: 90%;
   margin-left: 10px;
   font-size: 80%;
-  margin-top: -5px;
   color: #27272b;
 }
 
 :host /deep/ p-dropdown .ui-dropdown{
   border:1px solid #428bca;
   background-color: #fff;
+  border-radius: 3px;
 }
 
 :host /deep/ p-dropdown .ui-dropdown-items {
@@ -69,7 +71,7 @@
 }
 
 .menulateral {
-  border-right: 1px solid #beb9b9;
+  border-left: 1px solid #beb9b9;
   width: 27%;
   float: left;
 
@@ -78,6 +80,7 @@
 .painelprincipal {
   width: 73%;
   height: 100%;
+  background-color: #27272b;
   float: right;
   position: initial;
 }
@@ -113,4 +116,124 @@ button {
   text-align: center;
   vertical-align: middle;
   margin: 0 auto;
+}
+
+
+.botaosair {
+  width: 65px;
+  font-size: 78%;
+  font-weight: bold;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-align: center;
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  line-height: 1.7;
+  position: relative;
+  margin: 0 auto;
+}
+
+.botaosair:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+
+.botaosair > img {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+.botaosair > a {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+
+.botaoprincipal {
+  width: 65px;
+  display: inline-grid;
+  font-size: 78%;
+  font-weight: bold;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-align: center;
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  padding: 2px 0 2px;
+  line-height: 1.7;
+  position: relative;
+  margin: 0 auto;
+}
+
+.botaoprincipal:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+
+.botaoprincipal > img {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+.botaoprincipal > a {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+.quantidadedoarray {
+  width: 30%;
+  float: right;
+  height: 65px;
+  border: 1px solid #4b4848;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+#quantidade {
+  color: #428bca;
+  font-weight: bold;
+}
+
+.imagem {
+  width: 40%;
+  height: 70px;
+}
+
+.conta {
+	overflow-x: auto;
+  white-space: nowrap;
+  display: inline;
+}
+
+
+.minibotao {
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  line-height: 1.7;
+  margin: 0 auto;
+}
+
+.minibotao:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
 }
