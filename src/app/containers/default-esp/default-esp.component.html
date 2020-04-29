@@ -8,7 +8,7 @@
   <img src="assets/img/brand/logo.png">
 </div>
 
-<app-header *ngIf="verifica"
+<app-header *ngIf="exibindoNavbar()"
   [navbarBrandRouterLink]="['/dashboard']"
   [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/brand/logo.png', width: 50, height: 35, alt: 'LaudoeCia'}"

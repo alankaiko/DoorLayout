@@ -31,6 +31,7 @@ export class CapturaComponent implements OnInit {
   imagemant: any;
   verifica = false;
   item: number = 0;
+  videos: any[];
 
   public errors: WebcamInitError[] = [];
 
@@ -74,7 +75,7 @@ export class CapturaComponent implements OnInit {
   }
 
   CriarNomeImagens(web: WebcamImage) {
-    this.cont++;
+
     const imagem = new Imagem();
     const nomeprocedimento = ('000' + this.procedimento.procedimentomedico.codigo).slice(-3);
     const contador = ('00' + this.cont).slice(-2);
@@ -84,6 +85,7 @@ export class CapturaComponent implements OnInit {
     imagem.extensao = extensao;
     imagem.imagem = web.imageAsBase64;
     this.procedimento.listaimagem.push(imagem);
+    this.cont++;
   }
 
   PegarPagina(event) {
