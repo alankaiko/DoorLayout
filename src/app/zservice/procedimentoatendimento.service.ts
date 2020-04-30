@@ -77,4 +77,11 @@ export class ProcedimentoatendimentoService {
     return this.http.get(`${this.url}/imagem/${codigo}`, { responseType: 'blob' });
   }
 
+  PegarImagems(codigo: number): Observable<string> {
+    return this.http.get(`${this.url}/imagemstring/${codigo}`, { responseType: 'text' });
+  }
+
+  PegarImagemString(codigo: number): Observable<string> {
+    return this.http.get(`${this.url}/imagemstring/${codigo}`, { responseType: 'text' });
+  }
 }

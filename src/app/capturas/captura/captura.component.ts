@@ -133,22 +133,12 @@ export class CapturaComponent implements OnInit {
   }
 
   getImageFromService(codigo: number) {
-    this.serviceproc.PegarImagem(codigo).subscribe(data => {
-      this.createImageFromBlob(data);
+    this.serviceproc.PegarImagemString(codigo).subscribe(data => {
+      const av = new WebcamImage(data, data, null);
+      this.webcamImage.push(av);
     }, error => {
       console.log(error);
     });
-  }
-
-  createImageFromBlob(image: Blob) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.imagemant = reader.result;
-    }, false);
-
-    if (image) {
-      reader.readAsDataURL(image);
-    }
   }
 
   PegaAltura() {
