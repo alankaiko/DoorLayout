@@ -13,7 +13,7 @@
           placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
 
           <button class="botaosair" routerLink="/dashboard">
-            <img src="assets/img/SAIR.png">
+            <img src="/assets/img/SAIR.png">
             <span>Sair</span>
           </button>
       </div>
@@ -32,10 +32,10 @@
 
   <div class="menulateral">
     <div style="border: 1px solid; width: 100%; height: 195px;">
-      <p-carousel [value]="webcamImage" [numVisible]="1" [numScroll]="1" (onPage)="PegarPagina($event)">
+      <p-carousel [value]="procedimento?.listaimagem" [numVisible]="1" [numScroll]="1" (onPage)="PegarPagina($event)">
         <ng-template let-web pTemplate="item">
           <div class="thumbnail-wrapper">
-            <img style="width: 100%; height: 165px;" [src]="web.imageAsDataUrl"/>
+            <img style="width: 100%; height: 165px;" [src]="web?.imagem?.imageAsDataUrl"/>
             <button class="btn btn-outline-warning" title="Excluir" (click)="ConfirmarExclusao(web)"><i class="fa fa-fw fa-trash-o"></i></button>
           </div>
         </ng-template>
@@ -48,7 +48,7 @@
           <button class="botaoprincipal" style="padding-top: 15px; padding-bottom: 15px;"
              routerLink="/operacoes/editarimagem" type="button">
 
-            <img src="assets/img/IMG_EDIT.png">
+            <img src="/assets/img/IMG_EDIT.png">
             <span>Editar</span>
           </button>
 
@@ -61,7 +61,7 @@
 
         <div class="quantidadedoarray">
           <div id="quantidade">
-            <span>{{item}} de {{webcamImage.length}}</span>
+            <span>{{item}} de {{procedimento?.listaimagem?.length}}</span>
           </div>
 
         </div>
@@ -74,19 +74,19 @@
 
     <div style="border: 1px solid; width: 100%; display: inline-table;">
       <button type="button" class="minibotao">
-        <img src="assets/img/RECORD_RED.png">
+        <img src="/assets/img/RECORD_RED.png">
       </button>
 
       <button type="button" class="minibotao">
-        <img src="assets/img/PAUSE.png">
+        <img src="/assets/img/PAUSE.png">
       </button>
 
       <button type="button" class="minibotao">
-        <img src="assets/img/SOUND_OFF.png">
+        <img src="/assets/img/SOUND_OFF.png">
       </button>
 
       <button type="button" class="minibotao">
-        <img src="assets/img/TV_CAPTURA.png">
+        <img src="/assets/img/TV_CAPTURA.png">
       </button>
 
       <div class="quantidadevideo">
@@ -137,11 +137,11 @@
 
       <div style="width: 10%; height: 180px; margin: 0 auto;">
         <button type="button" class="minibotao">
-          <img src="assets/img/PLAY.png">
+          <img src="/assets/img/PLAY.png">
         </button>
 
         <button type="button" class="minibotao">
-          <img src="assets/img/APAGAR.png">
+          <img src="/assets/img/APAGAR.png">
         </button>
       </div>
     </div>

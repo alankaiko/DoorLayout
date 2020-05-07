@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { AtendimentoService } from './../../zservice/atendimento.service';
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebcamInitError, WebcamUtil, WebcamImage } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
 import { ProcedimentoatendimentoService } from '../../zservice/procedimentoatendimento.service';
+import { arch } from 'os';
 
 @Component({
   selector: 'app-captura',
@@ -36,7 +37,7 @@ export class CapturaComponent implements OnInit {
   public errors: WebcamInitError[] = [];
 
   // latest snapshot
-  webcamImage = new Array<WebcamImage>();
+  // webcamImage = new Array<Imagem>();
 
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
@@ -50,6 +51,7 @@ export class CapturaComponent implements OnInit {
 
   constructor(private service: AtendimentoService,
               private rota: ActivatedRoute,
+              private route: Router,
               private serviceproc: ProcedimentoatendimentoService,
               private confirmation: ConfirmationService,
               private messageService: MessageService) { }
@@ -68,31 +70,23 @@ export class CapturaComponent implements OnInit {
   }
 
   GravandoImagens() {
-    this.webcamImage.forEach( (el) => {
-      this.CriarNomeImagens(el);
+    this.procedimento.listaimagem.forEach((el) => {
+      el.imagem = el.imagem.imageAsBase64.replace('data:image/jpeg;base64,', '');
     });
-    this.serviceproc.Atualizar(this.procedimento);
-  }
 
-  CriarNomeImagens(web: WebcamImage) {
-
-    const imagem = new Imagem();
-    const nomeprocedimento = ('000' + this.procedimento.procedimentomedico.codigo).slice(-3);
-    const contador = ('00' + this.cont).slice(-2);
-    const extensao = '.jpeg';
-    imagem.procedimentoatendimento.codigo = this.procedimento.codigo;
-    imagem.nomeimagem = nomeprocedimento + contador;
-    imagem.extensao = extensao;
-    imagem.imagem = web.imageAsBase64;
-    this.procedimento.listaimagem.push(imagem);
-    this.cont++;
+    try {
+      this.serviceproc.Atualizar(this.procedimento);
+      this.route.navigate(['/dashboard']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   PegarPagina(event) {
     this.item = event.page + 1;
   }
 
-  ConfirmarExclusao(web: WebcamImage) {
+  ConfirmarExclusao(web: Imagem) {
     this.confirmation.confirm({
       message: 'Deseja Excluir esta Imagem?',
       accept: () => {
@@ -101,17 +95,17 @@ export class CapturaComponent implements OnInit {
     });
   }
 
-  Excluir(web: WebcamImage) {
-    const campo = this.webcamImage.indexOf(web);
+  Excluir(web: Imagem) {
+    const campo = this.procedimento.listaimagem.indexOf(web);
 
     if (campo !== -1) {
-      this.webcamImage.splice(campo, 1);
-      this.messageService.add({ severity: 'success', detail: 'Abreviatura excluída com sucesso!' });
+      this.procedimento.listaimagem.splice(campo, 1);
+      this.messageService.add({ severity: 'success', detail: 'Imagem excluída com sucesso!' });
     }
   }
 
   ConfigurarVariavel() {
-    this.webcamImage = new Array<WebcamImage>();
+    this.procedimento.listaimagem = new Array<Imagem>();
     this.cont = 1;
     this.verifica = true;
 
@@ -119,25 +113,16 @@ export class CapturaComponent implements OnInit {
       if (elo.codigo === this.procedimentosAtdSelecionado) {
         this.procedimento = elo;
         this.procedimento.codigoatdteste = this.atendimento.codigo;
+        this.procedimento.listaimagem = this.procedimento.listaimagem;
         this.procedimento.listaimagem.forEach((el) => {
-          this.getImageFromService(el.codigo);
-          const bytes = this.imagemant;
-          const uint = new Uint8Array(bytes);
-
-          const url = 'data:image/jpeg;base64,' + uint;
-
-
+          this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {
+            const web = new WebcamImage(data, data, null);
+            el.imagem = web;
+          }, error => {
+            console.log(error);
+          });
         });
       }
-    });
-  }
-
-  getImageFromService(codigo: number) {
-    this.serviceproc.PegarImagemString(codigo).subscribe(data => {
-      const av = new WebcamImage(data, data, null);
-      this.webcamImage.push(av);
-    }, error => {
-      console.log(error);
     });
   }
 
@@ -175,9 +160,20 @@ export class CapturaComponent implements OnInit {
     this.nextWebcam.next(directionOrDeviceId);
   }
 
+
+
   public handleImage(webcamImage: WebcamImage): void {
-    this.index = this.webcamImage.length;
-    this.webcamImage[this.index] = webcamImage ;
+    this.cont = this.procedimento.listaimagem.length + 1;
+    const imagem = new Imagem();
+    const nomeprocedimento = ('000' + this.procedimento.procedimentomedico.codigo).slice(-3);
+    const contador = ('00' + this.cont).slice(-2);
+    const extensao = '.jpeg';
+    imagem.procedimentoatendimento.codigo = this.procedimento.codigo;
+    imagem.nomeimagem = nomeprocedimento + contador;
+    imagem.extensao = extensao;
+    imagem.imagem = webcamImage;
+    this.procedimento.listaimagem.push(imagem);
+
   }
 
   public cameraWasSwitched(deviceId: string): void {

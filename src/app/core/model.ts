@@ -1,3 +1,4 @@
+import { WebcamImage } from 'ngx-webcam';
 export class Study {
   idstudy: number;
   accessionnumber: string;

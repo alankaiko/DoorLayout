@@ -13,10 +13,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 const config = {
-  webWorkerPath: 'assets/cornerstoneWADOImageLoaderWebWorker.js',
+  webWorkerPath: '/assets/cornerstoneWADOImageLoaderWebWorker.js',
   taskConfiguration: {
     decodeTask: {
-        codecsPath: 'assets/cornerstoneWADOImageLoaderCodecs.js'
+        codecsPath: '/assets/cornerstoneWADOImageLoaderCodecs.js'
     }
   }
 };
