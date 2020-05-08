@@ -27,14 +27,14 @@
             <div class="ui-g-12 linhas">
               <div class="ui-g-12 linhas">
                 <label>Nome</label>
-                <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+                <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
               </div>
             </div>
 
             <div class="ui-g-12 linhas">
               <div class="ui-g-12 linhas">
                 <label>Observações</label>
-                <textarea style="width: 100% ;height: 60px;" pInputTextarea ng-model="text" name="observacoes" formControlName="observacoes"></textarea>
+                <textarea style="width: 100% ;height: 60px; text-transform: uppercase;" pInputTextarea ng-model="text" name="observacoes" formControlName="observacoes"></textarea>
               </div>
             </div>
           </div>
@@ -49,29 +49,29 @@
 
                 <div class="ui-g-2 linhas" style="display: inline-grid;">
                   <label>Estado</label>
-                  <input style="width: 95%;" pInputText ng-model="text" name="estado" formControlName="estado"/>
+                  <input style="width: 95%; text-transform: uppercase;" pInputText ng-model="text" name="estado" formControlName="estado"/>
                 </div>
 
                 <div class="ui-g-4 linhas" style="display: inline-grid;">
                   <label>Cidade</label>
-                  <input style="width: 95%;" pInputText ng-model="text" name="cidade" formControlName="cidade"/>
+                  <input style="width: 95%; text-transform: uppercase;" pInputText ng-model="text" name="cidade" formControlName="cidade"/>
                 </div>
 
                 <div class="ui-g-4 linhas" style="display: inline-grid;">
                   <label>Bairro</label>
-                  <input pInputText ng-model="text" name="bairro" formControlName="bairro"/>
+                  <input style="text-transform: uppercase;" pInputText ng-model="text" name="bairro" formControlName="bairro"/>
                 </div>
               </div>
 
               <div class="ui-g-12 linhas" formGroupName="endereco">
                 <div class="ui-g-6 linhas" style="display: inline-grid;">
                   <label>Logradouro</label>
-                  <input style="width: 95%;" pInputText ng-model="text" name="logradouro" formControlName="logradouro"/>
+                  <input style="width: 95%; text-transform: uppercase;" pInputText ng-model="text" name="logradouro" formControlName="logradouro"/>
                 </div>
 
                 <div class="ui-g-6 linhas" style="display: inline-grid;">
                   <label>Complemento</label>
-                  <input pInputText ng-model="text" name="complemento" formControlName="complemento"/>
+                  <input style="text-transform: uppercase;" pInputText ng-model="text" name="complemento" formControlName="complemento"/>
                 </div>
               </div>
 
@@ -94,7 +94,7 @@
 
               <div class="ui-g-12 linhas" style="display: inline-grid;">
                 <label>Nome do contato</label>
-                <input pInputText ng-model="text" name="nomedocontato" formControlName="nomedocontato"/>
+                <input style="text-transform: uppercase;" pInputText ng-model="text" name="nomedocontato" formControlName="nomedocontato"/>
               </div>
             </div>
         </p-tabPanel>

@@ -9,7 +9,7 @@
   <div class="row">
     <p-table id="tabela" [responsive]="true" [paginator]="true" (onLazyLoad)="aoMudarPagina($event)"
       [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" [value]="patients"
-      class="table table-striped table-bordered table-hover">
+      class="tabela table table-striped table-bordered table-hover">
       <ng-template pTemplate="header">
         <tr>
           <th class="center" style="width: 6%; text-align: center;">Show</th>

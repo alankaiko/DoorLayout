@@ -1,30 +1,18 @@
 <div class="conteudogeral">
   <section class="ui-g ui-fluid">
-    <section class="ui-g-12">
-      <div class="ui-g-11">
-        <h4>Patient: {{patient?.patientname}}</h4>
+
+    <section class="ui-g-12" style="position: relative;">
+      <div class="ui-g-1">
+        <span></span>
+      </div>
+      <div class="ui-g-9">
+        {{patient?.patientname}}, possui um total de {{patient?.studyes.length}} Estudo(s)
       </div>
 
-      <div class="ui-g-1">
+      <div class="ui-g-2">
         <a routerLink="/servidor/listagem">
           <i class="fa fa-fw fa-undo" aria-hidden="true">Voltar</i>
         </a>
-      </div>
-    </section>
-
-    <section class="ui-g-12">
-      <div>
-        <div>
-          {{patient?.patientname}}, possui um total de {{patient?.studyes.length}} Estudo(s)
-        </div>
-
-        <div>
-          <span>Nome: {{patient?.patientname}}</span>
-        </div>
-
-        <div>
-          <span>Id: {{patient?.patientid}} </span>
-        </div>
       </div>
     </section>
 
@@ -40,7 +28,7 @@
           <div>
           <div class="row">
             <p-treeTable [value]="lista" selectionMode="single" [paginator]="true" [rows]="10"
-              dataKey="codigo" class="table table-striped table-bordered table-hover">
+              dataKey="codigo" class="tabela table table-striped table-bordered table-hover">
               <ng-template pTemplate="caption">
                 Total de {{patient?.studyes.length}} Estudo(s)
               </ng-template>

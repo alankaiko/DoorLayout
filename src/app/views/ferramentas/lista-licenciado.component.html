@@ -1,5 +1,5 @@
 <div class="ui-g">
-  <div class="ui-g-12">
+  <div class="ui-g-12 clearfix">
     <h3 class="header smaller lighter blue">Licenças</h3>
     <p-confirmDialog></p-confirmDialog>
     <div class="clearfix">
@@ -12,27 +12,27 @@
     <div class="row">
       <p-table id="tabela" [value]="licenciados" [responsive]="true" [paginator]="true" *ngIf="visible"
         [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros"
-        (onLazyLoad)="aoMudarPagina($event)" class="table table-striped table-bordered table-hover">
+        (onLazyLoad)="aoMudarPagina($event)" class="tabela table table-striped table-bordered table-hover">
         <ng-template pTemplate="header">
           <tr>
-            <th class="center" style="width: 8%;">Código</th>
-            <th class="center" style="width: 15%;">Razao Social</th>
-            <th class="center" style="width: 40%;">Licenciado Para</th>
-            <th class="center" style="width: 15%;">CNPJ</th>
-            <th class="center" style="width: 15%;">Telefone</th>
-            <th class="center" style="width: 15%;">Tipo de Licenca</th>
-            <th class="center" style="width: 7%; text-align: center;">Opções</th>
+            <th style="width: 8%;">Código</th>
+            <th style="width: 15%;">Razao Social</th>
+            <th style="width: 40%;">Licenciado Para</th>
+            <th style="width: 15%;">CNPJ</th>
+            <th style="width: 15%;">Telefone</th>
+            <th style="width: 15%;">Tipo de Licenca</th>
+            <th style="width: 7%; text-align: center;">Opções</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-licenciado>
           <tr>
-            <td class="center" style="text-align: center;">{{licenciado.codigo}}</td>
-            <td class="center"><a [routerLink]="['/ferramentas/listalicenciado', licenciado.codigo]">{{licenciado.razaosocial}}</a></td>
-            <td class="center">{{licenciado.licenciadopara}}</td>
-            <td class="center">{{licenciado.cnpj}}</td>
-            <td class="center">{{licenciado.telefone1}}</td>
-            <td class="center">{{licenciado.tipodelicenca}}</td>
-            <td class="center">
+            <td style="text-align: center;">{{licenciado.codigo}}</td>
+            <td><a [routerLink]="['/ferramentas/listalicenciado', licenciado.codigo]">{{licenciado.razaosocial}}</a></td>
+            <td>{{licenciado.licenciadopara}}</td>
+            <td>{{licenciado.cnpj}}</td>
+            <td>{{licenciado.telefone1}}</td>
+            <td>{{licenciado.tipodelicenca}}</td>
+            <td>
               <a class="tooltip-success" data-rel="tooltip" title="Editar" [routerLink]="['/ferramentas/listalicenciado', licenciado.codigo]">
                 <span class="blue">
                   <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>

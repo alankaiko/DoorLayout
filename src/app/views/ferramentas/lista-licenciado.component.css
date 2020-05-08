@@ -1,55 +1,63 @@
-:host /deep/ p-paginator .ui-paginator-bottom {
-  box-sizing: border-box;
-  border-top: 1px solid #b9b8b8;
+.icone {
+  font-size: 22px;
+  vertical-align: unset;
+  margin: 0 auto;
+	color: #007ad9;
+	-moz-transition: color 0.3s;
+	-o-transition: color 0.3s;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
 }
 
-:host /deep/ p-confirmdialog div {
-	outline: 0 none;
-	box-sizing: border-box;
-  background: #ffffff;
-  border: 1px solid #c2c2c2;
-	-webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-	-moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-	box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-	z-index: 1000;
+.tabela {
+  background-color: #E2E2E2;
+  position: relative;
 }
 
-:host /deep/ p-confirmdialog div .ui-dialog-content{
-  border-bottom: 1px solid #c2c2c2;
+:host /deep/ p-table .ui-dataview-header{
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    background-color: #333333;
+    background-image: -webkit-gradient(linear, left top, right top, from(#333333), to(#5A5D60));
+    background-image: -webkit-linear-gradient(left, #333333, #5A5D60);
+    border:1px solid #2C2C2C;
 }
 
-:host /deep/ p-confirmdialog div .ui-dialog-content span{
-  font-weight: bold;
-  font-size: 108%;
-  color: #CC0000;
+:host /deep/ p-table .ui-dataview-content{
+  border:1px solid #2C2C2C;
 }
 
-:host /deep/ p-table {
-  background-color:#ffffff;
-  border: 1px solid #b9b8b8;
-  margin-top: -1px;
+:host /deep/ p-table .ui-paginator-bottom {
+  border-bottom:1px solid rgba(44, 44, 44, 0.418);
+  border-left:1px solid rgba(44, 44, 44, 0.418);
+  border-right: 1px solid rgba(44, 44, 44, 0.418);
 }
 
-.header {
-  line-height: 28px;
-  margin-bottom: 16px;
-  margin-top: 18px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #CCC;
-  border-bottom-color: #b9bec2;
-  color: #478FCA;
+
+.page-content {
+  background-color: #FFF;
+  position: relative;
+  margin: 0;
+  padding: 8px 20px 24px;
+}
+
+.page-header {
+  margin: 0 0 12px;
+  border-bottom: 1px dotted #E2E2E2;
+  padding-bottom: 16px;
+  padding-top: 7px;
+}
+
+.page-header h1 {
+  padding: 0;
+  margin: 0 8px;
+  font-size: 24px;
   font-weight: lighter;
+  color: #2679B5;
 }
 
-.table-header {
-  background-color: #307ECC;
-  color: #FFF;
-  font-size: 14px;
-  line-height: 38px;
-  padding-left: 12px;
-  margin-bottom: 1px;
+.row {
+  width: 95%;
+  margin: 0 auto;
+  background-color: #fff;
 }
 
-.center {
-  text-align: center;
-}

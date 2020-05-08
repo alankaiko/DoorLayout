@@ -9,17 +9,28 @@
 	transition: color 0.3s;
 }
 
-:host /deep/ p-paginator .ui-paginator-bottom {
-  box-sizing: border-box;
-  border-top: 1px solid #b9b8b8;
+.tabela {
+  background-color: #E2E2E2;
+  position: relative;
 }
 
-:host /deep/ p-table {
-  background-color:#ffffff;
-  border: 1px solid #b9b8b8;
-  margin-top: -1px;
+:host /deep/ p-table .ui-dataview-header{
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    background-color: #333333;
+    background-image: -webkit-gradient(linear, left top, right top, from(#333333), to(#5A5D60));
+    background-image: -webkit-linear-gradient(left, #333333, #5A5D60);
+    border:1px solid #2C2C2C;
 }
 
+:host /deep/ p-table .ui-dataview-content{
+  border:1px solid #2C2C2C;
+}
+
+:host /deep/ p-table .ui-paginator-bottom {
+  border-bottom:1px solid rgba(44, 44, 44, 0.418);
+  border-left:1px solid rgba(44, 44, 44, 0.418);
+  border-right: 1px solid rgba(44, 44, 44, 0.418);
+}
 
 
 .page-content {
