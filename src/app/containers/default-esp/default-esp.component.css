@@ -51,3 +51,33 @@ p {
   margin-bottom: 1.5em;
 }
 
+.dropedo {
+  min-width: 180px;
+  position: relative;
+  padding: 10px 20px;
+  border-bottom: 1px solid #c8ced3;
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #23282c;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.dropedo i {
+  display: inline-block;
+    width: 20px;
+    margin-right: 10px;
+    margin-left: -10px;
+    color: #c8ced3;
+    text-align: center;
+}
+
+.dropedo:hover {
+  background-color: #b3b4b6;
+}
+

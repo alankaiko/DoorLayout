@@ -11,12 +11,15 @@ import { Router } from '@angular/router';
 export class DefaultEspComponent {
   public sidebarMinimized = false;
   public navItems = navItems;
-  verifica = false;
 
   constructor(private router: Router) {}
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
+  }
+
+  exibirLogo() {
+    return this.router.url === '/dashboard' || this.router.url === '/';
   }
 
   exibindoNavbar() {
