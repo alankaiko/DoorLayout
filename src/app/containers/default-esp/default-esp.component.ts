@@ -26,4 +26,8 @@ export class DefaultEspComponent {
     return this.router.url !== '/operacoes/captura';
   }
 
+  exibirRodape() {
+    return this.router.url.indexOf('/viewer') && this.router.url !== '/operacoes/captura';
+  }
+
 }
