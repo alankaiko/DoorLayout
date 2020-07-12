@@ -196,7 +196,7 @@ export class TelaLaudoComponent implements OnInit {
   }
 
   CarregarProcedimentos() {
-    this.service.BuscarPorId(this.atendimentoSelecionado)
+    this.service.BuscarPorIdLaudo(this.atendimentoSelecionado)
       .then(
         response => {
           this.atendimento = response;
@@ -223,6 +223,84 @@ export class TelaLaudoComponent implements OnInit {
       );
   }
 
+  ConfigurarLogotipo() {
+    const topo = document.getElementById('imagemtopo');
+    topo.setAttribute('style', 'width: 100%; margin: 0 auto; text-align: center;');
+    topo.innerHTML = '';
+
+    const imagem = document.createElement('img');
+    imagem.setAttribute('id', 'imagemtopomenu');
+    topo.appendChild(imagem);
+    imagem.setAttribute('style', 'width: 150px; height: 100px; margin-top: 40px;');
+    imagem.src = this.imagelogo;
+
+  }
+
+  ConfigurarInfoCliente() {
+    const info = document.getElementById('cabecalho');
+    info.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; border-top: 2px solid #000000; border-bottom: 2px solid #000000; margin-top: 20px;');
+    info.innerHTML = '';
+
+    const linha1 = document.createElement('div');
+    linha1.setAttribute('id', 'linha1');
+    linha1.setAttribute('style', 'width: 98%; display: inline-flex;');
+    info.appendChild(linha1);
+
+    const linha2 = document.createElement('div');
+    linha2.setAttribute('id', 'linha2');
+    linha2.setAttribute('style', 'width: 98%; display: inline-flex;');
+    info.appendChild(linha2);
+
+    const linha3 = document.createElement('div');
+    linha3.setAttribute('id', 'linha3');
+    linha3.setAttribute('style', 'width: 98%; display: inline-flex;');
+    info.appendChild(linha3);
+
+    const spannome = document.createElement('span');
+    spannome.setAttribute('style', 'width: 50%; text-align: left;');
+    spannome.innerHTML = 'PACIENTE: ' + this.atendimento.patient.patientname;
+    linha1.appendChild(spannome);
+
+    const spanatendimento = document.createElement('span');
+    spanatendimento.setAttribute('style', 'width: 50%; text-align: right;');
+    spanatendimento.innerHTML = 'ATENDIMENTO: ' + this.atendimento.codigo;
+    linha1.appendChild(spanatendimento);
+
+    const spandataatd = document.createElement('span');
+    spandataatd.setAttribute('style', 'width: 50%; text-align: left;');
+    spandataatd.innerHTML = 'Data Atendimento: ' + this.atendimento.dataatendimento;
+    linha2.appendChild(spandataatd);
+
+    const spannascimento = document.createElement('span');
+    spannascimento.setAttribute('style', 'width: 50%; text-align: right;');
+    spannascimento.innerHTML = 'Data Nasc: ' + this.atendimento.patient.birthday + ' Idade: ' + this.atendimento.patient.patientage;
+    linha2.appendChild(spannascimento);
+
+    const spansolicitante = document.createElement('span');
+    spansolicitante.setAttribute('style', 'width: 50%; text-align: left;');
+    spansolicitante.innerHTML = 'Dr. SOL.: ' + this.atendimento.solicitante.nome;
+    linha3.appendChild(spansolicitante);
+
+    const spanconvenio = document.createElement('span');
+    spanconvenio.setAttribute('style', 'width: 50%; text-align: right;');
+    spanconvenio.innerHTML = 'Convênio: ' + this.atendimento.convenio.nome;
+    linha3.appendChild(spanconvenio);
+  }
+
+  ConfigurarLabelProcedimento() {
+    const labels = document.getElementById('labelprocedimento');
+    labels.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; background-color: rgb(207, 207, 207); margin-top: 30px;');
+    labels.innerHTML = '';
+
+    const span = document.createElement('span');
+    span.setAttribute('id', 'labelproc');
+    labels.appendChild(span);
+    span.innerHTML = '' + this.procedimento.procedimentomedico.nome;
+    span.setAttribute('style', 'width: 150px; height: 100px; margin-top: 40px;');
+    //span.src = this.imagelogo;
+
+  }
+
   ConfiguraModelo(modeloselecionado) {
     const corpo = document.getElementById('corpo');
     corpo.innerHTML = '';
@@ -241,6 +319,10 @@ export class TelaLaudoComponent implements OnInit {
         this.modelo.customstring = this.modelo.customstring.replace('0;;setValor;;', '');
         corpo.innerHTML = this.modelo.customstring;
       });
+
+      this.ConfigurarLogotipo();
+      this.ConfigurarInfoCliente();
+      this.ConfigurarLabelProcedimento();
   }
 
   SalvandoDocumento() {

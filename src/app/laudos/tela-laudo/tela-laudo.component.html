@@ -57,42 +57,13 @@
       </div>
 
 
-      <div class="ui-g ui-fluid" id="contentDiv" style="width: 100%; height: 842px; border: solid 1px black; overflow: auto">
-        <div id="cabecalho" class="cabecalho ui-g" style="text-align: center; border: 1px solid;">
-          <img class="imagem" [attr.src]="imagelogo" style="margin:  0 auto; text-align: center;
-            vertical-align: middle; margin-top: 15px; width: 150px; height: 80px;">
-          <div class="dados" id="dados">
-            <div class="ui-g-6">
-              <span style="font-weight: bold; font-size: 85%;">PACIENTE</span>
-              <span style="font-weight: bold; font-size: 85%;">{{atendimento.patient.patientname}}</span>
-            </div>
-            <div class="ui-g-6" style=" text-align: right;">
-              <span style="font-weight: bold; font-size: 85%;">ATENDIMENTO</span>
-              <span style="font-weight: bold; font-size: 85%;">{{atendimento.codigo}}</span>
-            </div>
-            <div class="ui-g-6">
-              <span style="font-weight: bold; font-size: 85%;">ATENDIMENTO</span>
-              <span style="font-weight: bold; font-size: 85%;">{{atendimento.dataatendimento |  date:'dd/MM/yyyy' }}</span>
-            </div>
-            <div class="ui-g-6" style=" text-align: right;">
-                <span style="font-weight: bold; font-size: 85%;">Data Nasc</span>
-                <span style="font-weight: bold; font-size: 85%;">{{atendimento.patient.birthday}}</span>
-
-                <span style="font-weight: bold; font-size: 85%;">Idade</span>
-                <span style="font-weight: bold; font-size: 85%;">{{atendimento.patient.patientage}}</span>
-            </div>
-            <div class="ui-g-6">
-              <span style="font-weight: bold; font-size: 85%;">Dr. SOL.:</span>
-              <span style="font-weight: bold; font-size: 85%;">{{atendimento.solicitante.nome}}</span>
-            </div>
-            <div class="ui-g-6" style=" text-align: right;">
-              <span style="font-weight: bold; font-size: 85%;">Convênio</span>
-              <span style="font-weight: bold; font-size: 85%;">{{atendimento.convenio.nome}}</span>
-            </div>
-          </div>
-        </div>
+      <div class="ui-g ui-fluid" id="contentDiv" style="display: inline-grid; width: 100%; height: 842px; border: solid 1px black; overflow: auto">
+        <div id="imagemtopo" class="imagemtopo"></div>
+        <div id="cabecalho" class="cabecalho"></div>
+        <div id="labelprocedimento" class="labelprocedimento"></div>
 
         <div id="corpo" class="corpo" style="width: 93%; margin: 0 auto;"></div>
+
         <div id="assinatura" class="assinatura" style="width: 35%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px;">
           <div>
             <span>MÉDICO EXECUTANTE</span>

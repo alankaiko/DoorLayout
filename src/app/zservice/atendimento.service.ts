@@ -83,6 +83,17 @@ export class AtendimentoService {
 
    }
 
+   BuscarPorIdLaudo(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/${codigo}`)
+     .toPromise()
+     .then(response => {
+       const atendimento = response as Atendimento;
+       // this.converterStringsParaDatas([atendimento]);
+       return atendimento;
+     });
+
+  }
+
    Atualizar(atendimento: Atendimento): Promise<any> {
      return this.http.put(`${this.url}/${atendimento.codigo}`, atendimento)
       .toPromise()
