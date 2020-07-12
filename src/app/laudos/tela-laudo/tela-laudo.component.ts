@@ -49,7 +49,6 @@ export class TelaLaudoComponent implements OnInit {
     this.AdicionarListener();
     this.ConfBasicas();
     this.getImagemFromService();
-    this.MontarLaudo();
     this.CarregarAtendimentos();
   }
 
@@ -84,7 +83,6 @@ export class TelaLaudoComponent implements OnInit {
         unlinkWhenBackspaceAfterLink: true,
         smartOrderedList: true,
       })),
-      new RoosterJs.Watermark('Inserir Texto'),
       new RoosterJs.ImageResize(),
       new RoosterJs.TableResize(),
       new RoosterJs.PickerPlugin({
@@ -208,10 +206,19 @@ export class TelaLaudoComponent implements OnInit {
   }
 
   ConfigurarVariavel() {
-    this.servicemodelo.ListarPorProcedimento(this.procedimentoAtdSelecionado)
+    let codigoprocedimento;
+
+    this.serviceproc.BuscarCodProcedimento(this.procedimentoAtdSelecionado)
       .then(
         response => {
-          this.modelos = response.map(modelo => ({label: modelo.descricao, value: modelo.codigo}));
+          codigoprocedimento = response;
+
+          this.servicemodelo.ListarPorProcedimento(response)
+            .then(
+              resp => {
+                this.modelos = resp.map(modelo => ({label: modelo.descricao, value: modelo.codigo}));
+              }
+            );
         }
       );
   }
@@ -219,22 +226,21 @@ export class TelaLaudoComponent implements OnInit {
   ConfiguraModelo(modeloselecionado) {
     const corpo = document.getElementById('corpo');
     corpo.innerHTML = '';
-
     this.servicemodelo.BuscarPorId(modeloselecionado)
       .then(response => {
         this.modelo = response;
+        this.modelo.customstring = this.modelo.customstring.replace('1;;setValor;;', '');
         this.modelo.customstring = this.modelo.customstring.replace('2;;setValor;;', '');
+        this.modelo.customstring = this.modelo.customstring.replace('3;;setValor;;', '');
+        this.modelo.customstring = this.modelo.customstring.replace('4;;setValor;;', '');
+        this.modelo.customstring = this.modelo.customstring.replace('5;;setValor;;', '');
+        this.modelo.customstring = this.modelo.customstring.replace('6;;setValor;;', '');
+        this.modelo.customstring = this.modelo.customstring.replace('7;;setValor;;', '');
+        this.modelo.customstring = this.modelo.customstring.replace('8;;setValor;;', '');
+        this.modelo.customstring = this.modelo.customstring.replace('9;;setValor;;', '');
+        this.modelo.customstring = this.modelo.customstring.replace('0;;setValor;;', '');
         corpo.innerHTML = this.modelo.customstring;
       });
-  }
-
-  MontarLaudo() {
-    const tague = document.querySelector('.cabecalho');
-    tague.setAttribute('style', 'width: 100%; height: 250px;');
-
-    document.querySelector('.dados').setAttribute('style', 'width: 90%; margin: 0 auto; margin-top: 15px; border-top: 1px solid; border-bottom: 1px solid; display: inline-table;');
-
-
   }
 
   SalvandoDocumento() {

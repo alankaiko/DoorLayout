@@ -58,6 +58,15 @@ export class ProcedimentoatendimentoService {
       });
   }
 
+  BuscarCodProcedimento(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/codprocedimento/${codigo}`)
+      .toPromise()
+      .then(response => {
+        const codprocedimento = response as number;
+        return codprocedimento;
+      });
+  }
+
   Atualizar(procedimento: ProcedimentoAtendimento): Promise<any> {
     return this.http.put(`${this.url}/${procedimento.codigo}`, procedimento)
       .toPromise()
