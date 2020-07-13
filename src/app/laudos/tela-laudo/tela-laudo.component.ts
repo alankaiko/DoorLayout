@@ -146,10 +146,11 @@ export class TelaLaudoComponent implements OnInit {
   }
 
   ImprimirDocumento() {
-    const win = window.open();
-    win.document.write(this.editor.getContent());
-    // win.document.getElementsByTagName('body')[0].style.marginBottom = '0';
+    const editore = this.editor;
 
+    const win = window.open();
+    win.document.write(editore.getContent());
+    // win.document.getElementsByTagName('body')[0].style.marginBottom = '0';
     win.document.close();
     win.print();
 
@@ -338,7 +339,7 @@ export class TelaLaudoComponent implements OnInit {
 
   ConfigurarAssinatura() {
     const assinatura = document.getElementById('assinatura');
-    assinatura.setAttribute('style', 'width: 35%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px;');
+    assinatura.setAttribute('style', 'width: 40%; position: absolute; bottom: 50px; text-align: center; border-top: 1px solid; margin-top: 80px; margin: 0 auto; margin-left: 30%;');
     assinatura.innerHTML = '';
 
     const span = document.createElement('span');
@@ -353,7 +354,7 @@ export class TelaLaudoComponent implements OnInit {
 
   ConfigurarRodape() {
     const rodape = document.getElementById('rodape');
-    rodape.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px;');
+    rodape.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px; position: absolute; bottom: 0;');
     rodape.innerHTML = '';
 
     const span = document.createElement('span');
@@ -367,7 +368,5 @@ export class TelaLaudoComponent implements OnInit {
   SalvandoDocumento() {
     // const divHeight = document.getElementById('contentDiv');
     // console.log(this.editor.getBlockElementAtNode);
-    const aff = document.getElementById('corpo');
-    console.log(aff.offsetHeight);
   }
 }
