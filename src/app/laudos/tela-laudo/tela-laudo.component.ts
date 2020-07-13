@@ -1,3 +1,4 @@
+import { getTestBed } from '@angular/core/testing';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { ModelolaudoprocService } from './../../zservice/modelolaudoproc.service';
@@ -6,6 +7,7 @@ import { ParametrodosistemaService } from './../../zservice/parametrodosistema.s
 import { Component, OnInit } from '@angular/core';
 import * as RoosterJs from 'roosterjs';
 import { Editor, DefaultFormat, Alignment, Direction } from 'roosterjs';
+import { style } from '@angular/animations';
 export * from 'roosterjs-editor-types';
 export * from 'roosterjs-editor-dom';
 export * from 'roosterjs-editor-core';
@@ -75,7 +77,6 @@ export class TelaLaudoComponent implements OnInit {
 
     const plugins = [
       new RoosterJs.HyperLink(url => 'Ctrl+Click to follow the link:' + url),
-      new RoosterJs.Paste(),
       new RoosterJs.ContentEdit(Object.assign(RoosterJs.getDefaultContentEditFeatures(), {
         outdentWhenEnterOnEmptyLine: true,
         mergeInNewLineWhenBackspaceOnFirstChar: true,
@@ -147,8 +148,13 @@ export class TelaLaudoComponent implements OnInit {
   ImprimirDocumento() {
     const win = window.open();
     win.document.write(this.editor.getContent());
+    // win.document.getElementsByTagName('body')[0].style.marginBottom = '0';
+
     win.document.close();
     win.print();
+
+    const na = $( '.corpo' ).length;
+    console.log(na);
   }
 
   ExportarDocumento() {
@@ -289,20 +295,23 @@ export class TelaLaudoComponent implements OnInit {
 
   ConfigurarLabelProcedimento() {
     const labels = document.getElementById('labelprocedimento');
-    labels.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; background-color: rgb(207, 207, 207); margin-top: 30px;');
+    labels.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; background-color: #cfcfcf; margin-top: 30px;');
     labels.innerHTML = '';
 
     const span = document.createElement('span');
     span.setAttribute('id', 'labelproc');
     labels.appendChild(span);
-    span.innerHTML = '' + this.procedimento.procedimentomedico.nome;
-    span.setAttribute('style', 'width: 150px; height: 100px; margin-top: 40px;');
-    //span.src = this.imagelogo;
-
+    this.procedimentosAtd.forEach(elo => {
+      if (elo.value === this.procedimentoAtdSelecionado) {
+        span.innerHTML = elo.label;
+      }
+    });
+    span.setAttribute('style', 'text-transform: uppercase; font-weight: bold; font-family: Arial, Helvetica, sans-serif;');
   }
 
   ConfiguraModelo(modeloselecionado) {
     const corpo = document.getElementById('corpo');
+    corpo.setAttribute('style', 'width: 93%;margin: 0 auto;  margin-top: 30px;');
     corpo.innerHTML = '';
     this.servicemodelo.BuscarPorId(modeloselecionado)
       .then(response => {
@@ -323,9 +332,42 @@ export class TelaLaudoComponent implements OnInit {
       this.ConfigurarLogotipo();
       this.ConfigurarInfoCliente();
       this.ConfigurarLabelProcedimento();
+      this.ConfigurarAssinatura();
+      this.ConfigurarRodape();
   }
 
-  SalvandoDocumento() {
+  ConfigurarAssinatura() {
+    const assinatura = document.getElementById('assinatura');
+    assinatura.setAttribute('style', 'width: 35%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px;');
+    assinatura.innerHTML = '';
 
+    const span = document.createElement('span');
+    span.setAttribute('id', 'labelassinatura');
+    assinatura.appendChild(span);
+    span.innerHTML = 'MÉDICO EXECUTANTE <br>'
+      + this.atendimento.solicitante.conselho.sigla.descricao + ' '
+      + this.atendimento.solicitante.conselho.estado.uf + ' '
+      + this.atendimento.solicitante.conselho.descricao;
+
+  }
+
+  ConfigurarRodape() {
+    const rodape = document.getElementById('rodape');
+    rodape.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px;');
+    rodape.innerHTML = '';
+
+    const span = document.createElement('span');
+    span.setAttribute('id', 'labelrodape');
+    rodape.appendChild(span);
+    span.innerHTML = 'Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264';
+    // textarea.value.match(/\n/g).length + 1;
+  }
+
+
+  SalvandoDocumento() {
+    // const divHeight = document.getElementById('contentDiv');
+    // console.log(this.editor.getBlockElementAtNode);
+    const aff = document.getElementById('corpo');
+    console.log(aff.offsetHeight);
   }
 }
