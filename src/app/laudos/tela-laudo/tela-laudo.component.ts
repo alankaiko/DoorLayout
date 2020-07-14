@@ -40,6 +40,8 @@ export class TelaLaudoComponent implements OnInit {
   atendimentoSelecionado: number;
   procedimentoAtdSelecionado: number;
   modeloselecionado: number;
+  valordomodelooriginal: any;
+  teste: any;
 
 
   constructor(private servicoparametro: ParametrodosistemaService,
@@ -146,16 +148,15 @@ export class TelaLaudoComponent implements OnInit {
   }
 
   ImprimirDocumento() {
-    const editore = this.editor;
-
     const win = window.open();
-    win.document.write(editore.getContent());
-    // win.document.getElementsByTagName('body')[0].style.marginBottom = '0';
+    win.document.write(this.ConfigurarLogotipo());
+    win.document.write(this.ConfigurarInfoCliente());
+    win.document.write(this.ConfigurarLabelProcedimento());
+    win.document.write(this.editor.getContent());
+    win.document.write(this.ConfigurarAssinatura());
+    win.document.write(this.ConfigurarRodape());
     win.document.close();
     win.print();
-
-    const na = $( '.corpo' ).length;
-    console.log(na);
   }
 
   ExportarDocumento() {
@@ -231,83 +232,22 @@ export class TelaLaudoComponent implements OnInit {
   }
 
   ConfigurarLogotipo() {
-    const topo = document.getElementById('imagemtopo');
-    topo.setAttribute('style', 'width: 100%; margin: 0 auto; text-align: center;');
-    topo.innerHTML = '';
-
-    const imagem = document.createElement('img');
-    imagem.setAttribute('id', 'imagemtopomenu');
-    topo.appendChild(imagem);
-    imagem.setAttribute('style', 'width: 150px; height: 100px; margin-top: 40px;');
-    imagem.src = this.imagelogo;
-
+    return '<div class="imagemtopo" id="imagemtopo" style="width: 100%; margin: 0 auto; text-align: center;"><img id="imagemtopomenu" style="width: 150px; height: 100px; margin-top: 40px;" src="' + this.imagelogo + '"></div>';
   }
 
   ConfigurarInfoCliente() {
-    const info = document.getElementById('cabecalho');
-    info.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; border-top: 2px solid #000000; border-bottom: 2px solid #000000; margin-top: 20px;');
-    info.innerHTML = '';
-
-    const linha1 = document.createElement('div');
-    linha1.setAttribute('id', 'linha1');
-    linha1.setAttribute('style', 'width: 98%; display: inline-flex;');
-    info.appendChild(linha1);
-
-    const linha2 = document.createElement('div');
-    linha2.setAttribute('id', 'linha2');
-    linha2.setAttribute('style', 'width: 98%; display: inline-flex;');
-    info.appendChild(linha2);
-
-    const linha3 = document.createElement('div');
-    linha3.setAttribute('id', 'linha3');
-    linha3.setAttribute('style', 'width: 98%; display: inline-flex;');
-    info.appendChild(linha3);
-
-    const spannome = document.createElement('span');
-    spannome.setAttribute('style', 'width: 50%; text-align: left;');
-    spannome.innerHTML = 'PACIENTE: ' + this.atendimento.patient.patientname;
-    linha1.appendChild(spannome);
-
-    const spanatendimento = document.createElement('span');
-    spanatendimento.setAttribute('style', 'width: 50%; text-align: right;');
-    spanatendimento.innerHTML = 'ATENDIMENTO: ' + this.atendimento.codigo;
-    linha1.appendChild(spanatendimento);
-
-    const spandataatd = document.createElement('span');
-    spandataatd.setAttribute('style', 'width: 50%; text-align: left;');
-    spandataatd.innerHTML = 'Data Atendimento: ' + this.atendimento.dataatendimento;
-    linha2.appendChild(spandataatd);
-
-    const spannascimento = document.createElement('span');
-    spannascimento.setAttribute('style', 'width: 50%; text-align: right;');
-    spannascimento.innerHTML = 'Data Nasc: ' + this.atendimento.patient.birthday + ' Idade: ' + this.atendimento.patient.patientage;
-    linha2.appendChild(spannascimento);
-
-    const spansolicitante = document.createElement('span');
-    spansolicitante.setAttribute('style', 'width: 50%; text-align: left;');
-    spansolicitante.innerHTML = 'Dr. SOL.: ' + this.atendimento.solicitante.nome;
-    linha3.appendChild(spansolicitante);
-
-    const spanconvenio = document.createElement('span');
-    spanconvenio.setAttribute('style', 'width: 50%; text-align: right;');
-    spanconvenio.innerHTML = 'Convênio: ' + this.atendimento.convenio.nome;
-    linha3.appendChild(spanconvenio);
+    return '<div class="cabecalho" id="cabecalho" style="width: 93%; margin: 0 auto; text-align: center; border-top: 2px solid #000000; border-bottom: 2px solid #000000; margin-top: 20px;"><div id="linha1" style="width: 98%; display: inline-flex;"><span style="width: 50%; text-align: left;">PACIENTE: ' + this.atendimento.patient.patientname + '</span><span style="width: 50%; text-align: right;">ATENDIMENTO: ' + this.atendimento.codigo + '</span></div><div id="linha2" style="width: 98%; display: inline-flex;"><span style="width: 50%; text-align: left;">Data Atendimento: ' + this.atendimento.dataatendimento + '</span><span style="width: 50%; text-align: right;">Data Nasc: ' + this.atendimento.patient.birthday + ' Idade: ' + this.atendimento.patient.patientage + '</span></div><div id="linha3" style="width: 98%; display: inline-flex;"><span style="width: 50%; text-align: left;">Dr. SOL.: ' + this.atendimento.solicitante.nome + '</span><span style="width: 50%; text-align: right;">Convênio: ' + this.atendimento.convenio.nome + '</span></div></div>';
   }
 
   ConfigurarLabelProcedimento() {
-    const labels = document.getElementById('labelprocedimento');
-    labels.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; background-color: #cfcfcf; margin-top: 30px;');
-    labels.innerHTML = '';
-
-    const span = document.createElement('span');
-    span.setAttribute('id', 'labelproc');
-    labels.appendChild(span);
+    let proc;
     this.procedimentosAtd.forEach(elo => {
       if (elo.value === this.procedimentoAtdSelecionado) {
-        span.innerHTML = elo.label;
+        proc = elo.label;
       }
     });
-    span.setAttribute('style', 'text-transform: uppercase; font-weight: bold; font-family: Arial, Helvetica, sans-serif;');
+
+    return '<div class="labelprocedimento" id="labelprocedimento" style="width: 93%; margin: 0 auto; text-align: center; background-color: #cfcfcf; margin-top: 30px;"><span id="labelproc" style="text-transform: uppercase; font-weight: bold; font-family: Arial, Helvetica, sans-serif;">' + proc + '</span></div>';
   }
 
   ConfiguraModelo(modeloselecionado) {
@@ -329,39 +269,17 @@ export class TelaLaudoComponent implements OnInit {
         this.modelo.customstring = this.modelo.customstring.replace('0;;setValor;;', '');
         corpo.innerHTML = this.modelo.customstring;
       });
-
-      this.ConfigurarLogotipo();
-      this.ConfigurarInfoCliente();
-      this.ConfigurarLabelProcedimento();
-      this.ConfigurarAssinatura();
-      this.ConfigurarRodape();
   }
 
   ConfigurarAssinatura() {
-    const assinatura = document.getElementById('assinatura');
-    assinatura.setAttribute('style', 'width: 40%; position: absolute; bottom: 50px; text-align: center; border-top: 1px solid; margin-top: 80px; margin: 0 auto; margin-left: 30%;');
-    assinatura.innerHTML = '';
-
-    const span = document.createElement('span');
-    span.setAttribute('id', 'labelassinatura');
-    assinatura.appendChild(span);
-    span.innerHTML = 'MÉDICO EXECUTANTE <br>'
+    return '<div class="assinatura" id="assinatura" style="width: 40%; position: absolute; bottom: 50px; text-align: center; border-top: 1px solid; margin-top: 80px; margin: 0 auto; margin-left: 30%;"><span id="labelassinatura">MÉDICO EXECUTANTE <br>'
       + this.atendimento.solicitante.conselho.sigla.descricao + ' '
       + this.atendimento.solicitante.conselho.estado.uf + ' '
-      + this.atendimento.solicitante.conselho.descricao;
-
+      + this.atendimento.solicitante.conselho.descricao + '</span></div>';
   }
 
   ConfigurarRodape() {
-    const rodape = document.getElementById('rodape');
-    rodape.setAttribute('style', 'width: 93%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px; position: absolute; bottom: 0;');
-    rodape.innerHTML = '';
-
-    const span = document.createElement('span');
-    span.setAttribute('id', 'labelrodape');
-    rodape.appendChild(span);
-    span.innerHTML = 'Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264';
-    // textarea.value.match(/\n/g).length + 1;
+    return '<div class="rodape" id="rodape" style="width: 93%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px; position: absolute; bottom: 0;"><span id="labelrodape">Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264</span></div>';
   }
 
 
