@@ -1,5 +1,5 @@
 import { getTestBed } from '@angular/core/testing';
-import { AtendimentoService } from './../../zservice/atendimento.service';
+import { AtendimentoService, PdfFiltroDados } from './../../zservice/atendimento.service';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { ModelolaudoprocService } from './../../zservice/modelolaudoproc.service';
 import { ModeloLaudoProc, Atendimento, ProcedimentoAtendimento } from './../../core/model';
@@ -286,5 +286,24 @@ export class TelaLaudoComponent implements OnInit {
   SalvandoDocumento() {
     // const divHeight = document.getElementById('contentDiv');
     // console.log(this.editor.getBlockElementAtNode);
+    let proc;
+    this.procedimentosAtd.forEach(elo => {
+      if (elo.value === this.procedimentoAtdSelecionado) {
+        proc = elo.label;
+      }
+    });
+
+    const dados = new PdfFiltroDados();
+    dados.codigo = this.atendimento.codigo;
+    dados.procedimento = proc;
+    dados.executante = this.atendimento.solicitante.conselho.sigla.descricao + ' '
+      + this.atendimento.solicitante.conselho.estado.uf + ' '
+      + this.atendimento.solicitante.conselho.descricao;
+
+    this.service.PdfLaudo(dados)
+    .then(relatorio => {
+      const url = window.URL.createObjectURL(relatorio);
+      window.open(url);
+    });
   }
 }

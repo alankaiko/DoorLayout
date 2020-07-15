@@ -13,6 +13,12 @@ export class AtendimentoFilter {
   datafinal: Date;
 }
 
+export class PdfFiltroDados {
+  codigo: number;
+  procedimento: string;
+  executante: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -188,6 +194,23 @@ export class AtendimentoService {
     return this.http.get(`${this.url}/relatorios/atestado/${codigo}`,
       { responseType: 'blob' })
       .toPromise();
+  }
+
+  PdfLaudo(pdfdados: PdfFiltroDados) {
+    let params = new HttpParams({
+      fromObject: {
+      }
+    });
+
+    if (pdfdados.executante) {
+      params = params.append('executante', pdfdados.executante);
+    }
+
+    if (pdfdados.procedimento) {
+      params = params.append('executante', pdfdados.procedimento);
+    }
+
+    return this.http.get(`${this.url}?res`, { params: params, responseType: 'blob' }).toPromise();
   }
 
 }
