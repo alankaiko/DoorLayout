@@ -14,7 +14,6 @@ export class AtendimentoFilter {
 }
 
 export class PdfFiltroDados {
-  codigo: number;
   procedimento: string;
   executante: string;
 }
@@ -196,7 +195,7 @@ export class AtendimentoService {
       .toPromise();
   }
 
-  PdfLaudo(pdfdados: PdfFiltroDados) {
+  PdfLaudo(codigo: number, pdfdados: PdfFiltroDados) {
     let params = new HttpParams({
       fromObject: {
       }
@@ -207,10 +206,10 @@ export class AtendimentoService {
     }
 
     if (pdfdados.procedimento) {
-      params = params.append('executante', pdfdados.procedimento);
+      params = params.append('procedimento', pdfdados.procedimento);
     }
 
-    return this.http.get(`${this.url}?res`, { params: params, responseType: 'blob' }).toPromise();
+    return this.http.get(`${this.url}/pdflaudo/${codigo}?pdff`, { params: params, responseType: 'blob' }).toPromise();
   }
 
 }

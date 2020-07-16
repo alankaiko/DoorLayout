@@ -294,13 +294,12 @@ export class TelaLaudoComponent implements OnInit {
     });
 
     const dados = new PdfFiltroDados();
-    dados.codigo = this.atendimento.codigo;
     dados.procedimento = proc;
     dados.executante = this.atendimento.solicitante.conselho.sigla.descricao + ' '
       + this.atendimento.solicitante.conselho.estado.uf + ' '
       + this.atendimento.solicitante.conselho.descricao;
 
-    this.service.PdfLaudo(dados)
+    this.service.PdfLaudo(this.atendimento.codigo, dados)
     .then(relatorio => {
       const url = window.URL.createObjectURL(relatorio);
       window.open(url);
