@@ -29,7 +29,6 @@ export class TelaLaudoComponent implements OnInit {
   arquivoselecionado: File;
   editor: Editor;
   fileUrl;
-  monte: HTMLElement;
   imagelogo: any;
   modelos: any[];
   modelo = new ModeloLaudoProc();
@@ -157,6 +156,8 @@ export class TelaLaudoComponent implements OnInit {
     win.document.write(this.ConfigurarRodape());
     win.document.close();
     win.print();
+    console.log(this.editor.getContent());
+
   }
 
   ExportarDocumento() {

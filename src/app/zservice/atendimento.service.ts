@@ -73,9 +73,9 @@ export class AtendimentoService {
     return this.http.get(`${this.url}/listapac/${patientname}`).toPromise().then(response => response);
   }
 
-   Adicionar(atendimento: Atendimento): Promise<Atendimento> {
+  Adicionar(atendimento: Atendimento): Promise<Atendimento> {
     return this.http.post<Atendimento>(this.url, atendimento).toPromise();
-   }
+  }
 
    BuscarPorId(codigo: number): Promise<any> {
      return this.http.get(`${this.url}/${codigo}`)
