@@ -142,6 +142,32 @@ export const routes: Routes = [
     path: '',
     component: DefaultEspComponent,
     data: {
+      title: 'Laudos'
+    },
+    children: [
+      {
+        path: 'operacoes/laudos-teste',
+        component: LaudoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultEspComponent,
+    data: {
+      title: 'Laudos'
+    },
+    children: [
+      {
+        path: 'operacoes/laudos-teste/:cod',
+        component: LaudoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultEspComponent,
+    data: {
       title: 'Inserir Imagens'
     },
     children: [

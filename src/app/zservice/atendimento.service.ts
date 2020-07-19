@@ -16,6 +16,7 @@ export class AtendimentoFilter {
 export class PdfFiltroDados {
   procedimento: string;
   executante: string;
+  codigoprocedimento: string;
 }
 
 @Injectable({
@@ -207,6 +208,10 @@ export class AtendimentoService {
 
     if (pdfdados.procedimento) {
       params = params.append('procedimento', pdfdados.procedimento);
+    }
+
+    if (pdfdados.codigoprocedimento) {
+      params = params.append('codigoprocedimento', pdfdados.codigoprocedimento);
     }
 
     return this.http.get(`${this.url}/pdflaudo/${codigo}?pdff`, { params: params, responseType: 'blob' }).toPromise();

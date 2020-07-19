@@ -29,6 +29,7 @@ import { CoreModule } from './core/core.module';
 import {WebcamModule} from 'ngx-webcam';
 import {TabViewModule} from 'primeng/components/tabview/tabview';
 import * as $ from 'jquery';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import {FileUploadModule} from 'primeng/components/fileupload/fileupload';
 import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
 import { CadastroProfissionalexecComponent } from './views/formularios/cadastro-profissionalexec.component';
@@ -43,6 +44,7 @@ import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
 import { CheckboxModule } from 'primeng/components/checkbox/checkbox';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import {TreeTableModule} from 'primeng/treetable';
+
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {EditorModule} from 'primeng/components/editor/editor';
 import {InputMaskModule} from 'primeng/components/inputmask/inputmask';
@@ -131,7 +133,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     TabViewModule,
     ReactiveFormsModule,
     EditorModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    DragDropModule
   ],
   declarations: [
     AppComponent,

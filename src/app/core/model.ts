@@ -433,3 +433,11 @@ export class ModeloLaudoProc {
   procedimentomedico = new ProcedimentoMedico();
 }
 
+export class ModeloLaudoClienteSalvo {
+  codigo: number;
+  descricao: string;
+  customstring: string;
+  prioridade: number;
+  procedimentomedico = new ProcedimentoMedico();
+}
+

@@ -1,8 +1,9 @@
+import { ModelolaudoclientesalvoService } from './../../zservice/modelolaudoclientesalvo.service';
 import { getTestBed } from '@angular/core/testing';
 import { AtendimentoService, PdfFiltroDados } from './../../zservice/atendimento.service';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { ModelolaudoprocService } from './../../zservice/modelolaudoproc.service';
-import { ModeloLaudoProc, Atendimento, ProcedimentoAtendimento } from './../../core/model';
+import { ModeloLaudoProc, Atendimento, ProcedimentoAtendimento, ModeloLaudoClienteSalvo } from './../../core/model';
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { Component, OnInit } from '@angular/core';
 import * as RoosterJs from 'roosterjs';
@@ -46,7 +47,8 @@ export class TelaLaudoComponent implements OnInit {
   constructor(private servicoparametro: ParametrodosistemaService,
               private servicemodelo: ModelolaudoprocService,
               private serviceproc: ProcedimentoatendimentoService,
-              private service: AtendimentoService) { }
+              private service: AtendimentoService,
+              private servicemodelosalvo: ModelolaudoclientesalvoService) { }
 
   ngOnInit(): void {
     this.AdicionarListener();
@@ -148,6 +150,7 @@ export class TelaLaudoComponent implements OnInit {
 
   ImprimirDocumento() {
     const win = window.open();
+
     win.document.write(this.ConfigurarLogotipo());
     win.document.write(this.ConfigurarInfoCliente());
     win.document.write(this.ConfigurarLabelProcedimento());
@@ -287,6 +290,12 @@ export class TelaLaudoComponent implements OnInit {
   SalvandoDocumento() {
     // const divHeight = document.getElementById('contentDiv');
     // console.log(this.editor.getBlockElementAtNode);
+    const salvo = new ModeloLaudoClienteSalvo();
+    salvo.customstring = this.editor.getContent();
+    salvo.descricao = this.modelo.descricao;
+    salvo.prioridade = this.modelo.prioridade;
+    salvo.procedimentomedico = this.modelo.procedimentomedico;
+
     let proc;
     this.procedimentosAtd.forEach(elo => {
       if (elo.value === this.procedimentoAtdSelecionado) {
@@ -294,16 +303,21 @@ export class TelaLaudoComponent implements OnInit {
       }
     });
 
-    const dados = new PdfFiltroDados();
-    dados.procedimento = proc;
-    dados.executante = this.atendimento.solicitante.conselho.sigla.descricao + ' '
-      + this.atendimento.solicitante.conselho.estado.uf + ' '
-      + this.atendimento.solicitante.conselho.descricao;
+    this.servicemodelosalvo.Adicionar(salvo).then(response => {
+      const dados = new PdfFiltroDados();
 
-    this.service.PdfLaudo(this.atendimento.codigo, dados)
-    .then(relatorio => {
-      const url = window.URL.createObjectURL(relatorio);
-      window.open(url);
+      dados.procedimento = proc;
+      dados.executante = this.atendimento.solicitante.conselho.sigla.descricao + ' '
+        + this.atendimento.solicitante.conselho.estado.uf + ' '
+        + this.atendimento.solicitante.conselho.descricao;
+      dados.codigoprocedimento = '1';
+
+      this.service.PdfLaudo(this.atendimento.codigo, dados)
+        .then(relatorio => {
+          const url = window.URL.createObjectURL(relatorio);
+          window.open(url);
+        }
+      );
     });
   }
 }

@@ -113,7 +113,6 @@ export class CapturaComponent implements OnInit {
       if (elo.codigo === this.procedimentosAtdSelecionado) {
         this.procedimento = elo;
         this.procedimento.codigoatdteste = this.atendimento.codigo;
-        this.procedimento.listaimagem = this.procedimento.listaimagem;
         this.procedimento.listaimagem.forEach((el) => {
           this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {
             const web = new WebcamImage(data, data, null);

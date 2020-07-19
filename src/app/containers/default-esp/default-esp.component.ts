@@ -23,11 +23,14 @@ export class DefaultEspComponent {
   }
 
   exibindoNavbar() {
-    return this.router.url !== '/operacoes/captura';
+    return this.router.url !== '/operacoes/captura'
+      && this.router.url !== '/operacoes/laudos-teste';
   }
 
   exibirRodape() {
-    return this.router.url.indexOf('/viewer') && this.router.url !== '/operacoes/captura';
+    return this.router.url.indexOf('/viewer')
+      && this.router.url !== '/operacoes/captura'
+      && this.router.url !== '/operacoes/laudos-teste';
   }
 
 }
