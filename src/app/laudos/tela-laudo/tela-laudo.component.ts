@@ -256,7 +256,7 @@ export class TelaLaudoComponent implements OnInit {
 
   ConfiguraModelo(modeloselecionado) {
     const corpo = document.getElementById('corpo');
-    corpo.setAttribute('style', 'width: 93%;margin: 0 auto;  margin-top: 30px;');
+    corpo.setAttribute('style', 'width: 93%;margin: 0 auto;  margin-top: 30px; position: relative');
     corpo.innerHTML = '';
     this.servicemodelo.BuscarPorId(modeloselecionado)
       .then(response => {
@@ -276,14 +276,14 @@ export class TelaLaudoComponent implements OnInit {
   }
 
   ConfigurarAssinatura() {
-    return '<div class="assinatura" id="assinatura" style="width: 40%; position: absolute; bottom: 50px; text-align: center; border-top: 1px solid; margin-top: 80px; margin: 0 auto; margin-left: 30%;"><span id="labelassinatura">MÉDICO EXECUTANTE <br>'
+    return '<div style="width: 100%; position: inherit; padding-top: 15px;"><div class="assinatura" id="assinatura" style="width: 40%; bottom: 50px; text-align: center; border-top: 1px solid; margin-top: 80px; margin: 0 auto; margin-left: 30%;"><span id="labelassinatura">MÉDICO EXECUTANTE <br>'
       + this.atendimento.solicitante.conselho.sigla.descricao + ' '
       + this.atendimento.solicitante.conselho.estado.uf + ' '
-      + this.atendimento.solicitante.conselho.descricao + '</span></div>';
+      + this.atendimento.solicitante.conselho.descricao + '</span></div></div>';
   }
 
   ConfigurarRodape() {
-    return '<div class="rodape" id="rodape" style="width: 93%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px; position: absolute; bottom: 0;"><span id="labelrodape">Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264</span></div>';
+    return '<div class="rodape" id="rodape" style="width: 93%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px; position: fixed; bottom: 0;"><span id="labelrodape">Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264</span></div>';
   }
 
 
