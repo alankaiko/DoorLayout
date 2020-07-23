@@ -111,7 +111,6 @@ export class TelaLaudoComponent implements OnInit {
     };
 
     const options: RoosterJs.EditorOptions = {plugins: plugins, defaultFormat: defaultFormat};
-
     this.editor = new RoosterJs.Editor(contentDiv, options);
 
     document.getElementById('buttonB').addEventListener('click', () => RoosterJs.toggleBold(this.editor));
@@ -136,7 +135,6 @@ export class TelaLaudoComponent implements OnInit {
 
     document.getElementById('buttonUndo').addEventListener('click', () => this.editor.undo());
     document.getElementById('buttonRedo').addEventListener('click', () => this.editor.redo());
-
   }
 
   inputFileChange(event) {
@@ -150,17 +148,11 @@ export class TelaLaudoComponent implements OnInit {
 
   ImprimirDocumento() {
     const win = window.open();
-
-    win.document.write(this.ConfigurarLogotipo());
-    win.document.write(this.ConfigurarInfoCliente());
-    win.document.write(this.ConfigurarLabelProcedimento());
-    win.document.write(this.editor.getContent());
-    win.document.write(this.ConfigurarAssinatura());
+    win.document.write(this.ConfigurarCabecalho());
+    win.document.write(this.ConfigurarTextoLaudo());
     win.document.write(this.ConfigurarRodape());
     win.document.close();
     win.print();
-    console.log(this.editor.getContent());
-
   }
 
   ExportarDocumento() {
@@ -235,27 +227,8 @@ export class TelaLaudoComponent implements OnInit {
       );
   }
 
-  ConfigurarLogotipo() {
-    return '<div class="imagemtopo" id="imagemtopo" style="width: 100%; margin: 0 auto; text-align: center;"><img id="imagemtopomenu" style="width: 150px; height: 100px; margin-top: 40px;" src="' + this.imagelogo + '"></div>';
-  }
-
-  ConfigurarInfoCliente() {
-    return '<div class="cabecalho" id="cabecalho" style="width: 93%; margin: 0 auto; text-align: center; border-top: 2px solid #000000; border-bottom: 2px solid #000000; margin-top: 20px;"><div id="linha1" style="width: 98%; display: inline-flex;"><span style="width: 50%; text-align: left;">PACIENTE: ' + this.atendimento.patient.patientname + '</span><span style="width: 50%; text-align: right;">ATENDIMENTO: ' + this.atendimento.codigo + '</span></div><div id="linha2" style="width: 98%; display: inline-flex;"><span style="width: 50%; text-align: left;">Data Atendimento: ' + this.atendimento.dataatendimento + '</span><span style="width: 50%; text-align: right;">Data Nasc: ' + this.atendimento.patient.birthday + ' Idade: ' + this.atendimento.patient.patientage + '</span></div><div id="linha3" style="width: 98%; display: inline-flex;"><span style="width: 50%; text-align: left;">Dr. SOL.: ' + this.atendimento.solicitante.nome + '</span><span style="width: 50%; text-align: right;">Convênio: ' + this.atendimento.convenio.nome + '</span></div></div>';
-  }
-
-  ConfigurarLabelProcedimento() {
-    let proc;
-    this.procedimentosAtd.forEach(elo => {
-      if (elo.value === this.procedimentoAtdSelecionado) {
-        proc = elo.label;
-      }
-    });
-
-    return '<div class="labelprocedimento" id="labelprocedimento" style="width: 93%; margin: 0 auto; text-align: center; background-color: #cfcfcf; margin-top: 30px;"><span id="labelproc" style="text-transform: uppercase; font-weight: bold; font-family: Arial, Helvetica, sans-serif;">' + proc + '</span></div>';
-  }
-
   ConfiguraModelo(modeloselecionado) {
-    const corpo = document.getElementById('corpo');
+    const corpo = document.getElementById('contentDiv');
     corpo.setAttribute('style', 'width: 93%;margin: 0 auto;  margin-top: 30px; position: relative');
     corpo.innerHTML = '';
     this.servicemodelo.BuscarPorId(modeloselecionado)
@@ -275,15 +248,94 @@ export class TelaLaudoComponent implements OnInit {
       });
   }
 
-  ConfigurarAssinatura() {
-    return '<div style="width: 100%; position: inherit; padding-top: 15px;"><div class="assinatura" id="assinatura" style="width: 40%; bottom: 50px; text-align: center; border-top: 1px solid; margin-top: 80px; margin: 0 auto; margin-left: 30%;"><span id="labelassinatura">MÉDICO EXECUTANTE <br>'
-      + this.atendimento.solicitante.conselho.sigla.descricao + ' '
-      + this.atendimento.solicitante.conselho.estado.uf + ' '
-      + this.atendimento.solicitante.conselho.descricao + '</span></div></div>';
+  private ConfigurarCabecalho() {
+    return '<div class="page-header" style="text-align: center; margin: 0 auto; height: 230px; position: fixed; top: 0mm; width: 93%; background-color: white;">'
+          +   '<div style="width: 100%;" class="logotip">'
+          +     '<img id="imagemtopomenu" style="width: 150px; height: 100px;" src="' + this.imagelogo + '">'
+          +   '</div>'
+
+          +   '<div class="cabecalho" id="cabecalho" style="width: 93%; margin: 0 auto; text-align: center; border-top: 2px solid #000000; border-bottom: 2px solid #000000; margin-top: 10px; padding-top: 5px; padding-bottom: 5px;">'
+          +     '<div id="linha1" style="width: 98%; display: inline-flex;">'
+          +       '<span style="width: 50%; text-align: left;">PACIENTE: ' + this.atendimento.patient.patientname + '</span>'
+          +       '<span style="width: 50%; text-align: right;">ATENDIMENTO: ' + this.atendimento.codigo + '</span>'
+          +     '</div>'
+
+          +     '<div id="linha2" style="width: 98%; display: inline-flex;">'
+          +       '<span style="width: 50%; text-align: left;">Data Atendimento: ' + this.atendimento.dataatendimento + '</span>'
+          +       '<span style="width: 50%; text-align: right;">Data Nasc: ' + this.atendimento.patient.birthday + ' Idade: ' + this.atendimento.patient.patientage + '</span>'
+          +     '</div>'
+
+          +     '<div id="linha3" style="width: 98%; display: inline-flex;">'
+          +       '<span style="width: 50%; text-align: left;">Dr. SOL.: ' + this.atendimento.solicitante.nome + '</span>'
+          +       '<span style="width: 50%; text-align: right;">Convênio: ' + this.atendimento.convenio.nome + '</span>'
+          +     '</div>'
+          +   '</div>'
+
+          +   '<div class="labelprocedimento" id="labelprocedimento" style="width: 93%; margin: 0 auto; text-align: center; background-color: #cfcfcf; margin-top: 30px;">'
+          +     '<span id="labelproc" style="text-transform: uppercase; font-weight: bold; font-family: Arial, Helvetica, sans-serif;">' + this.ConfigurarLabelProcedimento() + '</span>'
+          +   '</div>'
+          + '</div>';
   }
 
-  ConfigurarRodape() {
-    return '<div class="rodape" id="rodape" style="width: 93%; margin: 0 auto; text-align: center; border-top: 1px solid; margin-top: 80px; position: fixed; bottom: 0;"><span id="labelrodape">Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264</span></div>';
+  private ConfigurarLabelProcedimento() {
+    let proc;
+    this.procedimentosAtd.forEach(elo => {
+      if (elo.value === this.procedimentoAtdSelecionado) {
+        proc = elo.label;
+      }
+    });
+
+    return proc;
+  }
+
+  private ConfigurarTextoLaudo() {
+    return  '<table>'
+      +       '<thead>'
+      +         '<tr>'
+      +           '<td>'
+      +             '<div class="page-header-space" style="height: 230px;"></div>'
+      +           '</td>'
+      +         '</tr>'
+      +       '</thead>'
+
+      +       '<tbody>'
+      +         '<tr>'
+      +           '<td>'
+      +             '<div class="page" style="line-height: 3; width: 93%; margin: 0 auto;">' + this.editor.getContent() + '</div>'
+      +           '</td>'
+      +         '</tr>'
+      +         '<tr>'
+      +           '<td>'
+      +             '<div style="width: 100%; padding-top: 20px;">'
+      +               '<div class="assinatura" id="assinatura" style="width: 40%; text-align: center; border-top: 1px solid; margin-top: 80px; margin: 0 auto;">'
+      +                 '<span id="labelassinatura">MÉDICO EXECUTANTE <br>' + this.atendimento.solicitante.conselho.sigla.descricao + ' ' + this.atendimento.solicitante.conselho.estado.uf + ' ' + this.atendimento.solicitante.conselho.descricao + '</span>'
+      +               '</div>'
+      +             '</div>'
+      +           '</td>'
+      +         '</tr>'
+      +       '</tbody>'
+
+      +       '<tfoot>'
+      +         '<tr>'
+      +           '<td>'
+      +             '<div class="page-footer-space" style="height: 25px;"></div>'
+      +           '</td>'
+      +         '</tr>'
+      +       '</tfoot>'
+      +      '</table>';
+  }
+
+  ConfigurarAssinatura() {
+    return 'MÉDICO EXECUTANTE <br>'
+      + this.atendimento.solicitante.conselho.sigla.descricao + ' '
+      + this.atendimento.solicitante.conselho.estado.uf + ' '
+      + this.atendimento.solicitante.conselho.descricao;
+  }
+
+  private ConfigurarRodape() {
+    return  '<div class="page-footer" style="height: 25px; position: fixed; bottom: 0; width: 93%; border-top: 1px solid black; text-align: center; border-top: 1px solid #000;">'
+      +       '<span id="labelrodape">Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264</span>'
+      +     '</div>';
   }
 
 
