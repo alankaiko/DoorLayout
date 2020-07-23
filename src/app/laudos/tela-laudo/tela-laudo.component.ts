@@ -152,8 +152,12 @@ export class TelaLaudoComponent implements OnInit {
     win.document.write(this.ConfigurarTextoLaudo());
     win.document.write(this.ConfigurarRodape());
     win.document.close();
-    win.print();
+
+    setTimeout(() => {
+      win.print();
+    }, 5);
   }
+
 
   ExportarDocumento() {
     const win = window.open();
@@ -229,7 +233,7 @@ export class TelaLaudoComponent implements OnInit {
 
   ConfiguraModelo(modeloselecionado) {
     const corpo = document.getElementById('contentDiv');
-    corpo.setAttribute('style', 'width: 93%;margin: 0 auto;  margin-top: 30px; position: relative');
+    corpo.setAttribute('style', 'width: 93%; margin: 0 auto;  margin-top: 30px; position: relative');
     corpo.innerHTML = '';
     this.servicemodelo.BuscarPorId(modeloselecionado)
       .then(response => {
@@ -254,20 +258,20 @@ export class TelaLaudoComponent implements OnInit {
           +     '<img id="imagemtopomenu" style="width: 150px; height: 100px;" src="' + this.imagelogo + '">'
           +   '</div>'
 
-          +   '<div class="cabecalho" id="cabecalho" style="width: 93%; margin: 0 auto; text-align: center; border-top: 2px solid #000000; border-bottom: 2px solid #000000; margin-top: 10px; padding-top: 5px; padding-bottom: 5px;">'
+          +   '<div class="cabecalho" id="cabecalho" style="width: 100%; margin: 0 auto; text-align: center; border-top: 2px solid #000000; border-bottom: 2px solid #000000; margin-top: 10px; padding-top: 5px; padding-bottom: 5px;">'
           +     '<div id="linha1" style="width: 98%; display: inline-flex;">'
-          +       '<span style="width: 50%; text-align: left;">PACIENTE: ' + this.atendimento.patient.patientname + '</span>'
-          +       '<span style="width: 50%; text-align: right;">ATENDIMENTO: ' + this.atendimento.codigo + '</span>'
+          +       '<span style="width: 50%; text-align: left; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">PACIENTE: ' + this.atendimento.patient.patientname.toUpperCase() + '</span>'
+          +       '<span style="width: 50%; text-align: right; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">ATENDIMENTO: ' + this.ConfereAtendimento() + '</span>'
           +     '</div>'
 
           +     '<div id="linha2" style="width: 98%; display: inline-flex;">'
-          +       '<span style="width: 50%; text-align: left;">Data Atendimento: ' + this.atendimento.dataatendimento + '</span>'
-          +       '<span style="width: 50%; text-align: right;">Data Nasc: ' + this.atendimento.patient.birthday + ' Idade: ' + this.atendimento.patient.patientage + '</span>'
+          +       '<span style="width: 50%; text-align: left; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">Data Atendimento: ' + this.atendimento.dataatendimento + '</span>'
+          +       '<span style="width: 50%; text-align: right; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">Data Nasc: ' + this.atendimento.patient.birthday + ' Idade: ' + this.atendimento.patient.patientage + '</span>'
           +     '</div>'
 
           +     '<div id="linha3" style="width: 98%; display: inline-flex;">'
-          +       '<span style="width: 50%; text-align: left;">Dr. SOL.: ' + this.atendimento.solicitante.nome + '</span>'
-          +       '<span style="width: 50%; text-align: right;">Convênio: ' + this.atendimento.convenio.nome + '</span>'
+          +       '<span style="width: 50%; text-align: left; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">Dr. SOL.: ' + this.atendimento.solicitante.nome + '</span>'
+          +       '<span style="width: 50%; text-align: right; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">Convênio: ' + this.atendimento.convenio.nome + '</span>'
           +     '</div>'
           +   '</div>'
 
@@ -275,6 +279,10 @@ export class TelaLaudoComponent implements OnInit {
           +     '<span id="labelproc" style="text-transform: uppercase; font-weight: bold; font-family: Arial, Helvetica, sans-serif;">' + this.ConfigurarLabelProcedimento() + '</span>'
           +   '</div>'
           + '</div>';
+  }
+
+  private ConfereAtendimento() {
+    return ('0000000' + this.atendimento.codigo).slice(-7);
   }
 
   private ConfigurarLabelProcedimento() {
@@ -308,7 +316,7 @@ export class TelaLaudoComponent implements OnInit {
       +           '<td>'
       +             '<div style="width: 100%; padding-top: 20px;">'
       +               '<div class="assinatura" id="assinatura" style="width: 40%; text-align: center; border-top: 1px solid; margin-top: 80px; margin: 0 auto;">'
-      +                 '<span id="labelassinatura">MÉDICO EXECUTANTE <br>' + this.atendimento.solicitante.conselho.sigla.descricao + ' ' + this.atendimento.solicitante.conselho.estado.uf + ' ' + this.atendimento.solicitante.conselho.descricao + '</span>'
+      +                 '<span id="labelassinatura">' + this.ConfigurarAssinatura() + '</span>'
       +               '</div>'
       +             '</div>'
       +           '</td>'
@@ -325,15 +333,15 @@ export class TelaLaudoComponent implements OnInit {
       +      '</table>';
   }
 
-  ConfigurarAssinatura() {
+  private ConfigurarAssinatura() {
     return 'MÉDICO EXECUTANTE <br>'
       + this.atendimento.solicitante.conselho.sigla.descricao + ' '
       + this.atendimento.solicitante.conselho.estado.uf + ' '
       + this.atendimento.solicitante.conselho.descricao;
   }
 
-  private ConfigurarRodape() {
-    return  '<div class="page-footer" style="height: 25px; position: fixed; bottom: 0; width: 93%; border-top: 1px solid black; text-align: center; border-top: 1px solid #000;">'
+  ConfigurarRodape() {
+    return  '<div class="page-footer" style="height: 25px; position: fixed; bottom: 0; width: 93%; border-top: 1px solid black; text-align: center; border-top: 1px solid #000; background-color: white;">'
       +       '<span id="labelrodape">Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264</span>'
       +     '</div>';
   }
