@@ -41,7 +41,6 @@ export class TelaLaudoComponent implements OnInit {
   procedimentoAtdSelecionado: number;
   modeloselecionado: number;
   valordomodelooriginal: any;
-  teste: any;
 
 
   constructor(private servicoparametro: ParametrodosistemaService,
@@ -79,7 +78,7 @@ export class TelaLaudoComponent implements OnInit {
     const contentDiv = document.getElementById('contentDiv') as HTMLDivElement;
 
     const plugins = [
-      new RoosterJs.HyperLink(url => 'Ctrl+Click to follow the link:' + url),
+      new RoosterJs.HyperLink(url => 'Click to follow the link:' + url),
       new RoosterJs.ContentEdit(Object.assign(RoosterJs.getDefaultContentEditFeatures(), {
         outdentWhenEnterOnEmptyLine: true,
         mergeInNewLineWhenBackspaceOnFirstChar: true,
@@ -158,7 +157,6 @@ export class TelaLaudoComponent implements OnInit {
     }, 5);
   }
 
-
   ExportarDocumento() {
     const win = window.open();
     win.document.write(this.editor.getContent());
@@ -199,7 +197,6 @@ export class TelaLaudoComponent implements OnInit {
   CarregarAtendimentos() {
     this.service.ListarAtendimentos().then(lista => {
       this.atendimentos = lista.map(atendimento => ({label: 'atend: ' + atendimento.codigo + ' ' + atendimento.patient.patientname, value: atendimento.codigo}));
-
     }).catch(erro => erro);
   }
 
@@ -309,7 +306,7 @@ export class TelaLaudoComponent implements OnInit {
       +       '<tbody>'
       +         '<tr>'
       +           '<td>'
-      +             '<div class="page" style="line-height: 3; width: 93%; margin: 0 auto;">' + this.editor.getContent() + '</div>'
+      +             '<div class="page" style="width: 93%; margin: 0 auto;">' + this.editor.getContent() + '</div>'
       +           '</td>'
       +         '</tr>'
       +         '<tr>'
@@ -348,8 +345,6 @@ export class TelaLaudoComponent implements OnInit {
 
 
   SalvandoDocumento() {
-    // const divHeight = document.getElementById('contentDiv');
-    // console.log(this.editor.getBlockElementAtNode);
     const salvo = new ModeloLaudoClienteSalvo();
     salvo.customstring = this.editor.getContent();
     salvo.descricao = this.modelo.descricao;

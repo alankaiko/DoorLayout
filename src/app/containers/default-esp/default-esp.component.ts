@@ -18,6 +18,10 @@ export class DefaultEspComponent {
     this.sidebarMinimized = e;
   }
 
+  naoExibeImagem() {
+    return this.router.url !== '/operacoes/laudos-teste';
+  }
+
   exibirLogo() {
     return this.router.url === '/dashboard' || this.router.url === '/';
   }

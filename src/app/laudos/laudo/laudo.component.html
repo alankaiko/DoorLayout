@@ -21,7 +21,7 @@
   </div>
 
   <div class="painelprincipal">
-    <div id="divisoria" style="margin-top: 10px; border-bottom: 1px solid #000;">
+    <div id="divisoria">
       <p-toolbar>
         <div style="display: inline-flex; float: left;">
           <button class="botaoprincipal" style="padding-top: 15px; padding-bottom: 15px;"
@@ -41,28 +41,36 @@
 
         <div class="quantidadedoarray">
           <div id="quantidade">
-            <span>sssssss</span>
+            <p-dropdown [options]="qtdimagems" [(ngModel)]="qtdimagemselecionada" (onChange)="ConfigurarDimensoes()"></p-dropdown>
+            <button (click)="Testando()">teste</button>
           </div>
-
         </div>
       </p-toolbar>
     </div>
 
-    <div class="painelprincipal cdkDropListGroup" style="display: inline-flex;">
-      <div style="border: 1px solid #000; width: 75%; height: auto;">
-        <div class="pagina" style="width: 60%; margin: 0 auto; background-color: #fff;">
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-          <br><br><br><br><br><br>
+    <div cdkDropListGroup style="width: 100%; height: auto; margin: 0 auto;">
+      <div class="papela4" id="papela4">
+        <div id="listafoto" cdkDropList [cdkDropListData]="listaimagemsbase" class="foto1grande" (cdkDropListDropped)="drop($event)">
+          <div class="example-boxs" *ngFor="let image of listaimagemsbase" cdkDrag>
+            <img id="imagem" class="imagem" [src]="image?.imagem"/>
+          </div>
         </div>
-
       </div>
 
-      <div style="width: 25%; height: auto; display: inline-grid;">
+      <div class="baseescolha">
+        <div style="width: 80%; float: left;">
+          <p-scrollPanel>
+            <div style="display: inline-flex; margin: 0 auto; text-align: center;" cdkDropList [cdkDropListData]="procedimento.listaimagem" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+              <div *ngFor="let image of procedimento.listaimagem" cdkDrag>
+                <img class="imagem" [src]="image.imagem" style="width: 300px; height: 130px; display: inline-grid;"/>
+              </div>
+            </div>
+          </p-scrollPanel>
+        </div>
 
-          <div class="conta" *ngFor="let imagem of procedimento.listaimagem">
-            <img class="imagem" [src]="imagem.imagem" cdkDrag/>
-          </div>
+        <div style="width: 20%; float: right; border-left: 1px solid #cc0000;">
 
+        </div>
       </div>
     </div>
   </div>

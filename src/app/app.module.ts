@@ -134,7 +134,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     ReactiveFormsModule,
     EditorModule,
     ScrollPanelModule,
-    DragDropModule
+    DragDropModule,
+    EditorModule
   ],
   declarations: [
     AppComponent,
