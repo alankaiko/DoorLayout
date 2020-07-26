@@ -50,8 +50,8 @@
 
     <div cdkDropListGroup style="width: 100%; height: auto; margin: 0 auto;">
       <div class="papela4" id="papela4">
-        <div id="listafoto" cdkDropList [cdkDropListData]="listaimagemsbase" class="foto1grande" (cdkDropListDropped)="drop($event)">
-          <div class="example-boxs" *ngFor="let image of listaimagemsbase" cdkDrag>
+        <div class="grade" cdkDropList [cdkDropListData]="listaimagemsbase" (cdkDropListDropped)="drop($event)">
+          <div class="listafoto" *ngFor="let image of listaimagemsbase" cdkDrag>
             <img id="imagem" class="imagem" [src]="image?.imagem"/>
           </div>
         </div>
@@ -72,5 +72,6 @@
 
         </div>
       </div>
+      <div class="aff" style="width: 100%; height: 140px; position: relative;"></div>
     </div>
   </div>
