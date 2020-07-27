@@ -1,7 +1,7 @@
 import { SelectItem } from 'primeng/api';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { AtendimentoService } from './../../zservice/atendimento.service';
-import { Atendimento, ProcedimentoAtendimento } from './../../core/model';
+import { Atendimento, ProcedimentoAtendimento, Imagem } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { stringify } from 'querystring';
@@ -21,7 +21,7 @@ export class LaudoComponent implements OnInit {
   procedimentosAtd: any[];
   atendimentoSelecionado: number;
   procedimentosAtdSelecionado: number;
-  listaimagemsbase = [];
+  listaimagemsbase = new Array<Imagem>();
   teste: boolean = false;
   qtdimagems: SelectItem[];
   qtdimagemselecionada: number = 1;
@@ -29,6 +29,8 @@ export class LaudoComponent implements OnInit {
   ngOnInit() {
     this.CarregarAtendimentos();
     this.OpcoesQtdImagens();
+   // this.ConfigurarDimensoes();
+
   }
 
   constructor(private service: AtendimentoService, private serviceproc: ProcedimentoatendimentoService) {}
@@ -59,33 +61,33 @@ export class LaudoComponent implements OnInit {
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
 
-      if (this.listaimagemsbase.length === 3) {
-        if (this.listaimagemsbase[2] === 1) {
-          this.listaimagemsbase.splice(2);
-        } else {
+      if (this.listaimagemsbase.length[this.listaimagemsbase.length] === 1) {
+        this.listaimagemsbase.splice(this.listaimagemsbase.length);
+      } else {
           transferArrayItem(event.container.data, event.previousContainer.data, event.previousIndex, event.currentIndex);
-          this.listaimagemsbase.splice(2);
+          this.listaimagemsbase.splice(this.listaimagemsbase.length);
+      }
+
+      this.procedimento.listaimagem.sort();
+      for (let i = this.procedimento.listaimagem.length; i >= 0; i--) {
+        if (this.procedimento.listaimagem[i] === undefined) {
+          this.procedimento.listaimagem.splice(i);
         }
       }
 
-      if (this.listaimagemsbase.length === 1) {
-        this.listaimagemsbase.push(1);
-      }
-
+      this.ConfigurarDimensoes();
     }
-
-    // if (this.teste && this.listaimagemsbase.length !== 0) {
-    //   transferArrayItem(event.container.data, event.previousContainer.data, event.previousIndex, event.currentIndex);
-    //   this.listaimagemsbase.splice(1);
-    // }
   }
 
   Testando() {
-    const valor = document.getElementById('papela4');
+    const aff = document.getElementById('papela4');
     const win = window.open();
-    win.document.write(valor.outerHTML);
+    win.document.write(aff.outerHTML);
     win.document.close();
-    win.print();
+
+    setTimeout(() => {
+      win.print();
+    }, 5);
   }
 
   CarregarAtendimentos() {
@@ -360,6 +362,7 @@ export class LaudoComponent implements OnInit {
         grade[0].setAttribute('class', 'grade grade1');
       }, 5);
     }
+
   }
 
 }
