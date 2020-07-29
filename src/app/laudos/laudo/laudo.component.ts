@@ -3,11 +3,6 @@ import { ProcedimentoatendimentoService } from './../../zservice/procedimentoate
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Atendimento, ProcedimentoAtendimento, Imagem } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { stringify } from 'querystring';
-
-
-declare var Quill: any;
 
 @Component({
   selector: 'app-laudo',
@@ -22,15 +17,13 @@ export class LaudoComponent implements OnInit {
   atendimentoSelecionado: number;
   procedimentosAtdSelecionado: number;
   listaimagemsbase = new Array<Imagem>();
-  teste: boolean = false;
   qtdimagems: SelectItem[];
   qtdimagemselecionada: number = 1;
 
   ngOnInit() {
     this.CarregarAtendimentos();
     this.OpcoesQtdImagens();
-   // this.ConfigurarDimensoes();
-
+    this.ConfigurarDimensoes();
   }
 
   constructor(private service: AtendimentoService, private serviceproc: ProcedimentoatendimentoService) {}
@@ -55,39 +48,46 @@ export class LaudoComponent implements OnInit {
     ];
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+  PermiteArrastar(ev) {
+    ev.preventDefault();
+  }
 
-      if (this.listaimagemsbase.length[this.listaimagemsbase.length] === 1) {
-        this.listaimagemsbase.splice(this.listaimagemsbase.length);
-      } else {
-          transferArrayItem(event.container.data, event.previousContainer.data, event.previousIndex, event.currentIndex);
-          this.listaimagemsbase.splice(this.listaimagemsbase.length);
-      }
+  Arrastar(ev) {
+    ev.dataTransfer.setData('text', ev.target.id);
+  }
 
-      this.procedimento.listaimagem.sort();
-      for (let i = this.procedimento.listaimagem.length; i >= 0; i--) {
-        if (this.procedimento.listaimagem[i] === undefined) {
-          this.procedimento.listaimagem.splice(i);
+  Dropar(ev, valor: string) {
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData('text');
+
+    for (let i = 0; i < this.procedimento.listaimagem.length; i++) {
+      if (this.procedimento.listaimagem[i].nomeimagem === data) {
+        if (this.listaimagemsbase[valor] === undefined) {
+          this.listaimagemsbase[valor] = this.procedimento.listaimagem[i];
+          this.procedimento.listaimagem.splice(i, 1);
+        } else {
+          this.procedimento.listaimagem.push(this.listaimagemsbase[valor]);
+          this.listaimagemsbase[valor] = this.procedimento.listaimagem[i];
+          this.procedimento.listaimagem.splice(i, 1);
         }
       }
-
-      this.ConfigurarDimensoes();
     }
   }
 
-  Testando() {
-    const aff = document.getElementById('papela4');
-    const win = window.open();
-    win.document.write(aff.outerHTML);
-    win.document.close();
+  DropRetorno(ev) {
+    let confere = true as boolean;
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData('text');
+    this.procedimento.listaimagem.forEach(elo => {
+      if (elo.nomeimagem === data) {
+        confere = false;
+      }
+    });
 
-    setTimeout(() => {
-      win.print();
-    }, 5);
+    if (confere) {
+      this.procedimento.listaimagem.push(this.listaimagemsbase[data]);
+      this.listaimagemsbase[data] = undefined;
+    }
   }
 
   CarregarAtendimentos() {
@@ -119,250 +119,185 @@ export class LaudoComponent implements OnInit {
         });
       }
     });
+
+    this.ConfigurarDimensoes();
   }
 
-
-
   ConfigurarDimensoes() {
-    if (this.qtdimagemselecionada === 1) {
-      this.listaimagemsbase.length = 1;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto1grande');
+    for (let i = 1; i <= 15; i++) {
+      const lab = document.getElementById('lab' + i);
+      lab.setAttribute('style', 'display: none');
+    }
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+    if (this.qtdimagemselecionada === 1) {
+      const gradeimg = document.getElementById('gradeimg');
+      gradeimg.setAttribute('style', 'margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;');
+
+      const lab = document.getElementById('lab1');
+      lab.setAttribute('style', 'display: block');
+      lab.setAttribute('class', 'foto1grande');
+
+      this.listaimagemsbase.length = 1;
     }
 
     if (this.qtdimagemselecionada === 2) {
-      this.listaimagemsbase.length = 1;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto1media');
+      const gradeimg = document.getElementById('gradeimg');
+      gradeimg.setAttribute('style', 'margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+      const lab = document.getElementById('lab2');
+      lab.setAttribute('style', 'display: block');
+      lab.setAttribute('class', 'foto1media');
+
+      this.listaimagemsbase.length = 1;
     }
 
     if (this.qtdimagemselecionada === 3) {
-      this.listaimagemsbase.length = 2;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto2grande');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto2grande');
+      const gradeimg = document.getElementById('gradeimg');
+      gradeimg.setAttribute('style', 'margin:  0 auto; position: relative; text-align: center; margin-top: 20mm;');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+      for (let i = 1; i <= 2; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto2grande');
+
+        this.listaimagemsbase.length = 2;
+      }
     }
 
     if (this.qtdimagemselecionada === 4) {
-      this.listaimagemsbase.length = 2;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto2media');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto2media');
+      const gradeimg = document.getElementById('gradeimg');
+      gradeimg.setAttribute('style', 'margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+      for (let i = 1; i <= 2; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto2media');
+
+        this.listaimagemsbase.length = 2;
+      }
     }
 
     if (this.qtdimagemselecionada === 5) {
-      this.listaimagemsbase.length = 3;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto3media');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto3media');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto3media');
+      const gradeimg = document.getElementById('gradeimg');
+      gradeimg.setAttribute('style', 'margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+      for (let i = 1; i <= 3; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto3media');
+
+        this.listaimagemsbase.length = 3;
+      }
     }
 
     if (this.qtdimagemselecionada === 6) {
-      this.listaimagemsbase.length = 4;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4grande');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4grande');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4grande');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4grande');
+      const gradeimg = document.getElementById('gradeimg');
+      gradeimg.setAttribute('style', 'margin:  0 auto; position: relative; text-align: center; margin-top: 20mm;');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+      for (let i = 1; i <= 4; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto4grande');
+
+        this.listaimagemsbase.length = 4;
+      }
     }
 
     if (this.qtdimagemselecionada === 7) {
-      this.listaimagemsbase.length = 4;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4media');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4media');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4media');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4media');
+      const gradeimg = document.getElementById('gradeimg');
+      gradeimg.setAttribute('style', 'margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+      for (let i = 1; i <= 4; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto4media');
+
+        this.listaimagemsbase.length = 4;
+      }
     }
 
     if (this.qtdimagemselecionada === 8) {
-      this.listaimagemsbase.length = 4;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4pequena');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4pequena');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4pequena');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto4pequena');
+      const gradeimg = document.getElementById('gradeimg');
+      gradeimg.setAttribute('style', 'margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+      for (let i = 1; i <= 4; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto4pequena');
+
+        this.listaimagemsbase.length = 4;
+      }
     }
 
     if (this.qtdimagemselecionada === 9) {
-      this.listaimagemsbase.length = 6;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6grande');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6grande');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6grande');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6grande');
-        div[4].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6grande');
-        div[5].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6grande');
+      for (let i = 1; i <= 6; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto6grande');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+        this.listaimagemsbase.length = 6;
+      }
     }
 
     if (this.qtdimagemselecionada === 10) {
-      this.listaimagemsbase.length = 6;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6media');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6media');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6media');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6media');
-        div[4].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6media');
-        div[5].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto6media');
+      for (let i = 1; i <= 6; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto6media grade1');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
-
+        this.listaimagemsbase.length = 6;
+      }
     }
 
     if (this.qtdimagemselecionada === 11) {
-      this.listaimagemsbase.length = 8;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8grande');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8grande');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8grande');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8grande');
-        div[4].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8grande');
-        div[5].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8grande');
-        div[6].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8grande');
-        div[7].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8grande');
+      for (let i = 1; i <= 8; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto8grande');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade2');
-      }, 5);
+        this.listaimagemsbase.length = 8;
+      }
     }
 
     if (this.qtdimagemselecionada === 12) {
-      this.listaimagemsbase.length = 8;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8pequena');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8pequena');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8pequena');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8pequena');
-        div[4].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8pequena');
-        div[5].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8pequena');
-        div[6].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8pequena');
-        div[7].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto8pequena');
+      for (let i = 1; i <= 8; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto8pequena');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+        this.listaimagemsbase.length = 8;
+      }
     }
 
     if (this.qtdimagemselecionada === 13) {
-      this.listaimagemsbase.length = 9;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
-        div[4].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
-        div[5].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
-        div[6].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
-        div[7].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
-        div[7].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
-        div[8].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto9pequena');
+      for (let i = 1; i <= 9; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto9pequena');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+        this.listaimagemsbase.length = 9;
+      }
     }
 
     if (this.qtdimagemselecionada === 14) {
-      this.listaimagemsbase.length = 12;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[4].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[5].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[6].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[7].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[7].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[8].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[9].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[10].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
-        div[11].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto12pequena');
+      for (let i = 1; i <= 12; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto12pequena');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+        this.listaimagemsbase.length = 12;
+      }
     }
 
     if (this.qtdimagemselecionada === 15) {
-      this.listaimagemsbase.length = 15;
-      setTimeout(() => {
-        const div = document.getElementsByClassName('listafoto');
-        div[0].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[1].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[2].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[3].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[4].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[5].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[6].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[7].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[7].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[8].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[9].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[10].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[11].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[12].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[13].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
-        div[14].setAttribute('class', 'listafoto cdk-drag ng-star-inserted foto15pequena');
+      for (let i = 1; i <= 15; i++) {
+        const lab = document.getElementById('lab' + i);
+        lab.setAttribute('style', 'display: block');
+        lab.setAttribute('class', 'foto15pequena');
 
-        const grade = document.getElementsByClassName('grade');
-        grade[0].setAttribute('class', 'grade grade1');
-      }, 5);
+        this.listaimagemsbase.length = 15;
+      }
     }
-
   }
 
 }

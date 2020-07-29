@@ -42,7 +42,6 @@
         <div class="quantidadedoarray">
           <div id="quantidade">
             <p-dropdown [options]="qtdimagems" [(ngModel)]="qtdimagemselecionada" (onChange)="ConfigurarDimensoes()"></p-dropdown>
-            <button (click)="Testando()">teste</button>
           </div>
         </div>
       </p-toolbar>
@@ -50,9 +49,95 @@
 
     <div cdkDropListGroup style="width: 100%; height: auto; margin: 0 auto;">
       <div class="papela4" id="papela4">
-        <div class="grade" cdkDropList [cdkDropListData]="listaimagemsbase" (cdkDropListDropped)="drop($event)">
-          <div class="listafoto" *ngFor="let image of listaimagemsbase" cdkDrag>
-            <img id="imagem" class="imagem" [src]="image?.imagem"/>
+        <div id="gradeimg">
+          <div style="padding: 4mm;">
+            <div id="lab1" (drop)="Dropar($event, 0)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="0" class="imagem" [src]="listaimagemsbase[0]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab2" (drop)="Dropar($event, 1)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="1" class="imagem" [src]="listaimagemsbase[1]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab3" (drop)="Dropar($event, 2)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="2" class="imagem" [src]="listaimagemsbase[2]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab4" (drop)="Dropar($event, 3)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="3" class="imagem" [src]="listaimagemsbase[3]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab5" (drop)="Dropar($event, 4)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="4" class="imagem" [src]="listaimagemsbase[4]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab6" (drop)="Dropar($event, 5)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="5" class="imagem" [src]="listaimagemsbase[5]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab7" (drop)="Dropar($event, 6)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="6" class="imagem" [src]="listaimagemsbase[6]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab8" (drop)="Dropar($event, 7)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="7" class="imagem" [src]="listaimagemsbase[7]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab9" (drop)="Dropar($event, 8)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="8" class="imagem" [src]="listaimagemsbase[8]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab10" (drop)="Dropar($event, 9)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="9" class="imagem" [src]="listaimagemsbase[9]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab11" (drop)="Dropar($event, 10)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="10" class="imagem" [src]="listaimagemsbase[10]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab12" (drop)="Dropar($event, 11)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="11" class="imagem" [src]="listaimagemsbase[11]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab13" (drop)="Dropar($event, 12)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="12" class="imagem" [src]="listaimagemsbase[12]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab14" (drop)="Dropar($event, 13)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="13" class="imagem" [src]="listaimagemsbase[13]?.imagem">
+            </div>
+          </div>
+
+          <div style="padding: 4mm;">
+            <div id="lab15" (drop)="Dropar($event, 14)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="14" class="imagem" [src]="listaimagemsbase[14]?.imagem">
+            </div>
           </div>
         </div>
       </div>
@@ -60,18 +145,16 @@
       <div class="baseescolha">
         <div style="width: 80%; float: left;">
           <p-scrollPanel>
-            <div style="display: inline-flex; margin: 0 auto; text-align: center;" cdkDropList [cdkDropListData]="procedimento.listaimagem" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
-              <div *ngFor="let image of procedimento.listaimagem" cdkDrag>
-                <img class="imagem" [src]="image?.imagem" style="width: 300px; height: 130px; display: inline-grid;"/>
+            <div style="display: inline-flex; margin: 0 auto; text-align: center;" (drop)="DropRetorno($event)" (dragover)="PermiteArrastar($event)">
+              <div *ngFor="let image of procedimento.listaimagem" draggable="true" (dragstart)="Arrastar($event)">
+                <img [attr.id]="image.nomeimagem" class="imagemarray" [src]="image?.imagem"/>
               </div>
             </div>
           </p-scrollPanel>
         </div>
 
         <div style="width: 20%; float: right; border-left: 1px solid #cc0000; color: #000;">
-          <div class="example-box" cdkDrag>
-            Drag me around
-          </div>
+
         </div>
       </div>
       <div class="aff" style="width: 100%; top: 120px; position: relative;"></div>
