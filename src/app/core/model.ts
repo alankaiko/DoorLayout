@@ -1,4 +1,3 @@
-import { WebcamImage } from 'ngx-webcam';
 export class Study {
   idstudy: number;
   accessionnumber: string;
@@ -364,6 +363,7 @@ export class ProcedimentoAtendimento {
   atendimento = new Atendimento();
   listaimagem = new Array<Imagem>();
   codigoatdteste: number;
+  modelosalvo = new ModeloLaudoClienteSalvo();
 
   constructor(codigo?: number, profexecutante?: ProfissionalExecutante,
               procedimentoMedico?: ProcedimentoMedico, valorpaciente?: string,
@@ -439,5 +439,13 @@ export class ModeloLaudoClienteSalvo {
   customstring: string;
   prioridade: number;
   procedimentomedico = new ProcedimentoMedico();
+  paginas = new Array<PaginaImagens>();
+}
+
+export class PaginaImagens {
+  codigo: number;
+  descricao: string;
+  dados: string;
+  modelosalvo = new ModeloLaudoClienteSalvo();
 }
 

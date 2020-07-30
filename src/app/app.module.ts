@@ -1,6 +1,6 @@
+import { PaginaimagensComponent } from './laudos/paginaimagens/paginaimagens.component';
 import { CadastroSubcategoriacidComponent } from './views/formularios/cadastro-subcategoriacid.component';
 import { ListasubcategoriacidComponent } from './views/tabelas/listasubcategoriacid.component';
-import { LaudoComponent } from './laudos/laudo/laudo.component';
 import { SiglaComponent } from './views/ferramentas/sigla.component';
 import { EstadoComponent } from './views/ferramentas/estado.component';
 import { LicenciadoComponent } from './views/ferramentas/licenciado.component';
@@ -166,7 +166,7 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     LicenciadoComponent,
     EstadoComponent,
     SiglaComponent,
-    LaudoComponent,
+    PaginaimagensComponent,
     ListasubcategoriacidComponent,
     CadastroSubcategoriacidComponent
   ],

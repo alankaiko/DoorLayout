@@ -151,7 +151,6 @@ export class TelaLaudoComponent implements OnInit {
     win.document.write(this.ConfigurarTextoLaudo());
     win.document.write(this.ConfigurarRodape());
     win.document.close();
-
     setTimeout(() => {
       win.print();
     }, 5);
@@ -346,33 +345,16 @@ export class TelaLaudoComponent implements OnInit {
 
   SalvandoDocumento() {
     const salvo = new ModeloLaudoClienteSalvo();
-    salvo.customstring = this.editor.getContent();
-    salvo.descricao = this.modelo.descricao;
-    salvo.prioridade = this.modelo.prioridade;
-    salvo.procedimentomedico = this.modelo.procedimentomedico;
+    setTimeout(() => {
+      salvo.codigo = 1;
+      salvo.customstring = this.ConfigurarTextoLaudo();
+      salvo.descricao = this.modelo.descricao;
+      salvo.prioridade = this.modelo.prioridade;
+      salvo.procedimentomedico = this.modelo.procedimentomedico;
+      this.procedimento.modelosalvo = salvo;
+      console.log(this.procedimento);
+      this.serviceproc.Atualizar(this.procedimento).then(response => response);
+    }, 1);
 
-    let proc;
-    this.procedimentosAtd.forEach(elo => {
-      if (elo.value === this.procedimentoAtdSelecionado) {
-        proc = elo.label;
-      }
-    });
-
-    this.servicemodelosalvo.Adicionar(salvo).then(response => {
-      const dados = new PdfFiltroDados();
-
-      dados.procedimento = proc;
-      dados.executante = this.atendimento.solicitante.conselho.sigla.descricao + ' '
-        + this.atendimento.solicitante.conselho.estado.uf + ' '
-        + this.atendimento.solicitante.conselho.descricao;
-      dados.codigoprocedimento = '1';
-
-      this.service.PdfLaudo(this.atendimento.codigo, dados)
-        .then(relatorio => {
-          const url = window.URL.createObjectURL(relatorio);
-          window.open(url);
-        }
-      );
-    });
   }
 }

@@ -1,6 +1,6 @@
+import { PaginaimagensComponent } from './laudos/paginaimagens/paginaimagens.component';
 import { CadastroSubcategoriacidComponent } from './views/formularios/cadastro-subcategoriacid.component';
 import { ListasubcategoriacidComponent } from './views/tabelas/listasubcategoriacid.component';
-import { LaudoComponent } from './laudos/laudo/laudo.component';
 import { SiglaComponent } from './views/ferramentas/sigla.component';
 import { EstadoComponent } from './views/ferramentas/estado.component';
 import { LicenciadoComponent } from './views/ferramentas/licenciado.component';
@@ -147,7 +147,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'operacoes/laudos-teste',
-        component: LaudoComponent
+        component: PaginaimagensComponent
       }
     ]
   },
@@ -160,7 +160,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'operacoes/laudos-teste/:cod',
-        component: LaudoComponent
+        component: PaginaimagensComponent
       }
     ]
   },

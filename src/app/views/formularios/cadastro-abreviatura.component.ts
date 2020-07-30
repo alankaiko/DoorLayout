@@ -60,7 +60,6 @@ export class CadastroAbreviaturaComponent implements OnInit {
       .then(salvo => {
         this.route.navigate(['/tabelas/listaabreviatura']);
       });
-
   }
 
   AtualizarAbreviatura() {
