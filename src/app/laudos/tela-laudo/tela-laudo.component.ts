@@ -8,7 +8,6 @@ import { ParametrodosistemaService } from './../../zservice/parametrodosistema.s
 import { Component, OnInit } from '@angular/core';
 import * as RoosterJs from 'roosterjs';
 import { Editor, DefaultFormat, Alignment, Direction } from 'roosterjs';
-import { style } from '@angular/animations';
 export * from 'roosterjs-editor-types';
 export * from 'roosterjs-editor-dom';
 export * from 'roosterjs-editor-core';
@@ -36,7 +35,6 @@ export class TelaLaudoComponent implements OnInit {
   atendimentos: any[];
   procedimentosAtd: any[];
   atendimento = new Atendimento();
-  procedimento = new ProcedimentoAtendimento();
   atendimentoSelecionado: number;
   procedimentoAtdSelecionado: number;
   modeloselecionado: number;
@@ -231,21 +229,35 @@ export class TelaLaudoComponent implements OnInit {
     const corpo = document.getElementById('contentDiv');
     corpo.setAttribute('style', 'width: 93%; margin: 0 auto;  margin-top: 30px; position: relative');
     corpo.innerHTML = '';
-    this.servicemodelo.BuscarPorId(modeloselecionado)
-      .then(response => {
-        this.modelo = response;
-        this.modelo.customstring = this.modelo.customstring.replace('1;;setValor;;', '');
-        this.modelo.customstring = this.modelo.customstring.replace('2;;setValor;;', '');
-        this.modelo.customstring = this.modelo.customstring.replace('3;;setValor;;', '');
-        this.modelo.customstring = this.modelo.customstring.replace('4;;setValor;;', '');
-        this.modelo.customstring = this.modelo.customstring.replace('5;;setValor;;', '');
-        this.modelo.customstring = this.modelo.customstring.replace('6;;setValor;;', '');
-        this.modelo.customstring = this.modelo.customstring.replace('7;;setValor;;', '');
-        this.modelo.customstring = this.modelo.customstring.replace('8;;setValor;;', '');
-        this.modelo.customstring = this.modelo.customstring.replace('9;;setValor;;', '');
-        this.modelo.customstring = this.modelo.customstring.replace('0;;setValor;;', '');
-        corpo.innerHTML = this.modelo.customstring;
-      });
+
+    this.atendimento.procedimentos.filter(elo => {
+      if (elo.codigo === this.procedimentoAtdSelecionado) {
+        if (elo.modelosalvo === null) {
+          this.servicemodelo.BuscarPorId(modeloselecionado)
+            .then(response => {
+              this.modelo = response;
+              this.modelo.customstring = this.modelo.customstring.replace('1;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('2;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('3;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('4;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('5;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('6;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('7;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('8;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('9;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('0;;setValor;;', '');
+              this.modelo.customstring = this.modelo.customstring.replace('$$', '');
+              corpo.innerHTML = this.modelo.customstring;
+            });
+        } else {
+          console.log(elo.modelosalvo);
+          this.editor.setContent(elo.modelosalvo.customstring);
+        }
+      }
+    });
+
+
+
   }
 
   private ConfigurarCabecalho() {
@@ -347,13 +359,17 @@ export class TelaLaudoComponent implements OnInit {
     const salvo = new ModeloLaudoClienteSalvo();
     setTimeout(() => {
       salvo.codigo = 1;
-      salvo.customstring = this.ConfigurarTextoLaudo();
+      salvo.customstring = this.editor.getContent();
       salvo.descricao = this.modelo.descricao;
       salvo.prioridade = this.modelo.prioridade;
       salvo.procedimentomedico = this.modelo.procedimentomedico;
-      this.procedimento.modelosalvo = salvo;
-      console.log(this.procedimento);
-      this.serviceproc.Atualizar(this.procedimento).then(response => response);
+
+      this.atendimento.procedimentos.filter(elo => {
+        if (elo.codigo === this.procedimentoAtdSelecionado) {
+          elo.modelosalvo = salvo;
+          this.serviceproc.Atualizar(elo).then(response => response);
+        }
+      });
     }, 1);
 
   }

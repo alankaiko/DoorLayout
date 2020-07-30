@@ -1,4 +1,3 @@
-import { SelectItem } from 'primeng/api';
 import { ConvenioService } from './../../zservice/convenio.service';
 import { Component, OnInit } from '@angular/core';
 import { Convenio } from './../../core/model';
@@ -29,6 +28,8 @@ export class CadastroConvenioComponent implements OnInit {
 
     if (codconvenio) {
       this.CarregarConvenios(codconvenio);
+    } else {
+      this.formulario.controls['ativo'].setValue('true');
     }
 
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);

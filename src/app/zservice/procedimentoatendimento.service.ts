@@ -58,6 +58,15 @@ export class ProcedimentoatendimentoService {
       });
   }
 
+  BuscarPorIdComImgLista(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/listaimg/${codigo}`)
+      .toPromise()
+      .then(response => {
+        const procedimento = response as ProcedimentoAtendimento;
+        return procedimento;
+      });
+  }
+
   BuscarCodProcedimento(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/codprocedimento/${codigo}`)
       .toPromise()
@@ -69,6 +78,15 @@ export class ProcedimentoatendimentoService {
 
   Atualizar(procedimento: ProcedimentoAtendimento): Promise<any> {
     return this.http.put(`${this.url}/${procedimento.codigo}`, procedimento)
+      .toPromise()
+      .then(response => {
+        const procedimentoalterado = response as ProcedimentoAtendimento;
+        return procedimentoalterado;
+      });
+  }
+
+  AtualizarComImagens(procedimento: ProcedimentoAtendimento): Promise<any> {
+    return this.http.put(`${this.url}/atualizarcomimagens/${procedimento.codigo}`, procedimento)
       .toPromise()
       .then(response => {
         const procedimentoalterado = response as ProcedimentoAtendimento;

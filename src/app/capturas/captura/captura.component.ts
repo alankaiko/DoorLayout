@@ -75,7 +75,7 @@ export class CapturaComponent implements OnInit {
     });
 
     try {
-      this.serviceproc.Atualizar(this.procedimento);
+      this.serviceproc.AtualizarComImagens(this.procedimento);
       this.route.navigate(['/dashboard']);
     } catch (error) {
       console.log(error);
