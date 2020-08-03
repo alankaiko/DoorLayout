@@ -14,7 +14,6 @@ export class ListatextopessoalComponent implements OnInit {
   texto: TextoPessoal;
   totalRegistros = 0;
   filtro = new TextoPessoalFiltro();
-  visible: boolean = true;
   camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;

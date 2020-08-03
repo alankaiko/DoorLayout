@@ -15,7 +15,6 @@ export class ListaprofsolicitanteComponent implements OnInit {
   profissional: ProfissionalSolicitante;
   totalRegistros = 0;
   filtro = new ProfissionalSolicitanteFiltro();
-  visible: boolean = true;
   camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;

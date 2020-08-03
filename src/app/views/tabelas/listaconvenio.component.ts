@@ -16,7 +16,6 @@ export class ListaconvenioComponent implements OnInit {
   convenio: Convenio;
   totalRegistros = 0;
   filtro = new ConvenioFiltro();
-  visible: boolean = true;
   camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;

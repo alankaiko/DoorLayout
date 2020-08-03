@@ -14,7 +14,6 @@ export class ListaprofexecutanteComponent implements OnInit {
   profissional: ProfissionalExecutante;
   totalRegistros = 0;
   filtro = new ProfissionalExecutanteFiltro();
-  visible: boolean = true;
   camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;

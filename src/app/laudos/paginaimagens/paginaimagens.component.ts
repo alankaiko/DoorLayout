@@ -22,8 +22,7 @@ export class PaginaimagensComponent implements OnInit {
   listaimagemsbase = new Array<Imagem>();
   qtdimagems: SelectItem[];
   qtdimagemselecionada: number = 1;
-  paginasdeimagens: Array<PaginaImagens>;
-  pagina = new PaginaImagens();
+  paginasdeimagens = new Array<PaginaImagens>();
 
   constructor(private service: AtendimentoService,
     private serviceproc: ProcedimentoatendimentoService,
@@ -354,17 +353,22 @@ export class PaginaimagensComponent implements OnInit {
   }
 
   SalvandoHtml() {
+    const pagina = new PaginaImagens();
     const valor = document.getElementById('papela4').outerHTML;
-    this.pagina.dados = valor;
-    this.pagina.descricao = 'teste';
-    this.pagina.modelosalvo = this.procedimento.modelosalvo;
+    pagina.dados = valor;
+    pagina.descricao = 'teste';
+    pagina.modelosalvo = this.procedimento.modelosalvo;
+    this.paginasdeimagens.push(pagina);
 
-    console.log(JSON.stringify(this.pagina.descricao));
-    return this.servicepagina.Adicionar(this.pagina)
-      .then(salvo => {
-        this.pagina = salvo;
-      }
-    );
+
+    const win = window.open();
+    win.document.write(valor);
+
+    win.document.close();
+    setTimeout(() => {
+      win.print();
+    }, 5);
+
   }
 
   Voltar() {

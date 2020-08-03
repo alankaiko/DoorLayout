@@ -10,7 +10,7 @@
     </div>
     <div>
     <div class="row">
-      <p-table id="dynamic-table" [value]="abreviaturas" [responsive]="true" [paginator]="true" *ngIf="visible"
+      <p-table id="dynamic-table" [value]="abreviaturas" [responsive]="true" [paginator]="true"
         [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros"
         (onLazyLoad)="aoMudarPagina($event)" class="table table-striped table-bordered table-hover">
         <ng-template pTemplate="header">
@@ -44,7 +44,7 @@
         <ng-template pTemplate="emptymessage">
           <tr>
             <td colspan="5">
-              Nenhuma pessoa encontrada
+              Nenhuma abreviatura encontrada
             </td>
           </tr>
         </ng-template>

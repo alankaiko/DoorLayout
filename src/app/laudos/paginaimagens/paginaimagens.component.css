@@ -59,6 +59,10 @@ label {
   color: #27272b;
 }
 
+:host /deep/ p-scrollpanel .ui-scrollpanel .ui-scrollpanel-bar {
+  background-color: #7c052d;
+}
+
 .baseescolha {
   width: 100%;
   height: 130px;

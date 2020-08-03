@@ -1,26 +1,23 @@
-<p-dialog header="Texto Pessoal" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
+<p-dialog header="Texto Pessoal" [(visible)]="display" [baseZIndex]="10000">
   <div class="menubuscar">
-    <div class="topoprocedimento ui-g-12">
-      <form #f="ngForm" autocomplete="off" class="formu">
-        <div class="ui-g-6">
-          <label>Buscar: </label>
-          <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="BuscaDinamica()"/>
-        </div>
+    <form #f="ngForm" autocomplete="off" class="formu">
+      <div class="ui-g-6">
+        <label>Buscar: </label>
+        <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="BuscaDinamica()"/>
+      </div>
 
-        <div class="ui-g-6">
-          <label>no campo: </label>
-          <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
-        </div>
-      </form>
-    </div>
+      <div class="ui-g-6">
+        <label>no campo: </label>
+        <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
+      </div>
+    </form>
   </div>
 
   <div class="table-responsive corpo">
-    <p-table [value]="textospessoais" [responsive]="true" *ngIf="visible" [scrollable]="true"
-      class="table table-striped table-bordered table-hover" scrollHeight="154px"
+    <p-table [value]="textospessoais" [responsive]="true" [scrollable]="true"
+      class="table table-striped table-bordered table-hover" (onRowSelect)="onRowSelect($event)"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
-      selectionMode="single" [(selection)]="texto" dataKey="codigo"
-      (onRowSelect)="onRowSelect($event)">
+      selectionMode="single" [(selection)]="texto" dataKey="codigo">
 
       <ng-template pTemplate="header">
         <tr>

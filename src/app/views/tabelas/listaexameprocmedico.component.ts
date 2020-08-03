@@ -14,7 +14,6 @@ export class ListaexameprocmedicoComponent implements OnInit {
   procedimento: ProcedimentoMedico;
   totalRegistros = 0;
   filtro = new ProcedimentoMedicoFiltro();
-  visible: boolean = true;
   camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;

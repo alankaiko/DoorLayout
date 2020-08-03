@@ -16,7 +16,6 @@ export class ListapacienteComponent implements OnInit {
   patient: Patient;
   totalRegistros = 0;
   filtro = new PatientFiltro();
-  visible: boolean = true;
   camposbusca: any[];
   formulario: FormGroup;
   display: boolean = true;
