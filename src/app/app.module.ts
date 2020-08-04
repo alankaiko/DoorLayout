@@ -26,6 +26,7 @@ import { TableModule } from 'primeng/components/table/table';
 import { DialogModule } from 'primeng/components/dialog/dialog';
 import {CarouselModule} from 'primeng/carousel';
 import { CoreModule } from './core/core.module';
+import {RadioButtonModule} from 'primeng/radiobutton';
 import {WebcamModule} from 'ngx-webcam';
 import {TabViewModule} from 'primeng/components/tabview/tabview';
 import * as $ from 'jquery';
@@ -135,7 +136,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     EditorModule,
     ScrollPanelModule,
     DragDropModule,
-    EditorModule
+    EditorModule,
+    RadioButtonModule
   ],
   declarations: [
     AppComponent,

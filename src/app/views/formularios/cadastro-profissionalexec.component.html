@@ -1,134 +1,165 @@
-<p-dialog header="Profissional Executante" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
-  <div>
+<p-dialog header="Profissional Executante" [(visible)]="display" [baseZIndex]="10000">
+  <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
-          <div class="ui-g ui-fluid">
-            <div class="ui-g-8">
-              <div class="ui-g-12 linhas">
-                <div class="ui-g-2">
-                  <label>Código</label>
-                  <input style="width: 50%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
-                </div>
+          <div style="width: 70%; float: left;">
+            <div class="linhas">
+              <div class="blocodalinha" style="width: 20%;">
+                <label>Código</label>
+                <input style="width: 100%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+              </div>
 
-                <div class="ui-g-3" formGroupName="conselho">
-                  <label style="text-align: right;">Sigla</label>
-                  <div formGroupName="sigla">
-                    <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
-                  </div>
-                </div>
-
-                <div class="ui-g-3" formGroupName="conselho">
-                  <label>UF</label>
-                  <div formGroupName="estado">
-                    <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
-                  </div>
-                </div>
-
-                <div class="ui-g-2" formGroupName="conselho">
-                  <label>N. Cons.</label>
-                  <input type="text" placeholder="num. do conselho" pInputText ng-model="text" name="descricao" formControlName="descricao">
+              <div class="blocodalinha" formGroupName="conselho" style="width: 20%;">
+                <label>Sigla</label>
+                <div formGroupName="sigla">
+                  <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
                 </div>
               </div>
 
-              <div class="ui-g-12 linhas">
+              <div class="blocodalinha" formGroupName="conselho" style="width: 25;">
+                <label>UF</label>
+                <div formGroupName="estado">
+                  <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
+                </div>
+              </div>
+
+              <div class="blocodalinha" formGroupName="conselho" style="width: 32%;">
+                <label>N. Cons.</label>
+                <input type="text" placeholder="num. do conselho" pInputText ng-model="text" name="descricao" formControlName="descricao">
+              </div>
+            </div>
+
+            <div class="linhas">
+              <div class="blocodalinha" style="width: 10%;">
+                <label>Dr</label>
+                <label style="opacity: 1%;">_</label>
+              </div>
+
+              <div class="blocodalinha" style="width: 10%;">
+                <label>Dra</label>
+                <label style="opacity: 1%;">_</label>
+              </div>
+
+              <div class="blocodalinha" style="width: 10%;">
+                <label>Nenhum</label>
+                <label style="opacity: 1%;">_</label>
+              </div>
+            </div>
+
+            <div class="linhas">
+              <div class="blocodalinha" style="width: 100%;">
                 <label>Nome do Profissional</label>
                 <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
               </div>
+            </div>
 
-              <div class="ui-g-12 linhas">
+            <div class="linhas">
+              <div class="blocodalinha" style="width: 100%;">
                 <label>Frase Pessoal</label>
                 <input style="width: 100%;" pInputTextarea  ng-model="text" name="frasepessoal" formControlName="frasepessoal"/>
               </div>
             </div>
+          </div>
 
-            <div class="ui-g-4" style="border: 1px solid;">
-              <div class="ui-g-12" style="border: 1px solid; height: 50px;">
+          <div style="border: 1px solid; width: 25%; float: right;">
+            <div style="border: 1px solid; height: 60px;">
 
+            </div>
+
+            <div class="ui-g-12" style="text-align: center;">
+              <button type="button" class="minibotao">
+                <img src="/assets/img/ADICIONAR.png">
+              </button>
+
+              <button type="button" class="minibotao">
+                <img src="/assets/img/APAGAR.png">
+              </button>
+            </div>
+
+            <div class="ui-g-12">
+              <div class="ui-g-4">
+                <label>Largura</label>
+                <p-inputMask mask="99.999-999" name="asswidth" formControlName="asswidth"></p-inputMask>
               </div>
 
-              <div class="ui-g-12" style="text-align: center;">
-                <button type="button" class="minibotao">
-                  <img src="/assets/img/ADICIONAR.png">
-                </button>
-
-                <button type="button" class="minibotao">
-                  <img src="/assets/img/APAGAR.png">
-                </button>
+              <div class="ui-g-4">
+                <label>Altura</label>
+                <p-inputMask mask="999" name="assheight" formControlName="assheight"></p-inputMask>
               </div>
 
-              <div class="ui-g-12">
-                <div class="ui-g-4">
-                  <label>Largura</label>
-                  <p-inputMask mask="99.999-999" name="asswidth" formControlName="asswidth"></p-inputMask>
-                </div>
-
-                <div class="ui-g-4">
-                  <label>Altura</label>
-                  <p-inputMask mask="999" name="assheight" formControlName="assheight"></p-inputMask>
-                </div>
-
-                <div class="ui-g-4">
-                  <label>Margem</label>
-                  <p-inputMask mask="999" name="espacoass" formControlName="espacoass"></p-inputMask>
-                </div>
+              <div class="ui-g-4">
+                <label>Margem</label>
+                <p-inputMask mask="999" name="espacoass" formControlName="espacoass"></p-inputMask>
               </div>
             </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="Dados para contato">
-            <div class="ui-g">
-              <div class="ui-g-12 linhas" formGroupName="endereco">
-                <div class="ui-g-3" style="display: inline-grid;">
-                  <label>CEP</label>
-                    <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
-                </div>
-
-                <div class="ui-g-1" style="display: inline-grid;">
-                  <label>Estado</label>
-                  <input pInputText ng-model="text" name="estado" formControlName="estado" style="width: 30px;"/>
-                </div>
-
-                <div class="ui-g-4" style="display: inline-grid;">
-                  <label>Cidade</label>
-                  <input pInputText ng-model="text" name="cidade" formControlName="cidade"/>
-                </div>
-
-                <div class="ui-g-4" style="display: inline-grid;">
-                  <label>Bairro</label>
-                  <input pInputText ng-model="text" name="bairro" formControlName="bairro"/>
-                </div>
-              </div>
-
-              <div class="ui-g-12 linhas" formGroupName="endereco">
-                <div class="ui-g-6" style="display: inline-grid;">
-                  <label>Logradouro</label>
-                  <input pInputText ng-model="text" name="logradouro" formControlName="logradouro"/>
-                </div>
-
-                <div class="ui-g-6" style="display: inline-grid;">
-                  <label>Complemento</label>
-                  <input pInputText ng-model="text" name="complemento" formControlName="complemento"/>
-                </div>
-              </div>
-
-              <div class="ui-g-12 linhas" formGroupName="contato">
-                  <div class="ui-g-3" style="display: inline-grid;">
-                    <label>Telefone</label>
-                    <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
-                  </div>
-
-                  <div class="ui-g-3" style="display: inline-grid;">
-                    <label>Telefone 2</label>
-                    <p-inputMask placeholder="fax" mask="(99) 9999-9999" name="telefone2" formControlName="telefone2"></p-inputMask>
-                  </div>
-
-                  <div class="ui-g-6" style="display: inline-grid;">
-                    <label>E-mail</label>
-                    <input style="width: 100%;" pInputText ng-model="text" name="email" formControlName="email"/>
-                  </div>
-              </div>
+          <div class="linhas" formGroupName="endereco">
+            <div class="blocodalinha" style="width: 12%;">
+              <label>CEP</label>
+              <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
             </div>
+
+            <div class="blocodalinha" style="width: 6%;">
+              <label style="opacity: 1%;">.</label>
+              <button type="button" class="minibotao">
+                <img src="/assets/img/FKEY_WINDOW.png">
+              </button>
+            </div>
+
+            <div class="blocodalinha" style="width: 12%;">
+              <label>Estado</label>
+              <input pInputText ng-model="text" name="estado" formControlName="estado" style="width: 90%;"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 35%;">
+              <label>Cidade</label>
+              <input pInputText ng-model="text" name="cidade" formControlName="cidade" style="width: 95%;"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 35%;">
+              <label>Bairro</label>
+              <input pInputText ng-model="text" name="bairro" formControlName="bairro"/>
+            </div>
+          </div>
+
+          <div class="linhas" formGroupName="endereco">
+            <div class="blocodalinha" style="width: 18%">
+              <label>tipo</label>
+              <input pInputText ng-model="text" name="logradouro" style="width: 95%;"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 47%;">
+              <label>Logradouro</label>
+              <input pInputText ng-model="text" name="logradouro" formControlName="logradouro" style="width: 96%;"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 35%;">
+              <label>Complemento</label>
+              <input pInputText ng-model="text" name="complemento" formControlName="complemento"/>
+            </div>
+          </div>
+
+          <div class="linhas" formGroupName="contato">
+            <div class="blocodalinha" style="width: 20%;">
+              <label>Telefone</label>
+              <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
+            </div>
+
+            <div class="blocodalinha" style="width: 20%;">
+              <label>Telefone 2</label>
+              <p-inputMask placeholder="fax" mask="(99) 9999-9999" name="telefone2" formControlName="telefone2"></p-inputMask>
+            </div>
+          </div>
+
+          <div class="linhas" formGroupName="contato">
+            <div class="blocodalinha" style="width: 100%;">
+              <label>E-mail</label>
+              <input style="width: 100%;" pInputText ng-model="text" name="email" formControlName="email"/>
+            </div>
+          </div>
         </p-tabPanel>
       </p-tabView>
     </form>

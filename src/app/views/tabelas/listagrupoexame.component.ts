@@ -15,7 +15,6 @@ export class ListagrupoexameComponent implements OnInit {
   grupo: GrupoProcedimento;
   totalRegistros = 0;
   filtro = new GrupoProcedimentoFiltro();
-  visible: boolean = true;
   camposbusca: SelectItem[];
   formulario: FormGroup;
   display: boolean = true;

@@ -1,18 +1,16 @@
-<p-dialog header="Grupo de Exames e Procedimentos" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
-  <div>
+<p-dialog header="Grupo de Exames e Procedimentos" [(visible)]="display" [baseZIndex]="10000">
+  <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
-          <div class="ui-g ui-fluid">
-            <div class="ui-g-12 linhas">
-              <div class="ui-g-2">
-                <label>Código</label>
-                <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
-              </div>
+          <div class="linhas">
+            <div class="blocodalinha">
+              <label>Código</label>
+              <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
             </div>
 
-            <div class="ui-g-12 linhas">
-              <div class="ui-g-12">
+            <div class="linhas">
+              <div class="blocodalinha" style="width: 100%;">
                 <label>Nome</label>
                 <input style="width: 100%;" pInputTextarea  ng-model="text" name="nomegrupo" formControlName="nomegrupo"/>
               </div>

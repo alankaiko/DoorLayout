@@ -7,6 +7,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
 
+export class ModelComponent {
+  selectedValue: string;
+}
+
 @Component({
   selector: 'app-cadastro-profissionalexec',
   templateUrl: './cadastro-profissionalexec.component.html',
@@ -17,6 +21,7 @@ export class CadastroProfissionalexecComponent implements OnInit {
   display: boolean = true;
   siglas = [];
   estados = [];
+  city: string;
 
   constructor(private service: ProfissionalexecutanteService,
               private serviceSigla: SiglaService,

@@ -47,8 +47,8 @@
 }
 
 :host /deep/ p-dialog .ui-dialog .ui-dialog-content {
-  width: 800px;
-  height: 344px;
+  width: 788px;
+  height: 304px;
   border-left: 2px solid #A5A9B2;
   border-bottom: 2px solid #A5A9B2;
   border-right: 2px solid #A5A9B2;
@@ -106,12 +106,12 @@
 }
 
 :host /deep/ p-table {
-  font-size: 82%;
+  font-size: 90%;
   position: static;
 }
 
 :host /deep/ p-table .ui-table {
-  height: 210px;
+  height: 170px;
 }
 
 :host /deep/ p-table .ui-table  .ui-table-scrollable-body{

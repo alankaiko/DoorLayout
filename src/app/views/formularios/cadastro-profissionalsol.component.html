@@ -1,42 +1,40 @@
-<p-dialog header="Profissional Solicitante" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
-  <div>
+<p-dialog header="Profissional Solicitante" [(visible)]="display" [baseZIndex]="10000">
+  <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
-          <div class="ui-g">
-            <div class="ui-g-12 linhas">
-              <div class="ui-g-12" style="display: inline-grid;">
-                <label>Código</label>
-                <input style="width: 20%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 14%;">
+              <label>Código</label>
+              <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+            </div>
+          </div>
+
+          <div class="linhas">
+            <div class="blocodalinha" formGroupName="conselho" style="width: 20%;">
+              <label style="text-align: right;">Sigla</label>
+              <div formGroupName="sigla">
+                <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
               </div>
             </div>
 
-            <div class="ui-g-12 linhas">
-              <div class="ui-g-3" formGroupName="conselho">
-                <label style="text-align: right;">Sigla</label>
-                <div formGroupName="sigla">
-                  <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
-                </div>
-              </div>
-
-              <div class="ui-g-3" formGroupName="conselho">
-                <label>UF</label>
-                <div formGroupName="estado">
-                  <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
-                </div>
-              </div>
-
-              <div class="ui-g-2" formGroupName="conselho">
-                <label>N. Cons.</label>
-                <input type="text" placeholder="num. do conselho" pInputText ng-model="text" name="descricao" formControlName="descricao">
+            <div class="blocodalinha" formGroupName="conselho" style="width: 20%;">
+              <label>UF</label>
+              <div formGroupName="estado">
+                <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
               </div>
             </div>
 
-            <div class="ui-g-12 linhas">
-              <div class="ui-g-12">
-                <label>Nome</label>
-                <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
-              </div>
+            <div class="blocodalinha" formGroupName="conselho" style="width: 25%;">
+              <label>N. Cons.</label>
+              <input type="text" placeholder="num. do conselho" pInputText ng-model="text" name="descricao" formControlName="descricao">
+            </div>
+          </div>
+
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 100%;">
+              <label>Nome</label>
+              <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
             </div>
           </div>
         </p-tabPanel>

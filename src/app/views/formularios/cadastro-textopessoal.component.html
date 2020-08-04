@@ -1,26 +1,24 @@
-<p-dialog header="Texto Pessoal" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
-  <div>
+<p-dialog header="Texto Pessoal" [(visible)]="display" [baseZIndex]="10000">
+  <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
-          <div class="ui-g">
-            <div class="ui-g-12 linhas">
-              <div class="ui-g-2 linhas">
-                <label>Código</label>
-                <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
-              </div>
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 20%;">
+              <label>Código</label>
+              <input style="width: 90%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
             </div>
 
-            <div class="ui-g-12 linhas">
-              <div class="ui-g-12 linhas">
-                <label>Abreviatura</label>
-                <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="abreviatura" formControlName="abreviatura"/>
-              </div>
+            <div class="blocodalinha" style="width: 80%;">
+              <label>Abreviatura</label>
+              <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="abreviatura" formControlName="abreviatura"/>
             </div>
+          </div>
 
-            <div class="ui-g-12 linhas">
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 100%;">
               <label>Observações</label>
-              <textarea style="width: 100% ;height: 50px; text-transform: uppercase;" pInputTextarea ng-model="text" name="texto" formControlName="texto"></textarea>
+              <textarea style="width: 100% ;height: 70px; text-transform: uppercase;" pInputTextarea ng-model="text" name="texto" formControlName="texto"></textarea>
             </div>
           </div>
         </p-tabPanel>

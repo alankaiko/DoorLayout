@@ -1,108 +1,121 @@
-<p-dialog header="Pacientes" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
-  <div>
+<p-dialog header="Pacientes" [(visible)]="display" [baseZIndex]="10000">
+  <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
-          <div class="ui-g">
-            <div class="ui-g-9 linhas">
-              <div class="ui-g-12 linhas">
-                <div class="ui-g-3 linhas">
-                  <label>Código</label>
-                  <input style="width: 80%;" [readonly]= "true" type="text" pInputText ng-model="text" name="idpatient" formControlName="idpatient">
-                </div>
-
-                <div class="ui-g-3 linhas">
-                  <label>Data Cad.</label>
-                  <p-calendar id="datadecadastro" [showOnFocus]="false" [readonlyInput]="true" placeholder="00/00/0000" dateFormat="dd/mm/yy"
-                    name="datecreate" formControlName="datecreate"></p-calendar>
-                </div>
+          <div style="width: 75%; float: left;">
+            <div class="linhas">
+              <div class="blocodalinha" style="width: 30%;">
+                <label>Código</label>
+                <input style="width: 80%;" [readonly]= "true" type="text" pInputText ng-model="text" name="idpatient" formControlName="idpatient">
               </div>
 
-              <div class="ui-g-12 linhas">
-                <div class="ui-g-12 linhas" style="display: inline-grid; width: 98.5%;">
-                  <label>Nome</label>
-                  <input style="text-transform: uppercase;" type="text" pInputText ng-model="text" name="patientname" formControlName="patientname">
-                </div>
-              </div>
-
-              <div class="ui-g-12 linhas">
-                <div class="ui-g-2 linhas">
-                  <label>Sexo</label>
-                  <input style="width: 95%; text-transform: uppercase;" type="text" pInputText ng-model="text" name="patientsex" formControlName="patientsex">
-                </div>
-
-                <div class="ui-g-4 linhas">
-                  <label>Data Nasc.</label>
-                  <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true"
-                  yearRange="1930:2020"  name="birthday" formControlName="birthday"></p-calendar>
-                </div>
-
-                <div class="ui-g-3 linhas" formGroupName="contato">
-                  <label>Telefone</label>
-                  <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
-                </div>
-
-                <div class="ui-g-3 linhas" formGroupName="contato">
-                  <label>Telefone 2</label>
-                  <p-inputMask placeholder="telefone" mask="(99) 9999-9999" name="telefone2" formControlName="telefone2"></p-inputMask>
-                </div>
-              </div>
-
-              <div class="ui-g-12 linhas" formGroupName="contato">
-                <div class="ui-g-12 linhas" style="display: inline-grid; width: 98.5%;">
-                  <label>E-mail</label>
-                  <input pInputText ng-model="text" name="email" formControlName="email"/>
-                </div>
+              <div class="blocodalinha" style="width: 30%;">
+                <label>Data Cad.</label>
+                <p-calendar id="datadecadastro" [showOnFocus]="false" [readonlyInput]="true" placeholder="00/00/0000" dateFormat="dd/mm/yy"
+                  name="datecreate" formControlName="datecreate"></p-calendar>
               </div>
             </div>
 
-            <div class="ui-g-3" style="border: 1px solid;">
+            <div class="linhas">
+              <div class="blocodalinha" style="width: 96%;">
+                <label>Nome</label>
+                <input style="text-transform: uppercase;" type="text" pInputText ng-model="text" name="patientname" formControlName="patientname">
+              </div>
+            </div>
 
+            <div class="linhas">
+              <div class="blocodalinha" style="width: 25%;">
+                <label>Sexo</label>
+                <input style="width: 95%; text-transform: uppercase;" type="text" pInputText ng-model="text" name="patientsex" formControlName="patientsex">
+              </div>
+
+              <div class="blocodalinha" style="width: 24%;">
+                <label>Data Nasc.</label>
+                <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true"
+                yearRange="1930:2020"  name="birthday" formControlName="birthday"></p-calendar>
+              </div>
+
+              <div class="blocodalinha" formGroupName="contato" style="width: 24%;">
+                <label>Telefone</label>
+                <p-inputMask placeholder="telefone" mask="(99) 9 9999-9999" name="telefone" formControlName="telefone"></p-inputMask>
+              </div>
+
+              <div class="blocodalinha" formGroupName="contato" style="width: 24%;">
+                <label>Telefone 2</label>
+                <p-inputMask placeholder="telefone" mask="(99) 9999-9999" name="telefone2" formControlName="telefone2"></p-inputMask>
+              </div>
+            </div>
+
+            <div class="linhas" formGroupName="contato">
+              <div class="blocodalinha" style="width: 96%;">
+                <label>E-mail</label>
+                <input pInputText ng-model="text" name="email" formControlName="email"/>
+              </div>
+            </div>
+          </div>
+
+          <div style="border: 1px solid; width: 25%; float: right; height: 200px;">
+
+          </div>
+        </p-tabPanel>
+
+        <p-tabPanel header="Endereço e observações">
+          <div class="linhas" formGroupName="endereco">
+            <div class="blocodalinha" style="width: 12%;">
+              <label>CEP</label>
+                <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
+            </div>
+
+            <div class="blocodalinha" style="width: 6%;">
+              <label style="opacity: 1%;">.</label>
+              <button type="button" class="minibotao">
+                <img src="/assets/img/FKEY_WINDOW.png">
+              </button>
+            </div>
+
+
+            <div class="blocodalinha" style="width: 12%;">
+              <label>Estado</label>
+              <input pInputText ng-model="text" name="estado" formControlName="estado" style="width: 90%;"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 35%;">
+              <label>Cidade</label>
+              <input style="width: 95%; text-transform: uppercase;" pInputText ng-model="text" name="cidade" formControlName="cidade"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 35%;">
+              <label>Bairro</label>
+              <input style="text-transform: uppercase;" pInputText ng-model="text" name="bairro" formControlName="bairro"/>
+            </div>
+          </div>
+
+          <div class="linhas" formGroupName="endereco">
+            <div class="blocodalinha" style="width: 18%">
+              <label>tipo</label>
+              <input pInputText ng-model="text" name="logradouro" style="width: 95%;"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 47%;">
+              <label>Logradouro</label>
+              <input style="width: 96%; text-transform: uppercase;" pInputText ng-model="text" name="logradouro" formControlName="logradouro"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 35%;">
+              <label>Complemento</label>
+              <input style="text-transform: uppercase;" pInputText ng-model="text" name="complemento" formControlName="complemento"/>
+            </div>
+          </div>
+
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 100%;">
+              <label>Observações</label>
+              <textarea style="width: 100% ; height: 63px; text-transform: uppercase;" pInputTextarea ng-model="text" name="observacoes" formControlName="observacoes"></textarea>
             </div>
           </div>
         </p-tabPanel>
-        <p-tabPanel header="Endereço e observações">
-            <div class="ui-g">
-              <div class="ui-g-12 linhas" formGroupName="endereco">
-                <div class="ui-g-3 linhas" style="display: inline-grid;">
-                  <label>CEP</label>
-                    <p-inputMask mask="99.999-999" name="cep" formControlName="cep"></p-inputMask>
-                </div>
 
-                <div class="ui-g-1 linhas" style="display: inline-grid;">
-                  <label>Estado</label>
-                  <input pInputText ng-model="text" name="estado" formControlName="estado" style="width: 90%; text-transform: uppercase;"/>
-                </div>
-
-                <div class="ui-g-4 linhas" style="display: inline-grid;">
-                  <label>Cidade</label>
-                  <input style="width: 95%; text-transform: uppercase;" pInputText ng-model="text" name="cidade" formControlName="cidade"/>
-                </div>
-
-                <div class="ui-g-4 linhas" style="display: inline-grid;">
-                  <label>Bairro</label>
-                  <input style="text-transform: uppercase;" pInputText ng-model="text" name="bairro" formControlName="bairro"/>
-                </div>
-              </div>
-
-              <div class="ui-g-12 linhas" formGroupName="endereco">
-                <div class="ui-g-6 linhas" style="display: inline-grid;">
-                  <label>Logradouro</label>
-                  <input style="width: 95%; text-transform: uppercase;" pInputText ng-model="text" name="logradouro" formControlName="logradouro"/>
-                </div>
-
-                <div class="ui-g-6 linhas" style="display: inline-grid;">
-                  <label>Complemento</label>
-                  <input style="text-transform: uppercase;" pInputText ng-model="text" name="complemento" formControlName="complemento"/>
-                </div>
-              </div>
-
-              <div class="ui-g-12 linhas">
-                <label>Observações</label>
-                <textarea style="width: 100% ;height: 70px; text-transform: uppercase;" pInputTextarea ng-model="text" name="observacoes" formControlName="observacoes"></textarea>
-              </div>
-            </div>
-        </p-tabPanel>
         <p-tabPanel>
 
         </p-tabPanel>
@@ -110,7 +123,7 @@
     </form>
   </div>
 
-  <div class="botoes ui-g-12">
+  <div class="botoes">
     <div class="botao">
       <div>
         <button type="button" class="botaoprincipal">

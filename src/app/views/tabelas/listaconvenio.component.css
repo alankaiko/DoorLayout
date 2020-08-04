@@ -28,7 +28,7 @@
 :host /deep/ p-dialog .ui-dialog {
   border: 1px solid rgba(0, 0, 0, 0.438);
   border-radius: 2px;
-  background-color: #D6D9DF;
+  background-color: #D6D9E0;
 }
 
 :host /deep/ p-dialog .ui-dialog-titlebar {
@@ -47,7 +47,7 @@
 }
 
 :host /deep/ p-dialog .ui-dialog .ui-dialog-content {
-  width: 800px;
+  width: 788px;
   height: 344px;
   border-left: 2px solid #A5A9B2;
   border-bottom: 2px solid #A5A9B2;
@@ -106,7 +106,7 @@
 }
 
 :host /deep/ p-table {
-  font-size: 82%;
+  font-size: 90%;
   position: static;
 }
 
