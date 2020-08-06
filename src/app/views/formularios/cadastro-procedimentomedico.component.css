@@ -11,7 +11,9 @@
 :host /deep/ p-dropdown .ui-dropdown{
   border:1px solid #428bca;
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 3px;
+  line-height: 14px;
+  margin-right: 5px;
 }
 
 :host /deep/ p-dropdown .ui-dropdown-items {
@@ -22,7 +24,6 @@
   background-color: rgb(158, 150, 150);
   border: 1px solid rgb(158, 150, 150);
 }
-
 
 :host /deep/ p-dialog .ui-dialog {
   border: 1px solid rgba(0, 0, 0, 0.438);

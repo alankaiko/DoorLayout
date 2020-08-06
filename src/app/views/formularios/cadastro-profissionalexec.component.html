@@ -7,20 +7,20 @@
             <div class="linhas">
               <div class="blocodalinha" style="width: 20%;">
                 <label>Código</label>
-                <input style="width: 100%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+                <input style="width: 95%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
               </div>
 
               <div class="blocodalinha" formGroupName="conselho" style="width: 20%;">
                 <label>Sigla</label>
                 <div formGroupName="sigla">
-                  <p-dropdown required formControlName="codigo" [options]="siglas" [autoWidth]="false" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
+                  <p-dropdown [style]="{'min-width': '70%'}" required formControlName="codigo" [options]="siglas" placeholder="Selecione a sigla" name="sigla"></p-dropdown>
                 </div>
               </div>
 
-              <div class="blocodalinha" formGroupName="conselho" style="width: 25;">
+              <div class="blocodalinha" formGroupName="conselho" style="width: 25%;">
                 <label>UF</label>
                 <div formGroupName="estado">
-                  <p-dropdown required formControlName="codigo" [options]="estados" [autoWidth]="false" placeholder="Selecione a sigla" name="estado"></p-dropdown>
+                  <p-dropdown [style]="{'min-width': '70%'}" required formControlName="codigo" [options]="estados" placeholder="Selecione a sigla" name="estado"></p-dropdown>
                 </div>
               </div>
 

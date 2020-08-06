@@ -1,3 +1,4 @@
+import { ModelolaudoclientesalvoService } from './../../zservice/modelolaudoclientesalvo.service';
 import { PaginaimagensService } from './../../zservice/paginaimagens.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
@@ -27,6 +28,7 @@ export class PaginaimagensComponent implements OnInit {
   constructor(private service: AtendimentoService,
     private serviceproc: ProcedimentoatendimentoService,
     private servicepagina: PaginaimagensService,
+    private servicemodelo: ModelolaudoclientesalvoService,
     private rota: ActivatedRoute,
     private route: Router,
     private location: Location) {}
@@ -134,6 +136,28 @@ export class PaginaimagensComponent implements OnInit {
     });
 
     this.ConfigurarDimensoes();
+  }
+
+  SalvandoHtml() {
+    const pagina = new PaginaImagens();
+    pagina.dados = this.SalvarPagina();
+    pagina.descricao = 'teste';
+    pagina.modelosalvo = this.procedimento.modelosalvo;
+    this.procedimento.modelosalvo.paginas.push(pagina);
+
+    setTimeout(() => {
+      this.servicemodelo.Adicionar(this.procedimento.modelosalvo).then(response => {
+        console.log('deu certo agora');
+      });
+    }, 5);
+
+    // const win = window.open();
+    // win.document.write(this.SalvarPagina());
+
+    // win.document.close();
+    // setTimeout(() => {
+    //  win.print();
+    // }, 5);
   }
 
   ConfigurarDimensoes() {
@@ -352,23 +376,606 @@ export class PaginaimagensComponent implements OnInit {
     }
   }
 
-  SalvandoHtml() {
-    const pagina = new PaginaImagens();
-    const valor = document.getElementById('papela4').outerHTML;
-    pagina.dados = valor;
-    pagina.descricao = 'teste';
-    pagina.modelosalvo = this.procedimento.modelosalvo;
-    this.paginasdeimagens.push(pagina);
+  SalvarPagina() {
+    if (this.qtdimagemselecionada === 1) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div  id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm;">'
+                + '<div  style="display:block; padding: 2mm;">'
+                  + '<div  id="lab1" style="display: block" class="foto1grande">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
 
+    if (this.qtdimagemselecionada === 2) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;">'
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab1" style="display: block" class="foto1media">'
+                    + '<img style="width:100mm; height: 73mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
 
-    const win = window.open();
-    win.document.write(valor);
+    if (this.qtdimagemselecionada === 3) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div  id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 20mm;">'
+                + '<div  style="display:block; padding: 2mm;">'
+                  + '<div  id="lab1" style="display: block" class="foto2grande">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
 
-    win.document.close();
-    setTimeout(() => {
-      win.print();
-    }, 5);
+                + '<div  style="display:block; padding: 2mm;">'
+                  + '<div  id="lab1" style="display: block" class="foto2grande">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
 
+    if (this.qtdimagemselecionada === 4) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;">'
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab1" style="display: block" class="foto2media">'
+                    + '<img style="width: 100mm; height: 73mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab2" style="display: block" class="foto2media">'
+                    + '<img style="width: 100mm; height: 73mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 5) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 30mm;">'
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab1" style="display: block" class="foto3media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab2" style="display: block" class="foto3media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab3" style="display: block" class="foto3media">'
+                    +  '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 6) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 190mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto4grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto4grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto4grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto4grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 7) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 170mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto4media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto4media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto4media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto4media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 8) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 140mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto4pequena">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto4pequena">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto4pequena">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto4pequena">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 9) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 190mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 10) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 170mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 11) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; width: 180mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 12) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 140mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 13) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 180mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab9" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[8].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 14) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 180mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab9" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[8].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab10" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[9].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab11" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[10].nomeimagem + '" src="' + this.listaimagemsbase[10].imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab12" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[11].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.qtdimagemselecionada === 15) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 20mm; width: 180mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab9" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[8].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab10" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[9].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab11" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[10].nomeimagem + '" src="' + this.listaimagemsbase[10].imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab12" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[11].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab13" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[12].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab14" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[13].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab15" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[14].nomeimagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
   }
 
   Voltar() {

@@ -1,37 +1,35 @@
-<p-dialog header="Atendimentos" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
+<p-dialog header="Atendimentos" [(visible)]="display" [baseZIndex]="10000">
   <div class="menubuscar">
-    <div class="topoprocedimento">
-      <form #f="ngForm" autocomplete="off" class="formu">
-        <div class="linhas">
-          <label>Buscar</label>
-          <input style="width: 31%;" id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
+    <form #f="ngForm" autocomplete="off" class="formu">
+      <div>
+        <label>Buscar</label>
+        <input style="width: 35%; margin-top: 5px;" id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
 
-          <label>no campo</label>
-          <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
+        <label>no campo</label>
+        <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
 
-          <label>laudo</label>
-          <p-dropdown id="codigostatus" [options]="status" [autoWidth]="false"></p-dropdown>
+        <label>laudo</label>
+        <p-dropdown id="codigostatus" [options]="status" [autoWidth]="false"></p-dropdown>
 
-          <button (click)="Atualizar()">
-            <span>Atualizar</span>
-          </button>
-        </div>
+        <button class="botaoatualizar" (click)="Atualizar()">
+          <span>Atualizar</span>
+        </button>
+      </div>
 
-        <div class="linhas">
-          <label>no período de: </label>
-          <p-dropdown id="codigoperiodo" [options]="periodo" [autoWidth]="false"></p-dropdown>
+      <div class="">
+        <label>no período de: </label>
+        <p-dropdown id="codigoperiodo" [options]="periodo" [autoWidth]="false"></p-dropdown>
 
-          <label>Data Inicial</label>
-          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px' }" name="datainicio" [(ngModel)]="filtro.datainicial"></p-calendar>
+        <label>Data Inicial</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px' }" name="datainicio" [(ngModel)]="filtro.datainicial"></p-calendar>
 
-          <label>Data final</label>
-          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px' }" name="datafim" [(ngModel)]="filtro.datafinal"></p-calendar>
+        <label>Data final</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px' }" name="datafim" [(ngModel)]="filtro.datafinal"></p-calendar>
 
-          <label>ver</label>
-          <p-dropdown id="resultados" [options]="quantidades"></p-dropdown>
-        </div>
-      </form>
-    </div>
+        <label>ver</label>
+        <p-dropdown id="resultados" [options]="quantidades"></p-dropdown>
+      </div>
+    </form>
   </div>
 
   <div class="table-responsive corpo">
