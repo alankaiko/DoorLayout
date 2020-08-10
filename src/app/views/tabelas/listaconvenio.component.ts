@@ -86,8 +86,7 @@ export class ListaconvenioComponent implements OnInit {
       .then(() => {})
       .catch(erro => erro);
       this.exclusao = false;
-      setTimeout (() => this.Consultar(), 0
-      );
+      setTimeout (() => this.Consultar(), 0);
   }
 
   aoMudarPagina(event: LazyLoadEvent) {

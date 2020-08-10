@@ -15,7 +15,6 @@ export class ListaAtendimentoComponent implements OnInit {
   atendimento: Atendimento;
   totalRegistros = 0;
   filtro = new AtendimentoFilter();
-  visible: boolean = true;
   camposbusca: any[];
   periodo: any[];
   status: any[];

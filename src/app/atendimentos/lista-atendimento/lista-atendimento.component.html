@@ -1,30 +1,30 @@
 <p-dialog header="Atendimentos" [(visible)]="display" [baseZIndex]="10000">
   <div class="menubuscar">
-    <form #f="ngForm" autocomplete="off" class="formu">
-      <div>
-        <label>Buscar</label>
-        <input style="width: 35%; margin-top: 5px;" id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
+    <form #f="ngForm" autocomplete="off" class="formu" style="margin-top: 5px;">
+      <div class="lines">
+        <label style="margin-top: 1px;">Buscar</label>
+        <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
 
         <label>no campo</label>
-        <p-dropdown id="codigodrop" [options]="camposbusca" [autoWidth]="false"></p-dropdown>
+        <p-dropdown id="codigodrop" [options]="camposbusca"></p-dropdown>
 
         <label>laudo</label>
-        <p-dropdown id="codigostatus" [options]="status" [autoWidth]="false"></p-dropdown>
+        <p-dropdown id="codigostatus" [options]="status"></p-dropdown>
 
         <button class="botaoatualizar" (click)="Atualizar()">
           <span>Atualizar</span>
         </button>
       </div>
 
-      <div class="">
+      <div class="lines">
         <label>no período de: </label>
-        <p-dropdown id="codigoperiodo" [options]="periodo" [autoWidth]="false"></p-dropdown>
+        <p-dropdown id="codigoperiodo" [options]="periodo"></p-dropdown>
 
-        <label>Data Inicial</label>
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px' }" name="datainicio" [(ngModel)]="filtro.datainicial"></p-calendar>
+        <label style="margin-top: 1px;">Data Inicial</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '113px' }" name="datainicio" [(ngModel)]="filtro.datainicial"></p-calendar>
 
-        <label>Data final</label>
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px' }" name="datafim" [(ngModel)]="filtro.datafinal"></p-calendar>
+        <label style="margin-top: 1px;">Data final</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '113px' }" name="datafim" [(ngModel)]="filtro.datafinal"></p-calendar>
 
         <label>ver</label>
         <p-dropdown id="resultados" [options]="quantidades"></p-dropdown>
@@ -33,27 +33,26 @@
   </div>
 
   <div class="table-responsive corpo">
-    <p-table [value]="atendimentos" [responsive]="true" *ngIf="visible"
-      class="table table-striped table-bordered table-hover" [scrollable]="true" scrollHeight="154px" [virtualScroll]="true"
+    <p-table [value]="atendimentos" [responsive]="true" (onRowSelect)="onRowSelect($event)"
+      class="table table-striped table-bordered table-hover" [scrollable]="true" [virtualScroll]="true"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
-      selectionMode="single" [(selection)]="atendimento" dataKey="codigo"
-      (onRowSelect)="onRowSelect($event)">
+      selectionMode="single" [(selection)]="atendimento" dataKey="codigo">
 
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 10%;">Código</th>
-          <th>Paciente</th>
+          <th style="width: 50%;">Paciente</th>
           <th style="width: 20%;">Convênio</th>
-          <th style="width: 15%;" class="col-valor-header">Data do Cadastro</th>
+          <th style="width: 20%;" class="col-valor-header">Data do Cadastro</th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-atendimento>
         <tr [pSelectableRow]="atendimento">
           <td style="text-align: right; width: 10%;">{{atendimento?.codigo}}</td>
-          <td style="text-transform: uppercase;">{{atendimento?.patient?.patientname}}</td>
+          <td style="text-transform: uppercase; width: 50%;">{{atendimento?.patient?.patientname}}</td>
           <td style="width: 20%; text-transform: uppercase;">{{atendimento?.convenio?.nome}}</td>
-          <td class="col-data">{{ atendimento?.dataatendimento | date:'dd/MM/yyyy' }}</td>
+          <td style="width: 20%;" class="col-data">{{ atendimento?.dataatendimento | date:'dd/MM/yyyy' }}</td>
         </tr>
       </ng-template>
     </p-table>

@@ -181,7 +181,10 @@ export class AtendimentoService {
     for (const atendimento of atendimentos) {
       atendimento.dataatendimento = moment(atendimento.dataatendimento, 'YYYY-MM-DD').toDate();
       atendimento.datacadastro = moment(atendimento.datacadastro, 'YYYY-MM-DD').toDate();
-      atendimento.patient.birthday = moment(atendimento.patient.birthday, 'YYYY-MM-DD').toDate();
+
+      if (atendimento.patient.birthday != null) {
+        atendimento.patient.birthday = moment(atendimento.patient.birthday, 'YYYY-MM-DD').toDate();
+      }
 
       for (const proc of atendimento.procedimentos) {
         proc.dataexecucao = moment(proc.dataexecucao, 'YYYY-MM-DD').toDate();

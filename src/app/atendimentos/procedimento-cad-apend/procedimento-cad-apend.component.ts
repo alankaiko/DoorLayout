@@ -1,8 +1,8 @@
 import { ProfissionalexecutanteService } from './../../zservice/profissionalexecutante.service';
 import { ProcedimentomedicoService } from './../../zservice/procedimentomedico.service';
-import { ProcedimentoAtendimento } from './../../core/model';
+import { ProcedimentoAtendimento, ProcedimentoMedico } from './../../core/model';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 
 @Component({
@@ -17,7 +17,7 @@ export class ProcedimentoCadApendComponent implements OnInit {
   exbindoFormularioProcedimento = false;
   procedimentoIndex: number;
   profissionalexecutantes: [];
-  procedimentomedicos: [];
+  procedimentomedicos: ProcedimentoMedico[];
   datadias;
 
   constructor(private formbuilder: FormBuilder,
@@ -68,11 +68,19 @@ export class ProcedimentoCadApendComponent implements OnInit {
   }
 
   ConfirmarProcedimento() {
-   // this.procedimentos[this.procedimentoIndex] = this.ClonarProcedimento(this.procedimento);
-    this.procedimentos[this.procedimentoIndex] = this.formulario.value;
-    this.exbindoFormularioProcedimento = false;
+    // this.procedimentos[this.procedimentoIndex] = this.ClonarProcedimento(this.procedimento);
+    setTimeout(() => {
+      this.procedimentos[this.procedimentoIndex] = this.formulario.value;
+    const aff = this.procedimentos[this.procedimentoIndex].procedimentomedico.codigo;
 
-    // this.CriarFormulario(new ProcedimentoAtendimento());
+    this.procedimentomedicos.forEach(elo => {
+      if (elo.codigo === aff) {
+        this.procedimentos[this.procedimentoIndex].procedimentomedico = elo;
+      }
+    });
+    this.exbindoFormularioProcedimento = false;
+    }, 5);
+
   }
 
   RemoverProcedimento(index: number) {
@@ -102,5 +110,9 @@ export class ProcedimentoCadApendComponent implements OnInit {
     const data = moment();
     data.add(8, 'days');
     moment(data, 'YYYY-MM-DD').toDate();
+  }
+
+  BotaoCancelar() {
+    this.exbindoFormularioProcedimento = false;
   }
 }

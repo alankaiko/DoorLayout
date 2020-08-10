@@ -1,66 +1,69 @@
 
-<div class="card">
-  <div style="border: 1px solid;">
-    <form #f="ngForm" autocomplete="off" class="formu ui-g">
-      <div class="ui-g-4">
-        <label>Atendimento: </label>
-        <p-dropdown [options]="atendimentos" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
-          placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
-      </div>
+<div class="geral">
+  <div class="topoatendimento">
+    <form #f="ngForm" autocomplete="off">
+      <div class="linhas">
+        <div class="blocodalinha" style="width: 33%;">
+          <label>Atendimento: </label>
+          <p-dropdown [style]="{'min-width': '95%'}" [options]="atendimentos" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
+            placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
+        </div>
 
-      <div class="ui-g-4 ui-fluid" style="display: inline-flex;">
-        <label>Procedimento: </label>
-        <p-dropdown [options]="procedimentosAtd" [autoWidth]="false" [filter]="true" [(ngModel)]="procedimentoAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
-          placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
-      </div>
+        <div class="blocodalinha" style="width: 33%;">
+          <label>Procedimento: </label>
+          <p-dropdown [style]="{'min-width': '95%'}" [options]="procedimentosAtd" [autoWidth]="false" [filter]="true" [(ngModel)]="procedimentoAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
+            placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
+        </div>
 
-      <div class="ui-g-4 ui-fluid" style="display: inline-flex;">
-        <label>Modelo Laudo: </label>
-        <p-dropdown [options]="modelos" [autoWidth]="false" [filter]="true" [(ngModel)]="modeloselecionado" #modeloselecionadoa="ngModel" name="modeloselecionadoa"
-          placeholder="Selecione..." (onChange)="ConfiguraModelo(modeloselecionado)"></p-dropdown>
+        <div class="blocodalinha" style="width: 33%;">
+          <label>Modelo Laudo: </label>
+          <p-dropdown [style]="{'min-width': '95%'}" [options]="modelos" [autoWidth]="false" [filter]="true" [(ngModel)]="modeloselecionado" #modeloselecionadoa="ngModel" name="modeloselecionadoa"
+            placeholder="Selecione..." (onChange)="ConfiguraModelo(modeloselecionado)"></p-dropdown>
+        </div>
       </div>
     </form>
   </div>
 
-  <div class="card-body">
-    <div class="row" style="width: 100%;">
-      <div style="text-align: left;">
-        <button id="buttonB" title="Bold"><i class="fa fa-fw fa-bold"></i></button>
-        <button id="buttonI" title="Italic"><i class="fa fa-fw fa-italic"></i></button>
-        <button id="buttonU" title="Underline"><i class="fa fa-fw fa-underline"></i></button>
-        <button id="buttonBullet" title="Bullet"><i class="fa fa-fw fa-list-ul"></i></button>
-        <button id="buttonNumbering" title="Numbering"><i class="fa fa-fw fa-list-ol"></i></button>
-        <button id="buttonQuote" title="Quote"><i class="fa fa-fw fa-quote-right"></i></button>
-        <button id="buttonHeader" title="Header"><i class="fa fa-fw fa-header"></i></button>
-        <button id="buttonStrike" title="Strike"><i class="fa fa-fw fa-strikethrough "></i></button>
-        <button id="buttonSubscript" title="SubScript"><i class="fa fa-fw fa-subscript"></i></button>
-        <button id="buttonSuperscript" title="SuperScript"><i class="fa fa-fw fa-superscript"></i></button>
-        <button id="buttonTextColor" title="Color"><i class="fa fa-fw fa-paint-brush"></i></button>
-        <button id="buttonFontName" title="Font"><i class="fa fa-fw fa-font"></i></button>
-        <button (click)="Mudarestado('divtable')"><i class="fa fa-fw fa-table"></i></button>
-        <button id="buttonAlignLeft" title="Align Left"><i class="fa fa-fw fa-align-left"></i></button>
-        <button id="buttonAlignCenter" title="Align Center"><i class="fa fa-fw fa-align-center"></i></button>
-        <button id="buttonAlignRight" title="Align Right"><i class="fa fa-fw fa-align-right"></i></button>
-        <button id="buttonToLeft" title="Left"><i class="fa fa-fw fa-caret-square-o-left"></i></button>
-        <button id="buttonToRight" title="Right"><i class="fa fa-fw fa-caret-square-o-right"></i></button>
+  <div class="editore">
+    <div class="menuboteditor">
+      <div class="listabotoes" style="text-align: left;">
+        <button id="buttonB" title="Bold" class="botaoeditor"><i class="fa fa-fw fa-bold"></i></button>
+        <button id="buttonI" title="Italic" class="botaoeditor"><i class="fa fa-fw fa-italic"></i></button>
+        <button id="buttonU" title="Underline" class="botaoeditor"><i class="fa fa-fw fa-underline"></i></button>
+        <button id="buttonBullet" title="Bullet" class="botaoeditor"><i class="fa fa-fw fa-list-ul"></i></button>
+        <button id="buttonNumbering" title="Numbering" class="botaoeditor"><i class="fa fa-fw fa-list-ol"></i></button>
+        <button id="buttonQuote" title="Quote" class="botaoeditor"><i class="fa fa-fw fa-quote-right"></i></button>
+        <button id="buttonHeader" title="Header" class="botaoeditor"><i class="fa fa-fw fa-header"></i></button>
+        <button id="buttonStrike" title="Strike" class="botaoeditor"><i class="fa fa-fw fa-strikethrough "></i></button>
+        <button id="buttonSubscript" title="SubScript" class="botaoeditor"><i class="fa fa-fw fa-subscript"></i></button>
+        <button id="buttonSuperscript" title="SuperScript" class="botaoeditor"><i class="fa fa-fw fa-superscript"></i></button>
+        <button id="buttonTextColor" title="Color" class="botaoeditor"><i class="fa fa-fw fa-paint-brush"></i></button>
+        <button id="buttonFontName" title="Font" class="botaoeditor"><i class="fa fa-fw fa-font"></i></button>
+        <button (click)="Mudarestado('divtable')" class="botaoeditor"><i class="fa fa-fw fa-table"></i></button>
+        <button id="buttonAlignLeft" title="Align Left" class="botaoeditor"><i class="fa fa-fw fa-align-left"></i></button>
+        <button id="buttonAlignCenter" title="Align Center" class="botaoeditor"><i class="fa fa-fw fa-align-center"></i></button>
+        <button id="buttonAlignRight" title="Align Right" class="botaoeditor"><i class="fa fa-fw fa-align-right"></i></button>
+        <button id="buttonToLeft" title="Left" class="botaoeditor"><i class="fa fa-fw fa-caret-square-o-left"></i></button>
+        <button id="buttonToRight" title="Right" class="botaoeditor"><i class="fa fa-fw fa-caret-square-o-right"></i></button>
       </div>
 
-      <div style="text-align: right;">
-        <button (click)="Mudarestado('divimagem')"><i class="fa fa-fw fa-picture-o"></i></button>
-        <button id="buttonExport" title="Exportar Doc" (click)="ExportarDocumento()">Export</button>
-        <button id="buttonExport" title="Clear Doc" (click)="LimparDocumento()">Clear</button>
-        <button id="buttonPrint" title="Clear Doc" (click)="ImprimirDocumento()"><i class="fa fa-fw fa-print"></i></button>
-        <button id="buttonPdf" title="Clear Doc" (click)="GerarPDF()"><i class="fa fa-fw fa-file-pdf-o"></i></button>
-        <button id="buttonUndo" title="Back"><i class="cui-action-undo"></i></button>
-        <button id="buttonRedo" title="Next"><i class="cui-action-redo"></i></button>
-        <button id="buttonToSave" title="Salvar" (click)="SalvandoDocumento()"><i class="fa fa-fw fa-floppy-o"></i></button>
+      <div class="listabotoes" style="text-align: right;">
+        <button (click)="Mudarestado('divimagem')" class="botaoeditor"><i class="fa fa-fw fa-picture-o"></i></button>
+        <button id="buttonExport" title="Exportar Doc" (click)="ExportarDocumento()" class="botaoeditor">Export</button>
+        <button id="buttonExport" title="Clear Doc" (click)="LimparDocumento()" class="botaoeditor">Clear</button>
+        <button id="buttonPrint" title="Clear Doc" (click)="ImprimirDocumento()" class="botaoeditor"><i class="fa fa-fw fa-print"></i></button>
+        <button id="buttonPdf" title="Clear Doc" (click)="GerarPDF()" class="botaoeditor"><i class="fa fa-fw fa-file-pdf-o"></i></button>
+        <button id="buttonUndo" title="Back" class="botaoeditor"><i class="cui-action-undo"></i></button>
+        <button id="buttonRedo" title="Next" class="botaoeditor"><i class="cui-action-redo"></i></button>
+        <button id="buttonToSave" title="Salvar" (click)="SalvandoDocumento()" class="botaoeditor"><i class="fa fa-fw fa-floppy-o"></i></button>
       </div>
+    </div>
 
-
-      <div id="contentDiv" style="display: inline-grid; width: 100%; height: 400px; border: solid 1px black; overflow: auto; position: relative;">
-      </div>
+    <div id="contentDiv" class="papela4">
+    </div>
   </div>
 </div>
+
 
 
 
