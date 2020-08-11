@@ -1,4 +1,4 @@
-<p-dialog header="Exames e Procedimentos Médicos" [(visible)]="display" [baseZIndex]="10000">
+<p-dialog header="Exames e Procedimentos Médicos" [(visible)]="display">
   <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
@@ -13,7 +13,7 @@
           <div class="linhas">
             <div class="blocodalinha" style="width: 100%;">
               <label>Nome</label>
-              <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+              <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
             </div>
           </div>
 

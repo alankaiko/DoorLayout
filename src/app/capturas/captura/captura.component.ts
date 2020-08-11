@@ -37,7 +37,7 @@ export class CapturaComponent implements OnInit {
   public errors: WebcamInitError[] = [];
 
   // latest snapshot
-  // webcamImage = new Array<Imagem>();
+  webcamImage = new Array<Imagem>();
 
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();

@@ -12,7 +12,7 @@
 :host /deep/ p-dropdown .ui-dropdown{
   border:1px solid #428bca;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 :host /deep/ p-dropdown .ui-dropdown-items {
@@ -75,9 +75,9 @@
 }
 
 #buscando {
-  border-radius: 5px;
+  border-radius: 3px;
   width: 80%;
-  height: 31px;
+  height: 29px;
   border:1px solid #428bca;
 }
 

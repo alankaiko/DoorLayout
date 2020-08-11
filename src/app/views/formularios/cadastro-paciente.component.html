@@ -1,4 +1,4 @@
-<p-dialog header="Pacientes" [(visible)]="display" [baseZIndex]="10000">
+<p-dialog header="Pacientes" [(visible)]="display">
   <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
@@ -33,7 +33,8 @@
               <div class="blocodalinha" style="width: 24%;">
                 <label>Data Nasc.</label>
                 <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true"
-                yearRange="1930:2020"  name="birthday" formControlName="birthday"></p-calendar>
+                yearRange="1930:2020"  name="birthday" formControlName="birthday"
+                [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '10%'}"></p-calendar>
               </div>
 
               <div class="blocodalinha" formGroupName="contato" style="width: 24%;">

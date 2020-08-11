@@ -1,6 +1,6 @@
 <div class="corpo">
-  <p-table [value]="procedimentos" [responsive]="true" [totalRecords]="totalRegistros"
-    class="table table-striped table-bordered table-hover" [scrollable]="true" [virtualScroll]="true">
+  <p-table [value]="procedimentos" [responsive]="true" [scrollable]="true"
+    class="table table-striped table-bordered table-hover" [virtualScroll]="true">
 
     <ng-template pTemplate="header">
       <tr>
@@ -48,7 +48,7 @@
     <div class="linhas">
       <div class="blocodalinha" formGroupName="procedimentomedico" style="width: 90%;">
         <label>Procedimento Médico</label>
-        <p-dropdown [style]="{'min-width': '95%'}" [options]="procedimentomedicos" [filter]="true"  formControlName="codigo"
+        <p-dropdown [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '27%'}" [options]="procedimentomedicos" [filter]="true"  formControlName="codigo"
           placeholder="Selecione..." name="codigo" (onChange)="CarregarProcedimentosMedico()">
         </p-dropdown>
       </div>
@@ -64,7 +64,7 @@
     <div class="linhas">
       <div class="blocodalinha" formGroupName="profexecutante" style="width: 90%;">
         <label>Profissional Executante</label>
-        <p-dropdown [style]="{'min-width': '95%'}" [options]="profissionalexecutantes" [filter]="true"  formControlName="codigo"
+        <p-dropdown [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '27%'}" [options]="profissionalexecutantes" [filter]="true"  formControlName="codigo"
           placeholder="Selecione..." name="codigo" (onChange)="CarregaProfissionalExecutante()"></p-dropdown>
       </div>
 
@@ -85,14 +85,16 @@
 
       <div class="blocodalinha" style="width: 33%;">
         <label>Prev. Ent. Laudo</label>
-        <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="preventregalaudo"
+        <p-calendar [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '10%'}"
+          placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="preventregalaudo"
           yearRange="1930:2020" name="preventregalaudo" class="preventregalaudo"></p-calendar>
       </div>
 
       <div class="blocodalinha" style="width: 33%;">
         <label>Data Execução</label>
-        <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="dataexecucao"
-          yearRange="1930:2020" name="dataexecucao"></p-calendar>
+        <p-calendar [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '10%'}"
+          placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" formControlName="dataexecucao"
+          yearRange="1930:2020" name="dataexecucao" [yearNavigator]="true"></p-calendar>
       </div>
     </div>
 

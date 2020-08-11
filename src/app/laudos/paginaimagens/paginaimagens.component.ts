@@ -71,7 +71,7 @@ export class PaginaimagensComponent implements OnInit {
     ev.dataTransfer.setData('text', ev.target.id);
   }
 
-  Dropar(ev, valor: string) {
+  Dropar(ev, valor: number) {
     ev.preventDefault();
     const data = ev.dataTransfer.getData('text');
 
