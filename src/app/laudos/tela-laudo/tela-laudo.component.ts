@@ -36,6 +36,7 @@ export class TelaLaudoComponent implements OnInit {
   procedimentosAtd: any[];
   atendimento = new Atendimento();
   atendimentoSelecionado: number;
+  procedimento = new ProcedimentoAtendimento();
   procedimentoAtdSelecionado: number;
   modeloselecionado: number;
   valordomodelooriginal: any;
@@ -232,7 +233,9 @@ export class TelaLaudoComponent implements OnInit {
 
     this.atendimento.procedimentos.filter(elo => {
       if (elo.codigo === this.procedimentoAtdSelecionado) {
-        if (elo.modelosalvo === null) {
+        this.procedimento = elo;
+
+        if (elo.modelosalvo.codigo == null) {
           this.servicemodelo.BuscarPorId(modeloselecionado)
             .then(response => {
               this.modelo = response;
@@ -250,7 +253,6 @@ export class TelaLaudoComponent implements OnInit {
               corpo.innerHTML = this.modelo.customstring;
             });
         } else {
-          console.log(elo.modelosalvo);
           this.editor.setContent(elo.modelosalvo.customstring);
         }
       }
@@ -356,21 +358,21 @@ export class TelaLaudoComponent implements OnInit {
 
 
   SalvandoDocumento() {
-    const salvo = new ModeloLaudoClienteSalvo();
+
     setTimeout(() => {
-      salvo.codigo = 1;
+      const salvo = new ModeloLaudoClienteSalvo();
+      console.log(salvo.codigo + ' vazar logo disso');
       salvo.customstring = this.editor.getContent();
       salvo.descricao = this.modelo.descricao;
       salvo.prioridade = this.modelo.prioridade;
       salvo.procedimentomedico = this.modelo.procedimentomedico;
+      this.procedimento.modelosalvo = salvo;
 
       this.atendimento.procedimentos.filter(elo => {
         if (elo.codigo === this.procedimentoAtdSelecionado) {
-          elo.modelosalvo = salvo;
-          this.serviceproc.Atualizar(elo).then(response => response);
+          this.serviceproc.Atualizar(this.procedimento).then(response => response);
         }
       });
     }, 1);
-
   }
 }

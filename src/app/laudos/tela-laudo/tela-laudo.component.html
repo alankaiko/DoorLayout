@@ -2,22 +2,22 @@
 <div class="geral">
   <div class="topoatendimento">
     <form #f="ngForm" autocomplete="off">
-      <div class="linhas">
+      <div class="linhas" style="margin-left: 5px;">
         <div class="blocodalinha" style="width: 33%;">
           <label>Atendimento: </label>
-          <p-dropdown [style]="{'min-width': '95%'}" [options]="atendimentos" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
+          <p-dropdown [style]="{'min-width': '95%'}" [options]="atendimentos" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
             placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 33%;">
           <label>Procedimento: </label>
-          <p-dropdown [style]="{'min-width': '95%'}" [options]="procedimentosAtd" [autoWidth]="false" [filter]="true" [(ngModel)]="procedimentoAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
+          <p-dropdown [style]="{'min-width': '95%'}" [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimentoAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
             placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 33%;">
           <label>Modelo Laudo: </label>
-          <p-dropdown [style]="{'min-width': '95%'}" [options]="modelos" [autoWidth]="false" [filter]="true" [(ngModel)]="modeloselecionado" #modeloselecionadoa="ngModel" name="modeloselecionadoa"
+          <p-dropdown [style]="{'min-width': '95%'}" [options]="modelos" [filter]="true" [(ngModel)]="modeloselecionado" #modeloselecionadoa="ngModel" name="modeloselecionadoa"
             placeholder="Selecione..." (onChange)="ConfiguraModelo(modeloselecionado)"></p-dropdown>
         </div>
       </div>
