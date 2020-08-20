@@ -1,13 +1,12 @@
-import { ModelolaudoclientesalvoService } from './../../zservice/modelolaudoclientesalvo.service';
-import { getTestBed } from '@angular/core/testing';
-import { AtendimentoService, PdfFiltroDados } from './../../zservice/atendimento.service';
+import { ModelodelaudodoprocService } from './../../zservice/modelodelaudodoproc.service';
+import { AtendimentoService } from './../../zservice/atendimento.service';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
-import { ModelolaudoprocService } from './../../zservice/modelolaudoproc.service';
-import { ModeloLaudoProc, Atendimento, ProcedimentoAtendimento, ModeloLaudoClienteSalvo } from './../../core/model';
+import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc } from './../../core/model';
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { Component, OnInit } from '@angular/core';
 import * as RoosterJs from 'roosterjs';
 import { Editor, DefaultFormat, Alignment, Direction } from 'roosterjs';
+import { isEmptyObject } from 'jquery';
 export * from 'roosterjs-editor-types';
 export * from 'roosterjs-editor-dom';
 export * from 'roosterjs-editor-core';
@@ -31,7 +30,7 @@ export class TelaLaudoComponent implements OnInit {
   fileUrl;
   imagelogo: any;
   modelos: any[];
-  modelo = new ModeloLaudoProc();
+  modelo = new ModeloDeLaudoDoProc();
   atendimentos: any[];
   procedimentosAtd: any[];
   atendimento = new Atendimento();
@@ -43,10 +42,9 @@ export class TelaLaudoComponent implements OnInit {
 
 
   constructor(private servicoparametro: ParametrodosistemaService,
-              private servicemodelo: ModelolaudoprocService,
+              private servicemodelo: ModelodelaudodoprocService,
               private serviceproc: ProcedimentoatendimentoService,
-              private service: AtendimentoService,
-              private servicemodelosalvo: ModelolaudoclientesalvoService) { }
+              private service: AtendimentoService) { }
 
   ngOnInit(): void {
     this.AdicionarListener();
@@ -216,12 +214,12 @@ export class TelaLaudoComponent implements OnInit {
         response => {
           codigoprocedimento = response;
 
-          this.servicemodelo.ListarPorProcedimento(response)
-            .then(
-              resp => {
-                this.modelos = resp.map(modelo => ({label: modelo.descricao, value: modelo.codigo}));
-              }
-            );
+          // this.servicemodelo.ListarPorProcedimento(response)
+          //  .then(
+          //    resp => {
+          //      this.modelos = resp.map(modelo => ({label: modelo.descricao, value: modelo.codigo}));
+          //    }
+          //  );
         }
       );
   }
@@ -235,7 +233,9 @@ export class TelaLaudoComponent implements OnInit {
       if (elo.codigo === this.procedimentoAtdSelecionado) {
         this.procedimento = elo;
 
-        if (elo.modelosalvo.codigo == null) {
+        if (!isEmptyObject(elo)) {
+
+        } else {
           this.servicemodelo.BuscarPorId(modeloselecionado)
             .then(response => {
               this.modelo = response;
@@ -252,14 +252,9 @@ export class TelaLaudoComponent implements OnInit {
               this.modelo.customstring = this.modelo.customstring.replace('$$', '');
               corpo.innerHTML = this.modelo.customstring;
             });
-        } else {
-          this.editor.setContent(elo.modelosalvo.customstring);
         }
       }
     });
-
-
-
   }
 
   private ConfigurarCabecalho() {
@@ -358,15 +353,13 @@ export class TelaLaudoComponent implements OnInit {
 
 
   SalvandoDocumento() {
-
     setTimeout(() => {
-      const salvo = new ModeloLaudoClienteSalvo();
-      console.log(salvo.codigo + ' vazar logo disso');
-      salvo.customstring = this.editor.getContent();
-      salvo.descricao = this.modelo.descricao;
-      salvo.prioridade = this.modelo.prioridade;
-      salvo.procedimentomedico = this.modelo.procedimentomedico;
-      this.procedimento.modelosalvo = salvo;
+      //  this.modelosalvo = isEmptyObject(this.modelosalvo) ? new ModeloLaudoClienteSalvo() : this.modelosalvo;
+      //  this.modelosalvo.customstring = this.editor.getContent();
+      //  this.modelosalvo.descricao = this.modelo.descricao;
+      //  this.modelosalvo.prioridade = this.modelo.prioridade;
+      //  this.modelosalvo.procedimentomedico = this.modelo.procedimentomedico;
+      //  this.procedimento.modelosalvo = this.modelosalvo;
 
       this.atendimento.procedimentos.filter(elo => {
         if (elo.codigo === this.procedimentoAtdSelecionado) {

@@ -1,4 +1,4 @@
-import { PaginaImagens } from './../core/model';
+import { PaginaDeImagens } from './../core/model';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -45,24 +45,24 @@ export class PaginaimagensService {
       });
   }
 
-  Adicionar(paginas): Promise<PaginaImagens> {
-    return this.http.post<PaginaImagens>(`${this.url}`, paginas).toPromise();
+  Adicionar(paginas): Promise<PaginaDeImagens> {
+    return this.http.post<PaginaDeImagens>(`${this.url}`, paginas).toPromise();
   }
 
   BuscarPorId(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/${codigo}`)
       .toPromise()
       .then(response => {
-        const pagina = response as PaginaImagens;
+        const pagina = response as PaginaDeImagens;
         return pagina;
       });
   }
 
-  Atualizar(paginas: PaginaImagens): Promise<any> {
+  Atualizar(paginas: PaginaDeImagens): Promise<any> {
     return this.http.put(`${this.url}/${paginas.codigo}`, paginas)
       .toPromise()
       .then(response => {
-        const paginaalterado = response as PaginaImagens;
+        const paginaalterado = response as PaginaDeImagens;
         return paginaalterado;
       });
   }

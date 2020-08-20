@@ -1,0 +1,126 @@
+<div class="ui-g geral">
+  <div class="topoprocedimento">
+    <form #f="ngForm" autocomplete="off" class="formu">
+      <div class="ui-g-4 ui-fluid" style="display: inline-flex; padding: 0;">
+        <label>Atendimento: </label>
+        <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
+          placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
+      </div>
+
+      <div class="ui-g-8 ui-fluid" style="display: inline-flex; padding: 0;">
+        <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimentoAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
+          placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
+
+          <button class="botaosair" routerLink="/dashboard">
+            <img src="/assets/img/SAIR.png">
+            <span>Sair</span>
+          </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="painelgeral">
+    <div class="painelesquerda">
+      <div class="menubotoes" style="display: inline-flex;">
+        <div>
+          <button type="button" class="botaoprincipal">
+            <img src="/assets/img/SALVAR.png">
+            <span>Salvar</span>
+          </button>
+        </div>
+
+        <div>
+          <button type="button" class="botaoprincipal">
+            <img src="/assets/img/CANCELAR.png">
+            <span>Cancelar</span>
+          </button>
+        </div>
+
+        <div>
+          <button type="button" class="botaoprincipal">
+            <img src="/assets/img/IMPRESSORA.png">
+            <span>Imprimir</span>
+          </button>
+        </div>
+
+        <div>
+          <button type="button" class="botaoprincipal">
+            <img src="/assets/img/PDF_FILE.gif">
+            <span>Gerar PDF</span>
+          </button>
+        </div>
+
+        <div>
+          <button type="button" class="botaoprincipal">
+            <img src="/assets/img/PRINT_VIEW.png">
+            <span>Vlz Laudo</span>
+          </button>
+        </div>
+
+        <div>
+          <button type="button" class="botaoprincipal">
+            <img src="/assets/img/ESCOLHER_IMAGENS.png">
+            <span>Esc Img</span>
+          </button>
+        </div>
+
+        <div>
+          <button type="button" class="botaoprincipal">
+            <img src="/assets/img/MODELO_LAUDO.png">
+            <span>Modelo</span>
+          </button>
+        </div>
+
+        <div>
+          <button type="button" class="botaoprincipal">
+            <img src="/assets/img/OPTIONS.png">
+            <span>Receita</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="barradedados">
+        <div style="width: 60%;">
+          <p-dropdown id="codigodrop" [options]="camposbusca" [style]="{'min-width': '95%'}"></p-dropdown>
+        </div>
+
+        <div style="width: 40%; display: inline-flex;">
+          <div>
+            <button type="button" class="botaoprincipal">
+              <img src="/assets/img/primeiro.png">
+            </button>
+          </div>
+
+          <div>
+            <button type="button" class="botaoprincipal">
+              <img src="/assets/img/PRIMEIRO_GRANDE.png">
+            </button>
+          </div>
+
+          <div>
+            <button type="button" class="botaoprincipal">
+              <img src="/assets/img/ULTIMO_GRANDE.png">
+            </button>
+          </div>
+
+          <div>
+            <button type="button" class="botaoprincipal">
+              <img src="/assets/img/ultimo.png">
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="paineltexto">
+        <p-panel>
+          <app-textolivre [procedimento]="procedimento"></app-textolivre>
+        </p-panel>
+      </div>
+    </div>
+
+    <div class="paineldireita">
+
+    </div>
+  </div>
+</div>

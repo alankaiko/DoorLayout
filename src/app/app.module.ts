@@ -1,3 +1,4 @@
+import { LaudoComponent } from './laudos/laudo/laudo.component';
 import { PaginaimagensComponent } from './laudos/paginaimagens/paginaimagens.component';
 import { CadastroSubcategoriacidComponent } from './views/formularios/cadastro-subcategoriacid.component';
 import { ListasubcategoriacidComponent } from './views/tabelas/listasubcategoriacid.component';
@@ -45,7 +46,7 @@ import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
 import { CheckboxModule } from 'primeng/components/checkbox/checkbox';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import {TreeTableModule} from 'primeng/treetable';
-
+import {SpinnerModule} from 'primeng/spinner';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {EditorModule} from 'primeng/components/editor/editor';
 import {InputMaskModule} from 'primeng/components/inputmask/inputmask';
@@ -94,6 +95,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastro-procedimentomedico.component';
+import { TextolivreComponent } from './modelos/textolivre/textolivre.component';
 
 @NgModule({
   imports: [
@@ -137,7 +139,8 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     ScrollPanelModule,
     DragDropModule,
     EditorModule,
-    RadioButtonModule
+    RadioButtonModule,
+    SpinnerModule
   ],
   declarations: [
     AppComponent,
@@ -170,7 +173,10 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
     SiglaComponent,
     PaginaimagensComponent,
     ListasubcategoriacidComponent,
-    CadastroSubcategoriacidComponent
+    CadastroSubcategoriacidComponent,
+    LaudoComponent,
+    TextolivreComponent,
+    TextolivreComponent
   ],
   providers: [{
     provide: LocationStrategy,

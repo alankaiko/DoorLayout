@@ -3,12 +3,12 @@
     <form #f="ngForm" autocomplete="off" class="formu">
       <div class="ui-g-4 ui-fluid" style="display: inline-flex; padding: 0;">
         <label>Atendimento: </label>
-        <p-dropdown [options]="atendimentos" [autoWidth]="false" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
+        <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
           placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
       </div>
 
       <div class="ui-g-8 ui-fluid" style="display: inline-flex; padding: 0;">
-        <p-dropdown [options]="procedimentosAtd" [autoWidth]="false" [filter]="true" [(ngModel)]="procedimentosAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
+        <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimentosAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
           placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
 
           <button class="botaosair" routerLink="/dashboard">
@@ -42,6 +42,9 @@
         <div class="quantidadedoarray">
           <div id="quantidade">
             <p-dropdown [options]="qtdimagems" [(ngModel)]="qtdimagemselecionada" (onChange)="ConfigurarDimensoes()"></p-dropdown>
+          </div>
+          <div>
+            <p-spinner [(ngModel)]="paginaselecionada"></p-spinner>
           </div>
           <div>
             <button pButton type="button" label="Salvando" (click)="SalvandoHtml()"></button>

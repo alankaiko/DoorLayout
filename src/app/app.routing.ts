@@ -1,3 +1,4 @@
+import { LaudoComponent } from './laudos/laudo/laudo.component';
 import { PaginaimagensComponent } from './laudos/paginaimagens/paginaimagens.component';
 import { CadastroSubcategoriacidComponent } from './views/formularios/cadastro-subcategoriacid.component';
 import { ListasubcategoriacidComponent } from './views/tabelas/listasubcategoriacid.component';
@@ -5,7 +6,6 @@ import { SiglaComponent } from './views/ferramentas/sigla.component';
 import { EstadoComponent } from './views/ferramentas/estado.component';
 import { LicenciadoComponent } from './views/ferramentas/licenciado.component';
 import { InserirImagensComponent } from './laudos/inserir-imagens/inserir-imagens.component';
-import { TelaLaudoComponent } from './laudos/tela-laudo/tela-laudo.component';
 import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
 import { ViewerComponent } from './servidor/viewer/viewer.component';
 import { PrevisualizacaoComponent } from './servidor/previsualizacao/previsualizacao.component';
@@ -121,7 +121,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'operacoes/laudos',
-        component: TelaLaudoComponent
+        component: LaudoComponent
       }
     ]
   },
@@ -134,7 +134,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'operacoes/laudos/:cod',
-        component: TelaLaudoComponent
+        component: LaudoComponent
       }
     ]
   },

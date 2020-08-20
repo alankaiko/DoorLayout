@@ -363,7 +363,6 @@ export class ProcedimentoAtendimento {
   atendimento = new Atendimento();
   listaimagem = new Array<Imagem>();
   codigoatdteste: number;
-  modelosalvo = new ModeloLaudoClienteSalvo();
 
   constructor(codigo?: number, profexecutante?: ProfissionalExecutante,
               procedimentoMedico?: ProcedimentoMedico, valorpaciente?: string,
@@ -424,28 +423,53 @@ export class Sigla {
   descricao: string;
 }
 
-
-export class ModeloLaudoProc {
+export class ImagemImpressa {
   codigo: number;
+  imagem = new Imagem();
+  indice: number;
+  pagina = new PaginaDeImagens();
+  caminhoimagemjpeg: string;
+}
+
+export enum LAYOUT_IMG {
+  LAYOUT_1_IMG = '1 Imagem grande (14 x 10,5 cm)',
+  LAYOUT_1_IMG_PRINTER = '1 Imagem Média (10 x 7,3 cm) Printer',
+  LAYOUT_2_IMG_GRANDES = '2 Images grandes (14 x 10,5 cm)',
+  LAYOUT_2_IMG = '2 Imagens Médias (10 x 7,3 cm) Printer',
+  LAYOUT_3_IMG = '3 Imagens Médias (8 x 6,6 cm)',
+  LAYOUT_4_IMG_GRANDES = '4 Imagens Grandes (9 x 6,8 cm)',
+  LAYOUT_4_IMG_MEDIAS = '4 Imagens Médias (8 x 6,6 cm)',
+  LAYOUT_4_IMG_PEQUENAS = '4 Imagens Pequenas (6,5 x 5,0 cm)',
+  LAYOUT_6_IMG = '6 Imagens Médias (8 x 6,6 cm)',
+  LAYOUT_6_IMG_GRANDES = '6 Imagens Grandes (9 x 6,8 cm)',
+  LAYOUT_8_IMG = '8 Imagens Pequenas (6,5 x 5 cm)',
+  LAYOUT_8_IMG_GRANDES = '8 Imagens Grandes',
+  LAYOUT_9_IMG = '9 Imagens Pequenas (5,5 x 4 cm)',
+  LAYOUT_12_IMG = '12 Imagens Pequenas (5,5 x 4 cm)',
+  LAYOUT_15_IMG = '15 Imagens Pequenas (5,5 x 4 cm)',
+  LAYOUT_LAUDO_E_4_IMG = 'Laudo e 4 Imagens Pequenas(5,5 x 4 cm)',
+  LAYOUT_LAUDO_E_5_IMG = 'Laudo e 5 Imagens Pequenas(5,5 x 4 cm)'
+}
+
+export class ModeloDeLaudoDoProc {
+  codigo: number;
+  procedimentomedico = new ProcedimentoMedico();
+  modelodelaudo = new ModeloDeLaudo();
   descricao: string;
   customstring: string;
   prioridade: number;
-  procedimentomedico = new ProcedimentoMedico();
 }
 
-export class ModeloLaudoClienteSalvo {
+export class ModeloDeLaudo {
   codigo: number;
-  descricao: string;
-  customstring: string;
-  prioridade: number;
-  procedimentomedico = new ProcedimentoMedico();
-  paginas = new Array<PaginaImagens>();
+  nome: string;
+  contexto: string;
+  visao: string;
 }
 
-export class PaginaImagens {
+export class PaginaDeImagens {
   codigo: number;
-  descricao: string;
-  dados: string;
-  modelosalvo = new ModeloLaudoClienteSalvo();
+  layout: LAYOUT_IMG;
+  imagens = new Array<ImagemImpressa>();
+  procedimentoatendimento = new ProcedimentoAtendimento();
 }
-

@@ -2,7 +2,7 @@ import { ProfissionalexecutanteService } from './../../zservice/profissionalexec
 import { ProcedimentomedicoService } from './../../zservice/procedimentomedico.service';
 import { ProcedimentoAtendimento, ProcedimentoMedico } from './../../core/model';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 
 @Component({
@@ -71,14 +71,14 @@ export class ProcedimentoCadApendComponent implements OnInit {
     // this.procedimentos[this.procedimentoIndex] = this.ClonarProcedimento(this.procedimento);
     setTimeout(() => {
       this.procedimentos[this.procedimentoIndex] = this.formulario.value;
-    const aff = this.procedimentos[this.procedimentoIndex].procedimentomedico.codigo;
+      const aff = this.procedimentos[this.procedimentoIndex].procedimentomedico.codigo;
 
-    this.procedimentomedicos.forEach(elo => {
-      if (elo.codigo === aff) {
-        this.procedimentos[this.procedimentoIndex].procedimentomedico = elo;
-      }
-    });
-    this.exbindoFormularioProcedimento = false;
+      this.procedimentomedicos.forEach(elo => {
+        if (elo.codigo === aff) {
+          this.procedimentos[this.procedimentoIndex].procedimentomedico = elo;
+        }
+      });
+      this.exbindoFormularioProcedimento = false;
     }, 5);
 
   }

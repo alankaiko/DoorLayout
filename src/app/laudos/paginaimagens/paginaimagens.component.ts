@@ -1,10 +1,9 @@
-import { ModelolaudoclientesalvoService } from './../../zservice/modelolaudoclientesalvo.service';
 import { PaginaimagensService } from './../../zservice/paginaimagens.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { AtendimentoService } from './../../zservice/atendimento.service';
-import { Atendimento, ProcedimentoAtendimento, Imagem, PaginaImagens } from './../../core/model';
+import { Atendimento, ProcedimentoAtendimento, Imagem, PaginaDeImagens } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 
@@ -23,12 +22,12 @@ export class PaginaimagensComponent implements OnInit {
   listaimagemsbase = new Array<Imagem>();
   qtdimagems: SelectItem[];
   qtdimagemselecionada: number = 1;
-  paginasdeimagens = new Array<PaginaImagens>();
+  paginasdeimagens = new Array<PaginaDeImagens>();
+  paginaselecionada: number = 1;
 
   constructor(private service: AtendimentoService,
     private serviceproc: ProcedimentoatendimentoService,
     private servicepagina: PaginaimagensService,
-    private servicemodelo: ModelolaudoclientesalvoService,
     private rota: ActivatedRoute,
     private route: Router,
     private location: Location) {}
@@ -139,25 +138,19 @@ export class PaginaimagensComponent implements OnInit {
   }
 
   SalvandoHtml() {
-    const pagina = new PaginaImagens();
-    pagina.dados = this.SalvarPagina();
-    pagina.descricao = 'teste';
-    pagina.modelosalvo = this.procedimento.modelosalvo;
-    this.procedimento.modelosalvo.paginas.push(pagina);
+    const pagina = new PaginaDeImagens();
+    // pagina.dados = this.SalvarPagina();
+    // pagina.descricao = 'teste';
+    // pagina.modelosalvo.codigo = this.procedimento.modelosalvo.codigo;
+    this.paginasdeimagens.push(pagina);
+  }
 
-    setTimeout(() => {
-      this.servicemodelo.Adicionar(this.procedimento.modelosalvo).then(response => {
-        console.log('deu certo agora');
-      });
-    }, 5);
+  SalvarPaginaDeImpressoes() {
+    // this.procedimento.modelosalvo.paginas = this.paginasdeimagens;
 
-    // const win = window.open();
-    // win.document.write(this.SalvarPagina());
-
-    // win.document.close();
-    // setTimeout(() => {
-    //  win.print();
-    // }, 5);
+    // this.servicemodelo.Atualizar(this.procedimento.modelosalvo).then(response => {
+    //  console.log('deu certo agora');
+    // });
   }
 
   ConfigurarDimensoes() {

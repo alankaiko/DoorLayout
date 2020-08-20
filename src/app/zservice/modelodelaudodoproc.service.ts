@@ -1,5 +1,5 @@
-import { ModeloLaudoProc } from './../core/model';
-import { environment } from './../../environments/environment.prod';
+import { ModeloDeLaudoDoProc } from './../core/model';
+import { environment } from './../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -11,7 +11,7 @@ export class ModeloLaudoProcFiltro {
 @Injectable({
   providedIn: 'root'
 })
-export class ModelolaudoprocService {
+export class ModelodelaudodoprocService {
   url: string;
 
   constructor(private http: HttpClient) {
@@ -44,11 +44,11 @@ export class ModelolaudoprocService {
       });
   }
 
-  Adicionar(modelo): Promise<ModeloLaudoProc> {
-    return this.http.post<ModeloLaudoProc>(`${this.url}`, modelo).toPromise();
+  Adicionar(modelo): Promise<ModeloDeLaudoDoProc> {
+    return this.http.post<ModeloDeLaudoDoProc>(`${this.url}`, modelo).toPromise();
   }
 
-  ListarPorProcedimento(codigo: number): Promise<any> {
+  BuscarPelaIdProcedimento(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/proc/${codigo}`).toPromise()
     .then(response => response);
   }
@@ -57,16 +57,16 @@ export class ModelolaudoprocService {
     return this.http.get(`${this.url}/${codigo}`)
       .toPromise()
       .then(response => {
-        const modelo = response as ModeloLaudoProc;
+        const modelo = response as ModeloDeLaudoDoProc;
         return modelo;
       });
   }
 
-  Atualizar(modelo: ModeloLaudoProc): Promise<any> {
+  Atualizar(modelo: ModeloDeLaudoDoProc): Promise<any> {
     return this.http.put(`${this.url}/${modelo.codigo}`, modelo)
       .toPromise()
       .then(response => {
-        const modeloalterado = response as ModeloLaudoProc;
+        const modeloalterado = response as ModeloDeLaudoDoProc;
         return modeloalterado;
       });
   }
