@@ -69,17 +69,16 @@ export class ProcedimentoCadApendComponent implements OnInit {
 
   ConfirmarProcedimento() {
     // this.procedimentos[this.procedimentoIndex] = this.ClonarProcedimento(this.procedimento);
-    setTimeout(() => {
-      this.procedimentos[this.procedimentoIndex] = this.formulario.value;
-      const aff = this.procedimentos[this.procedimentoIndex].procedimentomedico.codigo;
 
-      this.procedimentomedicos.forEach(elo => {
-        if (elo.codigo === aff) {
-          this.procedimentos[this.procedimentoIndex].procedimentomedico = elo;
-        }
-      });
-      this.exbindoFormularioProcedimento = false;
-    }, 5);
+    this.procedimentos[this.procedimentoIndex] = this.formulario.value;
+    const aff = this.procedimentos[this.procedimentoIndex].procedimentomedico.codigo;
+
+    this.procedimentomedicos.forEach(elo => {
+      if (elo.codigo === aff) {
+        this.procedimentos[this.procedimentoIndex].procedimentomedico = elo;
+      }
+    });
+    this.exbindoFormularioProcedimento = false;
 
   }
 

@@ -1,4 +1,4 @@
-import { ProcedimentoAtendimento } from './../../core/model';
+import { Laudo, ParametroDoLaudo } from './../../core/model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./textolivre.component.css']
 })
 export class TextolivreComponent implements OnInit {
-  @Input() procedimento: ProcedimentoAtendimento;
+  @Input() laudosalvo: ParametroDoLaudo;
 
   constructor() { }
 

@@ -57,7 +57,7 @@ export class CadastroSubcategoriacidComponent implements OnInit {
           codigotexto: [null, subcategoria.categoriacid10.grupocid10.codigotexto],
           nome: [null, subcategoria.categoriacid10.grupocid10.nome],
           capitulocid: this.formbuilder.group({
-            codigo: [null, subcategoria.categoriacid10.grupocid10.capitulocid.codigo],
+            codigo: [null, subcategoria.categoriacid10.grupocid10.capitulocid10.codigo],
             codigotexto: [null, subcategoria.categoriacid10.grupocid10.codigotexto],
             nome: [null, subcategoria.categoriacid10.grupocid10.nome]
           })

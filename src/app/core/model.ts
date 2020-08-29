@@ -191,7 +191,7 @@ export class GrupoCID10 {
   codigo: number;
   codigotexto: string;
   nome: string;
-  capitulocid = new CapituloCID10();
+  capitulocid10 = new CapituloCID10();
 }
 
 export class CategoriaCID10 {
@@ -362,12 +362,14 @@ export class ProcedimentoAtendimento {
   dataexecucao: Date;
   atendimento = new Atendimento();
   listaimagem = new Array<Imagem>();
+  laudo = new Laudo();
   codigoatdteste: number;
 
   constructor(codigo?: number, profexecutante?: ProfissionalExecutante,
               procedimentoMedico?: ProcedimentoMedico, valorpaciente?: string,
               valorconvenio?: string, preventreglaudo?: Date,
-              dataexecucao?: Date, atendimento?: Atendimento, listaimagem?: Array<Imagem>) {
+              dataexecucao?: Date, atendimento?: Atendimento,
+              listaimagem?: Array<Imagem>, laudo?: Laudo) {
                 this.codigo = codigo;
                 this.profexecutante = profexecutante;
                 this.procedimentomedico = procedimentoMedico;
@@ -377,6 +379,7 @@ export class ProcedimentoAtendimento {
                 this.dataexecucao = dataexecucao;
                 this.atendimento = atendimento;
                 this.listaimagem = listaimagem;
+                this.laudo = laudo;
               }
 }
 
@@ -431,26 +434,6 @@ export class ImagemImpressa {
   caminhoimagemjpeg: string;
 }
 
-export enum LAYOUT_IMG {
-  LAYOUT_1_IMG = '1 Imagem grande (14 x 10,5 cm)',
-  LAYOUT_1_IMG_PRINTER = '1 Imagem Média (10 x 7,3 cm) Printer',
-  LAYOUT_2_IMG_GRANDES = '2 Images grandes (14 x 10,5 cm)',
-  LAYOUT_2_IMG = '2 Imagens Médias (10 x 7,3 cm) Printer',
-  LAYOUT_3_IMG = '3 Imagens Médias (8 x 6,6 cm)',
-  LAYOUT_4_IMG_GRANDES = '4 Imagens Grandes (9 x 6,8 cm)',
-  LAYOUT_4_IMG_MEDIAS = '4 Imagens Médias (8 x 6,6 cm)',
-  LAYOUT_4_IMG_PEQUENAS = '4 Imagens Pequenas (6,5 x 5,0 cm)',
-  LAYOUT_6_IMG = '6 Imagens Médias (8 x 6,6 cm)',
-  LAYOUT_6_IMG_GRANDES = '6 Imagens Grandes (9 x 6,8 cm)',
-  LAYOUT_8_IMG = '8 Imagens Pequenas (6,5 x 5 cm)',
-  LAYOUT_8_IMG_GRANDES = '8 Imagens Grandes',
-  LAYOUT_9_IMG = '9 Imagens Pequenas (5,5 x 4 cm)',
-  LAYOUT_12_IMG = '12 Imagens Pequenas (5,5 x 4 cm)',
-  LAYOUT_15_IMG = '15 Imagens Pequenas (5,5 x 4 cm)',
-  LAYOUT_LAUDO_E_4_IMG = 'Laudo e 4 Imagens Pequenas(5,5 x 4 cm)',
-  LAYOUT_LAUDO_E_5_IMG = 'Laudo e 5 Imagens Pequenas(5,5 x 4 cm)'
-}
-
 export class ModeloDeLaudoDoProc {
   codigo: number;
   procedimentomedico = new ProcedimentoMedico();
@@ -472,4 +455,43 @@ export class PaginaDeImagens {
   layout: LAYOUT_IMG;
   imagens = new Array<ImagemImpressa>();
   procedimentoatendimento = new ProcedimentoAtendimento();
+}
+
+export class Laudo {
+  codigo: number;
+  status: STATUS_LAUDO;
+  laudosalvo: ParametroDoLaudo;
+  modelodelaudo: ModeloDeLaudoDoProc;
+  cidresultadodoexame: SubcategoriaCid10;
+}
+
+export class ParametroDoLaudo {
+  codigo: number;
+  index: number;
+  valor: string;
+}
+
+export enum LAYOUT_IMG {
+  LAYOUT_1_IMG = '1 Imagem grande (14 x 10,5 cm)',
+  LAYOUT_1_IMG_PRINTER = '1 Imagem Média (10 x 7,3 cm) Printer',
+  LAYOUT_2_IMG_GRANDES = '2 Images grandes (14 x 10,5 cm)',
+  LAYOUT_2_IMG = '2 Imagens Médias (10 x 7,3 cm) Printer',
+  LAYOUT_3_IMG = '3 Imagens Médias (8 x 6,6 cm)',
+  LAYOUT_4_IMG_GRANDES = '4 Imagens Grandes (9 x 6,8 cm)',
+  LAYOUT_4_IMG_MEDIAS = '4 Imagens Médias (8 x 6,6 cm)',
+  LAYOUT_4_IMG_PEQUENAS = '4 Imagens Pequenas (6,5 x 5,0 cm)',
+  LAYOUT_6_IMG = '6 Imagens Médias (8 x 6,6 cm)',
+  LAYOUT_6_IMG_GRANDES = '6 Imagens Grandes (9 x 6,8 cm)',
+  LAYOUT_8_IMG = '8 Imagens Pequenas (6,5 x 5 cm)',
+  LAYOUT_8_IMG_GRANDES = '8 Imagens Grandes',
+  LAYOUT_9_IMG = '9 Imagens Pequenas (5,5 x 4 cm)',
+  LAYOUT_12_IMG = '12 Imagens Pequenas (5,5 x 4 cm)',
+  LAYOUT_15_IMG = '15 Imagens Pequenas (5,5 x 4 cm)',
+  LAYOUT_LAUDO_E_4_IMG = 'Laudo e 4 Imagens Pequenas(5,5 x 4 cm)',
+  LAYOUT_LAUDO_E_5_IMG = 'Laudo e 5 Imagens Pequenas(5,5 x 4 cm)'
+}
+
+export enum STATUS_LAUDO {
+  pendente = 'PENDENTE',
+  pronto = 'PRONTO'
 }

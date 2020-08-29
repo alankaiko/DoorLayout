@@ -29,6 +29,7 @@ import {CarouselModule} from 'primeng/carousel';
 import { CoreModule } from './core/core.module';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {WebcamModule} from 'ngx-webcam';
+import {AccordionModule} from 'primeng/accordion';
 import {TabViewModule} from 'primeng/components/tabview/tabview';
 import * as $ from 'jquery';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -96,6 +97,7 @@ import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastro-procedimentomedico.component';
 import { TextolivreComponent } from './modelos/textolivre/textolivre.component';
+import { AbdomeinferiormascComponent } from './modelos/abdomeinferiormasc/abdomeinferiormasc.component';
 
 @NgModule({
   imports: [
@@ -140,7 +142,8 @@ import { TextolivreComponent } from './modelos/textolivre/textolivre.component';
     DragDropModule,
     EditorModule,
     RadioButtonModule,
-    SpinnerModule
+    SpinnerModule,
+    AccordionModule
   ],
   declarations: [
     AppComponent,
@@ -176,7 +179,8 @@ import { TextolivreComponent } from './modelos/textolivre/textolivre.component';
     CadastroSubcategoriacidComponent,
     LaudoComponent,
     TextolivreComponent,
-    TextolivreComponent
+    TextolivreComponent,
+    AbdomeinferiormascComponent
   ],
   providers: [{
     provide: LocationStrategy,

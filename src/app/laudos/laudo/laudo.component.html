@@ -16,7 +16,6 @@
             <span>Sair</span>
           </button>
       </div>
-
     </form>
   </div>
 
@@ -24,7 +23,7 @@
     <div class="painelesquerda">
       <div class="menubotoes" style="display: inline-flex;">
         <div>
-          <button type="button" class="botaoprincipal">
+          <button type="button" class="botaoprincipal" (click)="Salvar(f)">
             <img src="/assets/img/SALVAR.png">
             <span>Salvar</span>
           </button>
@@ -66,7 +65,7 @@
         </div>
 
         <div>
-          <button type="button" class="botaoprincipal">
+          <button (click)="AtivarExcluir()" type="button" class="botaoprincipal">
             <img src="/assets/img/MODELO_LAUDO.png">
             <span>Modelo</span>
           </button>
@@ -114,7 +113,8 @@
 
       <div class="paineltexto">
         <p-panel>
-          <app-textolivre [procedimento]="procedimento"></app-textolivre>
+          <app-textolivre *ngIf="textolivre" [laudosalvo]="procedimento.laudo.laudosalvo"></app-textolivre>
+          <app-abdomeinferiormasc *ngIf="abdomeinferiormasc" [laudosalvo]="procedimento.laudo.laudosalvo"></app-abdomeinferiormasc>
         </p-panel>
       </div>
     </div>
@@ -124,3 +124,9 @@
     </div>
   </div>
 </div>
+
+<p-dialog header="Escolha o Modelo" [(visible)]="dropmodelo" [baseZIndex]="10001" [style]="{width: '20vw'}">
+  <p-dropdown [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '16%'}"
+    [options]="modelodelaudo" [(ngModel)]="prioridade" name="modelocodigo"
+    #modelocodigo="ngModel" (onChange)="RenderizarModeloLaudo()"></p-dropdown>
+</p-dialog>

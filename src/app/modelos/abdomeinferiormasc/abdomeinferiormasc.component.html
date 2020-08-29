@@ -1,0 +1,238 @@
+<div style="width: 100%; background-color: #ffffff;">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Dados do Equipamento">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+    <p-accordionTab header="Bexiga">
+        <div>
+          <div>
+            <div>
+              <label>Presença</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Espessura</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Morfologia</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Posição</label>
+              <input>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <label>Superfície</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Textura</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Contorno</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Limites</label>
+              <input>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <label>Textura do Conteúdo da bexiga</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Débris - conteúdo da bexiga</label>
+              <input>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <label>Posição do assoalho da bexiga</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Capacidade da bexiga</label>
+              <input>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <label>Resíduos pós-miccional</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Descrição</label>
+              <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+            </div>
+          </div>
+        </div>
+    </p-accordionTab>
+    <p-accordionTab header="Próstata">
+      <div>
+        <div>
+          <div>
+            <label>Presença</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Posição</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Morfologia</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Superfície</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label>Diam. longitudinal(cm)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Diam. ant. post.(cm)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Diam. transversal(cm)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Peso(g)</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label>Biópsia</label>
+            <input>
+          </div>
+
+          <div>
+            <label>N de fragmentos</label>
+            <input>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Vesículas seminais">
+      <div>
+        <div>
+          <div>
+            <label>Presença</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Simetria</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Morfologia</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Superfície</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label>Textura</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Limites</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Contornos</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label>Descrição</label>
+            <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div>
+        <div>
+          <label>Profissional Executante</label>
+          <p-dropdown [options]="executantes" [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel" name="codigoprofexecutante"
+            placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Header 1">
+      Content 1
+    </p-accordionTab>
+
+    <p-accordionTab header="Header 1">
+      Content 1
+    </p-accordionTab>
+
+    <p-accordionTab header="Header 1">
+      Content 1
+    </p-accordionTab>
+
+    <p-accordionTab header="Header 1">
+      Content 1
+    </p-accordionTab>
+
+    <p-accordionTab header="Header 1">
+      Content 1
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

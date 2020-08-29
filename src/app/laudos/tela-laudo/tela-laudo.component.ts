@@ -197,7 +197,7 @@ export class TelaLaudoComponent implements OnInit {
   }
 
   CarregarProcedimentos() {
-    this.service.BuscarPorIdLaudo(this.atendimentoSelecionado)
+    this.service.BuscarPorId(this.atendimentoSelecionado)
       .then(
         response => {
           this.atendimento = response;

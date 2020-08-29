@@ -89,7 +89,7 @@ export class AtendimentoService {
 
    }
 
-   BuscarPorIdLaudo(codigo: number): Promise<any> {
+   BuscarProcedimentosPorAt(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/${codigo}`)
      .toPromise()
      .then(response => {
