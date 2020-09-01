@@ -111,10 +111,19 @@
         </div>
       </div>
 
-      <div class="paineltexto">
+      <div class="paineltexto" style="background-color: #ffffff;">
         <p-panel>
           <app-textolivre *ngIf="textolivre" [laudosalvo]="procedimento.laudo.laudosalvo"></app-textolivre>
           <app-abdomeinferiormasc *ngIf="abdomeinferiormasc" [laudosalvo]="procedimento.laudo.laudosalvo"></app-abdomeinferiormasc>
+          <app-abdometotal *ngIf="abdometotal" [laudosalvo]="procedimento.laudo.laudosalvo"></app-abdometotal>
+          <app-obstetrico1trimestre *ngIf="obstetrico1trimestre" [laudosalvo]="procedimento.laudo.laudosalvo"></app-obstetrico1trimestre>
+          <app-diversos *ngIf="diversos" [laudosalvo]="procedimento.laudo.laudosalvo"></app-diversos>
+          <app-dopplerfluxometria *ngIf="dopplerfluxometria" [laudosalvo]="procedimento.laudo.laudosalvo"></app-dopplerfluxometria>
+          <app-endoscopiadigalta *ngIf="endoscopiadigalta" [laudosalvo]="procedimento.laudo.laudosalvo"></app-endoscopiadigalta>
+          <app-mamas *ngIf="mamas" [laudosalvo]="procedimento.laudo.laudosalvo"></app-mamas>
+          <app-ecodopplercardiograma *ngIf="ecodopplercardiograma" [laudosalvo]="procedimento.laudo.laudosalvo"></app-ecodopplercardiograma>
+
+
         </p-panel>
       </div>
     </div>

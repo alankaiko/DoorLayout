@@ -98,6 +98,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastro-procedimentomedico.component';
 import { TextolivreComponent } from './modelos/textolivre/textolivre.component';
 import { AbdomeinferiormascComponent } from './modelos/abdomeinferiormasc/abdomeinferiormasc.component';
+import { AbdometotalComponent } from './modelos/abdometotal/abdometotal.component';
+import { Obstetrico1trimestreComponent } from './modelos/obstetrico1trimestre/obstetrico1trimestre.component';
+import { DiversosComponent } from './modelos/diversos/diversos.component';
+import { DopplerfluxometriaComponent } from './modelos/dopplerfluxometria/dopplerfluxometria.component';
+import { EndoscopiadigaltaComponent } from './modelos/endoscopiadigalta/endoscopiadigalta.component';
+import { MamasComponent } from './modelos/mamas/mamas.component';
+import { EcodopplercardiogramaComponent } from './modelos/ecodopplercardiograma/ecodopplercardiograma.component';
 
 @NgModule({
   imports: [
@@ -180,7 +187,14 @@ import { AbdomeinferiormascComponent } from './modelos/abdomeinferiormasc/abdome
     LaudoComponent,
     TextolivreComponent,
     TextolivreComponent,
-    AbdomeinferiormascComponent
+    AbdomeinferiormascComponent,
+    AbdometotalComponent,
+    Obstetrico1trimestreComponent,
+    DiversosComponent,
+    DopplerfluxometriaComponent,
+    EndoscopiadigaltaComponent,
+    MamasComponent,
+    EcodopplercardiogramaComponent
   ],
   providers: [{
     provide: LocationStrategy,

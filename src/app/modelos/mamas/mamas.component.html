@@ -1,0 +1,91 @@
+<div style="width: 100%; background-color: #ffffff;">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Dados do Equipamento">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Ciclo menstrual">
+      <div>
+        <div>
+          <label>Data do exame</label>
+          <input>
+
+          <label>D.U.M.</label>
+          <input>
+
+          <label>Dia do ciclo</label>
+          <input>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama direita - pele">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama direita - complexo aréolo-papilar">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama direita - tecido celular subcutâneo">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama direita - parênquima glandular">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama direita - fascia retromamária">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama direita - observações gerais">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama esquerda - pele">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama esquerda - complexo aréolo-papilar">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama esquerda - tecido celular subcutâneo">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama esquerda - parênquima glandular">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama esquerda - fascia retromamária">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Mama esquerda - observações gerais">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div>
+        <div>
+          <label>Profissional Executante</label>
+          <p-dropdown [options]="executantes" [(ngModel)]="codigoexecutante" name="codigoprofexecutante"
+            #codigoprofexecutante="ngModel" [filter]="true" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

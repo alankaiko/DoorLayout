@@ -1,0 +1,300 @@
+<div style="width: 100%; background-color: #ffffff;">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Dados do Equipamento">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Dados da gestação">
+      <div>
+        <div>
+          <div>
+            <span>IGH pela amenorréia</span>
+
+            <label>DUM</label>
+            <input>
+
+            <label>IGH</label>
+            <input>
+            <span>Sem.</span>
+            <input>
+            <span>Dias</span>
+
+            <label>DPP</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <span>IGH pelo ultimo exame</span>
+
+            <label>Data</label>
+            <input>
+            <input>
+            <span>Sem.</span>
+            <input>
+            <span>Dias</span>
+
+            <label>IGH</label>
+            <input>
+            <span>Sem.</span>
+            <input>
+            <span>Dias</span>
+
+            <label>DPP</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <span>Definida pelo examinador</span>
+
+            <label>Idade</label>
+            <input>
+            <span>Semanas</span>
+            <input>
+            <span>Dias</span>
+
+            <label>Data do exame</label>
+            <p-calendar></p-calendar>
+            <label>DPP</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label>Número de fetos</label>
+            <input>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Artérias uterinas">
+      <div>
+        <div>
+          <span>Artéria uterina direita</span>
+          <div>
+            <label>Relação S/D</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IR</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IP</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Incisura</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Relaçao A/C</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <span>Artéria uterina direita</span>
+          <div>
+            <label>Relação S/D</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IR</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IP</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Incisura</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Relaçao A/C</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <span>Média das relações das artérias uterinas</span>
+          <div>
+            <label>Média rel. S/D</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Média de IR</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Média de IP</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Média de A/C</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Incisura bilateral</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <span>(=2,6)</span>
+          <span>(=1,0)</span>
+          <span>(=1,5)</span>
+          <span>(=2,30)</span>
+          <span>Ausência</span>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Artérias umbilical e cerebral média">
+      <div>
+        <div>
+          <span>Artéria umbilical</span>
+          <div>
+            <label>Diástole</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Relação S/D</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IR</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IP</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <span>Artéria cerebral média</span>
+          <div>
+            <label>Diástole</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Relação S/D</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IR</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IP</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Pico Sistólico (ACM)</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <span>Média das relações das artérias uterinas</span>
+          <div>
+            <label>Média S/D (Umbilical/Cerebral)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IR (Umbilical/Cerebral)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IP (Umbilical/Cerebral)</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <span>(=1,0)</span>
+          <span>(=1,0)</span>
+          <span>(=1,0)</span>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Ducto venoso">
+      <div>
+        <div>
+          <div>
+            <label>Diástole</label>
+            <input>
+          </div>
+
+          <div>
+            <label>IP</label>
+            <input>
+          </div>
+
+          <span>Normal: IP 2,3(Fluxo Ant. em fase de Contração art.)</span>
+        </div>
+
+        <div>
+          <div>
+            <label>Veia umbilical</label>
+            <input>
+          </div>
+
+          <span>Normal: Fluxo Contínuo</span>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div>
+        <div>
+          <label>Profissional Executante</label>
+          <p-dropdown [options]="executantes" [(ngModel)]="codigoexecutante" name="codigoprofexecutante"
+            #codigoprofexecutante="ngModel" [filter]="true" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

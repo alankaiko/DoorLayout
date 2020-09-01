@@ -20,10 +20,17 @@ export class LaudoComponent implements OnInit {
   procedimento = new ProcedimentoAtendimento();
   modelodelaudodoproc = new Array<ModeloDeLaudoDoProc>();
   modelodelaudo: any[];
-  textolivre: boolean = false;
-  abdomeinferiormasc: boolean = false;
   prioridade: number;
   dropmodelo: boolean = false;
+  textolivre: boolean = false;
+  abdomeinferiormasc: boolean = false;
+  abdometotal: boolean = false;
+  obstetrico1trimestre: boolean = false;
+  diversos: boolean = false;
+  dopplerfluxometria: boolean = false;
+  endoscopiadigalta: boolean = false;
+  mamas: boolean = false;
+  ecodopplercardiograma: boolean = false;
 
   constructor(private service: AtendimentoService,
               private serviceproc: ProcedimentoatendimentoService,
@@ -115,7 +122,6 @@ export class LaudoComponent implements OnInit {
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
-        this.textolivre = true;
       }
 
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 2) {
@@ -128,6 +134,90 @@ export class LaudoComponent implements OnInit {
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
         this.abdomeinferiormasc = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 3) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.abdometotal = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 4) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.obstetrico1trimestre = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 5) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.diversos = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 8) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.dopplerfluxometria = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 9) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.endoscopiadigalta = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 10) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.endoscopiadigalta = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 11) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.ecodopplercardiograma = true;
       }
     }
   }

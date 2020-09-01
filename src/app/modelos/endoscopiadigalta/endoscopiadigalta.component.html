@@ -1,0 +1,46 @@
+<div style="width: 100%; background-color: #ffffff;">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Indicação clínica">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Pré-medicação">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Informações adicionais">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Esôfago">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Estômago">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Duodeno">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div>
+        <div>
+          <label>Profissional Executante</label>
+          <p-dropdown [options]="executantes" [(ngModel)]="codigoexecutante" name="codigoprofexecutante"
+            #codigoprofexecutante="ngModel" [filter]="true" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

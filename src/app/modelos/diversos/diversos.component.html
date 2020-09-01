@@ -1,0 +1,111 @@
+<div style="width: 100%; background-color: #ffffff;">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Dados do Equipamento">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Dados técnicos">
+      <div>
+        <div>
+          <div>
+            <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label>Anestesia</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Número de punções</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Medidas de punções(mm)</label>
+            <input>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Cavidade peritoneal">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Bexiga">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Útero">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Tuba direita">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Tuba esquerda">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Ovário direito">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Ovário esquerdo">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Biópsia">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Procedimento">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <div>
+        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div>
+        <div>
+          <label>Profissional Executante</label>
+          <p-dropdown [options]="executantes" [(ngModel)]="codigoexecutante" name="codigoprofexecutante"
+            #codigoprofexecutante="ngModel" [filter]="true" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

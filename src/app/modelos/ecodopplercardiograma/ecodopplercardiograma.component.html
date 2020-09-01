@@ -1,0 +1,193 @@
+<div style="width: 100%; background-color: #ffffff;">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Dados do paciente">
+        <div>
+          <div>
+            <div>
+              <label>Altura (cm)</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Peso (kg)</label>
+              <input>
+            </div>
+
+            <div>
+              <label>Superfície corporal (m²)</label>
+              <input>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <label>Frequência cardíaca (btm)</label>
+              <input>
+            </div>
+          </div>
+        </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Parâmetros estruturais">
+      <div>
+        <div>
+          <div>
+            <label>Aorta (diâmetro da raiz)</label>
+            <input>
+            <span>mm</span>
+            <input>
+            <span>mm</span>
+          </div>
+
+          <div>
+            <label>Átrio esquerdo</label>
+            <input>
+            <span>mm</span>
+            <input>
+            <span>mm</span>
+          </div>
+
+          <div>
+            <label>Diâmetro ventricular direito</label>
+            <input>
+            <span>mm</span>
+            <input>
+            <span>mm</span>
+          </div>
+
+          <div>
+            <label>Diâmetro diastólico  final do VE</label>
+            <input>
+            <span>mm</span>
+            <input>
+            <span>mm</span>
+          </div>
+
+          <div>
+            <label>Diâmetro sistólico final do VE</label>
+            <input>
+            <span>mm</span>
+            <input>
+            <span>mm</span>
+          </div>
+
+          <div>
+            <label>Espessura diastólica de septo</label>
+            <input>
+            <span>mm</span>
+            <input>
+            <span>mm</span>
+          </div>
+
+          <div>
+            <label>Espessura  diastólica da PPVE</label>
+            <input>
+            <span>mm</span>
+            <input>
+            <span>mm</span>
+          </div>
+
+          <div>
+            <label>Volume AE</label>
+            <input>
+            <span>cm³</span>
+            <input>
+          </div>
+
+          <div>
+            <label>Fórmula da massa</label>
+            <input>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Relações e funções ventriculares">
+      <div>
+        <div>
+          <div>
+            <label>Rel. Át. Est/Aor.</label>
+            <input>
+            <input>
+
+            <label>Vol. Dias. Final</label>
+            <input>
+            <span>ml</span>
+            <input>
+          </div>
+
+          <div>
+            <label>Fração de Ej. (Teicholz)</label>
+            <input>
+            <span>%</span>
+            <input>
+
+            <label>Vol. Sist.</label>
+            <input>
+            <span>ml</span>
+            <input>
+          </div>
+
+          <div>
+            <label>Massa Vent. esq.</label>
+            <input>
+            <span>g</span>
+            <input>
+
+            <label>Rel. Vol. Massa</label>
+            <input>
+            <span>ml/g</span>
+            <input>
+          </div>
+
+          <div>
+            <label>Índice de Massa</label>
+            <input>
+            <span>g/m²</span>
+            <input>
+
+            <label>Vol. Dias. Final</label>
+            <input>
+            <span>ml</span>
+            <input>
+          </div>
+
+          <div>
+            <label>% de Enc. da Cav.</label>
+            <input>
+            <span>%</span>
+            <input>
+
+            <label>Enter Ir p/ Imp. diag.</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Rel. Septo/PPVE</label>
+            <input>
+            <input>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Comentários ecocardiográficos">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div>
+        <div>
+          <label>Profissional Executante</label>
+          <p-dropdown [options]="executantes" [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel" name="codigoprofexecutante"
+            placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

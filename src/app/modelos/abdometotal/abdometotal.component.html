@@ -1,0 +1,140 @@
+<div style="width: 100%; background-color: #ffffff;">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Dados do Equipamento">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fígado">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Vias biliares">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Vesícula biliar">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Pâncreas">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Rim direito">
+      <div>
+        <div>
+          <div>
+            <label>Diam. longitudinal(cm)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Diam. ant. post.(cm)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Diam. transversal(cm)</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label>Volume (cm³)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Valores normais para o volume</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Rim esquerdo">
+      <div>
+        <div>
+          <div>
+            <label>Diam. longitudinal(cm)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Diam. ant. post.(cm)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Diam. transversal(cm)</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label>Volume (cm³)</label>
+            <input>
+          </div>
+
+          <div>
+            <label>Valores normais para o volume</label>
+            <input>
+          </div>
+        </div>
+
+        <div>
+          <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Bexiga">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Baço">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Vasos">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Retroperitônio">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Seios costofrênicos">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Demais órgãos pélvicos">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div>
+        <div>
+          <label>Profissional Executante</label>
+          <p-dropdown [options]="executantes" [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel" name="codigoprofexecutante"
+            placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

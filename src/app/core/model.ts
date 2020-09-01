@@ -495,3 +495,65 @@ export enum STATUS_LAUDO {
   pendente = 'PENDENTE',
   pronto = 'PRONTO'
 }
+
+export class Abdomeinferiormasc {
+  dadosequipamentotexto: string;
+  presencabexiga: string;
+  espessurabexiga: string;
+  morfologiabexiga: string;
+  posicaobexiga: string;
+  superficiebexiga: string;
+  texturabexiga: string;
+  contornobexiga: string;
+  limitesbexiga: string;
+  texturadoconteudodabexiga: string;
+  debrisconteudodabexiga: string;
+  posicaodoassoalhodabexigacapacidadedabexiga: string;
+  capacidadedabexiga: string;
+  residuosposmiccionalbexiga: string;
+  descricaotextobexiga: string;
+
+  presencaprostata: string;
+  posicaoprostata: string;
+  morfologiaprostata: string;
+  superficieprostata: string;
+  diamlingitudinalprostata: string;
+  diamantpostprostata: string;
+  diamtransversal: string;
+  pesoprostata: string;
+  biopsiaprostata: string;
+  nfragmentosprostata: string;
+
+  texturaprostatazona: string;
+  limieteszonapost: string;
+  contornozonapost: string;
+  informacaocompzonaposttexto: string;
+
+  texturaprostatacentro: string;
+  limieteszonacentro: string;
+  contornozonacentro: string;
+  informacaocompcentroposttexto: string;
+
+  texturaprostatatransic: string;
+  limieteszonatransic: string;
+  contornozonatransic: string;
+  informacaocomptransicposttexto: string;
+
+  texturaprostatafibro: string;
+  limieteszonafibro: string;
+  contornozonafibro: string;
+  informacaocompfibroposttexto: string;
+
+  presencavesicula: string;
+  simetribavesicula: string;
+  morfologiavesicula: string;
+  superficievesicula: string;
+  texturavesicula: string;
+  limitevesicula: string;
+  contornovesicula: string;
+  descricaotextovesicula: string;
+
+  observacaotexto: string;
+  impressaotexto: string;
+  medicoexecutante: ProfissionalExecutante;
+}
