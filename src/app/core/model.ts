@@ -460,7 +460,7 @@ export class PaginaDeImagens {
 export class Laudo {
   codigo: number;
   status: STATUS_LAUDO;
-  laudosalvo: ParametroDoLaudo;
+  laudosalvo: Array<ParametroDoLaudo>;
   modelodelaudo: ModeloDeLaudoDoProc;
   cidresultadodoexame: SubcategoriaCid10;
 }
@@ -469,6 +469,7 @@ export class ParametroDoLaudo {
   codigo: number;
   index: number;
   valor: string;
+  laudo: Laudo;
 }
 
 export enum LAYOUT_IMG {
@@ -508,7 +509,7 @@ export class Abdomeinferiormasc {
   limitesbexiga: string;
   texturadoconteudodabexiga: string;
   debrisconteudodabexiga: string;
-  posicaodoassoalhodabexigacapacidadedabexiga: string;
+  posicaodoassoalhodabexiga: string;
   capacidadedabexiga: string;
   residuosposmiccionalbexiga: string;
   descricaotextobexiga: string;
@@ -517,7 +518,7 @@ export class Abdomeinferiormasc {
   posicaoprostata: string;
   morfologiaprostata: string;
   superficieprostata: string;
-  diamlingitudinalprostata: string;
+  diamlongitudinalprostata: string;
   diamantpostprostata: string;
   diamtransversal: string;
   pesoprostata: string;

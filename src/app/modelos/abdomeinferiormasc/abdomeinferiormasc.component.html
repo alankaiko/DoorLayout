@@ -1,9 +1,10 @@
 <div style="width: 100%;">
-  <p-accordion [multiple]="true">
+  <p-accordion>
     <p-accordionTab header="Dados do Equipamento">
       <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
         [(ngModel)]="abdomemodelo.presencabexiga" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+        <button type="button" (click)="MontarTexto()">Teste</button>
 
         <p-editor [(ngModel)]="abdomemodelo.dadosequipamentotexto" [style]="{'height':'200px'}"></p-editor>
     </p-accordionTab>
@@ -80,7 +81,7 @@
           <div class="blocodalinha" style="width: 50%;">
             <label>Posição do assoalho da bexiga</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="posicaoassoalho" [filter]="true"
-              [(ngModel)]="abdomemodelo.posicaodoassoalhodabexigacapacidadedabexiga" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="abdomemodelo.posicaodoassoalhodabexiga" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 50%;">
@@ -138,7 +139,7 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Diam. longitudinal(cm)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.diamlingitudinalprostata">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.diamlongitudinalprostata">
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
@@ -160,7 +161,7 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 50%;">
             <label>Biópsia</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="posicao" [filter]="true"
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="biopsiaprostata" [filter]="true"
               [(ngModel)]="abdomemodelo.biopsiaprostata" placeholder="Selecione..."></p-dropdown>
           </div>
 
@@ -172,7 +173,7 @@
       </div>
     </p-accordionTab>
 
-    <p-accordionTab header="Próstata - zona periférica (lobo posterior)" *ngIf="abdomemodelo.presencaprostata === 'Presente'">
+    <p-accordionTab header="Próstata - zona periférica (lobo posterior)" *ngIf="abdomemodelo.presencaprostata === 'presente'">
       <div style="width: 100%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
@@ -183,23 +184,25 @@
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.limieteszonapost">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
+              [(ngModel)]="abdomemodelo.limieteszonapost" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <input type="text" pInputText [(ngModel)]="abdomemodelo.contornozonapost">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="abdomemodelo.contornozonapost" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="abdomemodelo.informacaocompzonaposttexto" [style]="{'height':'200px'}"></p-editor>
+          <p-editor [(ngModel)]="abdomemodelo.informacaocompzonaposttexto" [style]="{'height':'130px'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
 
-    <p-accordionTab header="Próstata - zona central" *ngIf="abdomemodelo.presencaprostata === 'Presente'">
+    <p-accordionTab header="Próstata - zona central" *ngIf="abdomemodelo.presencaprostata === 'presente'">
       <div style="width: 100%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
@@ -210,23 +213,25 @@
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.limieteszonacentro">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
+              [(ngModel)]="abdomemodelo.limieteszonacentro" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <input type="text" pInputText [(ngModel)]="abdomemodelo.contornozonacentro">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="abdomemodelo.contornozonacentro" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="abdomemodelo.informacaocompcentroposttexto" [style]="{'height':'200px'}"></p-editor>
+          <p-editor [(ngModel)]="abdomemodelo.informacaocompcentroposttexto" [style]="{'height':'130px'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
 
-    <p-accordionTab header="Próstata - zona transição (lobo médio)" *ngIf="abdomemodelo.presencaprostata === 'Presente'">
+    <p-accordionTab header="Próstata - zona transição (lobo médio)" *ngIf="abdomemodelo.presencaprostata === 'presente'">
       <div style="width: 100%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
@@ -237,23 +242,25 @@
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.limieteszonatransic">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
+              [(ngModel)]="abdomemodelo.limieteszonatransic" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <input type="text" pInputText [(ngModel)]="abdomemodelo.contornozonatransic">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="abdomemodelo.contornozonatransic" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="abdomemodelo.informacaocomptransicposttexto" [style]="{'height':'200px'}"></p-editor>
+          <p-editor [(ngModel)]="abdomemodelo.informacaocomptransicposttexto" [style]="{'height':'130px'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
 
-    <p-accordionTab header="Próstata - estroma fibromuscular anterior" *ngIf="abdomemodelo.presencaprostata === 'Presente'">
+    <p-accordionTab header="Próstata - estroma fibromuscular anterior" *ngIf="abdomemodelo.presencaprostata === 'presente'">
       <div style="width: 100%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
@@ -264,18 +271,20 @@
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.limieteszonafibro">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
+              [(ngModel)]="abdomemodelo.limieteszonafibro" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <input type="text" pInputText [(ngModel)]="abdomemodelo.contornozonafibro">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="abdomemodelo.contornozonafibro" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="abdomemodelo.informacaocompfibroposttexto" [style]="{'height':'200px'}"></p-editor>
+          <p-editor [(ngModel)]="abdomemodelo.informacaocompfibroposttexto" [style]="{'height':'130px'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
@@ -291,52 +300,58 @@
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Simetria</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.simetribavesicula">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="simetria" [filter]="true"
+              [(ngModel)]="abdomemodelo.simetribavesicula" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Morfologia</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.morfologiavesicula">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="morfologia" [filter]="true"
+              [(ngModel)]="abdomemodelo.morfologiavesicula" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Superfície</label>
-            <input type="text" pInputText [(ngModel)]="abdomemodelo.superficievesicula">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="superficie" [filter]="true"
+              [(ngModel)]="abdomemodelo.superficievesicula" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.texturavesicula">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="textura" [filter]="true"
+              [(ngModel)]="abdomemodelo.texturavesicula" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="abdomemodelo.limitevesicula">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
+              [(ngModel)]="abdomemodelo.limitevesicula" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <input type="text" pInputText [(ngModel)]="abdomemodelo.contornovesicula">
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="abdomemodelo.contornovesicula" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 100%;">
             <label>Descrição</label>
-            <p-editor [(ngModel)]="abdomemodelo.descricaotextovesicula" [style]="{'height':'200px'}"></p-editor>
+            <p-editor [(ngModel)]="abdomemodelo.descricaotextovesicula" [style]="{'height':'120px'}"></p-editor>
           </div>
         </div>
       </div>
     </p-accordionTab>
 
     <p-accordionTab header="Observações gerais">
-      <p-editor [(ngModel)]="abdomemodelo.observacaotexto" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="abdomemodelo.observacaotexto" [style]="{'height':'130px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Impressão diagnóstica">
-      <p-editor [(ngModel)]="abdomemodelo.impressaotexto" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="abdomemodelo.impressaotexto" [style]="{'height':'130px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Médico executante">

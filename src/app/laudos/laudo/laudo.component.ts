@@ -118,7 +118,7 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -129,7 +129,6 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -141,7 +140,7 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -153,7 +152,7 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -165,7 +164,7 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -177,7 +176,7 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -189,7 +188,7 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -201,7 +200,7 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -213,7 +212,7 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo = param;
+        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
