@@ -39,7 +39,6 @@ export class AbdomeinferiormascComponent implements OnInit {
   constructor(private serviceexec: ProfissionalexecutanteService) { }
 
   ngOnInit(): void {
-    this.laudosalvo = new Array<ParametroDoLaudo>();
     this.CarregarDrops();
     this.CarregarExecutantes();
   }
@@ -183,33 +182,43 @@ export class AbdomeinferiormascComponent implements OnInit {
   }
 
   CarregarTextoEquip() {
-    if (this.abdomemodelo.presencabexiga === 'nao') {
-      this.abdomemodelo.dadosequipamentotexto = '';
+    if (this.laudosalvo[50].valor === 'nao') {
+      this.laudosalvo[0].valor = '';
     }
 
-    if (this.abdomemodelo.presencabexiga === 'convexo') {
-      this.abdomemodelo.dadosequipamentotexto = 'Exame realizado em modo bidimensional com equipamento dinâmico Convexo multifrequêncial.';
+    if (this.laudosalvo[50].valor === 'convexo') {
+      this.laudosalvo[0].valor = 'Exame realizado em modo bidimensional com equipamento dinâmico Convexo multifrequêncial.';
     }
 
-    if (this.abdomemodelo.presencabexiga === 'linear') {
-      this.abdomemodelo.dadosequipamentotexto = 'Exame realizado em modo bidimensional com equipamento dinâmico Linear multifrequêncial.';
+    if (this.laudosalvo[50].valor === 'linear') {
+      this.laudosalvo[0].valor = 'Exame realizado em modo bidimensional com equipamento dinâmico Linear multifrequêncial.';
     }
 
-    if (this.abdomemodelo.presencabexiga === 'endocavitario') {
-      this.abdomemodelo.dadosequipamentotexto = 'Exame realizado em modo bidimensional com equipamento dinâmico Endocavitário multifrequêncial.';
+    if (this.laudosalvo[50].valor === 'endocavitario') {
+      this.laudosalvo[0].valor = 'Exame realizado em modo bidimensional com equipamento dinâmico Endocavitário multifrequêncial.';
     }
 
-    if (this.abdomemodelo.presencabexiga === 'digitar') {
-      this.abdomemodelo.dadosequipamentotexto = '';
+    if (this.laudosalvo[50].valor === 'digitar') {
+      this.laudosalvo[0].valor = '';
     }
   }
 
   MontarTexto() {
+    const aludo = new Laudo();
+    aludo.codigo = 1;
+
     this.valortotal = '';
 
     if (this.abdomemodelo.dadosequipamentotexto !== undefined) {
       this.valortotal = '<b>Equipamento</b><br>';
       this.valortotal += this.abdomemodelo.dadosequipamentotexto + '<br><br>';
+      this.laudosalvo[0].valor =  this.abdomemodelo.dadosequipamentotexto + '<br><br>';
+
+      const para = new ParametroDoLaudo();
+      para.index = 0;
+      para.laudo = aludo;
+      para.valor = this.abdomemodelo.dadosequipamentotexto + '<br><br>';
+      this.laudosalvo.push(para);
     }
 
     if (this.abdomemodelo.presencabexiga !== 'nao' && this.abdomemodelo.presencabexiga !== '' && this.abdomemodelo.presencabexiga !== undefined) {
@@ -218,10 +227,20 @@ export class AbdomeinferiormascComponent implements OnInit {
 
     if (this.abdomemodelo.posicaobexiga !== undefined) {
       this.valortotal += this.abdomemodelo.posicaobexiga + ',';
+      const para = new ParametroDoLaudo();
+      para.index = 0;
+      para.laudo = aludo;
+      para.valor = this.abdomemodelo.posicaobexiga + ',';
+      this.laudosalvo.push(para);
     }
 
     if (this.abdomemodelo.morfologiabexiga !== undefined) {
       this.valortotal += ' morfologia ' + this.abdomemodelo.morfologiabexiga + ',';
+      const para = new ParametroDoLaudo();
+      para.index = 0;
+      para.laudo = aludo;
+      para.valor = ' morfologia ' + this.abdomemodelo.morfologiabexiga + ',';
+      this.laudosalvo.push(para);
     }
 
     if (this.abdomemodelo.superficiebexiga !== undefined) {
@@ -237,7 +256,7 @@ export class AbdomeinferiormascComponent implements OnInit {
     }
 
     if (this.abdomemodelo.limitesbexiga !== undefined) {
-      this.valortotal +=  ' limites ' + this.abdomemodelo.limitesbexiga;
+      this.valortotal += ' limites ' + this.abdomemodelo.limitesbexiga;
     }
 
     if (this.abdomemodelo.espessurabexiga !== undefined && this.abdomemodelo.espessurabexiga !== 'nao imprimir') {
@@ -626,8 +645,5 @@ export class AbdomeinferiormascComponent implements OnInit {
     const laudo = new Laudo();
     laudo.codigo = 1;
 
-    this.laudosalvo.forEach(elo => {
-      elo.laudo = laudo;
-    });
   }
 }

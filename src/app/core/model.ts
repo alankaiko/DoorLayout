@@ -460,7 +460,7 @@ export class PaginaDeImagens {
 export class Laudo {
   codigo: number;
   status: STATUS_LAUDO;
-  laudosalvo: Array<ParametroDoLaudo>;
+  laudosalvo = new Array<ParametroDoLaudo>();
   modelodelaudo: ModeloDeLaudoDoProc;
   cidresultadodoexame: SubcategoriaCid10;
 }
@@ -469,7 +469,14 @@ export class ParametroDoLaudo {
   codigo: number;
   index: number;
   valor: string;
-  laudo: Laudo;
+  laudo = new Laudo();
+
+  constructor(codigo?: number, index?: number, valor?: string, laudo?: Laudo) {
+    this.codigo = codigo;
+    this.index = index;
+    this.valor = valor;
+    this.laudo = laudo;
+  }
 }
 
 export enum LAYOUT_IMG {
@@ -498,7 +505,7 @@ export enum STATUS_LAUDO {
 }
 
 export class Abdomeinferiormasc {
-  dadosequipamentotexto: string;
+  dadosequipamentotexto: string ;
   presencabexiga: string;
   espessurabexiga: string;
   morfologiabexiga: string;

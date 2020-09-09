@@ -4,7 +4,7 @@ import { ModelodelaudodoprocService } from './../../zservice/modelodelaudodoproc
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo, STATUS_LAUDO, ParametroDoLaudo, SubcategoriaCid10 } from './../../core/model';
 import { AtendimentoService } from './../../zservice/atendimento.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 
 @Component({
   selector: 'app-laudo',
@@ -43,7 +43,6 @@ export class LaudoComponent implements OnInit {
     if (codatendimento) {
 
     }
-
     this.CarregarAtendimentos();
   }
 
@@ -109,6 +108,7 @@ export class LaudoComponent implements OnInit {
     setTimeout(() => {
       this.serviceproc.Atualizar(this.procedimento).then(response => response);
     }, 50);
+
   }
 
   Comparar() {
@@ -125,6 +125,15 @@ export class LaudoComponent implements OnInit {
       }
 
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 2) {
+        if (isEmptyObject(this.procedimento.laudo.laudosalvo)) {
+          console.log('avv');
+
+          for (let int = 0; int <= 52; int++) {
+            const para = new ParametroDoLaudo();
+            this.procedimento.laudo.laudosalvo.push(para);
+          }
+        }
+
         const param = new ParametroDoLaudo();
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
