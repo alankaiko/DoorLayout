@@ -1,4 +1,4 @@
-import { Laudo, ParametroDoLaudo } from './../../core/model';
+import { Laudo, ParametroDoLaudo, CamposDoLaudo } from './../../core/model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./textolivre.component.css']
 })
 export class TextolivreComponent implements OnInit {
-  @Input() laudosalvo: ParametroDoLaudo;
+  @Input() camposdolaudo: CamposDoLaudo;
 
   constructor() { }
 

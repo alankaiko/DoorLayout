@@ -95,8 +95,7 @@ export class LaudoComponent implements OnInit {
 
   RenderizarModeloLaudo() {
     if (!isEmptyObject(this.procedimento.laudo)) {
-
-      this.textolivre = true;
+      this.EditandoLaudo();
     } else {
       this.procedimento.laudo = new Laudo();
       this.Comparar();
@@ -111,6 +110,54 @@ export class LaudoComponent implements OnInit {
 
   }
 
+  EditandoLaudo() {
+    for (let i = 0; i <= this.modelodelaudodoproc.length; i++) {
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 27) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 2) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.abdomeinferiormasc = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 3) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.abdometotal = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 4) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.obstetrico1trimestre = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 5) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.diversos = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 8) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.dopplerfluxometria = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 9) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.endoscopiadigalta = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 10) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.endoscopiadigalta = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 11) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.ecodopplercardiograma = true;
+      }
+    }
+  }
+
   Comparar() {
     for (let i = 0; i <= this.modelodelaudodoproc.length; i++) {
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 27) {
@@ -118,22 +165,11 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
       }
 
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 2) {
-        if (isEmptyObject(this.procedimento.laudo.laudosalvo)) {
-          console.log('avv');
-
-          for (let int = 0; int <= 52; int++) {
-            const para = new ParametroDoLaudo();
-            this.procedimento.laudo.laudosalvo.push(para);
-          }
-        }
-
         const param = new ParametroDoLaudo();
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
@@ -149,7 +185,6 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -161,7 +196,6 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -173,7 +207,6 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -185,7 +218,6 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -197,7 +229,6 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -209,7 +240,6 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
@@ -221,7 +251,6 @@ export class LaudoComponent implements OnInit {
         param.valor = this.modelodelaudodoproc[i].customstring;
         param.index = this.modelodelaudodoproc[i].prioridade;
 
-        this.procedimento.laudo.laudosalvo[0] = param;
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 

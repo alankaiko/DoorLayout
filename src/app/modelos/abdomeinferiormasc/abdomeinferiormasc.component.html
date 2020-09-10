@@ -2,11 +2,11 @@
   <p-accordion>
     <p-accordionTab header="Dados do Equipamento">
       <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
-        [(ngModel)]="this.laudosalvo[50].valor" #codigoprofexecutante="ngModel"
+        [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
         <button type="button" (click)="MontarTexto()">Teste</button>
 
-        <p-editor [(ngModel)]="this.laudosalvo[0].valor" [style]="{'height':'200px'}"></p-editor>
+        <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'200px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Bexiga">
@@ -15,25 +15,25 @@
           <div class="blocodalinha" style="width: 25%;">
             <label>Presença</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="presenca" [filter]="true"
-              [(ngModel)]="this.laudosalvo[1].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo3" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Espessura</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="espessura" [filter]="true"
-              [(ngModel)]="this.laudosalvo[2].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo4" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Morfologia</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="morfologia" [filter]="true"
-              [(ngModel)]="this.laudosalvo[3].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo5" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Posição</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="posicao" [filter]="true"
-              [(ngModel)]="this.laudosalvo[4].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo6" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
@@ -41,25 +41,25 @@
           <div class="blocodalinha" style="width: 25%;">
             <label>Superfície</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="superficie" [filter]="true"
-              [(ngModel)]="this.laudosalvo[5].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo7" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Textura</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="textura" [filter]="true"
-              [(ngModel)]="this.laudosalvo[6].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo8" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Contorno</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="this.laudosalvo[7].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo9" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Limites</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="this.laudosalvo[8].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo10" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
@@ -67,13 +67,13 @@
           <div class="blocodalinha" style="width: 50%;">
             <label>Textura do Conteúdo da bexiga</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="texturaconteudo" [filter]="true"
-              [(ngModel)]="this.laudosalvo[9].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo11" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 50%;">
             <label>Débris - conteúdo da bexiga</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="debrisconteudo" [filter]="true"
-              [(ngModel)]="this.laudosalvo[9].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo12" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
@@ -81,13 +81,13 @@
           <div class="blocodalinha" style="width: 50%;">
             <label>Posição do assoalho da bexiga</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="posicaoassoalho" [filter]="true"
-              [(ngModel)]="this.laudosalvo[10].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo13" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 50%;">
             <label>Capacidade da bexiga</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="capacidadebexiga" [filter]="true"
-              [(ngModel)]="this.laudosalvo[11].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo14" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
@@ -95,14 +95,14 @@
           <div class="blocodalinha" style="width: 100%;">
             <label>Resíduos pós-miccional</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="residuoposmic" [filter]="true"
-              [(ngModel)]="this.laudosalvo[12].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo15" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 100%;">
             <label>Descrição</label>
-            <p-editor [(ngModel)]="this.laudosalvo[13].valor" [style]="{'height':'200px'}"></p-editor>
+            <p-editor [(ngModel)]="camposdolaudo.campo16" [style]="{'height':'200px'}"></p-editor>
           </div>
         </div>
       </div>
@@ -114,47 +114,47 @@
           <div class="blocodalinha" style="width: 25%;">
             <label>Presença</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="presencaprostata" [filter]="true"
-              [(ngModel)]="this.laudosalvo[14].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo17" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Posição</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="posicaoprostata" [filter]="true"
-              [(ngModel)]="this.laudosalvo[15].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo18" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Morfologia</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="morfologiaprostata" [filter]="true"
-              [(ngModel)]="this.laudosalvo[16].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo19" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Superfície</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="superficieprostata" [filter]="true"
-              [(ngModel)]="this.laudosalvo[17].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo20" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Diam. longitudinal(cm)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="this.laudosalvo[18].valor">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo21">
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Diam. ant. post.(cm)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="this.laudosalvo[19].valor">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo22">
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Diam. transversal(cm)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="this.laudosalvo[20].valor">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo23">
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Peso(g)</label>
-            <input type="text" pInputText [(ngModel)]="this.laudosalvo[21].valor">
+            <input type="text" pInputText [(ngModel)]="camposdolaudo.campo24">
           </div>
         </div>
 
@@ -162,129 +162,129 @@
           <div class="blocodalinha" style="width: 50%;">
             <label>Biópsia</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="biopsiaprostata" [filter]="true"
-              [(ngModel)]="this.laudosalvo[22].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo25" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 50%;">
             <label>N de fragmentos</label>
-            <input type="text" pInputText [(ngModel)]="this.laudosalvo[23].valor">
+            <input type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
           </div>
         </div>
       </div>
     </p-accordionTab>
 
-    <p-accordionTab header="Próstata - zona periférica (lobo posterior)" *ngIf="abdomemodelo.presencaprostata === 'presente'">
+    <p-accordionTab header="Próstata - zona periférica (lobo posterior)" *ngIf="camposdolaudo.campo17 === 'presente'">
       <div style="width: 100%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="texturaprostata" [filter]="true"
-              [(ngModel)]="this.laudosalvo[24].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo27" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="this.laudosalvo[25].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo28" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="this.laudosalvo[26].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo29" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="this.laudosalvo[27].valor" [style]="{'height':'130px'}"></p-editor>
+          <p-editor [(ngModel)]="camposdolaudo.campo30" [style]="{'height':'130px'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
 
-    <p-accordionTab header="Próstata - zona central" *ngIf="abdomemodelo.presencaprostata === 'presente'">
+    <p-accordionTab header="Próstata - zona central" *ngIf="camposdolaudo.campo17 === 'presente'">
       <div style="width: 100%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="texturaprostata" [filter]="true"
-              [(ngModel)]="this.laudosalvo[28].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo31" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="this.laudosalvo[29].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo32" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="this.laudosalvo[30].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo33" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="this.laudosalvo[31].valor" [style]="{'height':'130px'}"></p-editor>
+          <p-editor [(ngModel)]="camposdolaudo.campo34" [style]="{'height':'130px'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
 
-    <p-accordionTab header="Próstata - zona transição (lobo médio)" *ngIf="abdomemodelo.presencaprostata === 'presente'">
+    <p-accordionTab header="Próstata - zona transição (lobo médio)" *ngIf="camposdolaudo.campo17 === 'presente'">
       <div style="width: 100%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="texturaprostata" [filter]="true"
-              [(ngModel)]="this.laudosalvo[32].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo35" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="this.laudosalvo[33].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo36" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="this.laudosalvo[34].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo37" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="this.laudosalvo[35].valor" [style]="{'height':'130px'}"></p-editor>
+          <p-editor [(ngModel)]="camposdolaudo.campo38" [style]="{'height':'130px'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
 
-    <p-accordionTab header="Próstata - estroma fibromuscular anterior" *ngIf="abdomemodelo.presencaprostata === 'presente'">
+    <p-accordionTab header="Próstata - estroma fibromuscular anterior" *ngIf="camposdolaudo.campo17 === 'presente'">
       <div style="width: 100%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="texturaprostata" [filter]="true"
-              [(ngModel)]="this.laudosalvo[36].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo39" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="this.laudosalvo[37].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo40" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="this.laudosalvo[38].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo41" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="this.laudosalvo[39].valor" [style]="{'height':'130px'}"></p-editor>
+          <p-editor [(ngModel)]="camposdolaudo.campo42" [style]="{'height':'130px'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
@@ -295,25 +295,25 @@
           <div class="blocodalinha" style="width: 25%;">
             <label>Presença</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="posicao" [filter]="true"
-              [(ngModel)]="this.laudosalvo[40].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo43" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Simetria</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="simetria" [filter]="true"
-              [(ngModel)]="this.laudosalvo[41].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo44" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Morfologia</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="morfologia" [filter]="true"
-              [(ngModel)]="this.laudosalvo[42].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo45" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Superfície</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="superficie" [filter]="true"
-              [(ngModel)]="this.laudosalvo[43].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo46" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
@@ -321,37 +321,37 @@
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="textura" [filter]="true"
-              [(ngModel)]="this.laudosalvo[44].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo47" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="this.laudosalvo[45].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo48" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
             <p-dropdown [style]="{'min-width': '95%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="this.laudosalvo[46].valor" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo49" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 100%;">
             <label>Descrição</label>
-            <p-editor [(ngModel)]="this.laudosalvo[47].valor" [style]="{'height':'120px'}"></p-editor>
+            <p-editor [(ngModel)]="camposdolaudo.campo50" [style]="{'height':'120px'}"></p-editor>
           </div>
         </div>
       </div>
     </p-accordionTab>
 
     <p-accordionTab header="Observações gerais">
-      <p-editor [(ngModel)]="this.laudosalvo[48].valor" [style]="{'height':'130px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo51" [style]="{'height':'130px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Impressão diagnóstica">
-      <p-editor [(ngModel)]="this.laudosalvo[49].valor" [style]="{'height':'130px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo52" [style]="{'height':'130px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Médico executante">
