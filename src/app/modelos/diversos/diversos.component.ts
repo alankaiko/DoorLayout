@@ -1,4 +1,4 @@
-import { ParametroDoLaudo } from './../../core/model';
+import { CamposDoLaudo } from './../../core/model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,8 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./diversos.component.css']
 })
 export class DiversosComponent implements OnInit {
-  @Input() laudosalvo: ParametroDoLaudo;
-  dadosequipamento: string;
+  @Input() camposdolaudo: CamposDoLaudo;
 
   constructor() { }
 

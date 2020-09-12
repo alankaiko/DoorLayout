@@ -558,4 +558,21 @@ export class CamposDoLaudo {
   campo50: string;
   campo51: string;
   campo52: string;
+  campo53: string;
+  campo54: string;
+  campo55: string;
+  campo56: string;
+  campo57: string;
+  campo58: string;
+  campo59: string;
+  campo60: string;
+  campo61: string;
+  campo62: string;
+  campo63: string;
+  campo64: string;
+  campo65: string;
+  campo66: string;
+  campo67: string;
+  campo68: string;
+  campo69: string;
 }
