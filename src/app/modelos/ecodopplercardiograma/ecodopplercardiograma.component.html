@@ -1,187 +1,197 @@
 <div style="width: 100%; background-color: #ffffff;">
   <p-accordion [multiple]="true">
     <p-accordionTab header="Dados do paciente">
-        <div>
-          <div>
-            <div>
-              <label>Altura (cm)</label>
-              <input>
-            </div>
-
-            <div>
-              <label>Peso (kg)</label>
-              <input>
-            </div>
-
-            <div>
-              <label>Superfície corporal (m²)</label>
-              <input>
-            </div>
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Altura (cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo1">
           </div>
 
-          <div>
-            <div>
-              <label>Frequência cardíaca (btm)</label>
-              <input>
-            </div>
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Peso (kg)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo2">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Superfície corporal (m²)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo3">
           </div>
         </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Frequência cardíaca (btm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo4">
+          </div>
+        </div>
+      </div>
     </p-accordionTab>
 
     <p-accordionTab header="Parâmetros estruturais">
-      <div>
-        <div>
-          <div>
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
             <label>Aorta (diâmetro da raiz)</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
             <span>mm</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo6">
             <span>mm</span>
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Átrio esquerdo</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo7">
             <span>mm</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo8">
             <span>mm</span>
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Diâmetro ventricular direito</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo9">
             <span>mm</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo10">
             <span>mm</span>
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Diâmetro diastólico  final do VE</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo11">
             <span>mm</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo12">
             <span>mm</span>
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Diâmetro sistólico final do VE</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo13">
             <span>mm</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo14">
             <span>mm</span>
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Espessura diastólica de septo</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo15">
             <span>mm</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo16">
             <span>mm</span>
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Espessura  diastólica da PPVE</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo17">
             <span>mm</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo18">
             <span>mm</span>
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Volume AE</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo19">
             <span>cm³</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo20">
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Fórmula da massa</label>
-            <input>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="formula" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo21" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
       </div>
     </p-accordionTab>
 
     <p-accordionTab header="Relações e funções ventriculares">
-      <div>
-        <div>
-          <div>
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
             <label>Rel. Át. Est/Aor.</label>
-            <input>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo22">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo23">
 
             <label>Vol. Dias. Final</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo24">
             <span>ml</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo25">
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Fração de Ej. (Teicholz)</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
             <span>%</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo27">
 
             <label>Vol. Sist.</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo28">
             <span>ml</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo29">
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Massa Vent. esq.</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo30">
             <span>g</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo31">
 
             <label>Rel. Vol. Massa</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo32">
             <span>ml/g</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo33">
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Índice de Massa</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo34">
             <span>g/m²</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo35">
 
             <label>Vol. Dias. Final</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo36">
             <span>ml</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo37">
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>% de Enc. da Cav.</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo38">
             <span>%</span>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo39">
 
             <label>Enter Ir p/ Imp. diag.</label>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo40">
           </div>
 
-          <div>
+          <div class="blocodalinha" style="width: 25%;">
             <label>Rel. Septo/PPVE</label>
-            <input>
-            <input>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo41">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo42">
           </div>
         </div>
       </div>
     </p-accordionTab>
 
     <p-accordionTab header="Comentários ecocardiográficos">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo43" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo44" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Impressão diagnóstica">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo45" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo46" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Médico executante">
-      <div>
-        <div>
+      <div style="width: 100%;">
+        <div class="linhas">
           <label>Profissional Executante</label>
           <p-dropdown [options]="executantes" [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel" name="codigoprofexecutante"
             placeholder="Selecione..."></p-dropdown>

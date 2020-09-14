@@ -140,15 +140,16 @@ export class LaudoComponent implements OnInit {
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.dopplerfluxometria = true;
       }
-
+      console.log('nao pontuaram');
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 9) {
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        console.log('nao pontuaram');
         this.endoscopiadigalta = true;
       }
 
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 10) {
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.endoscopiadigalta = true;
+        this.mamas = true;
       }
 
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 11) {
@@ -243,7 +244,7 @@ export class LaudoComponent implements OnInit {
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
 
-        this.endoscopiadigalta = true;
+        this.mamas = true;
       }
 
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 11) {

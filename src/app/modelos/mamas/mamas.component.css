@@ -1,0 +1,30 @@
+:host /deep/ p-accordion p-accordiontab .ui-accordion-content-wrapper {
+  border-bottom: 2px solid #68686852;
+}
+
+:host /deep/ p-dropdown .ui-dropdown{
+  border:1px solid #428bca;
+  background-color: #fff;
+  border-radius: 3px;
+  line-height: 14px;
+  margin-right: 5px;
+}
+
+:host /deep/ p-dropdown .ui-dropdown-items {
+  background-color: #fff;
+}
+
+:host /deep/ p-dropdown .ui-dropdown-items li:hover {
+  background-color: rgb(158, 150, 150);
+  border: 1px solid rgb(158, 150, 150);
+}
+
+.linhas {
+  width: 100%;
+  display: table;
+}
+
+.blocodalinha {
+  display: inline-grid;
+  line-height: 0;
+}

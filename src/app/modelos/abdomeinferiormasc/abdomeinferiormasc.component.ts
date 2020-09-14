@@ -61,7 +61,7 @@ export class AbdomeinferiormascComponent implements OnInit {
       {label: 'Não imprimir', value: 'nao'},
       {label: 'Presente', value: 'presente'},
       {label: 'Ausente', value: 'ausente'},
-      {label: 'Digitar', value: 'digitar'},
+      {label: 'Digitar', value: 'digitar'}
     ];
 
     this.espessura = [

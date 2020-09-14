@@ -1,85 +1,131 @@
 <div style="width: 100%; background-color: #ffffff;">
-  <p-accordion [multiple]="true">
+  <p-accordion>
     <p-accordionTab header="Dados do Equipamento">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Ciclo menstrual">
       <div>
         <div>
           <label>Data do exame</label>
-          <input>
+          <p-calendar [(ngModel)]="camposdolaudo.campo3"></p-calendar>
 
           <label>D.U.M.</label>
-          <input>
+          <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo4">
 
           <label>Dia do ciclo</label>
-          <input>
+          <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
         </div>
       </div>
     </p-accordionTab>
 
     <p-accordionTab header="Mama direita - pele">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo6" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo1" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama direita - complexo aréolo-papilar">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo7" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo8" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama direita - tecido celular subcutâneo">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo9" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo10" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama direita - parênquima glandular">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo11" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo12" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama direita - fascia retromamária">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo13" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo14" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama direita - observações gerais">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo15" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama esquerda - pele">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo16" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo17" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama esquerda - complexo aréolo-papilar">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo18" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo19" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama esquerda - tecido celular subcutâneo">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo20" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo21" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama esquerda - parênquima glandular">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo22" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo23" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama esquerda - fascia retromamária">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo24" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo25" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Mama esquerda - observações gerais">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo26" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Observações gerais">
-      <p-editor [(ngModel)]="dadosequipamento"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo27" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Impressão diagnóstica">
-      <div>
-        <p-editor [(ngModel)]="dadosequipamento"></p-editor>
-      </div>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoaux" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo28" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo29" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Médico executante">
-      <div>
-        <div>
+      <div style="width: 100%;">
+        <div class="linhas">
           <label>Profissional Executante</label>
           <p-dropdown [options]="executantes" [(ngModel)]="codigoexecutante" name="codigoprofexecutante"
             #codigoprofexecutante="ngModel" [filter]="true" placeholder="Selecione..."></p-dropdown>
