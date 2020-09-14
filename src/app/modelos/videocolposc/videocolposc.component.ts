@@ -2,11 +2,11 @@ import { CamposDoLaudo } from './../../core/model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-videocolsposcopia',
-  templateUrl: './videocolsposcopia.component.html',
-  styleUrls: ['./videocolsposcopia.component.css']
+  selector: 'app-videocolposc',
+  templateUrl: './videocolposc.component.html',
+  styleUrls: ['./videocolposc.component.css']
 })
-export class VideocolsposcopiaComponent implements OnInit {
+export class VideocolposcComponent implements OnInit {
   @Input() camposdolaudo: CamposDoLaudo;
 
   constructor() { }

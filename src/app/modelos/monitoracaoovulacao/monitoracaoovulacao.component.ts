@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CamposDoLaudo } from './../../core/model';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-monitoracaoovulacao',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./monitoracaoovulacao.component.css']
 })
 export class MonitoracaoovulacaoComponent implements OnInit {
+  @Input() camposdolaudo: CamposDoLaudo;
 
   constructor() { }
 

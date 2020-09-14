@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CamposDoLaudo } from './../../core/model';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-videofaringolar',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./videofaringolar.component.css']
 })
 export class VideofaringolarComponent implements OnInit {
+  @Input() camposdolaudo: CamposDoLaudo;
 
   constructor() { }
 
