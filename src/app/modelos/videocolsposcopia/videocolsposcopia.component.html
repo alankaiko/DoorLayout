@@ -1,1 +1,109 @@
-<p>videocolsposcopia works!</p>
+<div style="width: 100%;">
+  <p-accordion>
+    <p-accordionTab header="Indicação do exame">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="indicacaoexame" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Vulvoscopia">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="vulvoscopia" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo3" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo4" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Vagina">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="vagina" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo5" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo6" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Cervicoscopia - Visibilidade da JEC">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="cervicoscopiavisi" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo7" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo8" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Cervicoscopia - Localização da JEC">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="cervicoscopialocali" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo9" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo10" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Cervicoscopia - Zona de transformação">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="cervicoscopiazona" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo11" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo12" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Cervicoscopia - Localização e tamanho da lesão">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="cervcoscopialesao" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo13" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo14" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+
+    <p-accordionTab header="Cervicoscopia - Achados anormais">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="cervicoscopiaanormal" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo15" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo16" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+
+    <p-accordionTab header="Cervicoscopia - Captação do Lugol">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="cervicoscopialugol" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo17" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo18" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+
+    <p-accordionTab header="Cervicoscopia - Biópsia">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="cervicoscopiabiopsia" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo19" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo20" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações">
+      <p-editor [(ngModel)]="camposdolaudo.campo21" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="impressao" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo22" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..."></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo23" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <label>Profissional Executante</label>
+          <p-dropdown [options]="executantes" [(ngModel)]="codigoexecutante" name="codigoprofexecutante"
+            #codigoprofexecutante="ngModel" [filter]="true" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

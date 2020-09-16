@@ -1,3 +1,9 @@
+import { VideocolposcopiaifcpcComponent } from './modelos/videocolposcopiaifcpc/videocolposcopiaifcpc.component';
+import { EndoscopiadigestivabaixaComponent } from './modelos/endoscopiadigestivabaixa/endoscopiadigestivabaixa.component';
+import { VideocolposcComponent } from './modelos/videocolposc/videocolposc.component';
+import { MorfologicofetalComponent } from './modelos/morfologicofetal/morfologicofetal.component';
+import { MonitoracaoovulacaoComponent } from './modelos/monitoracaoovulacao/monitoracaoovulacao.component';
+import { Obstetrico1trimestreComponent } from './modelos/obstetrico1trimestre/obstetrico1trimestre.component';
 import { LaudoComponent } from './laudos/laudo/laudo.component';
 import { PaginaimagensComponent } from './laudos/paginaimagens/paginaimagens.component';
 import { CadastroSubcategoriacidComponent } from './views/formularios/cadastro-subcategoriacid.component';
@@ -99,7 +105,6 @@ import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastr
 import { TextolivreComponent } from './modelos/textolivre/textolivre.component';
 import { AbdomeinferiormascComponent } from './modelos/abdomeinferiormasc/abdomeinferiormasc.component';
 import { AbdometotalComponent } from './modelos/abdometotal/abdometotal.component';
-import { Obstetrico1trimestreComponent } from './modelos/obstetrico1trimestre/obstetrico1trimestre.component';
 import { DiversosComponent } from './modelos/diversos/diversos.component';
 import { DopplerfluxometriaComponent } from './modelos/dopplerfluxometria/dopplerfluxometria.component';
 import { EndoscopiadigaltaComponent } from './modelos/endoscopiadigalta/endoscopiadigalta.component';
@@ -115,15 +120,10 @@ import { TireoideComponent } from './modelos/tireoide/tireoide.component';
 import { TranscranianoComponent } from './modelos/transcraniano/transcraniano.component';
 import { AparelhourinarioComponent } from './modelos/aparelhourinario/aparelhourinario.component';
 import { LaparoscopiadiagbiopComponent } from './modelos/laparoscopiadiagbiop/laparoscopiadiagbiop.component';
-import { MonitoracaoovulacaoComponent } from './modelos/monitoracaoovulacao/monitoracaoovulacao.component';
 import { Obstetrico14semanasComponent } from './modelos/obstetrico14semanas/obstetrico14semanas.component';
-import { MorfologicofetalComponent } from './modelos/morfologicofetal/morfologicofetal.component';
 import { HisteroscopiaComponent } from './modelos/histeroscopia/histeroscopia.component';
 import { ObstetricomaissemanaComponent } from './modelos/obstetricomaissemana/obstetricomaissemana.component';
 import { AbdomeinferiorfemendovComponent } from './modelos/abdomeinferiorfemendov/abdomeinferiorfemendov.component';
-import { VideocolposcComponent } from './modelos/videocolposc/videocolposc.component';
-import { VideocolposcopiaifcpcComponent } from './modelos/videocolposcopiaifcpc/videocolposcopiaifcpc.component';
-import { EndoscopiadigestivabaixaComponent } from './modelos/endoscopiadigestivabaixa/endoscopiadigestivabaixa.component';
 
 @NgModule({
   imports: [
@@ -208,7 +208,6 @@ import { EndoscopiadigestivabaixaComponent } from './modelos/endoscopiadigestiva
     TextolivreComponent,
     AbdomeinferiormascComponent,
     AbdometotalComponent,
-    Obstetrico1trimestreComponent,
     DiversosComponent,
     DopplerfluxometriaComponent,
     EndoscopiadigaltaComponent,
@@ -224,15 +223,16 @@ import { EndoscopiadigestivabaixaComponent } from './modelos/endoscopiadigestiva
     TranscranianoComponent,
     AparelhourinarioComponent,
     LaparoscopiadiagbiopComponent,
-    MonitoracaoovulacaoComponent,
     Obstetrico14semanasComponent,
-    MorfologicofetalComponent,
     HisteroscopiaComponent,
     ObstetricomaissemanaComponent,
     AbdomeinferiorfemendovComponent,
+    Obstetrico1trimestreComponent,
+    MonitoracaoovulacaoComponent,
+    MorfologicofetalComponent,
     VideocolposcComponent,
-    VideocolposcopiaifcpcComponent,
-    EndoscopiadigestivabaixaComponent
+    EndoscopiadigestivabaixaComponent,
+    VideocolposcopiaifcpcComponent
   ],
   providers: [{
     provide: LocationStrategy,
