@@ -201,6 +201,21 @@ export class LaudoComponent implements OnInit {
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.videofaringolar = true;
       }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 17) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.videoendoscopia = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 18) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.videonasofibrolar = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 19) {
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.tireoide = true;
+      }
     }
   }
 
@@ -343,6 +358,39 @@ export class LaudoComponent implements OnInit {
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
         this.videofaringolar = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 17) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.videoendoscopia = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 18) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.videonasofibrolar = true;
+      }
+
+      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 19) {
+        const param = new ParametroDoLaudo();
+        param.valor = this.modelodelaudodoproc[i].customstring;
+        param.index = this.modelodelaudodoproc[i].prioridade;
+
+        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.tireoide = true;
       }
     }
   }

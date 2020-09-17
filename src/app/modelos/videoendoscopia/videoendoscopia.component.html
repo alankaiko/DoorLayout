@@ -1,1 +1,217 @@
-<p>videoendoscopia works!</p>
+<div style="width: 100%;">
+  <p-accordion>
+    <p-accordionTab header="Indicação clínica">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="indicacaoclinica" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Pré-medicação / Equipamento">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Óptica</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="opticas" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo3" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfRimEsquerdo()"></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Grau de ótica rígida</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo4">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>% Lidocaína</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Septo nasal">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Septo nasal</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="septosnasal" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo6" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Desvio</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="desvionasal" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo7" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Direção</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="direcaonasal" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo8" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Tipo de desvio</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="tipodesvionasal" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo9" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - mucosa direita">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="mucosadireita" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo10" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfVesicula()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo11" [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - mucosa esquerda">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="mucosaesquerda" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo12" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo13  " [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - concha inferior direita">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="conchainferiordireita" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo14" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo15  " [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - concha inferior esquerda">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="conchainfeioresquerda" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo16" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo17  " [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - meato inferior direito">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="meatoinferiordireito" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo18" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfBexiga()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo19  " [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - meato inferior esquerdo">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="meatoinferioresquerdo" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo20" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfBaco()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo21  " [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - concha média direita">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="conchamediadireita" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo22" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfVasos()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo23  " [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - concha média esquerda">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="conchamediaesquerda" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo24" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfRetroperitonio()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo25  " [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - meato médio direito">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="meatomediodireito" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo26" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfCostofrenicos()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo27" [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Fossa nasal - meato médio esquerdo">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="meatomedioesquerdo" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo28" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo29" [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Rinofaringe - cavum">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Tipo de desvio</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="rinofaringecavum" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo30" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Tipo de desvio</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="rinofaringeadenoide" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo31" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Tipo de desvio</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo32">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <p-editor [(ngModel)]="camposdolaudo.campo33" [style]="{'height':'200px'}"></p-editor>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Rinofaringe - óstios das tubas auditivas">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="rinofaringostios" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo34" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo35" [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Rinofaringe - mobilidade palatal">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="rinofaringepalatal" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo36" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo37" [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <p-editor [(ngModel)]="camposdolaudo.campo38" [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="impressoes" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo39" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo40" [style]="{'height':'200px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div class="linhas">
+        <div class="blocodalinha" style="width: 100%;">
+          <label>Profissional Executante</label>
+          <p-dropdown [style]="{'min-width': '100%'}" [options]="executantes"
+            [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel"
+            name="codigoprofexecutante" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+
