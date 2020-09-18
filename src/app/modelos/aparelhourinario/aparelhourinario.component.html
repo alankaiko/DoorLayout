@@ -1,1 +1,264 @@
-<p>aparelhourinario works!</p>
+<div style="width: 100%;">
+  <p-accordion>
+    <p-accordionTab header="Dados do Equipamento">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Rim direito">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Presença</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="presencarimdireito" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo3" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Topicidade</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="topicitaderimdireito" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo4" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Volume</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="volumerimdireito" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo5" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Contorno</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornorimdireito" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo6" placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Textura</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="texturarimdireito" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo7" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Seio renal</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="seiorimdireito" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo8" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Hidrofrenose</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="hidrorimdireito" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo9" placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. longitudinal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo10">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. ant. post.(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo11">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. transversal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo12">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Espessura parênquima</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo13">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Volume(cm³)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo14">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <label>Descrição</label>
+          <p-editor [(ngModel)]="camposdolaudo.campo15" [style]="{'height':'100px'}"></p-editor>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Rim esquerdo">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Presença</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="presencarimesquerdo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo16" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Topicidade</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="topicitaderimesquerdo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo17" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Volume</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="volumerimesquerdo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo18" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Contorno</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornorimesquerdo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo19" placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Textura</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="texturarimesquerdo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo20" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Seio renal</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="seiorimesquerdo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo21" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Hidrofrenose</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="hidrorimesquerdo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo22" placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. longitudinal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo23">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. ant. post.(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo24">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. transversal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo25">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Espessura parênquima</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Volume(cm³)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo27">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <label>Descrição</label>
+          <p-editor [(ngModel)]="camposdolaudo.campo28" [style]="{'height':'100px'}"></p-editor>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Informações complementares dos rins">
+      <p-editor [(ngModel)]="camposdolaudo.campo29  " [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Bexiga">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Posição</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="posicaobexiga" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo30" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Morfologia</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="morfologiabexiga" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo31" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Superfície</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="superficiebexiga" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo32" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Contornos</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornosbexiga" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo33" placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Conteúdo</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="conteudobexiga" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo34" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Assoalho</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="assoalhobexiga" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo35" placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Capacidade</label>
+            <p-dropdown [style]="{'min-width': '95%'}" [options]="capacidadebexiga" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo36" placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <label>Descrição</label>
+            <p-editor [(ngModel)]="camposdolaudo.campo37" [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <p-editor [(ngModel)]="camposdolaudo.campo38" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="impressoes" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo39" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo40" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div class="linhas">
+        <div class="blocodalinha" style="width: 100%;">
+          <label>Profissional Executante</label>
+          <p-dropdown [style]="{'min-width': '100%'}" [options]="executantes"
+          [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel"
+          name="codigoprofexecutante" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

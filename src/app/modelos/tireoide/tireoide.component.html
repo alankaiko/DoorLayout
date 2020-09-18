@@ -1,1 +1,181 @@
-<p>tireoide works!</p>
+<div style="width: 100%;">
+  <p-accordion>
+    <p-accordionTab header="Dados do Equipamento">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Pele">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="peles" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo3" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfFigado()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo4" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Músculos pré-tireoidianos">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="pretireoidianos" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo5" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo6" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Carótidas">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="carotidas" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo7" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfVesicula()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo8" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Tireoide">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="tireoides" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo9" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo10  " [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Tireoide - lobo direito">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. longitudinal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo11">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. ant. post.(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo12">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. transversal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo13">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Volume(cm³)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo14">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <p-dropdown [style]="{'min-width': '40%'}" [options]="linhaslobodireito" [filter]="true"
+            [(ngModel)]="camposdolaudo.campo15" #codigoprofexecutante="ngModel"
+            placeholder="Selecione..." (onChange)="ConfRimDireito()"></p-dropdown>
+
+          <p-editor [(ngModel)]="camposdolaudo.campo16" [style]="{'height':'100px'}"></p-editor>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Tireoide - lobo direito">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. longitudinal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo17">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. ant. post.(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo18">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. transversal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo19">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Volume(cm³)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo20">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <p-dropdown [style]="{'min-width': '40%'}" [options]="linhasloboesquerdo" [filter]="true"
+            [(ngModel)]="camposdolaudo.campo21" #codigoprofexecutante="ngModel"
+            placeholder="Selecione..." (onChange)="ConfRimDireito()"></p-dropdown>
+
+          <p-editor [(ngModel)]="camposdolaudo.campo22" [style]="{'height':'100px'}"></p-editor>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Tireoide - istmo">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. longitudinal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo23">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. ant. post.(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo24">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Diam. transversal(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo25">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Volume(cm³)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Volume(cm³)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo27">
+            <span>referencias</span>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <p-dropdown [style]="{'min-width': '40%'}" [options]="tireoidismo" [filter]="true"
+            [(ngModel)]="camposdolaudo.campo28" #codigoprofexecutante="ngModel"
+            placeholder="Selecione..." (onChange)="ConfRimDireito()"></p-dropdown>
+
+          <p-editor [(ngModel)]="camposdolaudo.campo29" [style]="{'height':'100px'}"></p-editor>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <p-editor [(ngModel)]="camposdolaudo.campo30" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="impressoes" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo31" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo32" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div class="linhas">
+        <div class="blocodalinha" style="width: 100%;">
+          <label>Profissional Executante</label>
+          <p-dropdown [style]="{'min-width': '100%'}" [options]="executantes"
+          [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel"
+          name="codigoprofexecutante" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+
