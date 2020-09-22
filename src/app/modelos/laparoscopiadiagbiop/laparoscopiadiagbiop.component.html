@@ -1,1 +1,168 @@
-<p>laparoscopiadiagbiop works!</p>
+<div style="width: 100%;">
+  <p-accordion>
+    <p-accordionTab header="Dados técnicos">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <p-dropdown [style]="{'min-width': '40%'}" [options]="dadostecnicos" [filter]="true"
+            [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
+            placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 30%;">
+            <label>Anestesia</label>
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="anestesias" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo3" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfFigado()"></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 30%;">
+            <label>Número de punções</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo4">
+          </div>
+
+          <div class="blocodalinha" style="width: 30%;">
+            <label>Medidas das punções(mm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Cavidade peritoneal">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="peritoneal" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo6" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfFigado()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo7" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Bexiga">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="bexigas" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo8" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo9" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Útero">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="uteros" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo10" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfVesicula()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo11" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Tuba direita">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <p-dropdown [style]="{'min-width': '40%'}" [options]="tubadireita" [filter]="true"
+            [(ngModel)]="camposdolaudo.campo12" #codigoprofexecutante="ngModel"
+            placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <p-editor [(ngModel)]="camposdolaudo.campo13" [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <label>Cromotubagem</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="cromotubagemdireita" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo14" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfFigado()"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Tuba esquerda">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <p-dropdown [style]="{'min-width': '40%'}" [options]="tubaesquerda" [filter]="true"
+            [(ngModel)]="camposdolaudo.campo15" #codigoprofexecutante="ngModel"
+            placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <p-editor [(ngModel)]="camposdolaudo.campo16" [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <label>Cromotubagem</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="cromotubagemesquerda" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo17" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfFigado()"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Ovário direito">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="ovariodireito" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo18" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo19" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Ovário esquerdo">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="ovarioesquerdo" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo20" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo21  " [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Biópsia">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="biopsias" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo22" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo23  " [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Procedimento">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="procedimentos" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo24" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo25  " [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <p-editor [(ngModel)]="camposdolaudo.campo26" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="impressoes" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo27" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo28" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div class="linhas">
+        <div class="blocodalinha" style="width: 100%;">
+          <label>Profissional Executante</label>
+          <p-dropdown [style]="{'min-width': '100%'}" [options]="executantes"
+          [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel"
+          name="codigoprofexecutante" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

@@ -1,1 +1,415 @@
-<p>obstetricomaissemana works!</p>
+<div style="width: 100%;">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Dados do equipamento e da gestação">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Núm de fetos</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo3">
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="IGH e biometria">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <span>IGH pela amenorréia</span>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>DUM</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo4">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>IGH</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
+            <span>sem.</span>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo6">
+            <span>dias</span>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>DPP</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo7">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <span>IGH pelo último exame</span>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Data</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo8">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo9">
+            <span>sem.</span>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo10">
+            <span>dias</span>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>IGH</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo11">
+            <span>sem.</span>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo12">
+            <span>dias</span>
+            <label>DPP</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo13">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <span>IGH pela biometria (baseada no percentil 50)</span>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Relação S/D</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo14">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo15">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>C.A.</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo16">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo17">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>C.F.</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo18">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo19">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Úmero</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo20">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo21">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Ulna</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo22">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo23">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Tíbia</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo24">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo25">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>D.O.F.(mm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo26>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Valor do C.A.</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="valordoca" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo27" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <span>IGH pela biometria (baseada no percentil 50)</span>
+          <div class="blocodalinha" style="width: 25%;">
+            <label>I.C. (74 a 86)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo28">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>C.C. (mm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo29">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo30">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>C.C./C.A.</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo31">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>C.C./F.A.(Hadlock)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo32">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Estatura (cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo33">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Peso fetal provável (g)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo34">
+          </div>
+        </div>
+
+        <div class="linhas">
+          <span>IGH definida pelo examinador</span>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>IGH</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo35">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo36">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Data do exame</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo37">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Desvio para padrão do I.G.</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="padraoig" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo38" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>+ semanas</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo39">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>DPP</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo40">
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Feto">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Situação</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="fetosituacao" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo41" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Apresentação</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="fetoapresentacao" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo42" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Dorso</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="fetodorso" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo43" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Movimentos fetais</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="fetomov" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo44" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Movimentos respiratórios</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="fetoresp" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo45" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Batimentos cardíacos</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="fetocard" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo46" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Ritmo</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="fetoritmo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo47" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>N. (bat/min)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo48">
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Órgãos internos">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Situação</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="orgaosituacao" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo49" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Descrição</label>
+            <p-editor [(ngModel)]="camposdolaudo.campo50" [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Estadiamento intestinal</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="orgaosintes" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo51" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Gordura pré-peritonial</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="orgaospreperito" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo52" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Sexo fetal</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="orgaossexofetal" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo53" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Placenta">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Inserção 1</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="placentainsercao" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo54" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 50%;">
+            <label>Inserção 2</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="placentainsercao2" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo55" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Espessura (mm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo56">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Maturidade</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="placentamaturidade" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo57" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Descrição</label>
+            <p-editor [(ngModel)]="camposdolaudo.campo58" [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Outras informações">
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Cordão umbilical</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="outraumbilical" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo59" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Líquido amniótico 2</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="outraamniotico" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo60" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..."></p-dropdown>
+          </div>
+        </div>
+
+        <div class="linhas">
+          <span>ILA (Índice do líquido  aminiótico)</span>
+          <span>Medidas dos quadrantes (cm)</span>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>I</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo61">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>II</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo62">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>III</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo63">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>IV</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo64">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <label>ILA(cm)</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo65">
+          </div>
+
+          <div class="blocodalinha" style="width: 25%;">
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo66">
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Observações gerais">
+      <p-editor [(ngModel)]="camposdolaudo.campo67" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Impressão diagnóstica">
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="impressoes" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo68" #codigoprofexecutante="ngModel"
+        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo69" [style]="{'height':'100px'}"></p-editor>
+    </p-accordionTab>
+
+    <p-accordionTab header="Médico executante">
+      <div class="linhas">
+        <div class="blocodalinha" style="width: 100%;">
+          <label>Profissional Executante</label>
+          <p-dropdown [style]="{'min-width': '100%'}" [options]="executantes"
+          [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel"
+          name="codigoprofexecutante" placeholder="Selecione..."></p-dropdown>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+

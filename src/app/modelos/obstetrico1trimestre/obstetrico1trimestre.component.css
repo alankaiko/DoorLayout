@@ -2,11 +2,17 @@
   border-bottom: 2px solid #68686852;
 }
 
+:host /deep/ p-dropdown{
+  margin-left: 0;
+  margin-right: 5px;
+  width: 100%;
+}
+
 :host /deep/ p-dropdown .ui-dropdown{
   border:1px solid #428bca;
   background-color: #fff;
-  border-radius: 3px;
-  line-height: 14px;
+  border-radius: 2px;
+  line-height: 18px;
   margin-right: 5px;
 }
 
@@ -25,6 +31,11 @@
 }
 
 .blocodalinha {
+  display: inline-grid;
+  line-height: 0;
+}
+
+.blocodalinhaspan {
   display: inline-grid;
   line-height: 0;
 }
