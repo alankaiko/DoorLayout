@@ -67,16 +67,23 @@
         </div>
 
         <div class="linhas">
-          <p-dropdown [style]="{'min-width': '40%'}" [options]="linhaslobodireito" [filter]="true"
-            [(ngModel)]="camposdolaudo.campo15" #codigoprofexecutante="ngModel"
-            placeholder="Selecione..." (onChange)="ConfRimDireito()"></p-dropdown>
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Descrição</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="linhaslobodireito" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo15" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfRimDireito()"></p-dropdown>
+          </div>
+        </div>
 
-          <p-editor [(ngModel)]="camposdolaudo.campo16" [style]="{'height':'100px'}"></p-editor>
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <p-editor [(ngModel)]="camposdolaudo.campo16" [style]="{'height':'100px'}"></p-editor>
+          </div>
         </div>
       </div>
     </p-accordionTab>
 
-    <p-accordionTab header="Tireoide - lobo direito">
+    <p-accordionTab header="Tireoide - lobo esquerdo">
       <div style="width: 100%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
@@ -103,17 +110,24 @@
         </div>
 
         <div class="linhas">
-          <p-dropdown [style]="{'min-width': '40%'}" [options]="linhasloboesquerdo" [filter]="true"
-            [(ngModel)]="camposdolaudo.campo21" #codigoprofexecutante="ngModel"
-            placeholder="Selecione..." (onChange)="ConfRimDireito()"></p-dropdown>
+          <div class="blocodalinha" style="width: 25%;">
+            <label>Descrição</label>
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="linhasloboesquerdo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo21" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="ConfRimDireito()"></p-dropdown>
+          </div>
+        </div>
 
-          <p-editor [(ngModel)]="camposdolaudo.campo22" [style]="{'height':'100px'}"></p-editor>
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <p-editor [(ngModel)]="camposdolaudo.campo22" [style]="{'height':'100px'}"></p-editor>
+          </div>
         </div>
       </div>
     </p-accordionTab>
 
     <p-accordionTab header="Tireoide - istmo">
-      <div style="width: 100%;">
+      <div style="width: 99%;">
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Diam. longitudinal(cm)</label>
@@ -131,24 +145,50 @@
           </div>
         </div>
 
-        <div class="linhas">
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Volume(cm³)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
+        <div class="linhas" style="display: inline-flex;">
+          <div style="width: 49%;">
+            <div class="blocodalinha" style="width: 49%;">
+              <label>Volume(cm³)</label>
+              <input style="width: 100%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
+            </div>
+
+            <div class="blocodalinha" style="width: 49%;">
+              <label>Volume Total(cm³)</label>
+              <input style="width: 100%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo27">
+            </div>
+
+            <div class="blocodalinha" style="width: 100%;">
+              <label>Descrição</label>
+              <p-dropdown [style]="{'min-width': '100%'}" [options]="tireoidismo" [filter]="true"
+                [(ngModel)]="camposdolaudo.campo28" #codigoprofexecutante="ngModel"
+                placeholder="Selecione..." (onChange)="ConfRimDireito()"></p-dropdown>
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Volume(cm³)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo27">
-            <span>referencias</span>
+          <div style="width: 2%;"></div>
+
+          <div style="display: inline-flex; width: 49%;">
+            <div style="width: 47%; display: grid;">
+              <span style="font-size: 80%; font-weight: bold;">0 a 5 anos: 0 a 2 cm³</span>
+              <span style="font-size: 80%; font-weight: bold;">7 anos: 2,79 a 5,89 cm³</span>
+              <span style="font-size: 80%; font-weight: bold;">8 anos: 3,05 a 6,99 cm³</span>
+              <span style="font-size: 80%; font-weight: bold;">9 anos: 3,64 a 7,64 cm³</span>
+              <span style="font-size: 80%; font-weight: bold;">10 anos: 4,21 a 9,61 cm³</span>
+            </div>
+
+            <div style="width: 6%;"></div>
+
+            <div style="width: 47%; display: grid;">
+              <span style="font-size: 80%; font-weight: bold;">11 anos: 5,7 a 10,9 cm³</span>
+              <span style="font-size: 80%; font-weight: bold;">12 anos: 5,81 a 11,61 cm³</span>
+              <span style="font-size: 80%; font-weight: bold;">13 anos: 6,35 a 12,99 cm³</span>
+              <span style="font-size: 80%; font-weight: bold;">14 anos: 7,66 a 15,86 cm³</span>
+              <span style="font-size: 80%; font-weight: bold;">maior de 15 anos: 8,4 a 14,6 cm³</span>
+            </div>
           </div>
         </div>
 
         <div class="linhas">
-          <p-dropdown [style]="{'min-width': '40%'}" [options]="tireoidismo" [filter]="true"
-            [(ngModel)]="camposdolaudo.campo28" #codigoprofexecutante="ngModel"
-            placeholder="Selecione..." (onChange)="ConfRimDireito()"></p-dropdown>
-
           <p-editor [(ngModel)]="camposdolaudo.campo29" [style]="{'height':'100px'}"></p-editor>
         </div>
       </div>

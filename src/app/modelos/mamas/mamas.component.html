@@ -1,24 +1,40 @@
 <div style="width: 100%; background-color: #ffffff;">
   <p-accordion>
     <p-accordionTab header="Dados do Equipamento">
-      <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
-        [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
-        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 40%;">
+            <label>Tipo</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+          </div>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
+          <div class="blocodalinha" style="width: 100%;">
+            <label>Descrição</label>
+            <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+      </div>
     </p-accordionTab>
 
     <p-accordionTab header="Ciclo menstrual">
-      <div>
-        <div>
-          <label>Data do exame</label>
-          <p-calendar [(ngModel)]="camposdolaudo.campo3"></p-calendar>
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 20%;">
+            <label>Data do exame</label>
+            <p-calendar [(ngModel)]="camposdolaudo.campo3"></p-calendar>
+          </div>
 
-          <label>D.U.M.</label>
-          <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo4">
+          <div class="blocodalinha" style="width: 20%;">
+            <label>D.U.M.</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo4">
+          </div>
 
-          <label>Dia do ciclo</label>
-          <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
+          <div class="blocodalinha" style="width: 10%;">
+            <label>Dia do ciclo</label>
+            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
+          </div>
         </div>
       </div>
     </p-accordionTab>

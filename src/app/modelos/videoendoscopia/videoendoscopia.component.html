@@ -5,25 +5,25 @@
         [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Pré-medicação / Equipamento">
       <div style="width: 100%;">
         <div class="linhas">
-          <div class="blocodalinha" style="width: 25%;">
+          <div class="blocodalinha" style="width: 20%;">
             <label>Óptica</label>
-            <p-dropdown [style]="{'min-width': '40%'}" [options]="opticas" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="opticas" [filter]="true"
               [(ngModel)]="camposdolaudo.campo3" #codigoprofexecutante="ngModel"
               placeholder="Selecione..." (onChange)="ConfRimEsquerdo()"></p-dropdown>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
+          <div class="blocodalinha" style="width: 20%;">
             <label>Grau de ótica rígida</label>
             <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo4">
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
+          <div class="blocodalinha" style="width: 20%;">
             <label>% Lidocaína</label>
             <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
           </div>
@@ -36,28 +36,28 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Septo nasal</label>
-            <p-dropdown [style]="{'min-width': '40%'}" [options]="septosnasal" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="septosnasal" [filter]="true"
               [(ngModel)]="camposdolaudo.campo6" #codigoprofexecutante="ngModel"
               placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Desvio</label>
-            <p-dropdown [style]="{'min-width': '40%'}" [options]="desvionasal" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="desvionasal" [filter]="true"
               [(ngModel)]="camposdolaudo.campo7" #codigoprofexecutante="ngModel"
               placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Direção</label>
-            <p-dropdown [style]="{'min-width': '40%'}" [options]="direcaonasal" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="direcaonasal" [filter]="true"
               [(ngModel)]="camposdolaudo.campo8" #codigoprofexecutante="ngModel"
               placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Tipo de desvio</label>
-            <p-dropdown [style]="{'min-width': '40%'}" [options]="tipodesvionasal" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="tipodesvionasal" [filter]="true"
               [(ngModel)]="camposdolaudo.campo9" #codigoprofexecutante="ngModel"
               placeholder="Selecione..." (onChange)="ConfViasBiliares()"></p-dropdown>
           </div>
@@ -70,7 +70,7 @@
         [(ngModel)]="camposdolaudo.campo10" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfVesicula()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo11" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo11" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Fossa nasal - mucosa esquerda">
@@ -78,7 +78,7 @@
         [(ngModel)]="camposdolaudo.campo12" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo13  " [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo13  " [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Fossa nasal - concha inferior direita">
@@ -86,7 +86,7 @@
         [(ngModel)]="camposdolaudo.campo14" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo15  " [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo15  " [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Fossa nasal - concha inferior esquerda">
@@ -94,7 +94,7 @@
         [(ngModel)]="camposdolaudo.campo16" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfPancreas()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo17  " [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo17  " [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Fossa nasal - meato inferior direito">
@@ -102,7 +102,7 @@
         [(ngModel)]="camposdolaudo.campo18" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfBexiga()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo19  " [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo19  " [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Fossa nasal - meato inferior esquerdo">
@@ -110,7 +110,7 @@
         [(ngModel)]="camposdolaudo.campo20" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfBaco()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo21  " [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo21  " [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Fossa nasal - concha média direita">
@@ -118,7 +118,7 @@
         [(ngModel)]="camposdolaudo.campo22" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfVasos()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo23  " [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo23  " [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Fossa nasal - concha média esquerda">
@@ -126,7 +126,7 @@
         [(ngModel)]="camposdolaudo.campo24" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfRetroperitonio()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo25  " [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo25  " [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Fossa nasal - meato médio direito">
@@ -134,7 +134,7 @@
         [(ngModel)]="camposdolaudo.campo26" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfCostofrenicos()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo27" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo27" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Fossa nasal - meato médio esquerdo">
@@ -142,7 +142,7 @@
         [(ngModel)]="camposdolaudo.campo28" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo29" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo29" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Rinofaringe - cavum">
@@ -150,14 +150,14 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Tipo de desvio</label>
-            <p-dropdown [style]="{'min-width': '40%'}" [options]="rinofaringecavum" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="rinofaringecavum" [filter]="true"
               [(ngModel)]="camposdolaudo.campo30" #codigoprofexecutante="ngModel"
               placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Tipo de desvio</label>
-            <p-dropdown [style]="{'min-width': '40%'}" [options]="rinofaringeadenoide" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="rinofaringeadenoide" [filter]="true"
               [(ngModel)]="camposdolaudo.campo31" #codigoprofexecutante="ngModel"
               placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
           </div>
@@ -167,8 +167,8 @@
             <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo32">
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <p-editor [(ngModel)]="camposdolaudo.campo33" [style]="{'height':'200px'}"></p-editor>
+          <div class="blocodalinha" style="width: 100%;">
+            <p-editor [(ngModel)]="camposdolaudo.campo33" [style]="{'height':'100px'}"></p-editor>
           </div>
         </div>
       </div>
@@ -179,7 +179,7 @@
         [(ngModel)]="camposdolaudo.campo34" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo35" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo35" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Rinofaringe - mobilidade palatal">
@@ -187,11 +187,11 @@
         [(ngModel)]="camposdolaudo.campo36" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo37" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo37" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Observações gerais">
-      <p-editor [(ngModel)]="camposdolaudo.campo38" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo38" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Impressão diagnóstica">
@@ -199,7 +199,7 @@
         [(ngModel)]="camposdolaudo.campo39" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo40" [style]="{'height':'200px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo40" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Médico executante">

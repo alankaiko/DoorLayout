@@ -1,11 +1,23 @@
 <div style="width: 100%;">
   <p-accordion>
     <p-accordionTab header="Dados do Equipamento">
-      <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
-        [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
-        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+      <div style="width: 100%;">
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <label>Tipo</label>
+            <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
+              placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+          </div>
+        </div>
 
-      <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
+        <div class="linhas">
+          <div class="blocodalinha" style="width: 100%;">
+            <label>Descrição</label>
+            <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+      </div>
     </p-accordionTab>
 
     <p-accordionTab header="Rim direito">
@@ -13,25 +25,25 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Presença</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="presencarimdireito" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="presencarimdireito" [filter]="true"
               [(ngModel)]="camposdolaudo.campo3" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Topicidade</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="topicitaderimdireito" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="topicitaderimdireito" [filter]="true"
               [(ngModel)]="camposdolaudo.campo4" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Volume</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="volumerimdireito" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="volumerimdireito" [filter]="true"
               [(ngModel)]="camposdolaudo.campo5" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Contorno</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornorimdireito" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="contornorimdireito" [filter]="true"
               [(ngModel)]="camposdolaudo.campo6" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
@@ -39,19 +51,19 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 50%;">
             <label>Textura</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="texturarimdireito" [filter]="true"
+            <p-dropdown [style]="{'min-width': '99%'}" [options]="texturarimdireito" [filter]="true"
               [(ngModel)]="camposdolaudo.campo7" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Seio renal</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="seiorimdireito" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="seiorimdireito" [filter]="true"
               [(ngModel)]="camposdolaudo.campo8" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Hidrofrenose</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="hidrorimdireito" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="hidrorimdireito" [filter]="true"
               [(ngModel)]="camposdolaudo.campo9" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
@@ -97,25 +109,25 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Presença</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="presencarimesquerdo" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="presencarimesquerdo" [filter]="true"
               [(ngModel)]="camposdolaudo.campo16" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Topicidade</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="topicitaderimesquerdo" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="topicitaderimesquerdo" [filter]="true"
               [(ngModel)]="camposdolaudo.campo17" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Volume</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="volumerimesquerdo" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="volumerimesquerdo" [filter]="true"
               [(ngModel)]="camposdolaudo.campo18" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Contorno</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornorimesquerdo" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="contornorimesquerdo" [filter]="true"
               [(ngModel)]="camposdolaudo.campo19" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
@@ -123,19 +135,19 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 50%;">
             <label>Textura</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="texturarimesquerdo" [filter]="true"
+            <p-dropdown [style]="{'min-width': '99%'}" [options]="texturarimesquerdo" [filter]="true"
               [(ngModel)]="camposdolaudo.campo20" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Seio renal</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="seiorimesquerdo" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="seiorimesquerdo" [filter]="true"
               [(ngModel)]="camposdolaudo.campo21" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Hidrofrenose</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="hidrorimesquerdo" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="hidrorimesquerdo" [filter]="true"
               [(ngModel)]="camposdolaudo.campo22" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
@@ -185,25 +197,25 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Posição</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="posicaobexiga" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="posicaobexiga" [filter]="true"
               [(ngModel)]="camposdolaudo.campo30" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Morfologia</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="morfologiabexiga" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="morfologiabexiga" [filter]="true"
               [(ngModel)]="camposdolaudo.campo31" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Superfície</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="superficiebexiga" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="superficiebexiga" [filter]="true"
               [(ngModel)]="camposdolaudo.campo32" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Contornos</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="contornosbexiga" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="contornosbexiga" [filter]="true"
               [(ngModel)]="camposdolaudo.campo33" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>
@@ -211,19 +223,19 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 50%;">
             <label>Conteúdo</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="conteudobexiga" [filter]="true"
+            <p-dropdown [style]="{'min-width': '99%'}" [options]="conteudobexiga" [filter]="true"
               [(ngModel)]="camposdolaudo.campo34" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Assoalho</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="assoalhobexiga" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="assoalhobexiga" [filter]="true"
               [(ngModel)]="camposdolaudo.campo35" placeholder="Selecione..."></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Capacidade</label>
-            <p-dropdown [style]="{'min-width': '95%'}" [options]="capacidadebexiga" [filter]="true"
+            <p-dropdown [style]="{'min-width': '98%'}" [options]="capacidadebexiga" [filter]="true"
               [(ngModel)]="camposdolaudo.campo36" placeholder="Selecione..."></p-dropdown>
           </div>
         </div>

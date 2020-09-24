@@ -34,3 +34,22 @@
   display: inline-grid;
   line-height: 0;
 }
+
+.blocoalternativo {
+  display: inline-flex;
+  margin-bottom: 3px;
+}
+
+.alinhartexto {
+  width: 30%;
+  text-align: right;
+}
+
+.alinharcampo {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.alinharmm {
+  text-align: center;
+}

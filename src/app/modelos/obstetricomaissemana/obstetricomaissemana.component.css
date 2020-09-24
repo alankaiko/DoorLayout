@@ -34,3 +34,29 @@
   display: inline-grid;
   line-height: 0;
 }
+
+.blocoalternativo {
+  display: inline-flex;
+  margin-bottom: 3px;
+}
+
+.alinhartexto {
+  width: 25%;
+  text-align: right;
+}
+
+.alinharcampo {
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 30%;
+}
+
+.alinharcampobeta {
+  width: 45%;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.alinharmm {
+  text-align: center;
+}

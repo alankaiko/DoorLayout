@@ -1,5 +1,5 @@
 <div style="width: 100%; background-color: #ffffff;">
-  <p-accordion [multiple]="true">
+  <p-accordion>
     <p-accordionTab header="Dados do paciente">
       <div style="width: 100%;">
         <div class="linhas">
@@ -31,143 +31,403 @@
     <p-accordionTab header="Parâmetros estruturais">
       <div style="width: 100%;">
         <div class="linhas">
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Aorta (diâmetro da raiz)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
-            <span>mm</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo6">
-            <span>mm</span>
+          <div class="blocoalternativo" style="width: 80%;">
+            <div style="width: 57%;"></div>
+
+            <div style="width: 23%;">
+              <span>Referência</span>
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Átrio esquerdo</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo7">
-            <span>mm</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo8">
-            <span>mm</span>
+          <div class="blocoalternativo" style="width: 80%;">
+            <div class="alinhartexto">
+              <span>Aorta (diâmetro da raiz)</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo5">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo6">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Diâmetro ventricular direito</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo9">
-            <span>mm</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo10">
-            <span>mm</span>
+          <div class="blocoalternativo" style="width: 80%;">
+            <div class="alinhartexto">
+              <span>Átrio esquerdo</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo7">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo8">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Diâmetro diastólico  final do VE</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo11">
-            <span>mm</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo12">
-            <span>mm</span>
+          <div class="blocoalternativo" style="width: 80%;">
+            <div class="alinhartexto">
+              <span>Diâmetro ventricular direito</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo9">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo10">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Diâmetro sistólico final do VE</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo13">
-            <span>mm</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo14">
-            <span>mm</span>
+          <div class="blocoalternativo" style="width: 80%;">
+            <div class="alinhartexto">
+              <span>Diâmetro diastólico  final do VE</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo11">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo12">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Espessura diastólica de septo</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo15">
-            <span>mm</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo16">
-            <span>mm</span>
+          <div class="blocoalternativo" style="width: 80%;">
+            <div class="alinhartexto">
+              <span>Diâmetro sistólico final do VE</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo13">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo14">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Espessura  diastólica da PPVE</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo17">
-            <span>mm</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo18">
-            <span>mm</span>
+          <div class="blocoalternativo" style="width: 80%;">
+            <div class="alinhartexto">
+              <span>Espessura diastólica de septo</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo15">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo16">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Volume AE</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo19">
-            <span>cm³</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo20">
+          <div class="blocoalternativo" style="width: 80%;">
+            <div class="alinhartexto">
+              <span>Espessura  diastólica da PPVE</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo17">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo18">
+            </div>
+
+            <div class="alinharmm">
+              <span>mm</span>
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Fórmula da massa</label>
-            <p-dropdown [style]="{'min-width': '40%'}" [options]="formula" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo21" #codigoprofexecutante="ngModel"
-              placeholder="Selecione..."></p-dropdown>
+          <div class="blocoalternativo" style="width: 80%;">
+            <div class="alinhartexto">
+              <span>Volume AE</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo19">
+            </div>
+
+            <div class="alinharmm">
+              <span>cm³</span>
+            </div>
+
+            <div class="alinharcampo">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo20">
+            </div>
+
+            <div class="alinharmm">
+            </div>
+          </div>
+
+          <div class="blocoalternativo" style="width: 80%;">
+            <div class="alinhartexto">
+              <span>Fórmula da massa</span>
+            </div>
+
+            <div class="alinharcampo" style="width: 22.4%;">
+              <p-dropdown [style]="{'min-width': '98%'}" [options]="formula" [filter]="true"
+                [(ngModel)]="camposdolaudo.campo21" #codigoprofexecutante="ngModel"
+                placeholder="Selecione..."></p-dropdown>
+            </div>
+
+            <div class="alinharmm"></div>
+
+            <div class="alinharcampo"></div>
+
+            <div class="alinharmm"></div>
           </div>
         </div>
       </div>
     </p-accordionTab>
 
     <p-accordionTab header="Relações e funções ventriculares">
-      <div style="width: 100%;">
-        <div class="linhas">
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Rel. Át. Est/Aor.</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo22">
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo23">
+      <div style="display: inline-flex;">
+        <div style="width: 49%;">
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Rel. Át. Est/Aor.</span>
+            </div>
 
-            <label>Vol. Dias. Final</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo24">
-            <span>ml</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo25">
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo22">
+            </div>
+
+            <div style="width: 10%;"></div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo23">
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Fração de Ej. (Teicholz)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
-            <span>%</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo27">
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Fração de Ej. (Teicholz)</span>
+            </div>
 
-            <label>Vol. Sist.</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo28">
-            <span>ml</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo29">
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
+            </div>
+
+            <div style="width: 10%;">
+              <span>%</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo27">
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Massa Vent. esq.</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo30">
-            <span>g</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo31">
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Massa Vent. esq.</span>
+            </div>
 
-            <label>Rel. Vol. Massa</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo32">
-            <span>ml/g</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo33">
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo30">
+            </div>
+
+            <div style="width: 10%;">
+              <span>g</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo31">
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Índice de Massa</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo34">
-            <span>g/m²</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo35">
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Índice de Massa</span>
+            </div>
 
-            <label>Vol. Dias. Final</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo36">
-            <span>ml</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo37">
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo34">
+            </div>
+
+            <div style="width: 10%;">
+              <span>g/m²</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo35">
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>% de Enc. da Cav.</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo38">
-            <span>%</span>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo39">
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>% de Enc. da Cav.</span>
+            </div>
 
-            <label>Enter Ir p/ Imp. diag.</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo40">
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo38">
+            </div>
+
+            <div style="width: 10%;">
+              <span>%</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo39">
+            </div>
           </div>
 
-          <div class="blocodalinha" style="width: 25%;">
-            <label>Rel. Septo/PPVE</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo41">
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo42">
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Rel. Septo/PPVE</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo41">
+            </div>
+
+            <div style="width: 10%;"></div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo42">
+            </div>
+          </div>
+        </div>
+
+        <div style="width: 49%;">
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Vol. Dias. Final</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo24">
+            </div>
+
+            <div style="width: 10%;">
+              <span>ml</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo25">
+            </div>
+          </div>
+
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Vol. Sist.</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo28">
+            </div>
+
+            <div style="width: 10%;">
+              <span>ml</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo29">
+            </div>
+          </div>
+
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Rel. Vol. Massa</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo32">
+            </div>
+
+            <div style="width: 10%;">
+              <span>ml/g</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo33">
+            </div>
+          </div>
+
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Vol. Dias. Final</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo36">
+            </div>
+
+            <div style="width: 10%;">
+              <span>ml</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo37">
+            </div>
+          </div>
+
+          <div class="blocoalternativo" style="width: 100%;">
+            <div style="width: 40%; text-align: right; margin-right: 3px;">
+              <span>Enter Ir p/ Imp. diag.</span>
+            </div>
+
+            <div style="width: 20%;">
+              <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo40">
+            </div>
+
+            <div style="width: 10%;"></div>
+
+            <div style="width: 20%;"></div>
           </div>
         </div>
       </div>
