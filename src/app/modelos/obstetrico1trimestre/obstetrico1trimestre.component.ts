@@ -31,6 +31,9 @@ export class Obstetrico1trimestreComponent implements OnInit {
   ovarioparenquima: any[];
   fundosaco: any[];
   impressaodiagnostica: any[];
+  bexiganaoimprimi: boolean = false;
+  vaginanaoimprimi: boolean = false;
+  fundosaconaoimprimi: boolean = false;
 
   constructor() { }
 
@@ -55,7 +58,7 @@ export class Obstetrico1trimestreComponent implements OnInit {
     this.situacaobexiga = [
       {label: 'Não imprimir', value: 'nao'},
       {label: 'Normal', value: 'normal'},
-      {label: 'Não visualizada', value: 'viaualizada'},
+      {label: 'Não visualizada', value: 'visualizada'},
       {label: 'Digitar', value: 'digitar'}
     ];
 
@@ -206,26 +209,76 @@ export class Obstetrico1trimestreComponent implements OnInit {
     ];
   }
 
-  CarregarTextoEquip() {
-    if (this.camposdolaudo.campo1 === 'nao') {
-      this.camposdolaudo.campo2 = '';
+  CarregarBexigas() {
+    if (this.camposdolaudo.campo21 === 'nao') {
+      this.camposdolaudo.campo22 = '';
+      this.bexiganaoimprimi = true;
     }
 
-    if (this.camposdolaudo.campo1 === 'convexo') {
-      this.camposdolaudo.campo2 = 'Exame realizado em modo bidimensional com equipamento dinâmico Convexo multifrequêncial.';
+    if (this.camposdolaudo.campo21 === 'normal') {
+      this.camposdolaudo.campo22 = '<b>– Bexiga:</b><br> Conteúdo anecoico, paredes lisas e bem delimitadas.';
+      this.bexiganaoimprimi = false;
     }
 
-    if (this.camposdolaudo.campo1 === 'linear') {
-      this.camposdolaudo.campo2 = 'Exame realizado em modo bidimensional com equipamento dinâmico Linear multifrequêncial.';
+    if (this.camposdolaudo.campo21 === 'visualizada') {
+      this.camposdolaudo.campo22 = '<b>– Bexiga:</b><br> Não visualizada.';
+      this.bexiganaoimprimi = false;
     }
 
-    if (this.camposdolaudo.campo1 === 'endocavitario') {
-      this.camposdolaudo.campo2 = 'Exame realizado em modo bidimensional com equipamento dinâmico Endocavitário multifrequêncial.';
+    if (this.camposdolaudo.campo21 === 'digitar') {
+      this.camposdolaudo.campo22 = '';
+      this.bexiganaoimprimi = false;
+    }
+  }
+
+  CarregarVag() {
+    if (this.camposdolaudo.campo23 === 'nao') {
+      this.camposdolaudo.campo24 = '';
+      this.vaginanaoimprimi = true;
     }
 
-    if (this.camposdolaudo.campo1 === 'digitar') {
-      this.camposdolaudo.campo2 = '';
+    if (this.camposdolaudo.campo23 === 'normal') {
+      this.camposdolaudo.campo24 = '<b>– Vagina:</b><br> Acusticamente normal.';
+      this.vaginanaoimprimi = false;
     }
+
+    if (this.camposdolaudo.campo23 === 'ecogenicidade') {
+      this.camposdolaudo.campo24 = '<b>– Bexiga:</b><br> Aumento da ecogenicidade luminar.';
+      this.vaginanaoimprimi = false;
+    }
+
+    if (this.camposdolaudo.campo23 === 'digitar') {
+      this.camposdolaudo.campo24 = '';
+      this.vaginanaoimprimi = false;
+    }
+  }
+
+  CarregaFundSaco() {
+    if (this.camposdolaudo.campo67 === 'nao') {
+      this.camposdolaudo.campo68 = '';
+      this.fundosaconaoimprimi = true;
+    }
+
+    if (this.camposdolaudo.campo67 === 'livre') {
+      this.camposdolaudo.campo68 = '<b>– F.S.D:</b><br>Livre.';
+      this.fundosaconaoimprimi = false;
+    }
+
+    if (this.camposdolaudo.campo67 === 'liquido') {
+      this.camposdolaudo.campo68 = '<b>– F.S.D:</b><br>Com líquido livre.';
+      this.fundosaconaoimprimi = false;
+    }
+
+    if (this.camposdolaudo.campo67 === 'ecogenicidade') {
+      this.camposdolaudo.campo68 = '<b>– Bexiga:</b><br>Livre com ecogenicidade aumentada.';
+      this.fundosaconaoimprimi = false;
+    }
+
+    if (this.camposdolaudo.campo67 === 'digitar') {
+      this.camposdolaudo.campo68 = '';
+      this.fundosaconaoimprimi = false;
+    }
+
   }
 
 }

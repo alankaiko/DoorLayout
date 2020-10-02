@@ -4,8 +4,6 @@
       <p-dropdown [style]="{'min-width': '40%'}" [options]="equip" [filter]="true"
         [(ngModel)]="camposdolaudo.campo1" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
-        <button type="button" (click)="MontarTexto()">Teste</button>
-
       <p-editor [(ngModel)]="camposdolaudo.campo2" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
@@ -14,93 +12,95 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Presença</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="presenca" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo3" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%'}" [options]="presenca" placeholder="Selecione..."
+              [(ngModel)]="camposdolaudo.campo3" (onChange)="ConfereBexiga()" [filter]="true"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Espessura</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="espessura" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo4" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"
+              [options]="espessura" [filter]="true" [(ngModel)]="camposdolaudo.campo4"
+              placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Morfologia</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="morfologia" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo5" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="morfologia" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo5" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Posição</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="posicao" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo6" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="posicao" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo6" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Superfície</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="superficie" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo7" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="superficie" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo7" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Textura</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="textura" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo8" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="textura" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo8" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Contorno</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo9" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo9" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Limites</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo10" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="limites" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo10" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Textura do Conteúdo da bexiga</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="texturaconteudo" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo11" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="texturaconteudo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo11" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Débris - conteúdo da bexiga</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="debrisconteudo" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo12" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="debrisconteudo" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo12" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Posição do assoalho da bexiga</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="posicaoassoalho" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo13" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="posicaoassoalho" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo13" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Capacidade da bexiga</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="capacidadebexiga" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo14" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="capacidadebexiga" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo14" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 100%;">
             <label>Resíduos pós-miccional</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="residuoposmic" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo15" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': bexigapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="residuoposmic" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo15" placeholder="Selecione..." [disabled]="bexigapresenca"></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 100%;">
             <label>Descrição</label>
-            <p-editor [(ngModel)]="camposdolaudo.campo16" [style]="{'height':'100px'}"></p-editor>
+            <p-editor [(ngModel)]="camposdolaudo.campo16" [readonly]="bexigadescricao"
+              [style]="{'height':'100px', 'background-color': bexigadescricao ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"></p-editor>
           </div>
         </div>
       </div>
@@ -111,62 +111,72 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Presença</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="presencaprostata" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo17" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%'}" [options]="presencaprostata"
+              [filter]="true" [(ngModel)]="camposdolaudo.campo17" placeholder="Selecione..."
+              (onChange)="ConfereProstata()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Posição</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="posicaoprostata" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo18" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [options]="posicaoprostata" [filter]="true" [disabled]="prostatapresenca"
+              [(ngModel)]="camposdolaudo.campo18" placeholder="Selecione..."
+              [style]="{'min-width': '99%', 'background-color': prostatapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Morfologia</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="morfologiaprostata" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo19" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [options]="morfologiaprostata" [filter]="true" [(ngModel)]="camposdolaudo.campo19"
+              placeholder="Selecione..." [disabled]="prostatapresenca"
+              [style]="{'min-width': '99%', 'background-color': prostatapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Superfície</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="superficieprostata" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo20" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [options]="superficieprostata" [filter]="true" [(ngModel)]="camposdolaudo.campo20"
+              placeholder="Selecione..." [disabled]="prostatapresenca"
+              [style]="{'min-width': '100%', 'background-color': prostatapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Diam. longitudinal(cm)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo21">
+            <input [disabled]="prostatapresenca" style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo21">
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Diam. ant. post.(cm)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo22">
+            <input [disabled]="prostatapresenca" style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo22">
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Diam. transversal(cm)</label>
-            <input style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo23">
+            <input [disabled]="prostatapresenca" style="width: 98%;" type="text" pInputText [(ngModel)]="camposdolaudo.campo23">
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Peso(g)</label>
-            <input type="text" pInputText [(ngModel)]="camposdolaudo.campo24">
+            <input [disabled]="prostatapresenca" type="text" pInputText [(ngModel)]="camposdolaudo.campo24">
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 50%;">
             <label>Biópsia</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="biopsiaprostata" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo25" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [options]="biopsiaprostata" [filter]="true" [(ngModel)]="camposdolaudo.campo25"
+              placeholder="Selecione..." [disabled]="prostatapresenca"
+              [style]="{'min-width': '99%', 'background-color': prostatapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 50%;">
             <label>N de fragmentos</label>
-            <input type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
+            <input [disabled]="prostatapresenca" type="text" pInputText [(ngModel)]="camposdolaudo.campo26">
           </div>
+        </div>
+
+        <div class="linhas">
+          <p-editor [(ngModel)]="camposdolaudo.campo27" [readonly]="vesiculadescricao"
+              [style]="{'height':'100px'}" *ngIf="camposdolaudo.campo17 === 'digitar'"></p-editor>
         </div>
       </div>
     </p-accordionTab>
@@ -176,26 +186,26 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="texturaprostata" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo27" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%'}" [options]="texturaprostata" placeholder="Selecione..."
+              [(ngModel)]="camposdolaudo.campo28" [filter]="true" (onChange)="ConfereProsLoboPost()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo28" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': prostloboposterior ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="limites" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo29" placeholder="Selecione..." [disabled]="prostloboposterior"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo29" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': prostloboposterior ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo30" placeholder="Selecione..." [readonly]="prostloboposterior"></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="camposdolaudo.campo30" [style]="{'height':'100px'}"></p-editor>
+          <p-editor [(ngModel)]="camposdolaudo.campo31" [style]="{'height':'100px', 'background-color': prostloboposterior ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [disabled]="prostloboposterior"></p-editor>
         </div>
       </div>
     </p-accordionTab>
@@ -206,25 +216,26 @@
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
             <p-dropdown [style]="{'min-width': '99%'}" [options]="texturaprostata" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo31" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo32" placeholder="Selecione..." (onChange)="ConfereProsLoboCentral()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo32" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': prostlobopostcentral ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="limites" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo33" placeholder="Selecione..." [disabled]="prostlobopostcentral"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo33" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': prostlobopostcentral ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo34" placeholder="Selecione..." [disabled]="prostlobopostcentral"></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="camposdolaudo.campo34" [style]="{'height':'100px'}"></p-editor>
+          <p-editor [(ngModel)]="camposdolaudo.campo35" [readonly]="prostlobopostcentral"
+            [style]="{'height':'100px', 'background-color': prostlobopostcentral ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
@@ -235,25 +246,26 @@
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
             <p-dropdown [style]="{'min-width': '99%'}" [options]="texturaprostata" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo35" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo36" placeholder="Selecione..." (onChange)="ConfereProsLoboMedio()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo36" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': prostlobopostmedio ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="limites" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo37" placeholder="Selecione..." [disabled]="prostlobopostmedio"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo37" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': prostlobopostmedio ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo38" placeholder="Selecione..." [disabled]="prostlobopostmedio"></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="camposdolaudo.campo38" [style]="{'height':'100px'}"></p-editor>
+          <p-editor [(ngModel)]="camposdolaudo.campo39" [readonly]="prostlobopostmedio"
+            [style]="{'height':'100px', 'background-color': prostlobopostmedio ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
@@ -264,25 +276,26 @@
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
             <p-dropdown [style]="{'min-width': '99%'}" [options]="texturaprostata" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo39" placeholder="Selecione..."></p-dropdown>
+              [(ngModel)]="camposdolaudo.campo40" placeholder="Selecione..." (onChange)="ConfereProsLoboAnterior()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo40" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': prostlobopostant ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="limites" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo41" placeholder="Selecione..." [disabled]="prostlobopostant"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo41" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': prostlobopostant ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo42" placeholder="Selecione..." [disabled]="prostlobopostant"></p-dropdown>
           </div>
         </div>
 
         <div class="blocodalinha" style="width: 100%;">
           <label>Informações complementares</label>
-          <p-editor [(ngModel)]="camposdolaudo.campo42" [style]="{'height':'100px'}"></p-editor>
+          <p-editor [(ngModel)]="camposdolaudo.campo43" [readonly]="prostlobopostant"
+            [style]="{'height':'100px', 'background-color': prostlobopostant ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"></p-editor>
         </div>
       </div>
     </p-accordionTab>
@@ -292,71 +305,75 @@
         <div class="linhas">
           <div class="blocodalinha" style="width: 25%;">
             <label>Presença</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="posicao" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo43" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%'}" [options]="presenca" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo44" placeholder="Selecione..." (onChange)="ConfereVesiculas()"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Simetria</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="simetria" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo44" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': vesiculapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="simetria" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo45" placeholder="Selecione..." [disabled]="vesiculapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Morfologia</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="morfologia" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo45" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': vesiculapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="morfologia" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo46" placeholder="Selecione..." [disabled]="vesiculapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 25%;">
             <label>Superfície</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="superficie" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo46" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': vesiculapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="superficie" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo47" placeholder="Selecione..." [disabled]="vesiculapresenca"></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 33%;">
             <label>Textura</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="textura" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo47" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': vesiculapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="textura" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo48" placeholder="Selecione..." [disabled]="vesiculapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 33%;">
             <label>Limites</label>
-            <p-dropdown [style]="{'min-width': '99%'}" [options]="limites" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo48" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '99%', 'background-color': vesiculapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="limites" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo49" placeholder="Selecione..." [disabled]="vesiculapresenca"></p-dropdown>
           </div>
 
           <div class="blocodalinha" style="width: 34%;">
             <label>Contornos</label>
-            <p-dropdown [style]="{'min-width': '100%'}" [options]="contornos" [filter]="true"
-              [(ngModel)]="camposdolaudo.campo49" placeholder="Selecione..."></p-dropdown>
+            <p-dropdown [style]="{'min-width': '100%', 'background-color': vesiculapresenca ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}" [options]="contornos" [filter]="true"
+              [(ngModel)]="camposdolaudo.campo50" placeholder="Selecione..." [disabled]="vesiculapresenca"></p-dropdown>
           </div>
         </div>
 
         <div class="linhas">
           <div class="blocodalinha" style="width: 100%;">
             <label>Descrição</label>
-            <p-editor [(ngModel)]="camposdolaudo.campo50" [style]="{'height':'120px'}"></p-editor>
+            <p-editor [(ngModel)]="camposdolaudo.campo51" [readonly]="vesiculadescricao"
+              [style]="{'height':'100px', 'background-color': vesiculadescricao ? 'rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)' : '#fff'}"></p-editor>
           </div>
         </div>
       </div>
     </p-accordionTab>
 
     <p-accordionTab header="Observações gerais">
-      <p-editor [(ngModel)]="camposdolaudo.campo51" [style]="{'height':'100px'}"></p-editor>
+      <p-editor [(ngModel)]="camposdolaudo.campo52" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Impressão diagnóstica">
-      <p-editor [(ngModel)]="camposdolaudo.campo52" [style]="{'height':'100px'}"></p-editor>
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="impressaodiag" [filter]="true"
+        [(ngModel)]="camposdolaudo.campo53" placeholder="Selecione..." (onChange)="ConfereImpressaoDiag()"></p-dropdown>
+
+      <p-editor [(ngModel)]="camposdolaudo.campo54" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
 
     <p-accordionTab header="Médico executante">
       <div class="linhas">
         <div class="blocodalinha" style="width: 100%;">
           <label>Profissional Executante</label>
-          <p-dropdown [style]="{'min-width': '100%'}" [options]="executantes"
+          <p-dropdown [style]="{'min-width': '40%'}" [options]="executantes"
           [filter]="true" [(ngModel)]="codigoexecutante" #codigoprofexecutante="ngModel"
           name="codigoprofexecutante" placeholder="Selecione..."></p-dropdown>
         </div>

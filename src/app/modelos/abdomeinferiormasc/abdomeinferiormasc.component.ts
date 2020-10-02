@@ -1,5 +1,6 @@
-import { Laudo, CamposDoLaudo } from './../../core/model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Button, EventEmitter } from 'protractor';
+import { CamposDoLaudo } from './../../core/model';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { ProfissionalexecutanteService } from '../../zservice/profissionalexecutante.service';
 
 @Component({
@@ -34,6 +35,17 @@ export class AbdomeinferiormascComponent implements OnInit {
   presencavesicula: any[];
   valortotal: string;
   simetria: any[];
+  impressaodiag: any[];
+  bexigapresenca: boolean;
+  bexigadescricao: boolean ;
+  prostatapresenca: boolean ;
+  prostloboposterior: boolean;
+  prostlobopostcentral: boolean;
+  prostlobopostmedio: boolean;
+  prostlobopostant: boolean;
+  vesiculapresenca: boolean;
+  vesiculadescricao: boolean;
+
 
   constructor(private serviceexec: ProfissionalexecutanteService) { }
 
@@ -162,8 +174,8 @@ export class AbdomeinferiormascComponent implements OnInit {
 
     this.texturaprostata = [
       {label: 'Não imprimir', value: 'nao'},
-      {label: 'Homogênea', value: 'Homogênea'},
-      {label: 'Heterogênea', value: 'Heterogênea'}
+      {label: 'Homogênea', value: 'homogenea'},
+      {label: 'Heterogênea', value: 'heterogenea'}
     ];
 
     this.presencavesicula = [
@@ -177,6 +189,12 @@ export class AbdomeinferiormascComponent implements OnInit {
       {label: 'Simétricas', value: 'simetricas'},
       {label: 'Assimétricas', value: 'assimetricas'},
       {label: 'Não visualizadas', value: 'nao'}
+    ];
+
+    this.impressaodiag = [
+      {label: 'Não imprimir', value: 'nao'},
+      {label: 'Texto normal sugestivo', value: 'normal'},
+      {label: 'Digitar', value: 'digitar'},
     ];
   }
 
@@ -201,5 +219,399 @@ export class AbdomeinferiormascComponent implements OnInit {
       this.camposdolaudo.campo2 = '';
     }
   }
+
+  ConfereBexiga() {
+    if (this.camposdolaudo.campo3 === 'nao') {
+      this.bexigapresenca = true;
+      this.bexigadescricao = true;
+    }
+
+    if (this.camposdolaudo.campo3 === 'presente') {
+      this.bexigapresenca = false;
+      this.bexigadescricao = true;
+    }
+
+    if (this.camposdolaudo.campo3 === 'ausente') {
+      this.bexigapresenca = true;
+      this.bexigadescricao = true;
+    }
+
+    if (this.camposdolaudo.campo3 === 'digitar') {
+      this.bexigapresenca = true;
+      this.bexigadescricao = false;
+    }
+  }
+
+  ConfereProstata() {
+    if (this.camposdolaudo.campo17 === 'nao') {
+      this.prostatapresenca = true;
+    }
+
+    if (this.camposdolaudo.campo17 === 'presente') {
+      this.prostatapresenca = false;
+    }
+
+    if (this.camposdolaudo.campo17 === 'ausente') {
+      this.prostatapresenca = true;
+    }
+
+    if (this.camposdolaudo.campo17 === 'digitar') {
+      this.prostatapresenca = true;
+    }
+  }
+
+  ConfereProsLoboPost() {
+    if (this.camposdolaudo.campo27 === 'nao') {
+      this.prostloboposterior = true;
+    }
+
+    if (this.camposdolaudo.campo27 === 'homogenea') {
+      this.prostloboposterior = false;
+    }
+
+    if (this.camposdolaudo.campo27 === 'heterogenea') {
+      this.prostloboposterior = false;
+    }
+  }
+
+  ConfereProsLoboCentral() {
+    if (this.camposdolaudo.campo31 === 'nao') {
+      this.prostlobopostcentral = true;
+    }
+
+    if (this.camposdolaudo.campo31 === 'homogenea') {
+      this.prostlobopostcentral = false;
+    }
+
+    if (this.camposdolaudo.campo31 === 'heterogenea') {
+      this.prostlobopostcentral = false;
+    }
+  }
+
+  ConfereProsLoboMedio() {
+    if (this.camposdolaudo.campo35 === 'nao') {
+      this.prostlobopostmedio = true;
+    }
+
+    if (this.camposdolaudo.campo35 === 'homogenea') {
+      this.prostlobopostmedio = false;
+    }
+
+    if (this.camposdolaudo.campo35 === 'heterogenea') {
+      this.prostlobopostmedio = false;
+    }
+  }
+
+  ConfereProsLoboAnterior() {
+    if (this.camposdolaudo.campo39 === 'nao') {
+      this.prostlobopostant = true;
+    }
+
+    if (this.camposdolaudo.campo39 === 'homogenea') {
+      this.prostlobopostant = false;
+    }
+
+    if (this.camposdolaudo.campo39 === 'heterogenea') {
+      this.prostlobopostant = false;
+    }
+  }
+
+  ConfereVesiculas() {
+    if (this.camposdolaudo.campo43 === 'nao') {
+      this.vesiculapresenca = true;
+      this.vesiculadescricao = true;
+    }
+
+    if (this.camposdolaudo.campo43 === 'presente') {
+      this.vesiculapresenca = false;
+      this.vesiculadescricao = true;
+    }
+
+    if (this.camposdolaudo.campo43 === 'ausente') {
+      this.vesiculapresenca = true;
+      this.vesiculadescricao = true;
+    }
+
+    if (this.camposdolaudo.campo43 === 'digitar') {
+      this.vesiculapresenca = true;
+      this.vesiculadescricao = false;
+    }
+  }
+
+  ConfereImpressaoDiag() {
+    if (this.camposdolaudo.campo53 === 'nao') {
+      this.camposdolaudo.campo54 = 'a';
+    }
+
+    if (this.camposdolaudo.campo53 === 'normal') {
+      this.camposdolaudo.campo54 = 'Exame ecográfico compatível com próstata, bexiga e vesículas seminais normais.';
+    }
+
+    if (this.camposdolaudo.campo53 === 'digitar') {
+      this.camposdolaudo.campo54 = 'f';
+    }
+  }
+
+  MontarImpressao() {
+    this.MontarDadosEquip();
+    this.MontarBexiga();
+    this.camposdolaudo.zimpressao += '</br>';
+    this.MontarProstata();
+    this.MontarProstataLobSup();
+    this.MontarProstataCentral();
+    this.MontarProstataLobMedio();
+    this.MontarProstataFibAnt();
+    this.MontarVesicula();
+    this.MontarObservacao();
+    this.MontarImpDiag();
+  }
+
+  MontarDadosEquip() {
+    if (this.camposdolaudo.campo1 !== 'nao') {
+      this.camposdolaudo.zimpressao += '<b>-Dados do equipamento</b></br>';
+      this.camposdolaudo.zimpressao += this.camposdolaudo.campo2 + '</br>';
+    }
+  }
+
+  MontarBexiga() {
+    if (this.camposdolaudo.campo3 === 'presente') {
+      this.camposdolaudo.zimpressao = '<b>-Bexiga</b></br>';
+
+      if (this.camposdolaudo.campo6 !== undefined) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo6 + ', ';
+      }
+
+      if (this.camposdolaudo.campo5 !== undefined) {
+        this.camposdolaudo.zimpressao += 'morfologia ' + this.camposdolaudo.campo5 + ', ';
+      }
+
+      if (this.camposdolaudo.campo7 !== undefined) {
+        this.camposdolaudo.zimpressao += 'parede ' + this.camposdolaudo.campo7 + ' ';
+      }
+
+      if (this.camposdolaudo.campo8 !== undefined) {
+        this.camposdolaudo.zimpressao += 'com textura acústica ' + this.camposdolaudo.campo8 + ', ';
+      }
+
+      if (this.camposdolaudo.campo9 !== undefined) {
+        this.camposdolaudo.zimpressao += 'contornos ' + this.camposdolaudo.campo9 + ', ';
+      }
+
+      if (this.camposdolaudo.campo10 !== undefined) {
+        this.camposdolaudo.zimpressao += 'limites ' + this.camposdolaudo.campo10 + ' e ';
+      }
+
+      if (this.camposdolaudo.campo4 !== undefined) {
+        this.camposdolaudo.zimpressao += 'espessura ' + this.camposdolaudo.campo4 + '.</br>';
+      }
+
+      if (this.camposdolaudo.campo11 !== undefined) {
+        this.camposdolaudo.zimpressao += 'conteúdo ' + this.camposdolaudo.campo11 + ', ';
+      }
+
+      if (this.camposdolaudo.campo12 !== undefined) {
+        this.camposdolaudo.zimpressao += 'com ' + this.camposdolaudo.campo12 + ' no seu interior.</br>';
+      }
+
+      if (this.camposdolaudo.campo13 !== undefined) {
+        this.camposdolaudo.zimpressao += 'Assoalho vesical em posição ' + this.camposdolaudo.campo13 + '.</br>';
+      }
+
+      if (this.camposdolaudo.campo14 !== undefined) {
+        this.camposdolaudo.zimpressao += 'Capacidade vesical ' + this.camposdolaudo.campo14 + '.</br>';
+      }
+
+      if (this.camposdolaudo.campo15 !== undefined) {
+        this.camposdolaudo.zimpressao += 'resíduo pós-miccional ' + this.camposdolaudo.campo15 + '.';
+      }
+
+      if (this.camposdolaudo.campo16 !== null) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo16 + '.</br>';
+      }
+    } else if (this.camposdolaudo.campo3 === 'ausente') {
+      this.camposdolaudo.zimpressao = '<b>-Bexiga</b></br>Ausente.';
+    } else if (this.camposdolaudo.campo3 === 'digitar') {
+      if (this.camposdolaudo.campo16 !== null) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo16 + '.';
+      }
+    }
+
+    this.camposdolaudo.zimpressao += '</br>';
+  }
+
+  MontarProstata() {
+    if (this.camposdolaudo.campo17 === 'presente') {
+      this.camposdolaudo.zimpressao += '<b>-Próstata</b></br>';
+
+      if (this.camposdolaudo.campo18 !== undefined) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo18 + ', ';
+      }
+
+      if (this.camposdolaudo.campo19 !== undefined) {
+        this.camposdolaudo.zimpressao += 'morfologia ' + this.camposdolaudo.campo19 + ' e ';
+      }
+
+      if (this.camposdolaudo.campo20 !== undefined) {
+        this.camposdolaudo.zimpressao += 'superfície ' + this.camposdolaudo.campo20 + '.</br>';
+      }
+
+      if (this.camposdolaudo.campo24 !== undefined) {
+        this.camposdolaudo.zimpressao += 'Medidas: Long.: ' + this.camposdolaudo.campo21 + ' cm. '
+          + 'x Ant. Post.: ' + this.camposdolaudo.campo22 + ' cm. '
+          +  'Trans.: ' + this.camposdolaudo.campo23 + ' cm.</br>'
+          + 'Peso: ' + this.camposdolaudo.campo24 + ' g.</br>';
+      }
+
+      if (this.camposdolaudo.campo25 !== undefined) {
+        this.camposdolaudo.zimpressao += 'Realizada biópsia transretal utilizando agulha acoplada em pistola automática.</br>'
+          + 'Dirigida por ultrassonografia, sendo retirado ' + this.camposdolaudo.campo26 + ' fragmento(s) de próstata.';
+      }
+    } else if (this.camposdolaudo.campo17 === 'ausente') {
+      this.camposdolaudo.zimpressao = '<b>-Bexiga</b></br>Ausente.';
+    } else if (this.camposdolaudo.campo17 === 'digitar') {
+      if (this.camposdolaudo.campo17 !== null) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo16 + '.';
+      }
+    }
+
+    this.camposdolaudo.zimpressao += '</br>';
+  }
+
+  MontarProstataLobSup() {
+    if (this.camposdolaudo.campo28 !== 'nao') {
+      this.camposdolaudo.zimpressao += '</br>-Zona periférica (lobo posterior) com textura acústica '
+        + this.camposdolaudo.campo28 + ', ';
+
+      if (this.camposdolaudo.campo30 !== undefined) {
+        this.camposdolaudo.zimpressao += 'contornos ' + this.camposdolaudo.campo30;
+      }
+
+      if (this.camposdolaudo.campo29 !== undefined) {
+        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo29 + '.</br>';
+      }
+
+      if (this.camposdolaudo.campo31 !== null) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo31;
+      }
+    }
+
+    this.camposdolaudo.zimpressao += '</br>';
+  }
+
+  MontarProstataCentral() {
+    if (this.camposdolaudo.campo32 !== 'nao') {
+      this.camposdolaudo.zimpressao += '-Zona central com textura acústica '
+        + this.camposdolaudo.campo32 + ', ';
+
+      if (this.camposdolaudo.campo34 !== undefined) {
+        this.camposdolaudo.zimpressao += 'contornos ' + this.camposdolaudo.campo34;
+      }
+
+      if (this.camposdolaudo.campo33 !== undefined) {
+        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo33 + '.</br>';
+      }
+
+      if (this.camposdolaudo.campo35 !== null) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo35;
+      }
+    }
+
+    this.camposdolaudo.zimpressao += '</br>';
+  }
+
+  MontarProstataLobMedio() {
+    if (this.camposdolaudo.campo36 !== 'nao') {
+      this.camposdolaudo.zimpressao += '-Zona de transição (lobo médio) com textura acústica '
+        + this.camposdolaudo.campo36 + ', ';
+
+      if (this.camposdolaudo.campo38 !== undefined) {
+        this.camposdolaudo.zimpressao += 'contornos ' + this.camposdolaudo.campo38;
+      }
+
+      if (this.camposdolaudo.campo37 !== undefined) {
+        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo37 + '.</br>';
+      }
+
+      if (this.camposdolaudo.campo39 !== null) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo39;
+      }
+    }
+
+    this.camposdolaudo.zimpressao += '</br>';
+  }
+
+  MontarProstataFibAnt() {
+    if (this.camposdolaudo.campo40 !== 'nao') {
+      this.camposdolaudo.zimpressao += '-Estroma fibromuscular anterior com textura acústica '
+        + this.camposdolaudo.campo40 + ', ';
+
+      if (this.camposdolaudo.campo42 !== undefined) {
+        this.camposdolaudo.zimpressao += 'contornos ' + this.camposdolaudo.campo42;
+      }
+
+      if (this.camposdolaudo.campo41 !== undefined) {
+        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo41 + '.</br>';
+      }
+
+      if (this.camposdolaudo.campo43 !== null) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo43;
+      }
+    }
+
+    this.camposdolaudo.zimpressao += '</br>';
+  }
+
+  MontarVesicula() {
+    this.camposdolaudo.zimpressao += '<b>-Vesículas seminais:</b></br>';
+
+    if (this.camposdolaudo.campo44 === 'presente') {
+      if (this.camposdolaudo.campo45 !== undefined) {
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo45 + ', ';
+      }
+
+      if (this.camposdolaudo.campo46 !== undefined) {
+        this.camposdolaudo.zimpressao += 'morfologia ' + this.camposdolaudo.campo46 + ', ';
+      }
+
+      if (this.camposdolaudo.campo47 !== undefined) {
+        this.camposdolaudo.zimpressao += 'superfície ' + this.camposdolaudo.campo47 + ', ';
+      }
+
+      if (this.camposdolaudo.campo48 !== undefined) {
+        this.camposdolaudo.zimpressao += 'textura acústica ' + this.camposdolaudo.campo48 + ', ';
+      }
+
+      if (this.camposdolaudo.campo49 !== undefined) {
+        this.camposdolaudo.zimpressao += 'limites ' + this.camposdolaudo.campo49;
+      }
+
+      if (this.camposdolaudo.campo50 !== undefined) {
+        this.camposdolaudo.zimpressao += 'e contornos ' + this.camposdolaudo.campo50;
+      }
+
+      if (this.camposdolaudo.campo51 !== null) {
+        this.camposdolaudo.zimpressao += '</br>' + this.camposdolaudo.campo51;
+      }
+    }
+
+    this.camposdolaudo.zimpressao += '</br>';
+  }
+
+  MontarObservacao() {
+    if (this.camposdolaudo.campo52 !== null) {
+      this.camposdolaudo.zimpressao += '<b>-Observações gerais:</b></br>';
+      this.camposdolaudo.zimpressao += this.camposdolaudo.campo52;
+      this.camposdolaudo.zimpressao += '</br>';
+    }
+  }
+
+  MontarImpDiag() {
+    if (this.camposdolaudo.campo54 !== null) {
+      this.camposdolaudo.zimpressao += '<b>-Impressão diagnóstica:</b></br>';
+      this.camposdolaudo.zimpressao += this.camposdolaudo.campo54;
+      this.camposdolaudo.zimpressao += '</br>';
+    }
+  }
+
 
 }

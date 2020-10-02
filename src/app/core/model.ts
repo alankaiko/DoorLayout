@@ -575,4 +575,7 @@ export class CamposDoLaudo {
   campo67: string;
   campo68: string;
   campo69: string;
+  campo70: string;
+  campo71: string;
+  zimpressao: string;
 }
