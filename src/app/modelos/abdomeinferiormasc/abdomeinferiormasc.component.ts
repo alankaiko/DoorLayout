@@ -1,4 +1,3 @@
-import { Button, EventEmitter } from 'protractor';
 import { CamposDoLaudo } from './../../core/model';
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { ProfissionalexecutanteService } from '../../zservice/profissionalexecutante.service';
@@ -353,6 +352,8 @@ export class AbdomeinferiormascComponent implements OnInit {
   }
 
   MontarImpressao() {
+    this.camposdolaudo.zimpressao = '';
+
     this.MontarDadosEquip();
     this.MontarBexiga();
     this.camposdolaudo.zimpressao += '</br>';
@@ -367,65 +368,67 @@ export class AbdomeinferiormascComponent implements OnInit {
   }
 
   MontarDadosEquip() {
-    if (this.camposdolaudo.campo1 !== 'nao') {
-      this.camposdolaudo.zimpressao += '<b>-Dados do equipamento</b></br>';
+    if (this.camposdolaudo.campo1 !== 'nao' && this.camposdolaudo.campo1 !== null && this.camposdolaudo.campo1 !== undefined) {
+      this.camposdolaudo.zimpressao = '<b>-Dados do equipamento</b></br>';
       this.camposdolaudo.zimpressao += this.camposdolaudo.campo2 + '</br>';
     }
+
+    this.camposdolaudo.zimpressao += '</br>';
   }
 
   MontarBexiga() {
     if (this.camposdolaudo.campo3 === 'presente') {
-      this.camposdolaudo.zimpressao = '<b>-Bexiga</b></br>';
+      this.camposdolaudo.zimpressao += '<b>-Bexiga</b></br>';
 
-      if (this.camposdolaudo.campo6 !== undefined) {
+      if (this.camposdolaudo.campo6 !== undefined && this.camposdolaudo.campo6 !== null) {
         this.camposdolaudo.zimpressao += this.camposdolaudo.campo6 + ', ';
       }
 
-      if (this.camposdolaudo.campo5 !== undefined) {
+      if (this.camposdolaudo.campo5 !== undefined && this.camposdolaudo.campo5 !== null) {
         this.camposdolaudo.zimpressao += 'morfologia ' + this.camposdolaudo.campo5 + ', ';
       }
 
-      if (this.camposdolaudo.campo7 !== undefined) {
+      if (this.camposdolaudo.campo7 !== undefined && this.camposdolaudo.campo7 !== null) {
         this.camposdolaudo.zimpressao += 'parede ' + this.camposdolaudo.campo7 + ' ';
       }
 
-      if (this.camposdolaudo.campo8 !== undefined) {
+      if (this.camposdolaudo.campo8 !== undefined && this.camposdolaudo.campo8 !== null) {
         this.camposdolaudo.zimpressao += 'com textura acústica ' + this.camposdolaudo.campo8 + ', ';
       }
 
-      if (this.camposdolaudo.campo9 !== undefined) {
+      if (this.camposdolaudo.campo9 !== undefined && this.camposdolaudo.campo9 !== null) {
         this.camposdolaudo.zimpressao += 'contornos ' + this.camposdolaudo.campo9 + ', ';
       }
 
-      if (this.camposdolaudo.campo10 !== undefined) {
+      if (this.camposdolaudo.campo10 !== undefined && this.camposdolaudo.campo10 !== null) {
         this.camposdolaudo.zimpressao += 'limites ' + this.camposdolaudo.campo10 + ' e ';
       }
 
-      if (this.camposdolaudo.campo4 !== undefined) {
+      if (this.camposdolaudo.campo4 !== undefined && this.camposdolaudo.campo4 !== null) {
         this.camposdolaudo.zimpressao += 'espessura ' + this.camposdolaudo.campo4 + '.</br>';
       }
 
-      if (this.camposdolaudo.campo11 !== undefined) {
+      if (this.camposdolaudo.campo11 !== undefined && this.camposdolaudo.campo11 !== null) {
         this.camposdolaudo.zimpressao += 'conteúdo ' + this.camposdolaudo.campo11 + ', ';
       }
 
-      if (this.camposdolaudo.campo12 !== undefined) {
+      if (this.camposdolaudo.campo12 !== undefined && this.camposdolaudo.campo12 !== null) {
         this.camposdolaudo.zimpressao += 'com ' + this.camposdolaudo.campo12 + ' no seu interior.</br>';
       }
 
-      if (this.camposdolaudo.campo13 !== undefined) {
+      if (this.camposdolaudo.campo13 !== undefined && this.camposdolaudo.campo13 !== null) {
         this.camposdolaudo.zimpressao += 'Assoalho vesical em posição ' + this.camposdolaudo.campo13 + '.</br>';
       }
 
-      if (this.camposdolaudo.campo14 !== undefined) {
+      if (this.camposdolaudo.campo14 !== undefined && this.camposdolaudo.campo14 !== null) {
         this.camposdolaudo.zimpressao += 'Capacidade vesical ' + this.camposdolaudo.campo14 + '.</br>';
       }
 
-      if (this.camposdolaudo.campo15 !== undefined) {
+      if (this.camposdolaudo.campo15 !== undefined && this.camposdolaudo.campo15 !== null) {
         this.camposdolaudo.zimpressao += 'resíduo pós-miccional ' + this.camposdolaudo.campo15 + '.';
       }
 
-      if (this.camposdolaudo.campo16 !== null) {
+      if (this.camposdolaudo.campo16 !== null && this.camposdolaudo.campo16 !== null) {
         this.camposdolaudo.zimpressao += this.camposdolaudo.campo16 + '.</br>';
       }
     } else if (this.camposdolaudo.campo3 === 'ausente') {
@@ -443,26 +446,26 @@ export class AbdomeinferiormascComponent implements OnInit {
     if (this.camposdolaudo.campo17 === 'presente') {
       this.camposdolaudo.zimpressao += '<b>-Próstata</b></br>';
 
-      if (this.camposdolaudo.campo18 !== undefined) {
+      if (this.camposdolaudo.campo18 !== undefined && this.camposdolaudo.campo18 !== null) {
         this.camposdolaudo.zimpressao += this.camposdolaudo.campo18 + ', ';
       }
 
-      if (this.camposdolaudo.campo19 !== undefined) {
+      if (this.camposdolaudo.campo19 !== undefined && this.camposdolaudo.campo19 !== null) {
         this.camposdolaudo.zimpressao += 'morfologia ' + this.camposdolaudo.campo19 + ' e ';
       }
 
-      if (this.camposdolaudo.campo20 !== undefined) {
+      if (this.camposdolaudo.campo20 !== undefined && this.camposdolaudo.campo20 !== null) {
         this.camposdolaudo.zimpressao += 'superfície ' + this.camposdolaudo.campo20 + '.</br>';
       }
 
-      if (this.camposdolaudo.campo24 !== undefined) {
+      if (this.camposdolaudo.campo24 !== undefined && this.camposdolaudo.campo24 !== null) {
         this.camposdolaudo.zimpressao += 'Medidas: Long.: ' + this.camposdolaudo.campo21 + ' cm. '
           + 'x Ant. Post.: ' + this.camposdolaudo.campo22 + ' cm. '
           +  'Trans.: ' + this.camposdolaudo.campo23 + ' cm.</br>'
           + 'Peso: ' + this.camposdolaudo.campo24 + ' g.</br>';
       }
 
-      if (this.camposdolaudo.campo25 !== undefined) {
+      if (this.camposdolaudo.campo25 !== undefined && this.camposdolaudo.campo25 !== null) {
         this.camposdolaudo.zimpressao += 'Realizada biópsia transretal utilizando agulha acoplada em pistola automática.</br>'
           + 'Dirigida por ultrassonografia, sendo retirado ' + this.camposdolaudo.campo26 + ' fragmento(s) de próstata.';
       }
@@ -473,13 +476,11 @@ export class AbdomeinferiormascComponent implements OnInit {
         this.camposdolaudo.zimpressao += this.camposdolaudo.campo16 + '.';
       }
     }
-
-    this.camposdolaudo.zimpressao += '</br>';
   }
 
   MontarProstataLobSup() {
-    if (this.camposdolaudo.campo28 !== 'nao') {
-      this.camposdolaudo.zimpressao += '</br>-Zona periférica (lobo posterior) com textura acústica '
+    if (this.camposdolaudo.campo28 !== 'nao' && this.camposdolaudo.campo28 !== null && this.camposdolaudo.campo28 !== undefined) {
+      this.camposdolaudo.zimpressao += '</br>--Zona periférica (lobo posterior) com textura acústica '
         + this.camposdolaudo.campo28 + ', ';
 
       if (this.camposdolaudo.campo30 !== undefined) {
@@ -487,20 +488,18 @@ export class AbdomeinferiormascComponent implements OnInit {
       }
 
       if (this.camposdolaudo.campo29 !== undefined) {
-        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo29 + '.</br>';
+        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo29 + '.';
       }
 
       if (this.camposdolaudo.campo31 !== null) {
         this.camposdolaudo.zimpressao += this.camposdolaudo.campo31;
       }
     }
-
-    this.camposdolaudo.zimpressao += '</br>';
   }
 
   MontarProstataCentral() {
-    if (this.camposdolaudo.campo32 !== 'nao') {
-      this.camposdolaudo.zimpressao += '-Zona central com textura acústica '
+    if (this.camposdolaudo.campo32 !== 'nao' && this.camposdolaudo.campo32 !== null && this.camposdolaudo.campo32 !== undefined) {
+      this.camposdolaudo.zimpressao += '</br>--Zona central com textura acústica '
         + this.camposdolaudo.campo32 + ', ';
 
       if (this.camposdolaudo.campo34 !== undefined) {
@@ -508,20 +507,18 @@ export class AbdomeinferiormascComponent implements OnInit {
       }
 
       if (this.camposdolaudo.campo33 !== undefined) {
-        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo33 + '.</br>';
+        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo33 + '.';
       }
 
       if (this.camposdolaudo.campo35 !== null) {
         this.camposdolaudo.zimpressao += this.camposdolaudo.campo35;
       }
     }
-
-    this.camposdolaudo.zimpressao += '</br>';
   }
 
   MontarProstataLobMedio() {
-    if (this.camposdolaudo.campo36 !== 'nao') {
-      this.camposdolaudo.zimpressao += '-Zona de transição (lobo médio) com textura acústica '
+    if (this.camposdolaudo.campo36 !== 'nao' && this.camposdolaudo.campo36 !== null && this.camposdolaudo.campo36 !== null) {
+      this.camposdolaudo.zimpressao += '</br>--Zona de transição (lobo médio) com textura acústica '
         + this.camposdolaudo.campo36 + ', ';
 
       if (this.camposdolaudo.campo38 !== undefined) {
@@ -529,20 +526,18 @@ export class AbdomeinferiormascComponent implements OnInit {
       }
 
       if (this.camposdolaudo.campo37 !== undefined) {
-        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo37 + '.</br>';
+        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo37 + '.';
       }
 
       if (this.camposdolaudo.campo39 !== null) {
         this.camposdolaudo.zimpressao += this.camposdolaudo.campo39;
       }
     }
-
-    this.camposdolaudo.zimpressao += '</br>';
   }
 
   MontarProstataFibAnt() {
-    if (this.camposdolaudo.campo40 !== 'nao') {
-      this.camposdolaudo.zimpressao += '-Estroma fibromuscular anterior com textura acústica '
+    if (this.camposdolaudo.campo40 !== 'nao' && this.camposdolaudo.campo40 !== null && this.camposdolaudo.campo40 !== null) {
+      this.camposdolaudo.zimpressao += '</br>--Estroma fibromuscular anterior com textura acústica '
         + this.camposdolaudo.campo40 + ', ';
 
       if (this.camposdolaudo.campo42 !== undefined) {
@@ -550,21 +545,19 @@ export class AbdomeinferiormascComponent implements OnInit {
       }
 
       if (this.camposdolaudo.campo41 !== undefined) {
-        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo41 + '.</br>';
+        this.camposdolaudo.zimpressao += ' e limites  ' + this.camposdolaudo.campo41 + '.';
       }
 
       if (this.camposdolaudo.campo43 !== null) {
         this.camposdolaudo.zimpressao += this.camposdolaudo.campo43;
       }
     }
-
-    this.camposdolaudo.zimpressao += '</br>';
   }
 
   MontarVesicula() {
-    this.camposdolaudo.zimpressao += '<b>-Vesículas seminais:</b></br>';
+    if (this.camposdolaudo.campo44 === 'presente' && this.camposdolaudo.campo44 !== null) {
+      this.camposdolaudo.zimpressao += '</br></br><b>-Vesículas seminais:</b></br>';
 
-    if (this.camposdolaudo.campo44 === 'presente') {
       if (this.camposdolaudo.campo45 !== undefined) {
         this.camposdolaudo.zimpressao += this.camposdolaudo.campo45 + ', ';
       }
@@ -590,24 +583,21 @@ export class AbdomeinferiormascComponent implements OnInit {
       }
 
       if (this.camposdolaudo.campo51 !== null) {
-        this.camposdolaudo.zimpressao += '</br>' + this.camposdolaudo.campo51;
+        this.camposdolaudo.zimpressao += this.camposdolaudo.campo51;
       }
     }
-
-    this.camposdolaudo.zimpressao += '</br>';
   }
 
   MontarObservacao() {
     if (this.camposdolaudo.campo52 !== null) {
-      this.camposdolaudo.zimpressao += '<b>-Observações gerais:</b></br>';
+      this.camposdolaudo.zimpressao += '<b>-Observações gerais:</b>';
       this.camposdolaudo.zimpressao += this.camposdolaudo.campo52;
-      this.camposdolaudo.zimpressao += '</br>';
     }
   }
 
   MontarImpDiag() {
     if (this.camposdolaudo.campo54 !== null) {
-      this.camposdolaudo.zimpressao += '<b>-Impressão diagnóstica:</b></br>';
+      this.camposdolaudo.zimpressao += '</br><b>-Impressão diagnóstica:</b></br>';
       this.camposdolaudo.zimpressao += this.camposdolaudo.campo54;
       this.camposdolaudo.zimpressao += '</br>';
     }

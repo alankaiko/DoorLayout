@@ -134,8 +134,8 @@ export class LaudoComponent implements OnInit {
 
 
   Salvar() {
+    this.child.MontarImpressao();
     setTimeout(() => {
-      this.child.MontarImpressao();
       this.serviceproc.Atualizar(this.procedimento).then(response => response);
     }, 50);
 
