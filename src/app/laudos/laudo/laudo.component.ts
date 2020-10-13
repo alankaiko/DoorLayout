@@ -127,7 +127,7 @@ export class LaudoComponent implements OnInit {
     });
   }
 
-  RenderizarModeloLaudo() {
+  RenderizarModeloLaudos() {
     if (!isEmptyObject(this.procedimento.laudo)) {
         this.EditandoLaudo1();
         this.EditandoLaudo2();
