@@ -517,7 +517,7 @@ export class AbdomeinferiormascComponent implements OnInit {
   }
 
   MontarProstataLobMedio() {
-    if (this.camposdolaudo.campo36 !== 'nao' && this.camposdolaudo.campo36 !== null && this.camposdolaudo.campo36 !== null) {
+    if (this.camposdolaudo.campo36 !== 'nao' && this.camposdolaudo.campo36 !== null && this.camposdolaudo.campo36 !== undefined) {
       this.camposdolaudo.zimpressao += '</br>--Zona de transição (lobo médio) com textura acústica '
         + this.camposdolaudo.campo36 + ', ';
 
@@ -536,7 +536,7 @@ export class AbdomeinferiormascComponent implements OnInit {
   }
 
   MontarProstataFibAnt() {
-    if (this.camposdolaudo.campo40 !== 'nao' && this.camposdolaudo.campo40 !== null && this.camposdolaudo.campo40 !== null) {
+    if (this.camposdolaudo.campo40 !== 'nao' && this.camposdolaudo.campo40 !== null && this.camposdolaudo.campo40 !== undefined) {
       this.camposdolaudo.zimpressao += '</br>--Estroma fibromuscular anterior com textura acústica '
         + this.camposdolaudo.campo40 + ', ';
 

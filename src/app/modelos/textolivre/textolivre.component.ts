@@ -14,4 +14,9 @@ export class TextolivreComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  MontarImpressao() {
+    this.camposdolaudo.zimpressao = '';
+    this.camposdolaudo.zimpressao = this.camposdolaudo.campo1;
+  }
+
 }

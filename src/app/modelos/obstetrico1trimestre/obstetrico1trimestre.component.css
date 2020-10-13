@@ -39,3 +39,32 @@
   display: inline-grid;
   line-height: 0;
 }
+
+
+:host /deep/ p-calendar .ui-calendar {
+  padding: 0;
+  border-radius: 3px;
+}
+
+:host /deep/ p-calendar .ui-calendar input{
+  width: 90%;
+}
+
+
+:host /deep/ p-calendar .ui-datepicker{
+  background-color: #fff;
+}
+
+:host /deep/ p-calendar .ui-datepicker .ui-datepicker-calendar-container .ui-datepicker-calendar .ng-tns-c3-2 td:hover{
+  background-color: #a3a2a2;
+  color: #CC0000;
+}
+
+:host /deep/ p-calendar .ui-calendar input{
+  padding: 0;
+}
+
+:host /deep/  p-calendar .ui-calendar:hover {
+  background-color: rgb(158, 150, 150);
+  border: 1px solid rgb(158, 150, 150);
+}

@@ -1,3 +1,6 @@
+import { Obstetrico1trimestreComponent } from './../../modelos/obstetrico1trimestre/obstetrico1trimestre.component';
+import { AbdometotalComponent } from './../../modelos/abdometotal/abdometotal.component';
+import { TextolivreComponent } from './../../modelos/textolivre/textolivre.component';
 import { AbdomeinferiormascComponent } from './../../modelos/abdomeinferiormasc/abdomeinferiormasc.component';
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { isEmptyObject } from 'jquery';
@@ -14,7 +17,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./laudo.component.css']
 })
 export class LaudoComponent implements OnInit {
-  @ViewChild(AbdomeinferiormascComponent) child: AbdomeinferiormascComponent;
+  @ViewChild(AbdomeinferiormascComponent) abdomeinfchild: AbdomeinferiormascComponent;
+  @ViewChild(TextolivreComponent) textolivrechild: TextolivreComponent;
+  @ViewChild(AbdometotalComponent) abdometotalchild: AbdometotalComponent;
+  @ViewChild(Obstetrico1trimestreComponent) obstetricochild: Obstetrico1trimestreComponent;
   imagelogo: any;
   atendimentos: any[];
   procedimentosAtd: any[];
@@ -134,7 +140,7 @@ export class LaudoComponent implements OnInit {
 
 
   Salvar() {
-    this.child.MontarImpressao();
+    this.EscolherModeloChild();
     setTimeout(() => {
       this.serviceproc.Atualizar(this.procedimento).then(response => response);
     }, 50);
@@ -142,10 +148,29 @@ export class LaudoComponent implements OnInit {
     this.ImprimirDocumento();
   }
 
+  EscolherModeloChild() {
+    if (this.abdomeinferiormasc === true) {
+      this.abdomeinfchild.MontarImpressao();
+    }
+
+    if (this.textolivre === true) {
+      this.textolivrechild.MontarImpressao();
+    }
+
+    if (this.abdometotal === true) {
+      this.abdometotalchild.MontarImpressao();
+    }
+
+    if (this.obstetrico1trimestre === true) {
+      this.obstetricochild.MontarImpressao();
+    }
+  }
+
   EditandoLaudo1() {
     for (let i = 0; i <= this.modelodelaudodoproc.length; i++) {
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 27) {
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
+        this.textolivre = true;
       }
 
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 2) {
@@ -302,6 +327,8 @@ export class LaudoComponent implements OnInit {
 
         this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
         this.procedimento.laudo.status = STATUS_LAUDO.pendente;
+
+        this.textolivre = true;
       }
 
       if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 2) {

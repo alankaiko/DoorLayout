@@ -166,7 +166,7 @@
     </p-accordionTab>
 
     <p-accordionTab header="Demais orgãos pélvicos">
-      <p-dropdown [style]="{'min-width': '40%'}" [options]="textonormal" [filter]="true"
+      <p-dropdown [style]="{'min-width': '40%'}" [options]="textoorgaos" [filter]="true"
         [(ngModel)]="camposdolaudo.campo33" #codigoprofexecutante="ngModel"
         placeholder="Selecione..." (onChange)="ConfOrgaos()"></p-dropdown>
 
@@ -180,7 +180,7 @@
     <p-accordionTab header="Impressão diagnóstica">
       <p-dropdown [style]="{'min-width': '40%'}" [options]="textonormal" [filter]="true"
         [(ngModel)]="camposdolaudo.campo37" #codigoprofexecutante="ngModel"
-        placeholder="Selecione..." (onChange)="CarregarTextoEquip()"></p-dropdown>
+        placeholder="Selecione..." (onChange)="ConfImpressaoDiag()"></p-dropdown>
 
       <p-editor [(ngModel)]="camposdolaudo.campo38" [style]="{'height':'100px'}"></p-editor>
     </p-accordionTab>
