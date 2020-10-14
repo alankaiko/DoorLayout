@@ -1,23 +1,20 @@
 <div style="text-align:left; margin-top: 0;" class="ui-g geral">
   <div class="topoprocedimento ui-g-12">
-    <form #f="ngForm" autocomplete="off" class="formu">
-      <div class="ui-g-4 ui-fluid" style="display: inline-flex; padding: 0;">
-        <label>Atendimento: </label>
-        <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimentoSelecionado" #atendimentocodigo="ngModel" name="atendimentocodigo"
-          placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
-      </div>
+    <div class="ui-g-4 ui-fluid" style="display: inline-flex; padding: 0;">
+      <label>Atendimento: </label>
+      <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo" #atendimentocodigo="ngModel" name="atendimentocodigo"
+        placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
+    </div>
 
-      <div class="ui-g-8 ui-fluid" style="display: inline-flex; padding: 0;">
-        <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimentosAtdSelecionado" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
-          placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
+    <div class="ui-g-8 ui-fluid" style="display: inline-flex; padding: 0;">
+      <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
+        placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
 
-          <button class="botaosair" routerLink="/dashboard">
-            <img src="/assets/img/SAIR.png">
-            <span>Sair</span>
-          </button>
-      </div>
-
-    </form>
+        <button class="botaosair" routerLink="/dashboard">
+          <img src="/assets/img/SAIR.png">
+          <span>Sair</span>
+        </button>
+    </div>
   </div>
 
   <div class="painelprincipal">

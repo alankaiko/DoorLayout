@@ -1,4 +1,4 @@
-import { Laudo, ParametroDoLaudo, CamposDoLaudo } from './../../core/model';
+import { CamposDoLaudo } from './../../core/model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -12,11 +12,6 @@ export class TextolivreComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  MontarImpressao() {
-    this.camposdolaudo.zimpressao = '';
-    this.camposdolaudo.zimpressao = this.camposdolaudo.campo1;
   }
 
 }

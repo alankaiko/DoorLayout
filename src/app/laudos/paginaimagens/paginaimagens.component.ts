@@ -1,11 +1,11 @@
-import { PaginaimagensService } from './../../zservice/paginaimagens.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Atendimento, ProcedimentoAtendimento, Imagem, PaginaDeImagens } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
+import { DropdownItem } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-paginaimagens',
@@ -17,8 +17,6 @@ export class PaginaimagensComponent implements OnInit {
   procedimento = new ProcedimentoAtendimento();
   atendimentos: any[];
   procedimentosAtd: any[];
-  atendimentoSelecionado: number;
-  procedimentosAtdSelecionado: number;
   listaimagemsbase = new Array<Imagem>();
   qtdimagems: SelectItem[];
   qtdimagemselecionada: number = 1;
@@ -27,16 +25,21 @@ export class PaginaimagensComponent implements OnInit {
 
   constructor(private service: AtendimentoService,
     private serviceproc: ProcedimentoatendimentoService,
-    private servicepagina: PaginaimagensService,
     private rota: ActivatedRoute,
-    private route: Router,
     private location: Location) {}
 
   ngOnInit() {
+    const codatendimento = this.rota.snapshot.params.cod;
+
+    if (codatendimento) {
+      this.CarregarProcedimentoPelaEdicao(codatendimento);
+    }
+
     this.CarregarAtendimentos();
     this.OpcoesQtdImagens();
     this.ConfigurarDimensoes();
   }
+
 
   OpcoesQtdImagens() {
     this.qtdimagems = [
@@ -111,7 +114,7 @@ export class PaginaimagensComponent implements OnInit {
   }
 
   CarregarProcedimentos() {
-    this.service.BuscarPorId(this.atendimentoSelecionado)
+    this.service.BuscarPorId(this.atendimento.codigo)
       .then(
         response => {
           this.atendimento = response;
@@ -120,9 +123,19 @@ export class PaginaimagensComponent implements OnInit {
       );
   }
 
+  CarregarProcedimentoPelaEdicao(codigo: number) {
+    this.serviceproc.BuscarPorId(codigo).then(procedimento => {
+      this.atendimento = procedimento.atendimento;
+
+      this.procedimento = procedimento;
+      this.CarregarProcedimentos();
+      this.ConfigurarVariavel();
+    });
+  }
+
   ConfigurarVariavel() {
     this.atendimento.procedimentos.filter((elo) => {
-      if (elo.codigo === this.procedimentosAtdSelecionado) {
+      if (elo.codigo === this.procedimento.codigo) {
         this.procedimento = elo;
         this.procedimento.listaimagem.forEach((el) => {
           this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {

@@ -1,9 +1,3 @@
-import { VideocolposcopiaifcpcComponent } from './modelos/videocolposcopiaifcpc/videocolposcopiaifcpc.component';
-import { EndoscopiadigestivabaixaComponent } from './modelos/endoscopiadigestivabaixa/endoscopiadigestivabaixa.component';
-import { VideocolposcComponent } from './modelos/videocolposc/videocolposc.component';
-import { MorfologicofetalComponent } from './modelos/morfologicofetal/morfologicofetal.component';
-import { MonitoracaoovulacaoComponent } from './modelos/monitoracaoovulacao/monitoracaoovulacao.component';
-import { Obstetrico1trimestreComponent } from './modelos/obstetrico1trimestre/obstetrico1trimestre.component';
 import { LaudoComponent } from './laudos/laudo/laudo.component';
 import { PaginaimagensComponent } from './laudos/paginaimagens/paginaimagens.component';
 import { CadastroSubcategoriacidComponent } from './views/formularios/cadastro-subcategoriacid.component';
@@ -103,27 +97,6 @@ import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastro-procedimentomedico.component';
 import { TextolivreComponent } from './modelos/textolivre/textolivre.component';
-import { AbdomeinferiormascComponent } from './modelos/abdomeinferiormasc/abdomeinferiormasc.component';
-import { AbdometotalComponent } from './modelos/abdometotal/abdometotal.component';
-import { DiversosComponent } from './modelos/diversos/diversos.component';
-import { DopplerfluxometriaComponent } from './modelos/dopplerfluxometria/dopplerfluxometria.component';
-import { EndoscopiadigaltaComponent } from './modelos/endoscopiadigalta/endoscopiadigalta.component';
-import { MamasComponent } from './modelos/mamas/mamas.component';
-import { EcodopplercardiogramaComponent } from './modelos/ecodopplercardiograma/ecodopplercardiograma.component';
-import { VideocolsposcopiaComponent } from './modelos/videocolsposcopia/videocolsposcopia.component';
-import { AbdomesuperiorComponent } from './modelos/abdomesuperior/abdomesuperior.component';
-import { VideofaringolarComponent } from './modelos/videofaringolar/videofaringolar.component';
-import { VideoendoscopiaComponent } from './modelos/videoendoscopia/videoendoscopia.component';
-import { VideonasofibrolarComponent } from './modelos/videonasofibrolar/videonasofibrolar.component';
-import { AbdomeinferiorfemComponent } from './modelos/abdomeinferiorfem/abdomeinferiorfem.component';
-import { TireoideComponent } from './modelos/tireoide/tireoide.component';
-import { TranscranianoComponent } from './modelos/transcraniano/transcraniano.component';
-import { AparelhourinarioComponent } from './modelos/aparelhourinario/aparelhourinario.component';
-import { LaparoscopiadiagbiopComponent } from './modelos/laparoscopiadiagbiop/laparoscopiadiagbiop.component';
-import { Obstetrico14semanasComponent } from './modelos/obstetrico14semanas/obstetrico14semanas.component';
-import { HisteroscopiaComponent } from './modelos/histeroscopia/histeroscopia.component';
-import { ObstetricomaissemanaComponent } from './modelos/obstetricomaissemana/obstetricomaissemana.component';
-import { AbdomeinferiorfemendovComponent } from './modelos/abdomeinferiorfemendov/abdomeinferiorfemendov.component';
 
 @NgModule({
   imports: [
@@ -205,34 +178,7 @@ import { AbdomeinferiorfemendovComponent } from './modelos/abdomeinferiorfemendo
     CadastroSubcategoriacidComponent,
     LaudoComponent,
     TextolivreComponent,
-    TextolivreComponent,
-    AbdomeinferiormascComponent,
-    AbdometotalComponent,
-    DiversosComponent,
-    DopplerfluxometriaComponent,
-    EndoscopiadigaltaComponent,
-    MamasComponent,
-    EcodopplercardiogramaComponent,
-    VideocolsposcopiaComponent,
-    AbdomesuperiorComponent,
-    VideofaringolarComponent,
-    VideoendoscopiaComponent,
-    VideonasofibrolarComponent,
-    AbdomeinferiorfemComponent,
-    TireoideComponent,
-    TranscranianoComponent,
-    AparelhourinarioComponent,
-    LaparoscopiadiagbiopComponent,
-    Obstetrico14semanasComponent,
-    HisteroscopiaComponent,
-    ObstetricomaissemanaComponent,
-    AbdomeinferiorfemendovComponent,
-    Obstetrico1trimestreComponent,
-    MonitoracaoovulacaoComponent,
-    MorfologicofetalComponent,
-    VideocolposcComponent,
-    EndoscopiadigestivabaixaComponent,
-    VideocolposcopiaifcpcComponent
+    TextolivreComponent
   ],
   providers: [{
     provide: LocationStrategy,

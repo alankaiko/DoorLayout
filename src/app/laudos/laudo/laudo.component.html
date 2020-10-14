@@ -58,7 +58,7 @@
         </div>
 
         <div>
-          <button type="button" class="botaoprincipal">
+          <button type="button" class="botaoprincipal" (click)="EscolherImagens()">
             <img src="/assets/img/ESCOLHER_IMAGENS.png">
             <span>Esc Img</span>
           </button>
@@ -113,34 +113,7 @@
 
       <div class="paineltexto" style="background-color: #ffffff;">
         <p-scrollPanel [style]="{width: '100%', height: '100%'}">
-          <app-textolivre *ngIf="textolivre" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-textolivre>
-          <app-abdomeinferiormasc *ngIf="abdomeinferiormasc" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-abdomeinferiormasc>
-          <app-abdometotal *ngIf="abdometotal" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-abdometotal>
-          <app-obstetrico1trimestre *ngIf="obstetrico1trimestre" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-obstetrico1trimestre>
-          <app-diversos *ngIf="diversos" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-diversos>
-          <app-dopplerfluxometria *ngIf="dopplerfluxometria" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-dopplerfluxometria>
-          <app-endoscopiadigalta *ngIf="endoscopiadigalta" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-endoscopiadigalta>
-          <app-mamas *ngIf="mamas" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-mamas>
-          <app-ecodopplercardiograma *ngIf="ecodopplercardiograma" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-ecodopplercardiograma>
-          <app-videocolsposcopia *ngIf="videocolsposcopia" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-videocolsposcopia>
-          <app-abdomesuperior *ngIf="abdomesuperior" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-abdomesuperior>
-          <app-abdomeinferiorfem *ngIf="abdomeinferiorfem" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-abdomeinferiorfem>
-          <app-videofaringolar *ngIf="videofaringolar" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-videofaringolar>
-          <app-videoendoscopia *ngIf="videoendoscopia" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-videoendoscopia>
-          <app-videonasofibrolar *ngIf="videonasofibrolar" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-videonasofibrolar>
-          <app-tireoide *ngIf="tireoide" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-tireoide>
-          <app-transcraniano *ngIf="transcraniano" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-transcraniano>
-          <app-aparelhourinario *ngIf="aparelhourinario" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-aparelhourinario>
-          <app-laparoscopiadiagbiop *ngIf="laparoscopiadiagbiop" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-laparoscopiadiagbiop>
-          <app-monitoracaoovulacao *ngIf="monitoracaoovulacao" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-monitoracaoovulacao>
-          <app-obstetrico14semanas *ngIf="obstetrico14semanas" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-obstetrico14semanas>
-          <app-morfologicofetal *ngIf="morfologicofetal" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-morfologicofetal>
-          <app-videocolposc *ngIf="videocolposcopiaifc" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-videocolposc>
-          <app-histeroscopia *ngIf="histeroscopia" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-histeroscopia>
-          <app-endoscopiadigestivabaixa *ngIf="endoscopiadigestivabaixa" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-endoscopiadigestivabaixa>
-          <app-videocolposcopiaifcpc *ngIf="videocolposcopiaifcpc" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-videocolposcopiaifcpc>
-          <app-obstetricomaissemana *ngIf="obstetricomaissemana" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-obstetricomaissemana>
-          <app-abdomeinferiorfemendov *ngIf="abdomeinferiorfemendov" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-abdomeinferiorfemendov>
+          <app-textolivre *ngIf="conferindo" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-textolivre>
         </p-scrollPanel>
       </div>
     </div>
@@ -154,5 +127,5 @@
 <p-dialog header="Escolha o Modelo" [(visible)]="dropmodelo" [baseZIndex]="10001" [style]="{width: '20vw'}">
   <p-dropdown [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '16%'}"
     [options]="modelodelaudo" [(ngModel)]="prioridade" name="modelocodigo"
-    #modelocodigo="ngModel" (onChange)="RenderizarModeloLaudo()"></p-dropdown>
+    #modelocodigo="ngModel" (onChange)="AbrirLaudo()"></p-dropdown>
 </p-dialog>

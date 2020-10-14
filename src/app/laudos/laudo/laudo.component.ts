@@ -1,10 +1,7 @@
-import { Obstetrico1trimestreComponent } from './../../modelos/obstetrico1trimestre/obstetrico1trimestre.component';
-import { AbdometotalComponent } from './../../modelos/abdometotal/abdometotal.component';
 import { TextolivreComponent } from './../../modelos/textolivre/textolivre.component';
-import { AbdomeinferiormascComponent } from './../../modelos/abdomeinferiormasc/abdomeinferiormasc.component';
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { isEmptyObject } from 'jquery';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModelodelaudodoprocService } from './../../zservice/modelodelaudodoproc.service';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo, STATUS_LAUDO, ParametroDoLaudo, SubcategoriaCid10, CamposDoLaudo } from './../../core/model';
@@ -17,10 +14,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./laudo.component.css']
 })
 export class LaudoComponent implements OnInit {
-  @ViewChild(AbdomeinferiormascComponent) abdomeinfchild: AbdomeinferiormascComponent;
   @ViewChild(TextolivreComponent) textolivrechild: TextolivreComponent;
-  @ViewChild(AbdometotalComponent) abdometotalchild: AbdometotalComponent;
-  @ViewChild(Obstetrico1trimestreComponent) obstetricochild: Obstetrico1trimestreComponent;
   imagelogo: any;
   atendimentos: any[];
   procedimentosAtd: any[];
@@ -32,41 +26,13 @@ export class LaudoComponent implements OnInit {
   modelodelaudo: any[];
   prioridade: number;
   dropmodelo: boolean = false;
-  textolivre: boolean = false;
-  abdomeinferiormasc: boolean = false;
-  abdometotal: boolean = false;
-  obstetrico1trimestre: boolean = false;
-  diversos: boolean = false;
-  dopplerfluxometria: boolean = false;
-  endoscopiadigalta: boolean = false;
-  mamas: boolean = false;
-  ecodopplercardiograma: boolean = false;
-  videocolsposcopia: boolean = false;
-  abdomesuperior: boolean = false;
-  abdomeinferiorfem: boolean = false;
-  videofaringolar: boolean = false;
-  videoendoscopia: boolean = false;
-  videonasofibrolar: boolean = false;
-  tireoide: boolean = false;
-  transcraniano: boolean = false;
-  aparelhourinario: boolean = false;
-  laparoscopiadiagbiop: boolean = false;
-  monitoracaoovulacao: boolean = false;
-  obstetrico14semanas: boolean = false;
-  morfologicofetal: boolean = false;
-  videocolposcopiaifc: boolean = false;
-  histeroscopia: boolean = false;
-  obstetricomaissemana: boolean = false;
-  abdomeinferiorfemendov: boolean = false;
-  endoscopiadigestiva: boolean = false;
-  videocolposc: boolean = false;
-  endoscopiadigestivabaixa: boolean = false;
-  videocolposcopiaifcpc: boolean = false;
+  conferindo: boolean = false;
 
   constructor(private service: AtendimentoService,
               private serviceproc: ProcedimentoatendimentoService,
               private servicemodelo: ModelodelaudodoprocService,
               private rota: ActivatedRoute,
+              private route: Router,
               private servicoparametro: ParametrodosistemaService) { }
 
   ngOnInit(): void {
@@ -127,20 +93,17 @@ export class LaudoComponent implements OnInit {
     });
   }
 
-  RenderizarModeloLaudos() {
-    if (!isEmptyObject(this.procedimento.laudo)) {
-        this.EditandoLaudo1();
-        this.EditandoLaudo2();
-    } else {
+  RenderizarModeloLaudo() {
+    if (isEmptyObject(this.procedimento.laudo)) {
       this.procedimento.laudo = new Laudo();
-      this.Comparar1();
-      this.Comparar2();
+      this.conferindo = true;
+      this.AbrirLaudo();
+    } else {
+      this.conferindo = true;
     }
   }
 
-
   Salvar() {
-    this.EscolherModeloChild();
     setTimeout(() => {
       this.serviceproc.Atualizar(this.procedimento).then(response => response);
     }, 50);
@@ -148,476 +111,16 @@ export class LaudoComponent implements OnInit {
     this.ImprimirDocumento();
   }
 
-  EscolherModeloChild() {
-    if (this.abdomeinferiormasc === true) {
-      this.abdomeinfchild.MontarImpressao();
-    }
-
-    if (this.textolivre === true) {
-      this.textolivrechild.MontarImpressao();
-    }
-
-    if (this.abdometotal === true) {
-      this.abdometotalchild.MontarImpressao();
-    }
-
-    if (this.obstetrico1trimestre === true) {
-      this.obstetricochild.MontarImpressao();
-    }
-  }
-
-  EditandoLaudo1() {
-    for (let i = 0; i <= this.modelodelaudodoproc.length; i++) {
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 27) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.textolivre = true;
+  AbrirLaudo() {
+    this.modelodelaudodoproc.filter(elo => {
+      if (elo.prioridade === this.prioridade) {
+        this.procedimento.laudo.camposdolaudo.campo1 = elo.customstring;
       }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 2) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.abdomeinferiormasc = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 3) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.abdometotal = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 4) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.obstetrico1trimestre = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 5) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.diversos = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 8) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.dopplerfluxometria = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 9) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.endoscopiadigalta = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 10) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.mamas = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 11) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.ecodopplercardiograma = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 11) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.ecodopplercardiograma = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 12) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.videocolsposcopia = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 13) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.abdomesuperior = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 14) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.abdomeinferiorfem = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 16) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.videofaringolar = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 17) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.videoendoscopia = true;
-      }
-    }
-  }
-
-  EditandoLaudo2() {
-    for (let i = 0; i <= this.modelodelaudodoproc.length; i++) {
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 18) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.videonasofibrolar = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 19) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.tireoide = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 20) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.transcraniano = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 21) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.aparelhourinario = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 22) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.laparoscopiadiagbiop = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 23) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.monitoracaoovulacao = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 24) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.obstetrico14semanas = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 25) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.morfologicofetal = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 26) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.videocolposcopiaifc = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 27) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 28) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.histeroscopia = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 29) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.endoscopiadigestiva = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 31) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.obstetricomaissemana = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 32) {
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.abdomeinferiorfemendov = true;
-      }
-    }
-  }
-
-  Comparar1() {
-    for (let i = 0; i <= this.modelodelaudodoproc.length; i++) {
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 27) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.textolivre = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 2) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.abdomeinferiormasc = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 3) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.abdometotal = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 4) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.obstetrico1trimestre = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 5) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.diversos = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 8) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.dopplerfluxometria = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 9) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-        this.endoscopiadigalta = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 10) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.mamas = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 11) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.ecodopplercardiograma = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 12) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.videocolsposcopia = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 13) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.abdomesuperior = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 14) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.abdomeinferiorfem = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 16) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-        this.videofaringolar = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 17) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-        this.videoendoscopia = true;
-      }
-    }
-  }
-
-  Comparar2() {
-    for (let i = 0; i <= this.modelodelaudodoproc.length; i++) {
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 18) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.videonasofibrolar = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 19) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.tireoide = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 20) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.transcraniano = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 21) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.aparelhourinario = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 22) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.laparoscopiadiagbiop = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 23) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.monitoracaoovulacao = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 24) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.obstetrico14semanas = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 25) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.morfologicofetal = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 26) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.videocolposcopiaifc = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 28) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.histeroscopia = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 29) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.endoscopiadigestiva = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 31) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.obstetricomaissemana = true;
-      }
-
-      if (this.prioridade === i && this.modelodelaudodoproc[i].modelodelaudo.codigo === 32) {
-        const param = new ParametroDoLaudo();
-        param.valor = this.modelodelaudodoproc[i].customstring;
-        param.index = this.modelodelaudodoproc[i].prioridade;
-
-        this.procedimento.laudo.modelodelaudo = this.modelodelaudodoproc[i];
-        this.procedimento.laudo.status = STATUS_LAUDO.pendente;
-
-        this.abdomeinferiorfemendov = true;
-      }
-    }
+    });
+
+    setTimeout(() => {
+      this.dropmodelo = false;
+    }, 5);
   }
 
   getImagemFromService() {
@@ -636,6 +139,12 @@ export class LaudoComponent implements OnInit {
 
     if (image) {
       reader.readAsDataURL(image);
+    }
+  }
+
+  EscolherImagens() {
+    if (this.atendimento?.codigo != null) {
+      this.route.navigate(['/operacoes/laudos-teste', this.procedimento.codigo]);
     }
   }
 
@@ -707,7 +216,7 @@ export class LaudoComponent implements OnInit {
       +       '<tbody>'
       +         '<tr>'
       +           '<td>'
-      +             '<div class="page" style="width: 93%; margin: 0 auto;">' + this.procedimento.laudo.camposdolaudo.zimpressao + '</div>'
+      +             '<div class="page" style="width: 93%; margin: 0 auto;">' + this.procedimento.laudo.camposdolaudo.campo1 + '</div>'
       +           '</td>'
       +         '</tr>'
       +         '<tr>'

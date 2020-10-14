@@ -28,14 +28,15 @@ export class DefaultEspComponent {
 
   exibindoNavbar() {
     return this.router.url !== '/operacoes/captura'
+      && this.router.url.indexOf('/operacoes/laudos-teste')
       && this.router.url !== '/operacoes/laudos-teste'
       && this.router.url !== '/operacoes/laudos';
   }
 
   exibirRodape() {
     return this.router.url.indexOf('/viewer')
+      && this.router.url.indexOf('/operacoes/laudos-teste')
       && this.router.url !== '/operacoes/captura'
-      && this.router.url !== '/operacoes/laudos-teste'
       && this.router.url !== '/operacoes/laudos';
   }
 
