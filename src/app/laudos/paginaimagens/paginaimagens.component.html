@@ -1,26 +1,8 @@
 <div style="text-align:left; margin-top: 0;" class="ui-g geral">
-  <div class="topoprocedimento ui-g-12">
-    <div class="ui-g-4 ui-fluid" style="display: inline-flex; padding: 0;">
-      <label>Atendimento: </label>
-      <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo" #atendimentocodigo="ngModel" name="atendimentocodigo"
-        placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
-    </div>
-
-    <div class="ui-g-8 ui-fluid" style="display: inline-flex; padding: 0;">
-      <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
-        placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
-
-        <button class="botaosair" routerLink="/dashboard">
-          <img src="/assets/img/SAIR.png">
-          <span>Sair</span>
-        </button>
-    </div>
-  </div>
-
   <div class="painelprincipal">
     <div id="divisoria">
       <p-toolbar>
-        <div style="display: inline-flex; float: left;">
+        <div style="display: inline-flex; float: left; width: 30%;">
           <button class="botaoprincipal" style="padding-top: 15px; padding-bottom: 15px;"
              routerLink="/operacoes/editarimagem" type="button">
 
@@ -37,6 +19,16 @@
         </div>
 
         <div class="quantidadedoarray">
+          <div class="">
+            <button type="button" class="minibotao" (click)="AdicionarPagina()">
+              <img src="/assets/img/ADICIONAR.png">
+            </button>
+
+            <button type="button" class="minibotao" (click)="RemoverPagina()">
+              <img src="/assets/img/APAGAR.png">
+            </button>
+          </div>
+
           <div id="quantidade">
             <p-dropdown [options]="qtdimagems" [(ngModel)]="qtdimagemselecionada" (onChange)="ConfigurarDimensoes()"></p-dropdown>
           </div>
@@ -149,7 +141,7 @@
         <div style="width: 80%; float: left;">
           <p-scrollPanel>
             <div style="display: inline-flex; margin: 0 auto; text-align: center;" (drop)="DropRetorno($event)" (dragover)="PermiteArrastar($event)">
-              <div *ngFor="let image of procedimento.listaimagem" draggable="true" (dragstart)="Arrastar($event)">
+              <div *ngFor="let image of listaimagem" draggable="true" (dragstart)="Arrastar($event)">
                 <img [attr.id]="image.nomeimagem" class="imagemarray" [src]="image?.imagem"/>
               </div>
             </div>

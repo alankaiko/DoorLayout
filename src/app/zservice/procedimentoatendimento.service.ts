@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ProcedimentoAtendimento } from './../core/model';
+import { ProcedimentoAtendimento, ImagemImpressa, PaginaDeImagens } from './../core/model';
 import { Injectable } from '@angular/core';
+import { stringify } from 'querystring';
 
 export class ProcedimentoAtendimentoFiltro {
   pagina = 0;
@@ -77,7 +78,21 @@ export class ProcedimentoatendimentoService {
   }
 
   Atualizar(procedimento: ProcedimentoAtendimento): Promise<any> {
-    return this.http.put(`${this.url}/${procedimento.codigo}`, procedimento)
+    console.log(procedimento);
+    try {
+      return this.http.put(`${this.url}/${procedimento.codigo}`, procedimento)
+      .toPromise()
+      .then(response => {
+        const procedimentoalterado = response as ProcedimentoAtendimento;
+        return procedimentoalterado;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  AtualizarComImagens(procedimento: ProcedimentoAtendimento): Promise<any> {
+    return this.http.put(`${this.url}/atualizarcomimagens/${procedimento.codigo}`, procedimento)
       .toPromise()
       .then(response => {
         const procedimentoalterado = response as ProcedimentoAtendimento;
@@ -85,10 +100,17 @@ export class ProcedimentoatendimentoService {
       });
   }
 
-  AtualizarComImagens(procedimento: ProcedimentoAtendimento): Promise<any> {
-    return this.http.put(`${this.url}/atualizarcomimagens/${procedimento.codigo}`, procedimento)
+  AtualizarComPaginas(procedimento: ProcedimentoAtendimento): Promise<any> {
+    procedimento.paginadeimagens.forEach(elo => {
+      elo.imagemimpressa.forEach(alo => {
+        alo.imagem.imagem = null;
+      });
+    });
+
+    return this.http.put(`${this.url}/atualizarcompaginas/teste/${procedimento.codigo}`, procedimento)
       .toPromise()
       .then(response => {
+        console.log('segundo aqui');
         const procedimentoalterado = response as ProcedimentoAtendimento;
         return procedimentoalterado;
       });

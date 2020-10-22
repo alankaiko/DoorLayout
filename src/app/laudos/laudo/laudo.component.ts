@@ -27,6 +27,8 @@ export class LaudoComponent implements OnInit {
   prioridade: number;
   dropmodelo: boolean = false;
   conferindo: boolean = false;
+  abrirpaginaimg: boolean = false;
+
 
   constructor(private service: AtendimentoService,
               private serviceproc: ProcedimentoatendimentoService,
@@ -105,9 +107,11 @@ export class LaudoComponent implements OnInit {
 
   Salvar() {
     setTimeout(() => {
-      this.serviceproc.Atualizar(this.procedimento).then(response => response);
+      this.procedimento.listaimagem = null;
+      this.serviceproc.AtualizarComPaginas(this.procedimento).then(response => {
+        this.procedimento = response;
+      });
     }, 50);
-
     this.ImprimirDocumento();
   }
 
@@ -144,8 +148,15 @@ export class LaudoComponent implements OnInit {
 
   EscolherImagens() {
     if (this.atendimento?.codigo != null) {
-      this.route.navigate(['/operacoes/laudos-teste', this.procedimento.codigo]);
+      // this.route.navigate(['/operacoes/laudos-teste', this.procedimento.codigo]);
+      this.conferindo = false;
+      this.abrirpaginaimg = true;
     }
+  }
+
+  EscolherLaudo() {
+    this.abrirpaginaimg = false;
+    this.conferindo = true;
   }
 
   ImprimirDocumento() {

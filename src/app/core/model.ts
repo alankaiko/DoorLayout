@@ -353,13 +353,13 @@ export class Atendimento {
 export class ProcedimentoAtendimento {
   codigo: number;
   profexecutante = new ProfissionalExecutante();
-  profcodigo: number;
   procedimentomedico = new ProcedimentoMedico();
   procmedico: number;
   valorpaciente: string;
   valorconvenio: string;
   preventregalaudo: Date;
   dataexecucao: Date;
+  paginadeimagens = new Array<PaginaDeImagens>();
   atendimento = new Atendimento();
   listaimagem = new Array<Imagem>();
   laudo = new Laudo();
@@ -369,7 +369,7 @@ export class ProcedimentoAtendimento {
               procedimentoMedico?: ProcedimentoMedico, valorpaciente?: string,
               valorconvenio?: string, preventreglaudo?: Date,
               dataexecucao?: Date, atendimento?: Atendimento,
-              listaimagem?: Array<Imagem>, laudo?: Laudo) {
+              listaimagem?: Array<Imagem>, laudo?: Laudo, paginadeimagens?: Array<PaginaDeImagens>) {
                 this.codigo = codigo;
                 this.profexecutante = profexecutante;
                 this.procedimentomedico = procedimentoMedico;
@@ -380,6 +380,7 @@ export class ProcedimentoAtendimento {
                 this.atendimento = atendimento;
                 this.listaimagem = listaimagem;
                 this.laudo = laudo;
+                this.paginadeimagens = paginadeimagens;
               }
 }
 
@@ -430,8 +431,7 @@ export class ImagemImpressa {
   codigo: number;
   imagem = new Imagem();
   indice: number;
-  pagina = new PaginaDeImagens();
-  caminhoimagemjpeg: string;
+  paginadeimagens = new PaginaDeImagens();
 }
 
 export class ModeloDeLaudoDoProc {
@@ -453,8 +453,9 @@ export class ModeloDeLaudo {
 export class PaginaDeImagens {
   codigo: number;
   layout: LAYOUT_IMG;
-  imagens = new Array<ImagemImpressa>();
-  procedimentoatendimento = new ProcedimentoAtendimento();
+  imagemimpressa = new Array<ImagemImpressa>();
+  proc = new ProcedimentoAtendimento();
+
 }
 
 export class Laudo {
@@ -480,23 +481,23 @@ export class ParametroDoLaudo {
 }
 
 export enum LAYOUT_IMG {
-  LAYOUT_1_IMG = '1 Imagem grande (14 x 10,5 cm)',
-  LAYOUT_1_IMG_PRINTER = '1 Imagem Média (10 x 7,3 cm) Printer',
-  LAYOUT_2_IMG_GRANDES = '2 Images grandes (14 x 10,5 cm)',
-  LAYOUT_2_IMG = '2 Imagens Médias (10 x 7,3 cm) Printer',
-  LAYOUT_3_IMG = '3 Imagens Médias (8 x 6,6 cm)',
-  LAYOUT_4_IMG_GRANDES = '4 Imagens Grandes (9 x 6,8 cm)',
-  LAYOUT_4_IMG_MEDIAS = '4 Imagens Médias (8 x 6,6 cm)',
-  LAYOUT_4_IMG_PEQUENAS = '4 Imagens Pequenas (6,5 x 5,0 cm)',
-  LAYOUT_6_IMG = '6 Imagens Médias (8 x 6,6 cm)',
-  LAYOUT_6_IMG_GRANDES = '6 Imagens Grandes (9 x 6,8 cm)',
-  LAYOUT_8_IMG = '8 Imagens Pequenas (6,5 x 5 cm)',
-  LAYOUT_8_IMG_GRANDES = '8 Imagens Grandes',
-  LAYOUT_9_IMG = '9 Imagens Pequenas (5,5 x 4 cm)',
-  LAYOUT_12_IMG = '12 Imagens Pequenas (5,5 x 4 cm)',
-  LAYOUT_15_IMG = '15 Imagens Pequenas (5,5 x 4 cm)',
-  LAYOUT_LAUDO_E_4_IMG = 'Laudo e 4 Imagens Pequenas(5,5 x 4 cm)',
-  LAYOUT_LAUDO_E_5_IMG = 'Laudo e 5 Imagens Pequenas(5,5 x 4 cm)'
+  LAYOUT_1_GRANDE = 'LAYOUT_1_GRANDE',
+  LAYOUT_1_MEDIA = 'LAYOUT_1_MEDIA',
+  LAYOUT_2_GRANDE = 'LAYOUT_2_GRANDE',
+  LAYOUT_2_MEDIA = 'LAYOUT_2_MEDIA',
+  LAYOUT_3_MEDIA = 'LAYOUT_3_MEDIA',
+  LAYOUT_4_GRANDE = 'LAYOUT_4_GRANDE',
+  LAYOUT_4_MEDIA = 'LAYOUT_4_MEDIA',
+  LAYOUT_4_PEQUENA = 'LAYOUT_4_PEQUENA',
+  LAYOUT_6_MEDIA = 'LAYOUT_6_MEDIA',
+  LAYOUT_6_GRANDE = 'LAYOUT_6_GRANDE',
+  LAYOUT_8_PEQUENA = 'LAYOUT_8_PEQUENA',
+  LAYOUT_8_GRANDE = 'LAYOUT_8_GRANDE',
+  LAYOUT_9_PEQUENA = 'LAYOUT_9_PEQUENA',
+  LAYOUT_12_PEQUENA = 'LAYOUT_12_PEQUENA',
+  LAYOUT_15_PEQUENA = 'LAYOUT_15_PEQUENA',
+  LAYOUT_LAUDO_E_4_IMG = 'LAYOUT_LAUDO_E_4_IMG',
+  LAYOUT_LAUDO_E_5_IMG = 'LAYOUT_LAUDO_E_5_IMG'
 }
 
 export enum STATUS_LAUDO {
