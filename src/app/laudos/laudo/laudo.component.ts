@@ -7,6 +7,7 @@ import { ProcedimentoatendimentoService } from './../../zservice/procedimentoate
 import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo, STATUS_LAUDO, ParametroDoLaudo, SubcategoriaCid10, CamposDoLaudo } from './../../core/model';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { PaginaimagensComponent } from '../paginaimagens/paginaimagens.component';
 
 @Component({
   selector: 'app-laudo',
@@ -107,10 +108,7 @@ export class LaudoComponent implements OnInit {
 
   Salvar() {
     setTimeout(() => {
-      this.procedimento.listaimagem = null;
-      this.serviceproc.AtualizarComPaginas(this.procedimento).then(response => {
-        this.procedimento = response;
-      });
+      this.serviceproc.AtualizarComPaginas(this.procedimento);
     }, 50);
     this.ImprimirDocumento();
   }

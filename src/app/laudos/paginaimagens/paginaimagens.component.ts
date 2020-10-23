@@ -1,7 +1,7 @@
-import { isEmptyObject } from 'jquery';
+import { PaginaimagensService } from './../../zservice/paginaimagens.service';
 import { SelectItem } from 'primeng/api';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
-import { Imagem, PaginaDeImagens, LAYOUT_IMG, ImagemImpressa, ProcedimentoAtendimento } from './../../core/model';
+import { Imagem, PaginaDeImagens, LAYOUT_IMG, ImagemImpressa } from './../../core/model';
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
@@ -19,7 +19,9 @@ export class PaginaimagensComponent implements OnInit {
   qtdimagemselecionada: number = 1;
   paginaselecionada: number = 1;
 
-  constructor(private serviceproc: ProcedimentoatendimentoService, private location: Location) {}
+  constructor(private serviceproc: ProcedimentoatendimentoService,
+              private location: Location,
+              private servicepag: PaginaimagensService) {}
 
   ngOnInit() {
     this.OpcoesQtdImagens();
@@ -81,7 +83,6 @@ export class PaginaimagensComponent implements OnInit {
         }
       }
     }
-
   }
 
   DropRetorno(ev) {
@@ -116,7 +117,7 @@ export class PaginaimagensComponent implements OnInit {
     setTimeout(() => {
       this.pagina.layout = LAYOUT_IMG.LAYOUT_1_MEDIA;
 
-      this.pagina.proc = this.listaimagemsbase[0].procedimentoatendimento;
+      this.pagina.procedimentoatendimento = this.listaimagemsbase[0].procedimentoatendimento;
       this.paginadeimagens.push(this.pagina);
     }, 5);
   }

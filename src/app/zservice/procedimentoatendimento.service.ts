@@ -101,8 +101,9 @@ export class ProcedimentoatendimentoService {
   }
 
   AtualizarComPaginas(procedimento: ProcedimentoAtendimento): Promise<any> {
+    procedimento.listaimagem = null;
     procedimento.paginadeimagens.forEach(elo => {
-      elo.imagemimpressa.forEach(alo => {
+      elo.imagemimpressa.forEach(alo =>  {
         alo.imagem.imagem = null;
       });
     });
@@ -110,7 +111,6 @@ export class ProcedimentoatendimentoService {
     return this.http.put(`${this.url}/atualizarcompaginas/teste/${procedimento.codigo}`, procedimento)
       .toPromise()
       .then(response => {
-        console.log('segundo aqui');
         const procedimentoalterado = response as ProcedimentoAtendimento;
         return procedimentoalterado;
       });

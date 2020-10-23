@@ -454,7 +454,7 @@ export class PaginaDeImagens {
   codigo: number;
   layout: LAYOUT_IMG;
   imagemimpressa = new Array<ImagemImpressa>();
-  proc = new ProcedimentoAtendimento();
+  procedimentoatendimento = new ProcedimentoAtendimento();
 
 }
 
