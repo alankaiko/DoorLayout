@@ -1,4 +1,3 @@
-import { PaginaimagensService } from './../../zservice/paginaimagens.service';
 import { SelectItem } from 'primeng/api';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { Imagem, PaginaDeImagens, LAYOUT_IMG, ImagemImpressa } from './../../core/model';
@@ -20,13 +19,16 @@ export class PaginaimagensComponent implements OnInit {
   paginaselecionada: number = 1;
 
   constructor(private serviceproc: ProcedimentoatendimentoService,
-              private location: Location,
-              private servicepag: PaginaimagensService) {}
+              private location: Location) {}
 
   ngOnInit() {
     this.OpcoesQtdImagens();
     this.ConfigurarVariavel();
     this.ConfigurarDimensoes();
+
+    if (this.paginadeimagens.length > 0) {
+      this.VerificaQualLayout();
+    }
   }
 
   OpcoesQtdImagens() {
@@ -114,12 +116,74 @@ export class PaginaimagensComponent implements OnInit {
   }
 
   SalvandoHtml() {
-    setTimeout(() => {
-      this.pagina.layout = LAYOUT_IMG.LAYOUT_1_MEDIA;
+    this.pagina.layout = this.EscolhendoLayout();
+    this.pagina.procedimentoatendimento = this.listaimagemsbase[0].procedimentoatendimento;
+    this.paginadeimagens.push(this.pagina);
+  }
 
-      this.pagina.procedimentoatendimento = this.listaimagemsbase[0].procedimentoatendimento;
-      this.paginadeimagens.push(this.pagina);
-    }, 5);
+  VerificaQualLayout() {
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_1_GRANDE) {
+      this.qtdimagemselecionada = 1;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_1_MEDIA) {
+      this.qtdimagemselecionada = 2;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_2_GRANDE) {
+      this.qtdimagemselecionada = 3;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_2_MEDIA) {
+      this.qtdimagemselecionada = 4;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_3_MEDIA) {
+      this.qtdimagemselecionada = 5;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_4_GRANDE) {
+      this.qtdimagemselecionada = 6;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_4_MEDIA) {
+      this.qtdimagemselecionada = 7;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_4_PEQUENA) {
+      this.qtdimagemselecionada = 8;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_6_GRANDE) {
+      this.qtdimagemselecionada = 9;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_6_MEDIA) {
+      this.qtdimagemselecionada = 10;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_8_GRANDE) {
+      this.qtdimagemselecionada = 11;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_8_PEQUENA) {
+      this.qtdimagemselecionada = 12;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_9_PEQUENA) {
+      this.qtdimagemselecionada = 13;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_12_PEQUENA) {
+      this.qtdimagemselecionada = 14;
+    }
+
+    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_15_PEQUENA) {
+      this.qtdimagemselecionada = 15;
+    }
+
+    this.ConfigurarDimensoes();
+    this.RoteandoImagens();
   }
 
   EscolhendoLayout() {
@@ -182,6 +246,25 @@ export class PaginaimagensComponent implements OnInit {
     if (this.qtdimagemselecionada === 15) {
       return LAYOUT_IMG.LAYOUT_15_PEQUENA;
     }
+  }
+
+  RoteandoImagens() {
+    this.paginadeimagens[0].imagemimpressa.forEach(elo => {
+      this.listaimagemsbase[elo.indice] = this.RetornaImagens(elo.imagem.nomeimagem);
+    });
+  }
+
+  private RetornaImagens(nome: string) {
+    let valor;
+
+    this.listaimagem.filter(elo => {
+      if (elo.nomeimagem === nome) {
+        valor =  elo;
+        this.listaimagem.splice(this.listaimagem.indexOf(elo), 1);
+      }
+    });
+
+    return valor;
   }
 
   SalvarPaginaDeImpressoes() {
@@ -409,7 +492,6 @@ export class PaginaimagensComponent implements OnInit {
   }
 
   SalvarPagina() {
-    console.log('teste');
     if (this.qtdimagemselecionada === 1) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm;">'

@@ -1,13 +1,13 @@
+import { PaginaimagensComponent } from './../paginaimagens/paginaimagens.component';
 import { TextolivreComponent } from './../../modelos/textolivre/textolivre.component';
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { isEmptyObject } from 'jquery';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModelodelaudodoprocService } from './../../zservice/modelodelaudodoproc.service';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
-import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo, STATUS_LAUDO, ParametroDoLaudo, SubcategoriaCid10, CamposDoLaudo } from './../../core/model';
+import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo } from './../../core/model';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PaginaimagensComponent } from '../paginaimagens/paginaimagens.component';
 
 @Component({
   selector: 'app-laudo',
@@ -16,6 +16,7 @@ import { PaginaimagensComponent } from '../paginaimagens/paginaimagens.component
 })
 export class LaudoComponent implements OnInit {
   @ViewChild(TextolivreComponent) textolivrechild: TextolivreComponent;
+  @ViewChild(PaginaimagensComponent) paginaimagenschild: PaginaimagensComponent;
   imagelogo: any;
   atendimentos: any[];
   procedimentosAtd: any[];
@@ -107,9 +108,11 @@ export class LaudoComponent implements OnInit {
   }
 
   Salvar() {
-    setTimeout(() => {
-      this.serviceproc.AtualizarComPaginas(this.procedimento);
-    }, 50);
+    if (this.paginaimagenschild != null) {
+      this.paginaimagenschild.SalvandoHtml();
+    }
+
+    this.serviceproc.AtualizarComPaginas(this.procedimento);
     this.ImprimirDocumento();
   }
 
@@ -161,6 +164,7 @@ export class LaudoComponent implements OnInit {
     const win = window.open();
     win.document.write(this.ConfigurarCabecalho());
     win.document.write(this.ConfigurarLaudo());
+    win.document.write(this.ConfigurarPaginaImg());
     win.document.write(this.ConfigurarRodape());
     win.document.close();
     setTimeout(() => {
@@ -213,10 +217,10 @@ export class LaudoComponent implements OnInit {
   }
 
   private ConfigurarLaudo() {
-    return  '<table>'
+    return  '<table style="page-break-after: always;>'
       +       '<thead>'
       +         '<tr>'
-      +           '<td>'
+      +           '<td style="page-break-after: always;>'
       +             '<div class="page-header-space" style="height: 230px;"></div>'
       +           '</td>'
       +         '</tr>'
@@ -235,6 +239,34 @@ export class LaudoComponent implements OnInit {
       +                 '<span id="labelassinatura">' + this.ConfigurarAssinatura() + '</span>'
       +               '</div>'
       +             '</div>'
+      +           '</td>'
+      +         '</tr>'
+      +       '</tbody>'
+
+      +       '<tfoot>'
+      +         '<tr>'
+      +           '<td>'
+      +             '<div class="page-footer-space" style="height: 25px;"></div>'
+      +           '</td>'
+      +         '</tr>'
+      +       '</tfoot>'
+      +      '</table>';
+  }
+
+  private ConfigurarPaginaImg() {
+    return  '<table>'
+      +       '<thead>'
+      +         '<tr>'
+      +           '<td>'
+      +             '<div class="page-header-space" style="height: 230px;"></div>'
+      +           '</td>'
+      +         '</tr>'
+      +       '</thead>'
+
+      +       '<tbody>'
+      +         '<tr>'
+      +           '<td>'
+      +             '<div class="page" style="width: 93%; margin: 0 auto;">' + this.paginaimagenschild.SalvarPagina() + '</div>'
       +           '</td>'
       +         '</tr>'
       +       '</tbody>'
