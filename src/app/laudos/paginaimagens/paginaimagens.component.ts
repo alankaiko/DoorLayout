@@ -12,11 +12,11 @@ import { Location } from '@angular/common';
 export class PaginaimagensComponent implements OnInit {
   @Input() paginadeimagens: Array<PaginaDeImagens>;
   @Input('listaimagem') listaimagem: Array<Imagem>;
-  pagina = new PaginaDeImagens();
+  pagina: PaginaDeImagens;
   listaimagemsbase = new Array<Imagem>();
   qtdimagems: SelectItem[];
   qtdimagemselecionada: number = 1;
-  paginaselecionada: number = 1;
+  paginaselecionada: number = 0;
 
   constructor(private serviceproc: ProcedimentoatendimentoService,
               private location: Location) {}
@@ -24,12 +24,14 @@ export class PaginaimagensComponent implements OnInit {
   ngOnInit() {
     this.OpcoesQtdImagens();
     this.ConfigurarVariavel();
-    this.ConfigurarDimensoes();
 
-    if (this.paginadeimagens.length > 0) {
-      this.VerificaQualLayout();
+    if (this.paginadeimagens.length === 0) {
+      this.AdicionarPagina();
     }
+
+    this.VerificaQualLayout(0);
   }
+
 
   OpcoesQtdImagens() {
     this.qtdimagems = [
@@ -50,6 +52,23 @@ export class PaginaimagensComponent implements OnInit {
       {label: '15 Imagem Pequenas', value: 15}
     ];
   }
+
+  AdicionarPagina() {
+    this.pagina = new PaginaDeImagens();
+    this.pagina.layout = this.EscolhendoLayout();
+    this.pagina.procedimentoatendimento = this.listaimagem[0].procedimentoatendimento;
+    this.paginadeimagens.push(this.pagina);
+  }
+
+  RemoverPagina() {
+    this.paginadeimagens.splice(this.paginaselecionada, 1);
+  }
+
+  EscolherPagina(index) {
+    this.paginaselecionada = index;
+    this.VerificaQualLayout(index);
+  }
+
 
   PermiteArrastar(ev) {
     ev.preventDefault();
@@ -72,6 +91,7 @@ export class PaginaimagensComponent implements OnInit {
           const imagemimpressa = new ImagemImpressa;
           imagemimpressa.indice = valor;
           imagemimpressa.imagem = this.listaimagemsbase[valor];
+          this.pagina.layout = this.EscolhendoLayout();
           this.pagina.imagemimpressa.push(imagemimpressa);
         } else {
           this.listaimagem.push(this.listaimagemsbase[valor]);
@@ -80,6 +100,7 @@ export class PaginaimagensComponent implements OnInit {
 
           const imagemimpressa = new ImagemImpressa;
           imagemimpressa.indice = valor;
+          this.pagina.layout = this.EscolhendoLayout();
           imagemimpressa.imagem = this.listaimagemsbase[valor];
           this.pagina.imagemimpressa.push(imagemimpressa);
         }
@@ -104,7 +125,22 @@ export class PaginaimagensComponent implements OnInit {
   }
 
   ConfigurarVariavel() {
-    this.listaimagem.forEach((el) => {
+    const lista = new Array<number>();
+    this.paginadeimagens.forEach(elo => {
+      elo.imagemimpressa.forEach(alo => {
+        lista.push(alo.imagem.codigo);
+      });
+    });
+
+    lista.forEach(elo => {
+      this.listaimagem.forEach(aff => {
+        if (elo === aff.codigo) {
+          this.listaimagem.splice(this.listaimagem.indexOf(aff), 1);
+        }
+      });
+    });
+
+    this.listaimagem.filter((el) => {
       this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {
         el.imagem = data;
       }, error => {
@@ -115,75 +151,69 @@ export class PaginaimagensComponent implements OnInit {
     this.ConfigurarDimensoes();
   }
 
-  SalvandoHtml() {
-    this.pagina.layout = this.EscolhendoLayout();
-    this.pagina.procedimentoatendimento = this.listaimagemsbase[0].procedimentoatendimento;
-    this.paginadeimagens.push(this.pagina);
-  }
-
-  VerificaQualLayout() {
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_1_GRANDE) {
+  VerificaQualLayout(posicao) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_1_GRANDE) {
       this.qtdimagemselecionada = 1;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_1_MEDIA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_1_MEDIA) {
       this.qtdimagemselecionada = 2;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_2_GRANDE) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_2_GRANDE) {
       this.qtdimagemselecionada = 3;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_2_MEDIA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_2_MEDIA) {
       this.qtdimagemselecionada = 4;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_3_MEDIA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_3_MEDIA) {
       this.qtdimagemselecionada = 5;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_4_GRANDE) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_GRANDE) {
       this.qtdimagemselecionada = 6;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_4_MEDIA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_MEDIA) {
       this.qtdimagemselecionada = 7;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_4_PEQUENA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_PEQUENA) {
       this.qtdimagemselecionada = 8;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_6_GRANDE) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_6_GRANDE) {
       this.qtdimagemselecionada = 9;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_6_MEDIA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_6_MEDIA) {
       this.qtdimagemselecionada = 10;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_8_GRANDE) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_8_GRANDE) {
       this.qtdimagemselecionada = 11;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_8_PEQUENA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_8_PEQUENA) {
       this.qtdimagemselecionada = 12;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_9_PEQUENA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_9_PEQUENA) {
       this.qtdimagemselecionada = 13;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_12_PEQUENA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_12_PEQUENA) {
       this.qtdimagemselecionada = 14;
     }
 
-    if (this.paginadeimagens[0].layout === LAYOUT_IMG.LAYOUT_15_PEQUENA) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_15_PEQUENA) {
       this.qtdimagemselecionada = 15;
     }
 
     this.ConfigurarDimensoes();
-    this.RoteandoImagens();
+    this.RoteandoImagens(posicao);
   }
 
   EscolhendoLayout() {
@@ -248,10 +278,19 @@ export class PaginaimagensComponent implements OnInit {
     }
   }
 
-  RoteandoImagens() {
-    this.paginadeimagens[0].imagemimpressa.forEach(elo => {
-      this.listaimagemsbase[elo.indice] = this.RetornaImagens(elo.imagem.nomeimagem);
+  RoteandoImagens(numero: number) {
+    this.listaimagemsbase = new Array<Imagem>();
+
+    this.paginadeimagens[numero].imagemimpressa.forEach(alo => {
+      this.serviceproc.PegarImagemString(alo.imagem.codigo).subscribe(data => {
+        alo.imagem.imagem = data;
+        this.listaimagemsbase.push(alo.imagem);
+      }, error => {
+        console.log(error);
+      });
+
     });
+
   }
 
   private RetornaImagens(nome: string) {
@@ -292,8 +331,6 @@ export class PaginaimagensComponent implements OnInit {
       const lab = document.getElementById('lab1');
       lab.setAttribute('style', 'display: block');
       lab.setAttribute('class', 'foto1grande');
-
-      this.listaimagemsbase.length = 1;
     }
 
     if (this.qtdimagemselecionada === 2) {
@@ -304,8 +341,6 @@ export class PaginaimagensComponent implements OnInit {
       const lab = document.getElementById('lab1');
       lab.setAttribute('style', 'display: block');
       lab.setAttribute('class', 'foto1media');
-
-      this.listaimagemsbase.length = 1;
     }
 
     if (this.qtdimagemselecionada === 3) {
@@ -317,8 +352,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto2grande');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm;');
-
-        this.listaimagemsbase.length = 2;
       }
     }
 
@@ -331,8 +364,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto2media');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm;');
-
-        this.listaimagemsbase.length = 2;
       }
     }
 
@@ -345,8 +376,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto3media');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm;');
-
-        this.listaimagemsbase.length = 3;
       }
     }
 
@@ -359,8 +388,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto4grande');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 4;
       }
     }
 
@@ -373,8 +400,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto4media');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 4;
       }
     }
 
@@ -387,8 +412,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto4pequena');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 4;
       }
     }
 
@@ -401,8 +424,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto6grande');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 6;
       }
     }
 
@@ -415,8 +436,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto6media grade1');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 6;
       }
     }
 
@@ -429,8 +448,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto8grande');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 8;
       }
     }
 
@@ -443,8 +460,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto8pequena');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 8;
       }
     }
 
@@ -457,8 +472,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto9pequena');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 9;
       }
     }
 
@@ -471,8 +484,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto12pequena');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 12;
       }
     }
 
@@ -485,8 +496,6 @@ export class PaginaimagensComponent implements OnInit {
         lab.setAttribute('style', 'display: block');
         lab.setAttribute('class', 'foto15pequena');
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
-
-        this.listaimagemsbase.length = 15;
       }
     }
   }
@@ -497,7 +506,7 @@ export class PaginaimagensComponent implements OnInit {
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm;">'
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab1" style="display: block" class="foto1grande">'
-                    + '<img style="width: 140mm; height: 105mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -509,7 +518,7 @@ export class PaginaimagensComponent implements OnInit {
               + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;">'
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab1" style="display: block" class="foto1media">'
-                    + '<img style="width:100mm; height: 73mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width:100mm; height: 73mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -518,16 +527,16 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 3) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 20mm;">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 10mm;">'
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab1" style="display: block" class="foto2grande">'
-                    + '<img style="width: 140mm; height: 105mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab1" style="display: block" class="foto2grande">'
-                    + '<img style="width: 140mm; height: 105mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -536,16 +545,16 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 4) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 45mm;">'
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab1" style="display: block" class="foto2media">'
-                    + '<img style="width: 100mm; height: 73mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 100mm; height: 73mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab2" style="display: block" class="foto2media">'
-                    + '<img style="width: 100mm; height: 73mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 100mm; height: 73mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -554,22 +563,22 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 5) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 30mm;">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 15mm;">'
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab1" style="display: block" class="foto3media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab2" style="display: block" class="foto3media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab3" style="display: block" class="foto3media">'
-                    +  '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    +  '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -578,28 +587,28 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 6) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 190mm; height: auto; display: block;">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 50mm; width: 190mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto4grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto4grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto4grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto4grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -608,28 +617,28 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 7) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 170mm; height: auto; display: block;">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 55mm; width: 170mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto4media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[0].imagemimpressa[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto4media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto4media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto4media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -641,25 +650,25 @@ export class PaginaimagensComponent implements OnInit {
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 140mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto4pequena">'
-                    + '<img style="width: 65mm; height: 50mm" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto4pequena">'
-                    + '<img style="width: 65mm; height: 50mm" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto4pequena">'
-                    + '<img style="width: 65mm; height: 50mm" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto4pequena">'
-                    + '<img style="width: 65mm; height: 50mm" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -668,40 +677,40 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 9) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 190mm; height: auto; display: block;">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 10mm; width: 190mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab5" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[4].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab6" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.listaimagemsbase[5].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -710,40 +719,40 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 10) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 170mm; height: auto; display: block;">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 15mm; width: 170mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab5" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[4].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab6" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.listaimagemsbase[5].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -751,53 +760,53 @@ export class PaginaimagensComponent implements OnInit {
     }
 
     if (this.qtdimagemselecionada === 11) {
-      return  '<div class="papela4" id="papela4">'
+      return  '<div>'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; width: 180mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab5" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.listaimagemsbase[4].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab6" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.listaimagemsbase[5].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab7" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.listaimagemsbase[6].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab8" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 58mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.listaimagemsbase[7].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -806,52 +815,52 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 12) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 140mm; height: auto; display: block;">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 10mm; width: 140mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab5" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.listaimagemsbase[4].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab6" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.listaimagemsbase[5].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab7" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.listaimagemsbase[6].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab8" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.listaimagemsbase[7].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -863,55 +872,55 @@ export class PaginaimagensComponent implements OnInit {
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 180mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab5" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[4].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab6" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[5].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab7" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[6].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab8" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[7].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab9" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[8].nomeimagem + '">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[8].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -920,76 +929,76 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 14) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 180mm; height: auto; display: block;">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 180mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab5" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[4].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab6" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[5].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab7" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[6].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab8" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[7].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab9" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[8].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[8].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab10" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[9].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[9].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab11" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[10].nomeimagem + '" src="' + this.listaimagemsbase[10].imagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[10].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab12" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[11].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[11].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
@@ -998,94 +1007,94 @@ export class PaginaimagensComponent implements OnInit {
 
     if (this.qtdimagemselecionada === 15) {
       return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 20mm; width: 180mm; height: auto; display: block;">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 5mm; width: 180mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab1" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[0].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[0].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab2" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[1].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[1].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab3" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[2].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[2].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab4" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[3].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[3].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab5" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[4].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[4].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab6" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[5].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[5].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab7" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[6].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[6].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab8" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[7].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[7].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab9" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[8].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[8].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab10" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[9].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[9].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab11" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[10].nomeimagem + '" src="' + this.listaimagemsbase[10].imagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[10].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab12" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[11].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[11].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab13" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[12].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[12].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab14" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[13].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[13].imagem + '">'
                   + '</div>'
                 + '</div>'
 
                 + '<div style="display:block; padding: 2mm; float: left;">'
                   + '<div id="lab15" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" id="' + this.listaimagemsbase[14].nomeimagem + '">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.listaimagemsbase[14].imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'

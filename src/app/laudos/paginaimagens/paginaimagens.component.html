@@ -1,46 +1,42 @@
-<div style="text-align:left; margin-top: 0;" class="ui-g geral">
-  <div class="painelprincipal">
-    <div id="divisoria">
-      <p-toolbar>
-        <div style="display: inline-flex; float: left; width: 30%;">
-          <button class="botaoprincipal" style="padding-top: 15px; padding-bottom: 15px;"
-             routerLink="/operacoes/editarimagem" type="button">
+<div class="geral">
+  <div class="topoopcoes">
+    <div class="paginaescolhida">
+      <div style="width: 20%; height: auto;">
+        <span>Pág: {{paginaselecionada + 1}} de {{paginadeimagens.length}}</span>
+      </div>
 
-            <img src="/assets/img/IMPRESSORA.png">
-            <span>Imprimir</span>
-          </button>
+      <div style="width: 20%;">
+        <button type="button" class="minibotao" (click)="AdicionarPagina()">
+          <img src="/assets/img/ADICIONAR.png">
+        </button>
 
-          <button class="botaoprincipal" style="padding-top: 15px; padding-bottom: 15px;"
-             routerLink="/operacoes/editarimagem" type="button">
+        <button type="button" class="minibotao" (click)="RemoverPagina()">
+          <img src="/assets/img/APAGAR.png">
+        </button>
+      </div>
 
-            <img src="/assets/img/PDF_FILE.gif">
-            <span>Gerar PDF</span>
-          </button>
-        </div>
+      <div style="width: 60%; height: auto;">
+        <span>Pag. selecionada: {{paginaselecionada + 1}}</span>
+        <p-dropdown [options]="qtdimagems" [(ngModel)]="qtdimagemselecionada" (onChange)="ConfigurarDimensoes()"></p-dropdown>
+      </div>
 
-        <div class="quantidadedoarray">
-          <div class="">
-            <button type="button" class="minibotao" (click)="AdicionarPagina()">
-              <img src="/assets/img/ADICIONAR.png">
-            </button>
-
-            <button type="button" class="minibotao" (click)="RemoverPagina()">
-              <img src="/assets/img/APAGAR.png">
-            </button>
-          </div>
-
-          <div id="quantidade">
-            <p-dropdown [options]="qtdimagems" [(ngModel)]="qtdimagemselecionada" (onChange)="ConfigurarDimensoes()"></p-dropdown>
-          </div>
-          <div>
-            <p-spinner [(ngModel)]="paginaselecionada"></p-spinner>
-          </div>
-        </div>
-      </p-toolbar>
+      <button type="button" (click)="SalvandoPaginas()" value="Salva"></button>
     </div>
 
+    <div class="arraydepaginas">
+      <p-scrollPanel>
+        <div style="display: inline-flex;" *ngFor="let pagina of paginadeimagens; let i = index">
+          <a (click)="EscolherPagina(i)">
+            <img class="imagempag" src="/assets/img/pag.jpg"/>
+          </a>
+        </div>
+      </p-scrollPanel>
+    </div>
+  </div>
+
+  <div class="painelprincipal">
     <div cdkDropListGroup style="width: 100%; height: auto; margin: 0 auto;">
-      <div class="papela4" id="papela4">
+      <div class="papela4" id="   ">
         <div id="gradeimg">
           <div>
             <div id="lab1" (drop)="Dropar($event, 0)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
@@ -133,22 +129,17 @@
           </div>
         </div>
       </div>
-
-      <div class="baseescolha">
-        <div style="width: 80%; float: left;">
-          <p-scrollPanel>
-            <div style="display: inline-flex; margin: 0 auto; text-align: center;" (drop)="DropRetorno($event)" (dragover)="PermiteArrastar($event)">
-              <div *ngFor="let image of listaimagem" draggable="true" (dragstart)="Arrastar($event)">
-                <img [attr.id]="image.nomeimagem" class="imagemarray" [src]="image?.imagem"/>
-              </div>
-            </div>
-          </p-scrollPanel>
-        </div>
-
-        <div style="width: 20%; float: right; border-left: 1px solid #cc0000; color: #000;">
-
-        </div>
-      </div>
-      <div class="aff" style="width: 100%; top: 120px; position: relative;"></div>
     </div>
   </div>
+
+  <div class="baseescolha">
+    <p-scrollPanel>
+      <div style="display: inline-flex; margin: 0 auto; text-align: center;" (drop)="DropRetorno($event)" (dragover)="PermiteArrastar($event)">
+        <div *ngFor="let image of listaimagem" draggable="true" (dragstart)="Arrastar($event)">
+          <img [attr.id]="image.nomeimagem" class="imagemarray" [src]="image?.imagem"/>
+        </div>
+      </div>
+    </p-scrollPanel>
+  </div>
+</div>
+

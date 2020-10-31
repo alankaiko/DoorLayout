@@ -108,10 +108,6 @@ export class LaudoComponent implements OnInit {
   }
 
   Salvar() {
-    if (this.paginaimagenschild != null) {
-      this.paginaimagenschild.SalvandoHtml();
-    }
-
     this.serviceproc.AtualizarComPaginas(this.procedimento);
     this.ImprimirDocumento();
   }
@@ -266,7 +262,7 @@ export class LaudoComponent implements OnInit {
       +       '<tbody>'
       +         '<tr>'
       +           '<td>'
-      +             '<div class="page" style="width: 93%; margin: 0 auto;">' + this.paginaimagenschild.SalvarPagina() + '</div>'
+      +             '<div class="page" style="width: 210mm; margin: 0 auto; margin-top: 2px; flex-direction: row; justify-content: center; align-items: center">' + this.paginaimagenschild.SalvarPagina() + '</div>'
       +           '</td>'
       +         '</tr>'
       +       '</tbody>'
