@@ -160,7 +160,11 @@ export class LaudoComponent implements OnInit {
     const win = window.open();
     win.document.write(this.ConfigurarCabecalho());
     win.document.write(this.ConfigurarLaudo());
-    win.document.write(this.ConfigurarPaginaImg());
+
+    this.procedimento.paginadeimagens.forEach(elo => {
+      win.document.write(this.ConfigurarPaginaImg(this.procedimento.paginadeimagens.indexOf(elo)));
+    });
+
     win.document.write(this.ConfigurarRodape());
     win.document.close();
     setTimeout(() => {
@@ -169,6 +173,7 @@ export class LaudoComponent implements OnInit {
   }
 
   private ConfigurarCabecalho() {
+    console.log(this.imagelogo);
     return '<div class="page-header" style="text-align: center; margin: 0 auto; height: 230px; position: fixed; top: 0mm; width: 93%; background-color: white;">'
           +   '<div style="width: 100%;" class="logotip">'
           +     '<img id="imagemtopomenu" style="width: 150px; height: 100px;" src="' + this.imagelogo + '">'
@@ -249,7 +254,7 @@ export class LaudoComponent implements OnInit {
       +      '</table>';
   }
 
-  private ConfigurarPaginaImg() {
+  private ConfigurarPaginaImg(posicao: number) {
     return  '<table>'
       +       '<thead>'
       +         '<tr>'
@@ -262,7 +267,7 @@ export class LaudoComponent implements OnInit {
       +       '<tbody>'
       +         '<tr>'
       +           '<td>'
-      +             '<div class="page" style="width: 210mm; margin: 0 auto; margin-top: 2px; flex-direction: row; justify-content: center; align-items: center">' + this.paginaimagenschild.SalvarPagina() + '</div>'
+      +             '<div class="page" style="width: 210mm; margin: 0 auto; margin-top: 2px; flex-direction: row; justify-content: center; align-items: center">' + this.paginaimagenschild.SalvarPagina(posicao) + '</div>'
       +           '</td>'
       +         '</tr>'
       +       '</tbody>'
