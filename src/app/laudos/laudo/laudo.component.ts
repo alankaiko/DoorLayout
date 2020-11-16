@@ -160,20 +160,24 @@ export class LaudoComponent implements OnInit {
     const win = window.open();
     win.document.write(this.ConfigurarCabecalho());
     win.document.write(this.ConfigurarLaudo());
+    if (this.paginaimagenschild !== undefined) {
+      this.paginaimagenschild.PegarImagemPraImpressao();
 
-    this.procedimento.paginadeimagens.forEach(elo => {
-      win.document.write(this.ConfigurarPaginaImg(this.procedimento.paginadeimagens.indexOf(elo)));
-    });
+      setTimeout(() => {
+        this.procedimento.paginadeimagens.forEach(elo => {
+          win.document.write(this.ConfigurarPaginaImg(this.procedimento.paginadeimagens.indexOf(elo)));
+        });
+      }, 5);
+    }
 
-    win.document.write(this.ConfigurarRodape());
-    win.document.close();
     setTimeout(() => {
+      win.document.write(this.ConfigurarRodape());
+      win.document.close();
       win.print();
-    }, 5);
+    }, 50);
   }
 
   private ConfigurarCabecalho() {
-    console.log(this.imagelogo);
     return '<div class="page-header" style="text-align: center; margin: 0 auto; height: 230px; position: fixed; top: 0mm; width: 93%; background-color: white;">'
           +   '<div style="width: 100%;" class="logotip">'
           +     '<img id="imagemtopomenu" style="width: 150px; height: 100px;" src="' + this.imagelogo + '">'
@@ -218,10 +222,10 @@ export class LaudoComponent implements OnInit {
   }
 
   private ConfigurarLaudo() {
-    return  '<table style="page-break-after: always;>'
+    return  '<table>'
       +       '<thead>'
       +         '<tr>'
-      +           '<td style="page-break-after: always;>'
+      +           '<td>'
       +             '<div class="page-header-space" style="height: 230px;"></div>'
       +           '</td>'
       +         '</tr>'
@@ -255,10 +259,10 @@ export class LaudoComponent implements OnInit {
   }
 
   private ConfigurarPaginaImg(posicao: number) {
-    return  '<table>'
+    return  '<table style="page-break-after: always;">'
       +       '<thead>'
       +         '<tr>'
-      +           '<td>'
+      +           '<td style="page-break-after: always;">'
       +             '<div class="page-header-space" style="height: 230px;"></div>'
       +           '</td>'
       +         '</tr>'

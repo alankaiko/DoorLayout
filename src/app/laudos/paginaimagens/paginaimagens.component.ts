@@ -501,36 +501,36 @@ export class PaginaimagensComponent implements OnInit {
   }
 
   SalvarPagina(posicao: number) {
-    if (this.qtdimagemselecionada === 1) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_1_GRANDE) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm;">'
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab1" style="display: block" class="foto1grande">'
-                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.PegarImagemPraImpressao(this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem) + '">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 2) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_1_MEDIA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;">'
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab1" style="display: block" class="foto1media">'
-                    + '<img style="width:100mm; height: 73mm;" class="imagem" src="' + this.PegarImagemPraImpressao(this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem) + '">'
+                    + '<img style="width:100mm; height: 73mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
                   + '</div>'
                 + '</div>'
               + '</div>'
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 3) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_2_GRANDE) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 10mm;">'
                 + '<div style="display:block; padding: 2mm;">'
                   + '<div id="lab1" style="display: block" class="foto2grande">'
-                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem + '">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
                   + '</div>'
                 + '</div>'
 
@@ -543,7 +543,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 4) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_2_MEDIA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 45mm;">'
                 + '<div style="display:block; padding: 2mm;">'
@@ -561,7 +561,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 5) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_3_MEDIA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 15mm;">'
                 + '<div style="display:block; padding: 2mm;">'
@@ -585,7 +585,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 6) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_GRANDE) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 50mm; width: 190mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -615,7 +615,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 7) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_MEDIA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 55mm; width: 170mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -645,7 +645,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 8) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_PEQUENA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 140mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -675,7 +675,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 9) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_6_GRANDE) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 10mm; width: 190mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -717,7 +717,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 10) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_6_MEDIA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 15mm; width: 170mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -759,7 +759,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 11) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_8_GRANDE) {
       return  '<div>'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; width: 180mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -813,7 +813,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 12) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_8_PEQUENA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 10mm; width: 140mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -867,7 +867,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 13) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_9_PEQUENA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 180mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -927,7 +927,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 14) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_12_PEQUENA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 180mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -1005,7 +1005,7 @@ export class PaginaimagensComponent implements OnInit {
             + '</div>';
     }
 
-    if (this.qtdimagemselecionada === 15) {
+    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_15_PEQUENA) {
       return  '<div class="papela4" id="papela4">'
               + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 5mm; width: 180mm; height: auto; display: block;">'
                 + '<div style="display:block; padding: 2mm; float: left;">'
@@ -1102,13 +1102,15 @@ export class PaginaimagensComponent implements OnInit {
     }
   }
 
-  private PegarImagemPraImpressao(imagem: Imagem) {
-    this.serviceproc.PegarImagemString(imagem.codigo).subscribe(data => {
-      imagem.imagem =  data;
-      console.log(imagem.imagem);
-      return imagem.imagem;
-    }, error => {
-      console.log(error);
+  PegarImagemPraImpressao() {
+    this.paginadeimagens.forEach(elo => {
+      elo.imagemimpressa.forEach(alo => {
+        this.serviceproc.PegarImagemString(alo.imagem.codigo).subscribe(data => {
+          alo.imagem.imagem =  data;
+        }, error => {
+          console.log(error);
+        });
+      });
     });
   }
 
