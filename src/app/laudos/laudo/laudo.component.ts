@@ -1,10 +1,7 @@
 import { PaginaimagensComponent } from './../paginaimagens/paginaimagens.component';
-import { TextolivreComponent } from './../../modelos/textolivre/textolivre.component';
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { isEmptyObject } from 'jquery';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModelodelaudodoprocService } from './../../zservice/modelodelaudodoproc.service';
-import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo } from './../../core/model';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -27,9 +24,9 @@ export class LaudoComponent implements OnInit {
   modelodelaudodoproc = new Array<ModeloDeLaudoDoProc>();
   modelodelaudo: any[];
   prioridade: number;
-  dropmodelo: boolean = false;
-  conferindo: boolean = false;
-  abrirpaginaimg: boolean = false;
+  dropmodelo = false;
+  conferindo = false;
+  abrirpaginaimg = false;
 
 
   constructor(private service: AtendimentoService,

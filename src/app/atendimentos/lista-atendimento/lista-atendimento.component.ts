@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AtendimentoFilter, AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-lista-atendimento',
   templateUrl: './lista-atendimento.component.html',

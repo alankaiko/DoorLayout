@@ -1,0 +1,49 @@
+.geral {
+  margin: 0 auto;
+  width: 100%;;
+}
+
+.botao {
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 100px;
+}
+
+.botaoprincipal {
+  display: inline-grid;
+  width: 130px;
+  font-size: 90%;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-align: center;
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  padding: 12px 0 8px;
+  margin: 2px;
+  line-height: 1.7;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.botaoprincipal:hover {
+  width: 140px;
+  background-color: #cacaca;
+}
+
+.botaoprincipal > img {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+.botaoprincipal > a {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}

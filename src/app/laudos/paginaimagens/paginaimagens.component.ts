@@ -15,8 +15,8 @@ export class PaginaimagensComponent implements OnInit {
   pagina: PaginaDeImagens;
   listaimagemsbase = new Array<Imagem>();
   qtdimagems: SelectItem[];
-  qtdimagemselecionada: number = 1;
-  paginaselecionada: number = 0;
+  qtdimagemselecionada = 1;
+  paginaselecionada = 0;
 
   constructor(private serviceproc: ProcedimentoatendimentoService,
               private location: Location) {}
@@ -88,7 +88,7 @@ export class PaginaimagensComponent implements OnInit {
           this.listaimagemsbase[valor] = this.listaimagem[i];
           this.listaimagem.splice(i, 1);
 
-          const imagemimpressa = new ImagemImpressa;
+          const imagemimpressa = new ImagemImpressa();
           imagemimpressa.indice = valor;
           imagemimpressa.imagem = this.listaimagemsbase[valor];
           this.pagina.layout = this.EscolhendoLayout();
@@ -98,7 +98,7 @@ export class PaginaimagensComponent implements OnInit {
           this.listaimagemsbase[valor] = this.listaimagem[i];
           this.listaimagem.splice(i, 1);
 
-          const imagemimpressa = new ImagemImpressa;
+          const imagemimpressa = new ImagemImpressa();
           imagemimpressa.indice = valor;
           this.pagina.layout = this.EscolhendoLayout();
           imagemimpressa.imagem = this.listaimagemsbase[valor];

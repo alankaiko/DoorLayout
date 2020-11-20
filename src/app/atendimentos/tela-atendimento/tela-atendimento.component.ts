@@ -5,8 +5,8 @@ import { AtendimentoService } from './../../zservice/atendimento.service';
 import { FormArray, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
-
 import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-tela-atendimento',
@@ -17,8 +17,8 @@ export class TelaAtendimentoComponent implements OnInit {
   atendimento = new Atendimento();
   items: FormArray;
   filtroconvenio = new ConvenioFiltro();
-  display: boolean = true;
-  exibiratestado: boolean = false;
+  display = true;
+  exibiratestado = false;
   pacientes: any[];
   convenios: any[];
   conselhos: any[];
@@ -142,7 +142,7 @@ export class TelaAtendimentoComponent implements OnInit {
 
   }
 
-  InserirPacientes () {
+  InserirPacientes() {
     this.service.BuscarPorIdPatient(this.pacienteselecionado)
     .then( response => {
       this.atendimento.patient = response;
@@ -157,7 +157,7 @@ export class TelaAtendimentoComponent implements OnInit {
       });
   }
 
-  CarregarConvenios () {
+  CarregarConvenios() {
     this.filtroconvenio.ativo = true;
     return this.serviceconv.Consultar(this.filtroconvenio)
       .then(response => {
@@ -196,7 +196,7 @@ export class TelaAtendimentoComponent implements OnInit {
         window.open(url);
       });
 
-      this.exibiratestado = false;
+    this.exibiratestado = false;
   }
 
   Fechar() {

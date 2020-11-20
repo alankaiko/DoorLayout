@@ -1,27 +1,42 @@
-import { LaudoComponent } from './laudos/laudo/laudo.component';
+import { CadSiglaComponent } from './siglas/cad-sigla/cad-sigla.component';
+import { CadEstadoComponent } from './estados/cad-estado/cad-estado.component';
+import { CadLicenciadoComponent } from './licenciados/cad-licenciado/cad-licenciado.component';
+import { CadPacientesComponent } from './pacientes/cad-pacientes/cad-pacientes.component';
+import { ListaPacientesComponent } from './pacientes/lista-pacientes/lista-pacientes.component';
+import { CadTextopessoalComponent } from './textopessoal/cad-textopessoal/cad-textopessoal.component';
+import { ListaTextopessoalComponent } from './textopessoal/lista-textopessoal/lista-textopessoal.component';
+import { CadSolicitanteComponent } from './solicitantes/cad-solicitante/cad-solicitante.component';
+import { ListaSolicitanteComponent } from './solicitantes/lista-solicitante/lista-solicitante.component';
+import { ListaExecutanteComponent } from './executantes/lista-executante/lista-executante.component';
+import { CadExecutanteComponent } from './executantes/cad-executante/cad-executante.component';
+import { CadProcmedicoComponent } from './procmedicos/cad-procmedico/cad-procmedico.component';
+import { ListaProcmedicoComponent } from './procmedicos/lista-procmedico/lista-procmedico.component';
+import { CadGrupoexameComponent } from './grupoexames/cad-grupoexame/cad-grupoexame.component';
+import { CadConvenioComponent } from './convenios/cad-convenio/cad-convenio.component';
+import { ListaConvenioComponent } from './convenios/lista-convenio/lista-convenio.component';
+import { TelaAtendimentoComponent } from './atendimentos/tela-atendimento/tela-atendimento.component';
+import { ListaAtendimentoComponent } from './atendimentos/lista-atendimento/lista-atendimento.component';
+import { CapturaComponent } from './capturas/captura/captura.component';
 import { PaginaimagensComponent } from './laudos/paginaimagens/paginaimagens.component';
-import { CadastroSubcategoriacidComponent } from './views/formularios/cadastro-subcategoriacid.component';
-import { ListasubcategoriacidComponent } from './views/tabelas/listasubcategoriacid.component';
-import { SiglaComponent } from './views/ferramentas/sigla.component';
-import { EstadoComponent } from './views/ferramentas/estado.component';
-import { LicenciadoComponent } from './views/ferramentas/licenciado.component';
-import { InserirImagensComponent } from './laudos/inserir-imagens/inserir-imagens.component';
-import { TelaLaudoComponent } from './laudos/tela-laudo/tela-laudo.component';
-import { DefaultEspComponent } from './containers/default-esp/default-esp.component';
+import { LaudoComponent } from './laudos/laudo/laudo.component';
+import { EdicaoimagemComponent } from './capturas/edicaoimagem/edicaoimagem.component';
+import { CadSubcategoriacidComponent } from './cid/cad-subcategoriacid/cad-subcategoriacid.component';
+import { ListaSubcategoriacidComponent } from './cid/lista-subcategoriacid/lista-subcategoriacid.component';
 import { ViewerComponent } from './servidor/viewer/viewer.component';
 import { PrevisualizacaoComponent } from './servidor/previsualizacao/previsualizacao.component';
 import { ListaServidorComponent } from './servidor/lista-servidor/lista-servidor.component';
-import { EdicaoimagemComponent } from './capturas/edicaoimagem/edicaoimagem.component';
-import { CapturaComponent } from './capturas/captura/captura.component';
-import { ProcedimentoCadApendComponent } from './atendimentos/procedimento-cad-apend/procedimento-cad-apend.component';
-import { CardAtendimentoComponent } from './atendimentos/card-atendimento/card-atendimento.component';
-import { TelaAtendimentoComponent } from './atendimentos/tela-atendimento/tela-atendimento.component';
-import { ListaAtendimentoComponent } from './atendimentos/lista-atendimento/lista-atendimento.component';
+import { MenubarModule } from 'primeng/menubar';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { PaginainicioComponent } from './paginainicio/paginainicio.component';
+import { LayoutComponent } from './core/layout/layout.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { NavbarComponent } from './core/navbar/navbar.component';
+import { AppComponent } from './app.component';
 import { DataViewModule } from 'primeng/components/dataview/dataview';
 import { PanelModule } from 'primeng/components/panel/panel';
 import {ScrollPanelModule} from 'primeng/components/scrollpanel/scrollpanel';
 import {RatingModule } from 'primeng/rating';
-import { QuillModule } from 'ngx-quill';
 import { CardModule } from 'primeng/components/card/card';
 import { TableModule } from 'primeng/components/table/table';
 import { DialogModule } from 'primeng/components/dialog/dialog';
@@ -34,13 +49,6 @@ import {TabViewModule} from 'primeng/components/tabview/tabview';
 import * as $ from 'jquery';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {FileUploadModule} from 'primeng/components/fileupload/fileupload';
-import { CadastroConvenioComponent } from './views/formularios/cadastro-convenio.component';
-import { CadastroProfissionalexecComponent } from './views/formularios/cadastro-profissionalexec.component';
-import { CadastroProfissionalsolComponent } from './views/formularios/cadastro-profissionalsol.component';
-import { CadastroTextopessoalComponent } from './views/formularios/cadastro-textopessoal.component';
-import { CadastroGrupoprocedimentoComponent } from './views/formularios/cadastro-grupoprocedimento.component';
-import { CadastroPacienteComponent } from './views/formularios/cadastro-paciente.component';
-import { CadastroAbreviaturaComponent } from './views/formularios/cadastro-abreviatura.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
@@ -52,66 +60,50 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {EditorModule} from 'primeng/components/editor/editor';
 import {InputMaskModule} from 'primeng/components/inputmask/inputmask';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FieldsetModule } from 'primeng/components/fieldset/fieldset';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
-};
-
-import { AppComponent } from './app.component';
-
-// Import containers
-import { DefaultLayoutComponent } from './containers';
-
-import { P404Component } from './views/error/404.component';
-import { P500Component } from './views/error/500.component';
-import { LoginComponent } from './views/login/login.component';
-import { RegisterComponent } from './views/register/register.component';
-
-const APP_CONTAINERS = [
-  DefaultLayoutComponent,
-  DefaultEspComponent
-];
-
-import {
-  AppAsideModule,
-  AppBreadcrumbModule,
-  AppHeaderModule,
-  AppFooterModule,
-  AppSidebarModule
-} from '@coreui/angular';
-
-// Import routing module
-import { AppRoutingModule } from './app.routing';
-
-// Import 3rd party components
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ChartsModule } from 'ng2-charts';
-import { HttpClientModule } from '@angular/common/http';
-import { CadastroProcedimentomedicoComponent } from './views/formularios/cadastro-procedimentomedico.component';
-import { TextolivreComponent } from './modelos/textolivre/textolivre.component';
 
 @NgModule({
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    FooterComponent,
+    LayoutComponent,
+    PaginainicioComponent,
+    ListaServidorComponent,
+    PrevisualizacaoComponent,
+    ViewerComponent,
+    ListaSubcategoriacidComponent,
+    CadSubcategoriacidComponent,
+    EdicaoimagemComponent,
+    LaudoComponent,
+    PaginaimagensComponent,
+    CapturaComponent,
+    ListaAtendimentoComponent,
+    TelaAtendimentoComponent,
+    ListaConvenioComponent,
+    CadConvenioComponent,
+    CadGrupoexameComponent,
+    ListaProcmedicoComponent,
+    CadProcmedicoComponent,
+    CadExecutanteComponent,
+    ListaExecutanteComponent,
+    ListaSolicitanteComponent,
+    CadSolicitanteComponent,
+    ListaTextopessoalComponent,
+    CadTextopessoalComponent,
+    ListaPacientesComponent,
+    CadPacientesComponent,
+    CadLicenciadoComponent,
+    CadEstadoComponent,
+    CadSiglaComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    AppAsideModule,
-    AppBreadcrumbModule.forRoot(),
-    AppFooterModule,
-    AppHeaderModule,
-    AppSidebarModule,
-    PerfectScrollbarModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    ChartsModule,
     HttpClientModule,
     FieldsetModule,
     FormsModule,
@@ -142,48 +134,11 @@ import { TextolivreComponent } from './modelos/textolivre/textolivre.component';
     EditorModule,
     RadioButtonModule,
     SpinnerModule,
-    AccordionModule
+    AccordionModule,
+    MenubarModule,
+    FormsModule
   ],
-  declarations: [
-    AppComponent,
-    ...APP_CONTAINERS,
-    P404Component,
-    P500Component,
-    LoginComponent,
-    RegisterComponent,
-    CadastroAbreviaturaComponent,
-    CadastroPacienteComponent,
-    CadastroGrupoprocedimentoComponent,
-    CadastroTextopessoalComponent,
-    CadastroProfissionalsolComponent,
-    CadastroProfissionalexecComponent,
-    CadastroConvenioComponent,
-    CadastroProcedimentomedicoComponent,
-    ListaAtendimentoComponent,
-    TelaAtendimentoComponent,
-    CardAtendimentoComponent,
-    ProcedimentoCadApendComponent,
-    CapturaComponent,
-    EdicaoimagemComponent,
-    ListaServidorComponent,
-    PrevisualizacaoComponent,
-    ViewerComponent,
-    TelaLaudoComponent,
-    InserirImagensComponent,
-    LicenciadoComponent,
-    EstadoComponent,
-    SiglaComponent,
-    PaginaimagensComponent,
-    ListasubcategoriacidComponent,
-    CadastroSubcategoriacidComponent,
-    LaudoComponent,
-    TextolivreComponent,
-    TextolivreComponent
-  ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
-  bootstrap: [ AppComponent ]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

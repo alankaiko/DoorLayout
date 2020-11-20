@@ -1,5 +1,5 @@
-import { ServidorService } from './../../zservice/servidor.service';
 import { InstanceService } from './../../zservice/instance.service';
+import { ServidorService } from './../../zservice/servidor.service';
 import { TagImagemGamb, Instance } from './../../core/model';
 import cornerstone from 'cornerstone-core';
 import cornerstoneMath from 'cornerstone-math';

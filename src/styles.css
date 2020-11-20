@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Source Sans Pro Light";
+  src: url("assets/fonte/TTF/SourceSansPro-Light.ttf"); }
+
+
+@font-face {
+  font-family: "Source Sans Pro Semibold";
+  src: url("assets/fonte/TTF/SourceSansPro-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Source Sans Pro Black";
+  src: url("assets/fonte/TTF/SourceSansPro-Black.ttf"); }
+
+
+@font-face {
+  font-family: "Source Sans Pro Extralight";
+  src: url("assets/fonte/TTF/SourceSansPro-ExtraLight.ttf");
+}
+
+@font-face {
+  font-family: "Source Sans Pro Regular";
+  src: url("assets/fonte/TTF/SourceSansPro-Regular.ttf"); }
+
+
+@font-face {
+  font-family: "Source Sans Pro It";
+  src: url("assets/fonte/TTF/SourceSansPro-It.ttf");
+}
