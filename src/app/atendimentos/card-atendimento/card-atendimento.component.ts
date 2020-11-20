@@ -11,7 +11,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardAtendimentoComponent implements OnInit {
 // tslint:disable-next-line: no-input-rename
 @Input('atend') atendimento: Atendimento;
-visible: true;
+visible: boolean =  true;
 
 constructor(private service: AtendimentoService,
             private route: Router) { }

@@ -1,6 +1,5 @@
 
-import { AbreviaturaFiltro } from './abreviatura.service';
-import { Abreviatura, SubcategoriaCid10 } from './../core/model';
+import { SubcategoriaCid10 } from './../core/model';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';

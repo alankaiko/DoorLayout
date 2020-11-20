@@ -1,3 +1,6 @@
+import { TextolivreComponent } from './../../modelosdetexto/textolivre/textolivre.component';
+import { ModelodelaudodoprocService } from './../../zservice/modelodelaudodoproc.service';
+import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { PaginaimagensComponent } from './../paginaimagens/paginaimagens.component';
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { isEmptyObject } from 'jquery';
