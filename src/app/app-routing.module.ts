@@ -1,3 +1,4 @@
+import { ListaGrupoexameComponent } from './grupoexames/lista-grupoexame/lista-grupoexame.component';
 import { ListaSiglaComponent } from './siglas/lista-sigla/lista-sigla.component';
 import { ListaEstadoComponent } from './estados/lista-estado/lista-estado.component';
 import { ListaLicenciadoComponent } from './licenciados/lista-licenciado/lista-licenciado.component';
@@ -305,6 +306,19 @@ const routes: Routes = [
       {
         path: 'listagrupoexame/:cod',
         component: CadGrupoexameComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    data: {
+      title: 'Grupos de Procedimento'
+    },
+    children: [
+      {
+        path: 'listagrupoexame',
+        component: ListaGrupoexameComponent
       }
     ]
   },

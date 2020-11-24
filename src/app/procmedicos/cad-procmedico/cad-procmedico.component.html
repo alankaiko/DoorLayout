@@ -20,12 +20,12 @@
           <div class="linhas">
             <div class="blocodalinha" formGroupName="grupo">
               <label>Grupo</label>
-              <p-dropdown [style]="{'min-width': '90%'}" required formControlName="codigo" [options]="grupos" placeholder="Selecione o grupo" name="grupo"></p-dropdown>
+              <p-dropdown [style]="{'min-width': '90%', 'line-height': '10px'}" required formControlName="codigo" [options]="grupos" placeholder="Selecione o grupo" name="grupo"></p-dropdown>
             </div>
 
-            <div class="blocodalinha">
+            <div class="blocodalinha" style="margin-left: 5px;">
               <label style="opacity: 1%;">_</label>
-              <button type="button" class="minibotao" routerLink="/tabelas/listagrupoexame/novo">
+              <button type="button" class="minibotao" routerLink="/listagrupoexame/novo">
                 <img src="/assets/img/FKEY_WINDOW.png">
               </button>
             </div>
@@ -96,7 +96,7 @@
       <div>
         <button class="botaoprincipal" (click)="Voltar();">
           <img src="/assets/img/CANCELAR.png">
-          <span>Cancelar</span>
+          <span>Voltar</span>
         </button>
       </div>
 
@@ -104,13 +104,6 @@
         <button disabled="true" class="botaoprincipal">
           <img src="/assets/img/IMPRESSORA.png">
           <span>Imprimir</span>
-        </button>
-      </div>
-
-      <div>
-        <button class="botaoprincipal" routerLink="/tabelas/listaexameprocmedico">
-          <img src="/assets/img/PRINT_VIEW.png">
-          <span>Voltar</span>
         </button>
       </div>
     </div>

@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 
 export class GrupoProcedimentoFiltro {
   pagina = 0;
-  itensPorPagina = 7;
-  nome: string;
+  itensPorPagina = 30;
+  nomegrupo: string;
 }
 
 @Injectable({
@@ -31,8 +31,8 @@ export class GrupoprocedimentoService {
       }
     });
 
-    if (filtro.nome) {
-      params = params.append('nome', filtro.nome);
+    if (filtro.nomegrupo) {
+      params = params.append('nomegrupo', filtro.nomegrupo);
     }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })
@@ -61,6 +61,10 @@ export class GrupoprocedimentoService {
         const grupoprocedimento = response as GrupoProcedimento;
         return grupoprocedimento;
       });
+  }
+
+  BuscarListaPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
   }
 
   Atualizar(grupoprocedimento: GrupoProcedimento): Promise<any> {

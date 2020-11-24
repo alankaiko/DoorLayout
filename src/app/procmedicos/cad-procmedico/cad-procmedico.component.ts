@@ -74,7 +74,7 @@ export class CadProcmedicoComponent implements OnInit {
   AdicionarProcedimentoMedico() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/tabelas/listaexameprocmedico']);
+        this.route.navigate(['/listaexameprocmedico']);
       });
   }
 
@@ -82,7 +82,7 @@ export class CadProcmedicoComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(procedimento => {
         this.formulario.patchValue(procedimento);
-        this.route.navigate(['/tabelas/listaexameprocmedico']);
+        this.route.navigate(['/listaexameprocmedico']);
       });
   }
 
@@ -91,6 +91,6 @@ export class CadProcmedicoComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

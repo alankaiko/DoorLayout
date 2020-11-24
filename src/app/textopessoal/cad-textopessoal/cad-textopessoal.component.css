@@ -4,8 +4,11 @@
 }
 
 :host /deep/ p-inputmask .ui-inputtext{
-  font-size: 72%;
-  width: 95%;
+  width: 98%;
+  height: 20px;
+  color: #000;
+  border-radius: 1px;
+  padding: 0;
 }
 
 :host /deep/ p-dialog .ui-dialog {
@@ -31,7 +34,7 @@
 
 :host /deep/ p-dialog .ui-dialog .ui-dialog-content {
   width: 788px;
-  height: 304px;
+  height: 344px;
   border-left: 2px solid #A5A9B2;
   border-bottom: 2px solid #A5A9B2;
   border-right: 2px solid #A5A9B2;
@@ -64,7 +67,7 @@
 }
 
 :host /deep/ p-tabview .ui-tabview-panels {
-  height: 180px;
+  height: 220px;
 }
 
 :host /deep/ p-tabview .ui-tabview-nav .ui-tabview-selected{
@@ -81,41 +84,10 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
 }
 
-:host /deep/ p-calendar .ui-calendar {
-  padding: 0;
-  border-radius: 3px;
-}
-
-:host /deep/ p-calendar .ui-calendar span{
-  width: 95%;
-}
-
-:host /deep/ p-calendar .ui-calendar input {
-  width: 95%;
-}
-
-:host /deep/ p-calendar .ui-datepicker{
-  background-color: #fff;
-}
-
-:host /deep/ p-calendar .ui-datepicker .ui-datepicker-calendar-container .ui-datepicker-calendar .ng-tns-c3-2 td:hover{
-  background-color: #a3a2a2;
-  color: #CC0000;
-}
-
-:host /deep/ p-calendar .ui-calendar input{
-  padding: 0;
-}
-
-:host /deep/  p-calendar .ui-calendar:hover {
-  background-color: rgb(158, 150, 150);
-  border: 1px solid rgb(158, 150, 150);
-}
-
 .corpo {
   width: 100%;
   margin: 0 auto;
-  height: 223px;
+  height: 263px;
 }
 
 .linhas {
@@ -124,9 +96,7 @@
 }
 
 .blocodalinha {
-  padding-top: 18px;
   display: inline-grid;
-  line-height: 0;
 }
 
 label {
@@ -193,15 +163,15 @@ input {
 }
 
 .minibotao {
+  height: 20px;
   color: rgb(73, 71, 71);
   background-color: rgb(233, 233, 233);
   text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
   border: 1px solid #949393;
-  border-radius: 5px;
+  border-radius: 2px;
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-  line-height: 1.4;
   margin: 0 auto;
 }
 

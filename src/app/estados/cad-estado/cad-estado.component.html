@@ -1,60 +1,104 @@
-<div class="page-content">
-  <div class="page-header">
-    <h1>
-      Estados
-      <small>
-        <i class="ace-icon fa fa-angle-double-right"></i>
-        Cadastro
-      </small>
-    </h1>
-  </div><!-- /.page-header -->
-
-  <div class="row">
-    <div class="col-xs-12">
-      <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()" class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">Código</label>
-          <div class="col-sm-9">
-            <input [readonly]= "true" class="col-xs-10 col-sm-5" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+<p-dialog header="Estados" [(visible)]="display">
+  <div class="corpo">
+    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+      <p-tabView>
+        <p-tabPanel header="Dados Principais">
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 20%;">
+              <label>Código</label>
+              <input style="width: 90%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">UF</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="uf" formControlName="uf" class="form-control"/>
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 80%;">
+              <label>UF</label>
+              <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="uf" formControlName="uf"/>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label class="col-sm-3 control-label no-padding-right">Descrição</label>
-          <div class="col-sm-9">
-            <input pInputText ng-model="text" name="descricao" formControlName="descricao" class="form-control"/>
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 80%;">
+              <label>Descrição</label>
+              <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="descricao" formControlName="descricao"/>
+            </div>
           </div>
-        </div>
+        </p-tabPanel>
+      </p-tabView>
+    </form>
+  </div>
 
-        <div class="space-4"></div>
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
 
-        <div class="clearfix form-actions">
-          <div class="col-md-offset-3 col-md-9">
-            <button class="btn btn-info" type="submit">
-              <i class="ace-icon fa fa-check bigger-110"></i>
-              Salvar
-            </button>
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
 
-            &nbsp; &nbsp; &nbsp;
-            <button class="btn" type="reset">
-              <i class="ace-icon fa fa-undo bigger-110"></i>
-              Limpar
-            </button>
-          </div>
-          <div style="text-align: right;">
-            <a style="color: #007bff; text-decoration: underline;" (click)="Voltar();">Retornar</a>
-          </div>
-        </div>
-      </form>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-</div><!-- /.page-content -->
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
 
+      <div>
+        <button disabled="true" type="button" class="botaoprincipal" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
 
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/listaestado/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Salvar()">
+          <img src="/assets/img/SALVAR.png">
+          <span>Salvar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Cancelar</span>
+        </button>
+      </div>
+
+      <div>
+        <button disabled="true" class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</p-dialog>

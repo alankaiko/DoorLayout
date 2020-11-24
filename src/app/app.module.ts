@@ -1,3 +1,4 @@
+import { ListaGrupoexameComponent } from './grupoexames/lista-grupoexame/lista-grupoexame.component';
 import { ListaSiglaComponent } from './siglas/lista-sigla/lista-sigla.component';
 import { ListaLicenciadoComponent } from './licenciados/lista-licenciado/lista-licenciado.component';
 import { ListaEstadoComponent } from './estados/lista-estado/lista-estado.component';
@@ -104,7 +105,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CadSiglaComponent,
     ListaEstadoComponent,
     ListaLicenciadoComponent,
-    ListaSiglaComponent
+    ListaSiglaComponent,
+    ListaGrupoexameComponent
   ],
   imports: [
     BrowserModule,

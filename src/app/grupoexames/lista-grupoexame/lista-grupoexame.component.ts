@@ -1,10 +1,9 @@
-import { FormGroup } from '@angular/forms';
-import { MessageService } from 'primeng/components/common/messageservice';
-import { GrupoprocedimentoService, GrupoProcedimentoFiltro } from './../../zservice/grupoprocedimento.service';
-import { Router } from '@angular/router';
+import { GrupoProcedimentoFiltro, GrupoprocedimentoService } from './../../zservice/grupoprocedimento.service';
 import { GrupoProcedimento } from './../../core/model';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/api';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-lista-grupoexame',
@@ -16,37 +15,50 @@ export class ListaGrupoexameComponent implements OnInit {
   grupo: GrupoProcedimento;
   totalRegistros = 0;
   filtro = new GrupoProcedimentoFiltro();
-  camposbusca: SelectItem[];
-  formulario: FormGroup;
+  camposbusca: any[];
   display = true;
   exclusao = false;
 
   constructor(private service: GrupoprocedimentoService,
-              private route: Router) { }
+              private route: Router,
+              private location: Location) {
+              }
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Nome', value: {id: 1, name: 'Nome', code: '1'}},
-      {label: 'Codigo', value: {id: 2, name: 'Codigo', code: '2'}}
+      {label: 'Nome'},
+      {label: 'Codigo'}
     ];
 
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
-  onRowSelect(event) {
-    this.grupo = event.data;
-  }
-
   Alterar() {
     if (this.grupo?.codigo != null) {
-      this.route.navigate(['/tabelas/listagrupoexame', this.grupo.codigo]);
+      this.route.navigate(['/listagrupoexame', this.grupo.codigo]);
     }
   }
 
+  PrimeiraSelecao() {
+    this.grupo = this.grupos[0];
+  }
+
+  UltimaSelecao() {
+    this.grupo = this.grupos[this.grupos.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.grupos.indexOf(this.grupo);
+    this.grupo = this.grupos[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.grupos.indexOf(this.grupo);
+    this.grupo = this.grupos[valor - 1];
+  }
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
-
     return this.service.Consultar(this.filtro)
       .then(response => {
         this.totalRegistros = response.total;
@@ -54,25 +66,37 @@ export class ListaGrupoexameComponent implements OnInit {
       }).catch(erro => console.log(erro));
   }
 
-
-  ConfigurarVariavel(event) {
+  BuscaDinamica() {
+    const drop = $('#codigodrop :selected').text();
     const texto = document.getElementById('buscando') as HTMLInputElement;
-    this.filtro.nome = texto.value;
-    this.Consultar();
 
+    setTimeout (() => {
+      if (drop === 'Nome') {
+        this.filtro.nomegrupo = texto.value;
+        this.Consultar();
+      }
+
+      if ((drop === 'Codigo') && (texto.value !== '')) {
+        const numero = +texto.value;
+        return this.service.BuscarListaPorId(numero)
+          .then(response => {
+            this.grupos = response;
+          }).catch(erro => console.log(erro));
+      }
+    }, 1000);
   }
 
   AtivarExcluir() {
-    this.exclusao = true;
+    if (this.grupo.codigo != null) {
+      this.exclusao = true;
+    }
   }
 
 
   Excluir() {
-    this.service.Remover(this.grupo.codigo)
-      .then(() => {})
-      .catch(erro => erro);
+    this.service.Remover(this.grupo.codigo).then(() => {}).catch(erro => erro);
     this.exclusao = false;
-    setTimeout (() => this.Consultar(), 0);
+    setTimeout (() => this.Consultar(), 100);
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -80,7 +104,11 @@ export class ListaGrupoexameComponent implements OnInit {
     this.Consultar(pagina);
   }
 
+  Voltar() {
+    this.location.back();
+  }
+
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

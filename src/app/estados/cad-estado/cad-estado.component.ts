@@ -1,27 +1,24 @@
-import { EstadosService } from './../../zservice/estados.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { MessageService } from 'primeng/components/common/messageservice';
-import { Router, ActivatedRoute } from '@angular/router';
-import {ConfirmationService} from 'primeng/api';
 import { Estado } from './../../core/model';
+import { EstadosService } from './../../zservice/estados.service';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-cad-estado',
   templateUrl: './cad-estado.component.html',
-  styleUrls: ['./cad-estado.component.css'],
-  providers: [ MessageService , ConfirmationService]
+  styleUrls: ['./cad-estado.component.css']
 })
 export class CadEstadoComponent implements OnInit {
   formulario: FormGroup;
+  display = true;
 
-  constructor(
-    private service: EstadosService,
-    private rota: ActivatedRoute,
-    private formbuilder: FormBuilder,
-    private route: Router,
-    private location: Location) {
+  constructor(private service: EstadosService,
+              private rota: ActivatedRoute,
+              private formbuilder: FormBuilder,
+              private route: Router,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -29,8 +26,10 @@ export class CadEstadoComponent implements OnInit {
     const codestado = this.rota.snapshot.params.cod;
 
     if (codestado) {
-      this.CarregarEstados(codestado);
+      this.CarregarEstado(codestado);
     }
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {
@@ -45,8 +44,8 @@ export class CadEstadoComponent implements OnInit {
     });
   }
 
-  CarregarEstados(codigo: number) {
-    this.service.BuscarPorId(codigo).then(estado => this.formulario.patchValue(estado));
+  CarregarEstado(codigo: number) {
+    this.service.BuscarPorId(codigo).then(texto => this.formulario.patchValue(texto));
   }
 
   Salvar() {
@@ -54,6 +53,7 @@ export class CadEstadoComponent implements OnInit {
       this.AtualizarEstado();
     } else {
       this.formulario.patchValue(this.AdicionarEstado());
+      this.route.navigate(['/listaestado/novo']);
     }
     this.CriarFormulario(new Estado());
   }
@@ -61,20 +61,23 @@ export class CadEstadoComponent implements OnInit {
   AdicionarEstado() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/ferramentas/listaestado']);
+        this.route.navigate(['/listaestado']);
       });
-
   }
 
   AtualizarEstado() {
     this.service.Atualizar(this.formulario.value)
-      .then(estado => {
-        this.formulario.patchValue(estado);
-        this.route.navigate(['/ferramentas/listaestado']);
+      .then(sigla => {
+        this.formulario.patchValue(sigla);
+        this.route.navigate(['/listatextopessoal']);
       });
   }
 
   Voltar() {
     this.location.back();
+  }
+
+  Fechar() {
+    this.route.navigate(['/home']);
   }
 }
