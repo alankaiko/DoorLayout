@@ -36,8 +36,8 @@ export class ConvenioService {
       params = params.append('ativo', 'true');
     }
 
-    if (filtro.ativo) {
-      params = params.append('ativo', filtro.nome);
+    if (filtro.nome) {
+      params = params.append('nome', filtro.nome);
     }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })

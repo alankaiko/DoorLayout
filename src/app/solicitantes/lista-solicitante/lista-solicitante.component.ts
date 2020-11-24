@@ -1,10 +1,10 @@
 import { FormGroup } from '@angular/forms';
-import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
 import { ProfissionalsolicitanteService, ProfissionalSolicitanteFiltro } from './../../zservice/profissionalsolicitante.service';
 import { ProfissionalSolicitante } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-lista-solicitante',
@@ -22,7 +22,8 @@ export class ListaSolicitanteComponent implements OnInit {
   exclusao = false;
 
   constructor(private service: ProfissionalsolicitanteService,
-              private route: Router) { }
+              private route: Router,
+              private location: Location) { }
 
   ngOnInit() {
     this.camposbusca = [
@@ -39,10 +40,27 @@ export class ListaSolicitanteComponent implements OnInit {
 
   Alterar() {
     if (this.profissional?.codigo != null) {
-      this.route.navigate(['/tabelas/listaprofsolicitante', this.profissional.codigo]);
+      this.route.navigate(['/listaprofsolicitante', this.profissional.codigo]);
     }
   }
 
+  PrimeiraSelecao() {
+    this.profissional = this.profissionaissol[0];
+  }
+
+  UltimaSelecao() {
+    this.profissional = this.profissionaissol[this.profissionaissol.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.profissionaissol.indexOf(this.profissional);
+    this.profissional = this.profissionaissol[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.profissionaissol.indexOf(this.profissional);
+    this.profissional = this.profissionaissol[valor - 1];
+  }
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
@@ -76,16 +94,16 @@ export class ListaSolicitanteComponent implements OnInit {
 
 
   AtivarExcluir() {
-    this.exclusao = true;
+    if (this.profissional.codigo != null) {
+      this.exclusao = true;
+    }
   }
 
 
   Excluir() {
-    this.service.Remover(this.profissional.codigo)
-      .then(() => {})
-      .catch(erro => erro);
+    this.service.Remover(this.profissional.codigo).then(() => {}).catch(erro => erro);
     this.exclusao = false;
-    setTimeout (() => this.Consultar(), 0);
+    setTimeout (() => this.Consultar(), 100);
   }
 
 
@@ -94,8 +112,12 @@ export class ListaSolicitanteComponent implements OnInit {
     this.Consultar(pagina);
   }
 
+  Voltar() {
+    this.location.back();
+  }
+
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 
 }

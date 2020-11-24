@@ -4,6 +4,7 @@ import { TextopessoalService, TextoPessoalFiltro } from './../../zservice/textop
 import { TextoPessoal } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-lista-textopessoal',
@@ -21,7 +22,8 @@ export class ListaTextopessoalComponent implements OnInit {
   exclusao = false;
 
   constructor(private service: TextopessoalService,
-              private route: Router) { }
+              private route: Router,
+              private location: Location) { }
 
   ngOnInit() {
     this.camposbusca = [
@@ -39,8 +41,26 @@ export class ListaTextopessoalComponent implements OnInit {
 
   Alterar() {
     if (this.texto?.codigo != null) {
-      this.route.navigate(['/tabelas/listatextopessoal', this.texto.codigo]);
+      this.route.navigate(['/listatextopessoal', this.texto.codigo]);
     }
+  }
+
+  PrimeiraSelecao() {
+    this.texto = this.textospessoais[0];
+  }
+
+  UltimaSelecao() {
+    this.texto = this.textospessoais[this.textospessoais.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.textospessoais.indexOf(this.texto);
+    this.texto = this.textospessoais[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.textospessoais.indexOf(this.texto);
+    this.texto = this.textospessoais[valor - 1];
   }
 
   Consultar(pagina = 0): Promise<any> {
@@ -75,16 +95,16 @@ export class ListaTextopessoalComponent implements OnInit {
 
 
   AtivarExcluir() {
-    this.exclusao = true;
+    if (this.texto.codigo != null) {
+      this.exclusao = true;
+    }
   }
 
 
   Excluir() {
-    this.service.Remover(this.texto.codigo)
-      .then(() => {})
-      .catch(erro => erro);
+    this.service.Remover(this.texto.codigo).then(() => {}).catch(erro => erro);
     this.exclusao = false;
-    setTimeout (() => this.Consultar(), 0);
+    setTimeout (() => this.Consultar(), 100);
   }
 
 
@@ -93,7 +113,11 @@ export class ListaTextopessoalComponent implements OnInit {
     this.Consultar(pagina);
   }
 
+  Voltar() {
+    this.location.back();
+  }
+
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

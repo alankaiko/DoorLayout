@@ -1,21 +1,20 @@
 <p-dialog header="Texto Pessoal" [(visible)]="display">
   <div class="menubuscar">
     <form #f="ngForm" autocomplete="off" class="formu">
-      <div class="ui-g-6">
+      <div class="ui-g-8">
         <label>Buscar: </label>
         <input id="buscando" pInputText ng-model="text"  style="width: 85%;" (keypress)="BuscaDinamica()"/>
       </div>
 
-      <div class="ui-g-6">
+      <div class="ui-g-4">
         <label>no campo: </label>
-        <p-dropdown id="codigodrop" [options]="camposbusca"></p-dropdown>
+        <p-dropdown [style]="{'min-width': '65%'}" id="codigodrop" [options]="camposbusca"></p-dropdown>
       </div>
     </form>
   </div>
 
   <div class="table-responsive corpo">
     <p-table [value]="textospessoais" [responsive]="true" [scrollable]="true"
-      class="table table-striped table-bordered table-hover" (onRowSelect)="onRowSelect($event)"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
       selectionMode="single" [(selection)]="texto" dataKey="codigo">
 
@@ -29,7 +28,7 @@
       <ng-template pTemplate="body" let-texto>
         <tr [pSelectableRow]="texto">
           <td style="text-align: right; width: 10%;">{{texto?.codigo}}</td>
-          <td style="text-transform: uppercase;"><a [routerLink]="['/tabelas/listatextopessoal', texto.codigo]">{{texto?.abreviatura}}</a></td>
+          <td style="text-transform: uppercase;"><a [routerLink]="['/listatextopessoal', texto.codigo]">{{texto?.abreviatura}}</a></td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
@@ -45,34 +44,34 @@
   <div class="botoes ui-g-12">
     <div class="botao">
       <div>
-        <button type="button" class="botaoprincipal">
+        <button type="button" class="botaoprincipal" (click)="PrimeiraSelecao()">
           <img src="/assets/img/primeiro.png">
           <span>Primeiro</span>
         </button>
       </div>
 
       <div>
-        <button type="button" class="botaoprincipal">
+        <button type="button" class="botaoprincipal" (click)="AnteriorSelecao()">
           <img src="/assets/img/ANTERIOR.png">
           <span>Anterior</span>
         </button>
       </div>
 
       <div>
-        <button type="button" class="botaoprincipal">
+        <button type="button" class="botaoprincipal" (click)="ProximaSelecao()">
           <img src="/assets/img/PROXIMO.png">
           <span>Próximo</span>
         </button>
       </div>
 
       <div>
-        <button type="button" class="botaoprincipal" style="margin-right: 10px;">
+        <button type="button" class="botaoprincipal" (click)="UltimaSelecao()" style="margin-right: 10px;">
           <img src="/assets/img/ultimo.png">
           <span>Último</span>
         </button>
       </div>
       <div>
-        <button type="button" class="botaoprincipal" routerLink="/tabelas/listatextopessoal/novo">
+        <button type="button" class="botaoprincipal" routerLink="/listatextopessoal/novo">
           <img src="/assets/img/ADICIONAR.png">
           <span>Adicionar</span>
         </button>
@@ -93,9 +92,9 @@
       </div>
 
       <div>
-        <button class="botaoprincipal">
+        <button class="botaoprincipal" (click)="Voltar();">
           <img src="/assets/img/CANCELAR.png">
-          <span>Cancelar</span>
+          <span>Voltar</span>
         </button>
       </div>
 
@@ -117,7 +116,7 @@
 </p-dialog>
 
 
-<p-dialog header="Excluir {{texto?.abreviatura}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
+<p-dialog class="excluir" header="Excluir {{texto?.abreviatura}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '30vw'}">
   <span>DESEJA EXCLUIR O REGISTRO => {{texto?.abreviatura}}?</span>
 
   <p-footer>

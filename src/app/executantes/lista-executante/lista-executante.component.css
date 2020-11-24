@@ -3,16 +3,11 @@
   border-top: 1px solid #b9b8b8;
 }
 
-:host /deep/ p-table {
-  background-color:#ffffff;
-  border: 1px solid #b9b8b8;
-  margin-top: -1px;
-}
-
 :host /deep/ p-dropdown .ui-dropdown{
-  border:1px solid #428bca;
+  border: 1px solid #428bca;
   background-color: #fff;
   border-radius: 3px;
+  line-height: 10px;
 }
 
 :host /deep/ p-dropdown .ui-dropdown-items {
@@ -28,7 +23,7 @@
 :host /deep/ p-dialog .ui-dialog {
   border: 1px solid rgba(0, 0, 0, 0.438);
   border-radius: 2px;
-  background-color: #D6D9DF;
+  background-color: #D6D9E0;
 }
 
 :host /deep/ p-dialog .ui-dialog-titlebar {
@@ -48,7 +43,14 @@
 
 :host /deep/ p-dialog .ui-dialog .ui-dialog-content {
   width: 788px;
-  height: 344px;
+  border-left: 2px solid #A5A9B2;
+  border-bottom: 2px solid #A5A9B2;
+  border-right: 2px solid #A5A9B2;
+  position: relative;
+}
+
+:host /deep/ p-dialog.excluir .ui-dialog .ui-widget-content {
+  width: 100%;
   border-left: 2px solid #A5A9B2;
   border-bottom: 2px solid #A5A9B2;
   border-right: 2px solid #A5A9B2;
@@ -70,6 +72,49 @@
 
 }
 
+:host /deep/ p-table {
+  background-color:#ffffff;
+  border: 1px solid #b9b8b8;
+  margin-top: -1px;
+  display: table;
+  font-size: 70%;
+  position: static;
+}
+
+:host /deep/ p-table .ui-table {
+  height: 210px;
+}
+
+:host /deep/ p-table .ui-table .ui-table-scrollable-body{
+  font-size: 70%;
+  height: 190px;
+  background-color: #fff;
+}
+
+:host /deep/ p-table .ui-table-tbody .ui-selectable-row:hover{
+  background-color: rgba(84, 104, 138, 0.342);
+}
+
+:host /deep/ p-table .ui-table .ui-table-tbody > tr > td{
+  padding: 0 0.5em;
+}
+
+:host /deep/ p-table .ui-table .ui-table-thead > tr > th{
+  padding: 0;
+}
+
+:host /deep/ p-checkbox {
+  border-radius: 2px;
+}
+
+:host /deep/ p-checkbox .ui-chkbox-box{
+  width: 18px;
+  height: 18px;
+}
+
+:host /deep/ p-checkbox .ui-chkbox-box .ui-chkbox-icon{
+  font-size: 16px;
+}
 .formu {
   width: 100%;
 }
@@ -77,13 +122,13 @@
 #buscando {
   border-radius: 3px;
   width: 80%;
-  height: 29px;
+  height: 24px;
   border:1px solid #428bca;
 }
 
 .menubuscar {
   width: 100%;
-  height: 50px;
+  height: 40px;
   margin: 0 auto;
   border: 1px solid #838383;
 }
@@ -102,29 +147,6 @@
   margin-top: 5px;
   border: 1px solid #838383;
   position: relative;
-}
-
-:host /deep/ p-table {
-  font-size: 82%;
-  position: static;
-}
-
-:host /deep/ p-table .ui-table {
-  height: 210px;
-}
-
-:host /deep/ p-table .ui-table  .ui-table-scrollable-body{
-  font-size: 90%;
-  background-color: #fff;
-}
-
-:host /deep/ p-table .ui-table-tbody .ui-selectable-row:hover{
-  background-color: rgba(84, 104, 138, 0.342);
-}
-
-:host /deep/ p-checkbox {
-  border: 1px solid;
-  border-radius: 2px;
 }
 
 .botao {

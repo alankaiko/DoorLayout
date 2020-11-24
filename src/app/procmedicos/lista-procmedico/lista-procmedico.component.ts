@@ -4,6 +4,7 @@ import { ProcedimentomedicoService, ProcedimentoMedicoFiltro } from './../../zse
 import { ProcedimentoMedico } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-lista-procmedico',
@@ -21,7 +22,8 @@ export class ListaProcmedicoComponent implements OnInit {
   exclusao = false;
 
   constructor(private service: ProcedimentomedicoService,
-              private route: Router) { }
+              private route: Router,
+              private location: Location) { }
 
   ngOnInit() {
     this.camposbusca = [
@@ -39,8 +41,26 @@ export class ListaProcmedicoComponent implements OnInit {
 
   Alterar() {
     if (this.procedimento.codigo != null) {
-      this.route.navigate(['/tabelas/listaexameprocmedico', this.procedimento.codigo]);
+      this.route.navigate(['/listaexameprocmedico', this.procedimento.codigo]);
     }
+  }
+
+  PrimeiraSelecao() {
+    this.procedimento = this.procedimentos[0];
+  }
+
+  UltimaSelecao() {
+    this.procedimento = this.procedimentos[this.procedimentos.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.procedimentos.indexOf(this.procedimento);
+    this.procedimento = this.procedimentos[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.procedimentos.indexOf(this.procedimento);
+    this.procedimento = this.procedimentos[valor - 1];
   }
 
   Consultar(pagina = 0): Promise<any> {
@@ -82,16 +102,16 @@ export class ListaProcmedicoComponent implements OnInit {
 
 
   AtivarExcluir() {
-    this.exclusao = true;
+    if (this.procedimento.codigo != null) {
+      this.exclusao = true;
+    }
   }
 
 
   Excluir() {
-    this.service.Remover(this.procedimento.codigo)
-      .then(() => {})
-      .catch(erro => erro);
+    this.service.Remover(this.procedimento.codigo).then(() => {}).catch(erro => erro);
     this.exclusao = false;
-    setTimeout (() => this.Consultar(), 0);
+    setTimeout (() => this.Consultar(), 100);
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -99,8 +119,12 @@ export class ListaProcmedicoComponent implements OnInit {
     this.Consultar(pagina);
   }
 
+  Voltar() {
+    this.location.back();
+  }
+
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }
 

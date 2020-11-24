@@ -21,7 +21,6 @@ export class ListaConvenioComponent implements OnInit {
   display = true;
   exclusao = false;
 
-
   constructor(private service: ConvenioService,
               private route: Router,
               private location: Location) {
@@ -36,16 +35,30 @@ export class ListaConvenioComponent implements OnInit {
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
-  onRowSelect(event) {
-    this.convenio = event.data;
-  }
-
   Alterar() {
     if (this.convenio?.codigo != null) {
-      this.route.navigate(['/tabelas/listaconvenio', this.convenio.codigo]);
+      this.route.navigate(['/listaconvenio', this.convenio.codigo]);
     }
+
   }
 
+  PrimeiraSelecao() {
+    this.convenio = this.convenios[0];
+  }
+
+  UltimaSelecao() {
+    this.convenio = this.convenios[this.convenios.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.convenios.indexOf(this.convenio);
+    this.convenio = this.convenios[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.convenios.indexOf(this.convenio);
+    this.convenio = this.convenios[valor - 1];
+  }
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
@@ -77,14 +90,16 @@ export class ListaConvenioComponent implements OnInit {
   }
 
   AtivarExcluir() {
-    this.exclusao = true;
+    if (this.convenio.codigo != null) {
+      this.exclusao = true;
+    }
   }
 
 
   Excluir() {
     this.service.Remover(this.convenio.codigo).then(() => {}).catch(erro => erro);
     this.exclusao = false;
-    setTimeout (() => this.Consultar(), 0);
+    setTimeout (() => this.Consultar(), 100);
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -97,6 +112,6 @@ export class ListaConvenioComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

@@ -1,21 +1,20 @@
 <p-dialog header="Pacientes" [(visible)]="display">
   <div class="menubuscar">
     <form #f="ngForm" autocomplete="off" class="formu">
-      <div class="ui-g-6">
+      <div class="ui-g-8">
         <label>Buscar: </label>
         <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
       </div>
 
-      <div class="ui-g-6">
+      <div class="ui-g-4">
         <label>no campo: </label>
-        <p-dropdown id="codigodrop" [options]="camposbusca"></p-dropdown>
+        <p-dropdown [style]="{'min-width': '65%'}" id="codigodrop" [options]="camposbusca"></p-dropdown>
       </div>
     </form>
   </div>
 
   <div class="table-responsive corpo">
     <p-table [value]="patients" [responsive]="true" [scrollable]="true"
-      class="table table-striped table-bordered table-hover" (onRowSelect)="onRowSelect($event)"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
       selectionMode="single" [(selection)]="patient" dataKey="idpatient" [virtualScroll]="true">
 
@@ -31,7 +30,7 @@
       <ng-template pTemplate="body" let-patient>
         <tr [pSelectableRow]="patient">
           <td style="width: 10%;">{{patient?.idpatient}}</td>
-          <td style="text-transform: uppercase; width: 45%;"><a [routerLink]="['/tabelas/listapaciente', patient.idpatient]">{{patient?.patientname}}</a></td>
+          <td style="text-transform: uppercase; width: 45%;"><a [routerLink]="['/listapaciente', patient.idpatient]">{{patient?.patientname}}</a></td>
           <td style="width: 25%;">{{patient?.birthday | date:'dd/MM/yyyy' }}</td>
           <td style="width: 20%;">{{patient?.datecreate | date:'dd/MM/yyyy' }}</td>
         </tr>
@@ -49,34 +48,34 @@
   <div class="botoes ui-g-12">
     <div class="botao">
       <div>
-        <button type="button" class="botaoprincipal">
+        <button type="button" class="botaoprincipal" (click)="PrimeiraSelecao()">
           <img src="/assets/img/primeiro.png">
           <span>Primeiro</span>
         </button>
       </div>
 
       <div>
-        <button type="button" class="botaoprincipal">
+        <button type="button" class="botaoprincipal" (click)="AnteriorSelecao()">
           <img src="/assets/img/ANTERIOR.png">
           <span>Anterior</span>
         </button>
       </div>
 
       <div>
-        <button type="button" class="botaoprincipal">
+        <button type="button" class="botaoprincipal" (click)="ProximaSelecao()">
           <img src="/assets/img/PROXIMO.png">
           <span>Próximo</span>
         </button>
       </div>
 
       <div>
-        <button type="button" class="botaoprincipal" style="margin-right: 10px;">
+        <button type="button" class="botaoprincipal" (click)="UltimaSelecao()" style="margin-right: 10px;">
           <img src="/assets/img/ultimo.png">
           <span>Último</span>
         </button>
       </div>
       <div>
-        <button type="button" class="botaoprincipal" routerLink="/tabelas/listapaciente/novo">
+        <button type="button" class="botaoprincipal" routerLink="/listapaciente/novo">
           <img src="/assets/img/ADICIONAR.png">
           <span>Adicionar</span>
         </button>
@@ -99,7 +98,7 @@
       <div>
         <button class="botaoprincipal" (click)="Voltar();">
           <img src="/assets/img/CANCELAR.png">
-          <span>Cancelar</span>
+          <span>Voltar</span>
         </button>
       </div>
 
@@ -121,7 +120,7 @@
 </p-dialog>
 
 
-<p-dialog header="Excluir {{patient?.patientname}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '20vw'}">
+<p-dialog class="excluir" header="Excluir {{patient?.patientname}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '30vw'}">
   <span>DESEJA EXCLUIR O REGISTRO => {{patient?.patientname}}?</span>
 
   <p-footer>

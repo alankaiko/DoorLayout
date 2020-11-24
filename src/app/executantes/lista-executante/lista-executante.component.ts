@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProfissionalExecutante } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-lista-executante',
@@ -21,7 +22,8 @@ export class ListaExecutanteComponent implements OnInit {
   exclusao = false;
 
   constructor(private service: ProfissionalexecutanteService,
-              private route: Router) { }
+              private route: Router,
+              private location: Location) { }
 
   ngOnInit() {
     this.camposbusca = [
@@ -38,8 +40,26 @@ export class ListaExecutanteComponent implements OnInit {
 
   Alterar() {
     if (this.profissional?.codigo != null) {
-      this.route.navigate(['/tabelas/listaprofexecutante', this.profissional.codigo]);
+      this.route.navigate(['/listaprofexecutante', this.profissional.codigo]);
     }
+  }
+
+  PrimeiraSelecao() {
+    this.profissional = this.profissionaisexec[0];
+  }
+
+  UltimaSelecao() {
+    this.profissional = this.profissionaisexec[this.profissionaisexec.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.profissionaisexec.indexOf(this.profissional);
+    this.profissional = this.profissionaisexec[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.profissionaisexec.indexOf(this.profissional);
+    this.profissional = this.profissionaisexec[valor - 1];
   }
 
   Consultar(pagina = 0): Promise<any> {
@@ -73,16 +93,16 @@ export class ListaExecutanteComponent implements OnInit {
   }
 
   AtivarExcluir() {
-    this.exclusao = true;
+    if (this.profissional.codigo != null) {
+      this.exclusao = true;
+    }
   }
 
 
   Excluir() {
-    this.service.Remover(this.profissional.codigo)
-      .then(() => {})
-      .catch(erro => erro);
+    this.service.Remover(this.profissional.codigo).then(() => {}).catch(erro => erro);
     this.exclusao = false;
-    setTimeout (() => this.Consultar(), 0);
+    setTimeout (() => this.Consultar(), 100);
   }
 
 
@@ -91,7 +111,11 @@ export class ListaExecutanteComponent implements OnInit {
     this.Consultar(pagina);
   }
 
+  Voltar() {
+    this.location.back();
+  }
+
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

@@ -95,7 +95,7 @@ export class CadConvenioComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 
 }

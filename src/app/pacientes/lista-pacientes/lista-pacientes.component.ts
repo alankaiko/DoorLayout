@@ -43,10 +43,27 @@ export class ListaPacientesComponent implements OnInit {
 
   Alterar() {
     if (this.patient.idpatient != null) {
-      this.route.navigate(['/tabelas/listapaciente', this.patient.idpatient]);
+      this.route.navigate(['/listapaciente', this.patient.idpatient]);
     }
   }
 
+  PrimeiraSelecao() {
+    this.patient = this.patients[0];
+  }
+
+  UltimaSelecao() {
+    this.patient = this.patients[this.patients.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.patients.indexOf(this.patient);
+    this.patient = this.patients[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.patients.indexOf(this.patient);
+    this.patient = this.patients[valor - 1];
+  }
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
@@ -81,7 +98,9 @@ export class ListaPacientesComponent implements OnInit {
   }
 
   AtivarExcluir() {
-    this.exclusao = true;
+    if (this.patient.idpatient != null) {
+      this.exclusao = true;
+    }
   }
 
 
@@ -90,7 +109,7 @@ export class ListaPacientesComponent implements OnInit {
       .then(() => {})
       .catch(erro => erro);
     this.exclusao = false;
-    setTimeout (() => this.Consultar(), 0);
+    setTimeout (() => this.Consultar(), 100);
   }
 
 
@@ -100,7 +119,7 @@ export class ListaPacientesComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 
   Voltar() {
