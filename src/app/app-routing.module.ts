@@ -1,3 +1,6 @@
+import { ListaSiglaComponent } from './siglas/lista-sigla/lista-sigla.component';
+import { ListaEstadoComponent } from './estados/lista-estado/lista-estado.component';
+import { ListaLicenciadoComponent } from './licenciados/lista-licenciado/lista-licenciado.component';
 import { PaginainicioComponent } from './paginainicio/paginainicio.component';
 import { ListaTextopessoalComponent } from './textopessoal/lista-textopessoal/lista-textopessoal.component';
 import { ListaSolicitanteComponent } from './solicitantes/lista-solicitante/lista-solicitante.component';
@@ -508,7 +511,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'ferramentas/listalicenciado/novo',
+        path: 'listalicenciado/novo',
         component: CadLicenciadoComponent
       }
     ]
@@ -521,8 +524,21 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'ferramentas/listalicenciado/:cod',
+        path: 'listalicenciado/:cod',
         component: CadLicenciadoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    data: {
+      title: 'Lista Licenciado'
+    },
+    children: [
+      {
+        path: 'listalicenciado',
+        component: ListaLicenciadoComponent
       }
     ]
   },
@@ -534,7 +550,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'ferramentas/listaestado/novo',
+        path: 'listaestado/novo',
         component: CadEstadoComponent
       }
     ]
@@ -547,8 +563,21 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'ferramentas/listaestado/:cod',
+        path: 'listaestado/:cod',
         component: CadEstadoComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    data: {
+      title: 'Lista Estado'
+    },
+    children: [
+      {
+        path: 'listaestado',
+        component: ListaEstadoComponent
       }
     ]
   },
@@ -560,7 +589,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'ferramentas/listasigla/novo',
+        path: 'listasigla/novo',
         component: CadSiglaComponent
       }
     ]
@@ -573,8 +602,21 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'ferramentas/listasigla/:cod',
+        path: 'listasigla/:cod',
         component: CadSiglaComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    data: {
+      title: 'Lista Sigla'
+    },
+    children: [
+      {
+        path: 'listasigla',
+        component: ListaSiglaComponent
       }
     ]
   }

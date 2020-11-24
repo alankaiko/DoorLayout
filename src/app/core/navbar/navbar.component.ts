@@ -45,9 +45,9 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Ferramentas',
         items: [
-          {label: 'Licenciados', icon: 'fa fa-fw fa-file-image-o', routerLink: ['laudos']},
-          {label: 'Estados', icon: 'fa fa-fw fa-file-image-o', routerLink: ['laudos']},
-          {label: 'Siglas', icon: 'fa fa-fw fa-file-image-o', routerLink: ['captura']}
+          {label: 'Licenciados', icon: 'fa fa-fw fa-file-image-o', routerLink: ['listalicenciado']},
+          {label: 'Estados', icon: 'fa fa-fw fa-file-image-o', routerLink: ['listaestado']},
+          {label: 'Siglas', icon: 'fa fa-fw fa-file-image-o', routerLink: ['listasigla']}
         ]
       }
     ];

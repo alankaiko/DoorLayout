@@ -1,4 +1,3 @@
-import {  FormGroup } from '@angular/forms';
 import { Convenio } from './../../core/model';
 import { Router } from '@angular/router';
 import { ConvenioFiltro, ConvenioService } from './../../zservice/convenio.service';
@@ -17,7 +16,6 @@ export class ListaConvenioComponent implements OnInit {
   totalRegistros = 0;
   filtro = new ConvenioFiltro();
   camposbusca: any[];
-  formulario: FormGroup;
   display = true;
   exclusao = false;
 
@@ -39,7 +37,6 @@ export class ListaConvenioComponent implements OnInit {
     if (this.convenio?.codigo != null) {
       this.route.navigate(['/listaconvenio', this.convenio.codigo]);
     }
-
   }
 
   PrimeiraSelecao() {

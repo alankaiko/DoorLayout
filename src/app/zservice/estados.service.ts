@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
 
 export class EstadosFiltro {
   pagina = 0;
-  itensPorPagina = 7;
+  itensPorPagina = 28;
+  uf: string;
+  descricao: string;
 }
 
 @Injectable({
@@ -23,12 +25,20 @@ export class EstadosService {
   }
 
   Consultar(filtro: EstadosFiltro): Promise<any> {
-    const params = new HttpParams({
+    let params = new HttpParams({
       fromObject: {
         page: filtro.pagina.toString(),
         size: filtro.itensPorPagina.toString()
       }
     });
+
+    if (filtro.uf) {
+      params = params.append('uf', filtro.uf);
+    }
+
+    if (filtro.descricao) {
+      params = params.append('descricao', filtro.descricao);
+    }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })
       .toPromise()
@@ -55,6 +65,10 @@ export class EstadosService {
         const estado = response as Estado;
         return estado;
       });
+  }
+
+  BuscarListaPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
   }
 
   Atualizar(estado: Estado): Promise<any> {

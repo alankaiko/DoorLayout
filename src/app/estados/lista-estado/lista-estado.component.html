@@ -1,59 +1,128 @@
-<div class="ui-g">
-  <div class="ui-g-12 clearfix">
-    <h3 class="header smaller lighter blue">Estados UF</h3>
-    <p-confirmDialog></p-confirmDialog>
-    <div class="clearfix">
-      <div class="pull-right tableTools-container"></div>
-    </div>
-    <div class="table-header row">
-      Tabela de Estados UF
-    </div>
-    <div>
-    <div class="row">
-      <p-table id="tabela" [value]="estados" [responsive]="true" [paginator]="true" *ngIf="visible"
-        [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros"
-        (onLazyLoad)="aoMudarPagina($event)" class="tabela table table-striped table-bordered table-hover">
-        <ng-template pTemplate="header">
-          <tr>
-            <th class="center" style="width: 8%;">Código</th>
-            <th class="center" style="width: 15%;">UF</th>
-            <th class="center" style="width: 40%;">Descrição</th>
-            <th class="center" style="width: 7%; text-align: center;">Opções</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-estado>
-          <tr>
-            <td class="center" style="text-align: center;">{{estado.codigo}}</td>
-            <td class="center"><a [routerLink]="['/ferramentas/listaestado', estado.codigo]">{{estado.uf}}</a></td>
-            <td class="center">{{estado.descricao}}</td>
-            <td class="center" style="text-align: center;">
-              <a class="tooltip-success" data-rel="tooltip" title="Editar" [routerLink]="['/ferramentas/listaestado', estado.codigo]">
-                <span class="blue">
-                  <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                </span>
-              </a>
+<p-dialog header="Estados" [(visible)]="display">
+  <div class="menubuscar">
+    <form #f="ngForm" autocomplete="off" class="formu">
+      <div class="ui-g-8">
+        <label>Buscar: </label>
+        <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
+      </div>
 
-              <a class="tooltip-error" data-rel="tooltip" title="Excluir" (click)="ConfirmarExclusao(estado)">
-                <span class="red">
-                  <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                </span>
-              </a>
+      <div class="ui-g-4">
+        <label>no campo: </label>
+        <p-dropdown id="codigodrop" [style]="{'min-width': '65%'}" [options]="camposbusca"></p-dropdown>
+      </div>
+    </form>
+  </div>
 
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="5">
-              Nenhuma pessoa encontrada
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
+  <div class="table-responsive corpo">
+    <p-table [value]="estados" [responsive]="true" [scrollable]="true"
+      [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
+      selectionMode="single" [(selection)]="estado" dataKey="codigo">
 
-    <div class="ui-g-12" style="text-align: right;">
-      <button pButton type="button" label="Adicionar" routerLink="/ferramentas/listaestado/novo"></button>
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 10%;">Código</th>
+          <th style="width: 20%;">UF</th>
+          <th style="width: 70%;">Descrição</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-estado>
+        <tr [pSelectableRow]="estado">
+          <td style="text-align: right; width: 10%;">{{estado?.codigo}}</td>
+          <td style="text-transform: uppercase;"><a [routerLink]="['/listaestado', estado.codigo]">{{estado?.uf}}</a></td>
+          <td style="width: 70%;">{{estado?.descricao}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">
+            Nenhum Estado encontrado
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal" (click)="PrimeiraSelecao()">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" (click)="AnteriorSelecao()">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" (click)="ProximaSelecao()">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" (click)="UltimaSelecao()" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/listaestado/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="AtivarExcluir()">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Voltar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/VISUALIZAR.png">
+          <span>Visualizar</span>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</p-dialog>
+
+
+<p-dialog class="excluir" header="Excluir {{estado?.uf}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '30vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{estado?.uf}}?</span>
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" *ngIf="estado?.codigo != null" (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

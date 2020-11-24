@@ -1,3 +1,6 @@
+import { ListaSiglaComponent } from './siglas/lista-sigla/lista-sigla.component';
+import { ListaLicenciadoComponent } from './licenciados/lista-licenciado/lista-licenciado.component';
+import { ListaEstadoComponent } from './estados/lista-estado/lista-estado.component';
 import { CadSiglaComponent } from './siglas/cad-sigla/cad-sigla.component';
 import { CadEstadoComponent } from './estados/cad-estado/cad-estado.component';
 import { CadLicenciadoComponent } from './licenciados/cad-licenciado/cad-licenciado.component';
@@ -98,7 +101,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     CadPacientesComponent,
     CadLicenciadoComponent,
     CadEstadoComponent,
-    CadSiglaComponent
+    CadSiglaComponent,
+    ListaEstadoComponent,
+    ListaLicenciadoComponent,
+    ListaSiglaComponent
   ],
   imports: [
     BrowserModule,

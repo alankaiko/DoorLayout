@@ -1,64 +1,134 @@
-<div class="ui-g">
-  <div class="ui-g-12 clearfix">
-    <h3 class="header smaller lighter blue">Licenças</h3>
-    <p-confirmDialog></p-confirmDialog>
-    <div class="clearfix">
-      <div class="pull-right tableTools-container"></div>
-    </div>
-    <div class="table-header row">
-      Tabela de Licenças
-    </div>
-    <div>
-    <div class="row">
-      <p-table id="tabela" [value]="licenciados" [responsive]="true" [paginator]="true" *ngIf="visible"
-        [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros"
-        (onLazyLoad)="aoMudarPagina($event)" class="tabela table table-striped table-bordered table-hover">
-        <ng-template pTemplate="header">
-          <tr>
-            <th style="width: 8%;">Código</th>
-            <th style="width: 15%;">Razao Social</th>
-            <th style="width: 40%;">Licenciado Para</th>
-            <th style="width: 15%;">CNPJ</th>
-            <th style="width: 15%;">Telefone</th>
-            <th style="width: 15%;">Tipo de Licenca</th>
-            <th style="width: 7%; text-align: center;">Opções</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-licenciado>
-          <tr>
-            <td style="text-align: center;">{{licenciado.codigo}}</td>
-            <td><a [routerLink]="['/ferramentas/listalicenciado', licenciado.codigo]">{{licenciado.razaosocial}}</a></td>
-            <td>{{licenciado.licenciadopara}}</td>
-            <td>{{licenciado.cnpj}}</td>
-            <td>{{licenciado.telefone1}}</td>
-            <td>{{licenciado.tipodelicenca}}</td>
-            <td>
-              <a class="tooltip-success" data-rel="tooltip" title="Editar" [routerLink]="['/ferramentas/listalicenciado', licenciado.codigo]">
-                <span class="blue">
-                  <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                </span>
-              </a>
+<p-dialog header="Licenciados" [(visible)]="display">
+  <div class="menubuscar">
+    <form #f="ngForm" autocomplete="off" class="formu">
+      <div class="ui-g-8">
+        <label>Buscar: </label>
+        <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
+      </div>
 
-              <a class="tooltip-error" data-rel="tooltip" title="Excluir" (click)="ConfirmarExclusao(licenciado)">
-                <span class="red">
-                  <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                </span>
-              </a>
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="5">
-              Nenhuma pessoa encontrada
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
+      <div class="ui-g-4">
+        <label>no campo: </label>
+        <p-dropdown id="codigodrop" [style]="{'min-width': '65%'}" [options]="camposbusca"></p-dropdown>
+      </div>
+    </form>
+  </div>
 
-    <div class="ui-g-12" style="text-align: right;">
-      <button pButton type="button" label="Adicionar" routerLink="/ferramentas/listalicenciado/novo"></button>
+  <div class="table-responsive corpo">
+    <p-table [value]="licenciados" [responsive]="true" [scrollable]="true"
+      [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
+      selectionMode="single" [(selection)]="licenciado" dataKey="codigo">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 6%;">Código</th>
+          <th style="width: 30%;">Razao Social</th>
+          <th style="width: 30%;">Licenciado Para</th>
+          <th style="width: 13%;">CNPJ</th>
+          <th style="width: 13%;">Telefone</th>
+          <th style="width: 13%;">Tipo de Licenca</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-licenciado>
+        <tr [pSelectableRow]="licenciado">
+          <td style="text-align: right; width: 10%;">{{licenciado?.codigo}}</td>
+          <td style="text-transform: uppercase;"><a [routerLink]="['/listalicenciado', licenciado.codigo]">{{convenio?.razaosocial}}</a></td>
+          <td style="width: 20%;">{{licenciado?.licenciadopara}}</td>
+          <td style="width: 20%;">{{licenciado?.cnpj}}</td>
+          <td style="width: 20%;">{{licenciado?.telefone1}}</td>
+          <td style="width: 20%;">{{licenciado?.tipodelicenca}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">
+            Nenhum Licenciado encontrado
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal" (click)="PrimeiraSelecao()">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" (click)="AnteriorSelecao()">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" (click)="ProximaSelecao()">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" (click)="UltimaSelecao()" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/listalicenciado/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="AtivarExcluir()">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Voltar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/VISUALIZAR.png">
+          <span>Visualizar</span>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</p-dialog>
+
+
+<p-dialog class="excluir" header="Excluir {{licenciado?.licenciadopara}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '45vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{licenciado?.licenciadopara}}?</span>
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" *ngIf="licenciado?.codigo != null" (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

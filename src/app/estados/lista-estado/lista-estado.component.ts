@@ -1,33 +1,65 @@
 import { EstadosFiltro, EstadosService } from './../../zservice/estados.service';
 import { Estado } from './../../core/model';
-import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
-import {ConfirmationService} from 'primeng/api';
-import { LazyLoadEvent } from 'primeng/components/common/api';
 import { Component, OnInit } from '@angular/core';
+import { LazyLoadEvent } from 'primeng/api';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-lista-estado',
   templateUrl: './lista-estado.component.html',
-  styleUrls: ['./lista-estado.component.css'],
-  providers: [ MessageService , ConfirmationService]
+  styleUrls: ['./lista-estado.component.css']
 })
 export class ListaEstadoComponent implements OnInit {
   estados = [];
+  estado: Estado;
   totalRegistros = 0;
   filtro = new EstadosFiltro();
-  visible = true;
+  camposbusca: any[];
+  display = true;
+  exclusao = false;
 
   constructor(private service: EstadosService,
               private route: Router,
-              private confirmation: ConfirmationService,
-              private messageService: MessageService) { }
+              private location: Location) {
+              }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.camposbusca = [
+      {label: 'UF'},
+      {label: 'Descrição'},
+      {label: 'Codigo'}
+    ];
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
+  }
+
+  Alterar() {
+    if (this.estado?.codigo != null) {
+      this.route.navigate(['/listaestado', this.estado.codigo]);
+    }
+  }
+
+  PrimeiraSelecao() {
+    this.estado = this.estados[0];
+  }
+
+  UltimaSelecao() {
+    this.estado = this.estados[this.estados.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.estados.indexOf(this.estado);
+    this.estado = this.estados[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.estados.indexOf(this.estado);
+    this.estado = this.estados[valor - 1];
+  }
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
-
     return this.service.Consultar(this.filtro)
       .then(response => {
         this.totalRegistros = response.total;
@@ -35,28 +67,54 @@ export class ListaEstadoComponent implements OnInit {
       }).catch(erro => console.log(erro));
   }
 
-  ConfirmarExclusao(estado: Estado) {
-    this.confirmation.confirm({
-      message: 'Deseja Excluir: ' + estado.descricao.toUpperCase(),
-      accept: () => {
-        this.Excluir(estado);
+  BuscaDinamica() {
+    const drop = $('#codigodrop :selected').text();
+    const texto = document.getElementById('buscando') as HTMLInputElement;
+
+    setTimeout (() => {
+      if (drop === 'UF') {
+        this.filtro.uf = texto.value;
+        this.Consultar();
       }
-    });
+
+      if (drop === 'Descrição') {
+        this.filtro.descricao = texto.value;
+        this.Consultar();
+      }
+
+      if ((drop === 'Codigo') && (texto.value !== '')) {
+        const numero = +texto.value;
+        return this.service.BuscarListaPorId(numero)
+          .then(response => {
+            this.estados = response;
+          }).catch(erro => console.log(erro));
+      }
+    }, 1000);
   }
 
-  Excluir(estado: Estado) {
-    this.service.Remover(estado.codigo)
-      .then(() => {
-        this.messageService.add({ severity: 'success', detail: 'Estado excluída com sucesso!' });
-      })
-      .catch(erro => erro);
-    this.visible = false;
-    setTimeout (() => this.visible = true, 0);
+  AtivarExcluir() {
+    if (this.estado.codigo != null) {
+      this.exclusao = true;
+    }
   }
 
+
+  Excluir() {
+    this.service.Remover(this.estado.codigo).then(() => {}).catch(erro => erro);
+    this.exclusao = false;
+    setTimeout (() => this.Consultar(), 100);
+  }
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.Consultar(pagina);
+  }
+
+  Voltar() {
+    this.location.back();
+  }
+
+  Fechar() {
+    this.route.navigate(['/home']);
   }
 }

@@ -1,57 +1,126 @@
-<div class="ui-g">
-  <div class="ui-g-12 clearfix">
-    <h3 class="header smaller lighter blue">Siglas</h3>
-    <p-confirmDialog></p-confirmDialog>
-    <div class="clearfix">
-      <div class="pull-right tableTools-container"></div>
-    </div>
-    <div class="table-header row">
-      Tabela de Siglas
-    </div>
-    <div>
-    <div class="row">
-      <p-table id="tabela" [value]="siglas" [responsive]="true" [paginator]="true" *ngIf="visible"
-        [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros"
-        (onLazyLoad)="aoMudarPagina($event)" class=" tabela table table-striped table-bordered table-hover">
-        <ng-template pTemplate="header">
-          <tr>
-            <th class="center" style="width: 20%;">Código</th>
-            <th class="center" style="width: 40%;">Descrição</th>
-            <th class="center" style="width: 10%; text-align: center;">Opções</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-sigla>
-          <tr>
-            <td class="center" style="text-align: center;">{{sigla.codigo}}</td>
-            <td class="center"><a [routerLink]="['/ferramentas/listasigla', sigla.codigo]">{{sigla.descricao}}</a></td>
-            <td class="center" style="text-align: center;">
-              <a class="tooltip-success" data-rel="tooltip" title="Editar" [routerLink]="['/ferramentas/listasigla', sigla.codigo]">
-                <span class="blue">
-                  <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                </span>
-              </a>
+<p-dialog header="Siglas" [(visible)]="display">
+  <div class="menubuscar">
+    <form #f="ngForm" autocomplete="off" class="formu">
+      <div class="ui-g-8">
+        <label>Buscar: </label>
+        <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
+      </div>
 
-              <a class="tooltip-error" data-rel="tooltip" title="Excluir" (click)="ConfirmarExclusao(sigla)">
-                <span class="red">
-                  <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                </span>
-              </a>
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="5">
-              Nenhuma pessoa encontrada
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
+      <div class="ui-g-4">
+        <label>no campo: </label>
+        <p-dropdown id="codigodrop" [style]="{'min-width': '65%'}" [options]="camposbusca"></p-dropdown>
+      </div>
+    </form>
+  </div>
 
-    <div class="ui-g-12" style="text-align: right;">
-      <button pButton type="button" label="Adicionar" routerLink="/ferramentas/listasigla/novo"></button>
+  <div class="table-responsive corpo">
+    <p-table [value]="siglas" [responsive]="true" [scrollable]="true"
+      [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
+      selectionMode="single" [(selection)]="sigla" dataKey="codigo">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 10%;">Código</th>
+          <th>Descrição</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-sigla>
+        <tr [pSelectableRow]="sigla">
+          <td style="text-align: right; width: 10%;">{{sigla?.codigo}}</td>
+          <td style="text-transform: uppercase;"><a [routerLink]="['/listasigla', sigla.codigo]">{{sigla?.descricao}}</a></td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">
+            Nenhum Sigla encontrado
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="botoes ui-g-12">
+    <div class="botao">
+      <div>
+        <button type="button" class="botaoprincipal" (click)="PrimeiraSelecao()">
+          <img src="/assets/img/primeiro.png">
+          <span>Primeiro</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" (click)="AnteriorSelecao()">
+          <img src="/assets/img/ANTERIOR.png">
+          <span>Anterior</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" (click)="ProximaSelecao()">
+          <img src="/assets/img/PROXIMO.png">
+          <span>Próximo</span>
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="botaoprincipal" (click)="UltimaSelecao()" style="margin-right: 10px;">
+          <img src="/assets/img/ultimo.png">
+          <span>Último</span>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="botaoprincipal" routerLink="/listasigla/novo">
+          <img src="/assets/img/ADICIONAR.png">
+          <span>Adicionar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/ALTERAR.png">
+          <span>Alterar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="AtivarExcluir()">
+          <img src="/assets/img/APAGAR.png">
+          <span>Apagar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
+          <span>Voltar</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal">
+          <img src="/assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+      </div>
+
+      <div>
+        <button class="botaoprincipal" (click)="Alterar()">
+          <img src="/assets/img/VISUALIZAR.png">
+          <span>Visualizar</span>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</p-dialog>
 
+
+<p-dialog class="excluir" header="Excluir {{sigla?.descricao}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '30vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{sigla?.descricao}}?</span>
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" *ngIf="sigla?.codigo != null" (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

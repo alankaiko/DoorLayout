@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class LicenciadoFiltro {
   pagina = 0;
   itensPorPagina = 7;
+  licenciadopara: string;
 }
 
 @Injectable({
@@ -46,6 +47,10 @@ export class LicenciadoService {
 
   Adicionar(licenciado): Promise<Licenciado> {
     return this.http.post<Licenciado>(`${this.url}`, licenciado).toPromise();
+  }
+
+  BuscarListaPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
   }
 
   BuscarPorId(codigo: number): Promise<any> {
