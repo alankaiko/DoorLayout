@@ -19,7 +19,6 @@
   border: 1px solid rgb(158, 150, 150);
 }
 
-
 :host /deep/ p-dialog .ui-dialog {
   border: 1px solid rgba(0, 0, 0, 0.438);
   border-radius: 2px;
@@ -69,7 +68,6 @@
   font-weight: bold;
   transition: all 0.2s ease;
   cursor: pointer;
-
 }
 
 :host /deep/ p-table {

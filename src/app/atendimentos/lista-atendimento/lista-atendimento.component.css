@@ -6,8 +6,7 @@
 :host /deep/ p-dropdown .ui-dropdown{
   border:1px solid #428bca;
   background-color: #fff;
-  font-size: 78%;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 :host /deep/ p-dropdown .ui-dropdown-items {
@@ -42,7 +41,6 @@
 
 :host /deep/ p-dialog .ui-dialog .ui-dialog-content {
   width: 788px;
-  height: 492px;
   border-left: 2px solid #A5A9B2;
   border-bottom: 2px solid #A5A9B2;
   border-right: 2px solid #A5A9B2;
@@ -61,25 +59,37 @@
   font-weight: bold;
   transition: all 0.2s ease;
   cursor: pointer;
-
 }
 
 :host /deep/ p-table {
-  font-size: 90%;
+  background-color:#ffffff;
+  border: 1px solid #b9b8b8;
+  margin-top: -1px;
+  display: table;
+  font-size: 70%;
   position: static;
 }
 
 :host /deep/ p-table .ui-table {
-  height: 340px;
+  height: 260px;
 }
 
-:host /deep/ p-table .ui-table  .ui-table-scrollable-body{
-  font-size: 82%;
+:host /deep/ p-table .ui-table .ui-table-scrollable-body{
+  font-size: 70%;
+  height: 190px;
   background-color: #fff;
 }
 
 :host /deep/ p-table .ui-table-tbody .ui-selectable-row:hover{
   background-color: rgba(84, 104, 138, 0.342);
+}
+
+:host /deep/ p-table .ui-table .ui-table-tbody > tr > td{
+  padding: 0 0.5em;
+}
+
+:host /deep/ p-table .ui-table .ui-table-thead > tr > th{
+  padding: 0;
 }
 
 :host /deep/ p-checkbox {
@@ -88,53 +98,20 @@
 }
 
 :host /deep/ p-calendar .ui-calendar {
-  padding: 0;
-  border-radius: 3px;
-  font-size: 90%;
-  border:1px solid #428bca;
-  margin-top: 2px;
+  width: 17.4%;
 }
 
-:host /deep/ p-calendar .ui-calendar span{
-  width: 95%;
-}
-
-:host /deep/ p-calendar .ui-calendar input {
-  width: 95%;
-}
-
-:host /deep/ p-calendar .ui-datepicker{
-  background-color: #fff;
-}
-
-:host /deep/ p-calendar .ui-datepicker .ui-datepicker-calendar-container .ui-datepicker-calendar .ng-tns-c3-2 td:hover{
-  background-color: #a3a2a2;
-  color: #CC0000;
-}
-
-:host /deep/ p-calendar .ui-calendar input{
-  padding: 0;
-}
-
-:host /deep/  p-calendar .ui-calendar:hover {
-  background-color: rgb(158, 150, 150);
-  border: 1px solid rgb(158, 150, 150);
-}
-
-label {
-  margin-left: 5px;
-}
-
-.lines {
-  display: flex;
-}
-
-.formu {
+.linhas {
   width: 100%;
+  display: table;
+}
+
+.blocodalinha {
+  display: inline-table;
 }
 
 #buscando {
-  border-radius: 3px;
+  border-radius: 2px;
   height: 23px;
   border:1px solid #428bca;
   width: 35%;

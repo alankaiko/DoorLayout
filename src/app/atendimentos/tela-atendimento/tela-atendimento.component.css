@@ -4,8 +4,11 @@
 }
 
 :host /deep/ p-inputmask .ui-inputtext{
-  font-size: 72%;
-  width: 95%;
+  width: 98%;
+  height: 20px;
+  color: #000;
+  border-radius: 1px;
+  padding: 0;
 }
 
 :host /deep/ p-dialog .ui-dialog {
@@ -31,7 +34,7 @@
 
 :host /deep/ p-dialog .ui-dialog .ui-dialog-content {
   width: 788px;
-  height: 492px;
+  height: 418px;
   border-left: 2px solid #A5A9B2;
   border-bottom: 2px solid #A5A9B2;
   border-right: 2px solid #A5A9B2;
@@ -50,6 +53,7 @@
   font-weight: bold;
   transition: all 0.2s ease;
   cursor: pointer;
+
 }
 
 :host /deep/ p-checkbox .ui-chkbox-box {
@@ -57,81 +61,10 @@
   border-radius: 2px;
 }
 
-:host /deep/ p-tabview .ui-tabview-nav{
-  font-size: 70%;
-  padding: 0;
-}
-
-:host /deep/ p-tabview .ui-tabview-panels {
-  height: 220px;
-}
-
-:host /deep/ p-tabview .ui-tabview-nav .ui-tabview-selected{
-  border: 1px solid;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  background-color: #B4B8C1;
-}
-
-:host /deep/ p-tabview .ui-tabview .ui-tabview-panels {
-  border: 1px solid #646464;
-  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
-  -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
-}
-
-:host /deep/ p-calendar .ui-calendar {
-  padding: 0;
-  border-radius: 3px;
-}
-
-
-:host /deep/ p-calendar .ui-datepicker{
-  background-color: #fff;
-}
-
-:host /deep/ p-calendar .ui-datepicker .ui-datepicker-calendar-container .ui-datepicker-calendar .ng-tns-c3-2 td:hover{
-  background-color: #a3a2a2;
-  color: #CC0000;
-}
-
-:host /deep/ p-calendar .ui-calendar input{
-  padding: 0;
-}
-
-:host /deep/  p-calendar .ui-calendar:hover {
-  background-color: rgb(158, 150, 150);
-  border: 1px solid rgb(158, 150, 150);
-}
-
-:host /deep/ p-dropdown .ui-dropdown{
-  border:1px solid #428bca;
-  background-color: #fff;
-  border-radius: 3px;
-  line-height: 14px;
-  margin-right: 5px;
-}
-
-:host /deep/ p-dropdown .ui-dropdown-items {
-  background-color: #fff;
-}
-
-:host /deep/ p-dropdown .ui-dropdown-items li:hover {
-  background-color: rgb(158, 150, 150);
-  border: 1px solid rgb(158, 150, 150);
-}
-
-:host /deep/ p-panel .ui-panel .ui-panel-content-wrapper .ui-panel-content {
-  padding: 0;
-}
-
-:host /deep/ p-panel .ui-panel .ui-panel-titlebar {
-  display: none;
-}
-
 .corpo {
   width: 100%;
   margin: 0 auto;
+  height: 263px;
 }
 
 .linhas {
@@ -140,17 +73,16 @@
 }
 
 .blocodalinha {
-  padding-top: 18px;
   display: inline-grid;
-  line-height: 0;
 }
 
 label {
   font-size: 85%;
+  font-weight: bold;
 }
 
 input {
-  font-size: 90%;
+  height: 25px;
 }
 
 .botoes {
@@ -208,19 +140,29 @@ input {
 }
 
 .minibotao {
+  height: 24px;
   color: rgb(73, 71, 71);
   background-color: rgb(233, 233, 233);
   text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
   border: 1px solid #949393;
-  border-radius: 5px;
+  border-radius: 2px;
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-  line-height: 1.4;
   margin: 0 auto;
 }
 
 .minibotao:hover {
   background-color: rgb(255, 249, 249);
   border: 1px solid rgb(80, 78, 78);
+}
+
+.minibotao img{
+  margin-top: 2px;
+}
+
+
+.botaotab {
+  font-size: 70%;
+  margin-left: 5px;
 }

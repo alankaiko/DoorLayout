@@ -4,6 +4,7 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Router } from '@angular/router';
 import { AtendimentoFilter, AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class ListaAtendimentoComponent implements OnInit {
   exclusao: boolean = false;
 
   constructor(private service: AtendimentoService,
-              private route: Router) { }
+              private route: Router,
+              private location: Location) { }
 
   ngOnInit() {
     this.camposbusca = [
@@ -57,16 +59,31 @@ export class ListaAtendimentoComponent implements OnInit {
     ];
 
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
-   }
-
-   onRowSelect(event) {
-    this.atendimento = event.data;
   }
+
 
   Alterar() {
     if (this.atendimento?.codigo != null) {
       this.route.navigate(['/operacoes/atendimento', this.atendimento.codigo]);
     }
+  }
+
+  PrimeiraSelecao() {
+    this.atendimento = this.atendimentos[0];
+  }
+
+  UltimaSelecao() {
+    this.atendimento = this.atendimentos[this.atendimentos.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.atendimentos.indexOf(this.atendimento);
+    this.atendimento = this.atendimentos[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.atendimentos.indexOf(this.atendimento);
+    this.atendimento = this.atendimentos[valor - 1];
   }
 
   Consultar(pagina = 0): Promise<any> {
@@ -130,21 +147,15 @@ export class ListaAtendimentoComponent implements OnInit {
 
 
   AtivarExcluir() {
-    this.exclusao = true;
+    if (this.atendimento.codigo != null) {
+      this.exclusao = true;
+    }
   }
-
-  Atualizar() {
-    setTimeout (() => this.Consultar(), 0);
-  }
-
 
   Excluir() {
-    this.service.Remover(this.atendimento.codigo)
-      .then(() => {})
-      .catch(erro => erro);
-      this.exclusao = false;
-      setTimeout (() => this.Consultar(), 0
-      );
+    this.service.Remover(this.atendimento.codigo).then(() => {}).catch(erro => erro);
+    this.exclusao = false;
+    setTimeout (() => this.Consultar(), 100);
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -152,7 +163,11 @@ export class ListaAtendimentoComponent implements OnInit {
     this.Consultar(pagina);
   }
 
+  Voltar() {
+    this.location.back();
+  }
+
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

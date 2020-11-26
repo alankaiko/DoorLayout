@@ -1,3 +1,4 @@
+import { ProcedimentoCadApendComponent } from './atendimentos/procedimento-cad-apend/procedimento-cad-apend.component';
 import { ListaGrupoexameComponent } from './grupoexames/lista-grupoexame/lista-grupoexame.component';
 import { ListaSiglaComponent } from './siglas/lista-sigla/lista-sigla.component';
 import { ListaLicenciadoComponent } from './licenciados/lista-licenciado/lista-licenciado.component';
@@ -106,7 +107,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListaEstadoComponent,
     ListaLicenciadoComponent,
     ListaSiglaComponent,
-    ListaGrupoexameComponent
+    ListaGrupoexameComponent,
+    ProcedimentoCadApendComponent
   ],
   imports: [
     BrowserModule,
