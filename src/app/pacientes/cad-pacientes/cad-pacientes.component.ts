@@ -13,6 +13,7 @@ import {Location} from '@angular/common';
 export class CadPacientesComponent implements OnInit {
   formulario: FormGroup;
   display = true;
+  enumsexo: any[];
 
   constructor(private service: PacienteService,
               private rota: ActivatedRoute,
@@ -28,6 +29,12 @@ export class CadPacientesComponent implements OnInit {
     if (idpatient) {
       this.CarregarPaciente(idpatient);
     }
+
+    this.enumsexo = [
+      {label: 'Selecione'},
+      {label: 'Masculino'},
+      {label: 'Feminino'}
+    ];
 
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
@@ -45,7 +52,7 @@ export class CadPacientesComponent implements OnInit {
       birthday: [null, paciente.birthday],
       patientage: [null, paciente.patientage],
       datecreate: [null, paciente.datecreate],
-      patientsex: [null, paciente.patientsex],
+      sexo: [null, paciente.sexo],
       observacoes: [null, paciente.observacoes],
       contato: this.formbuilder.group({
         email: [paciente.contato.email],
@@ -85,7 +92,7 @@ export class CadPacientesComponent implements OnInit {
   AdicionarPaciente() {
     return this.service.Adicionar(this.formulario.value)
       .then(response => {
-        this.route.navigate(['/tabelas/listapaciente']);
+        this.route.navigate(['/listapaciente']);
       });
   }
 
@@ -93,7 +100,7 @@ export class CadPacientesComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(patient => {
         this.formulario.patchValue(patient);
-        this.route.navigate(['/tabelas/listapaciente']);
+        this.route.navigate(['/listapaciente']);
       });
   }
 
@@ -102,7 +109,7 @@ export class CadPacientesComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 
 }

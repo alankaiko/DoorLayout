@@ -76,6 +76,6 @@ export class CadGrupoexameComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

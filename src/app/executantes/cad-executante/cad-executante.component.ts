@@ -99,7 +99,7 @@ export class CadExecutanteComponent implements OnInit {
   AdicionarProfissionalExecutante() {
     return this.service.Adicionar(this.formulario.value)
       .then(response => {
-        this.route.navigate(['/tabelas/listaprofexecutante']);
+        this.route.navigate(['/listaprofexecutante']);
       });
   }
 
@@ -107,7 +107,7 @@ export class CadExecutanteComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(profissional => {
         this.formulario.patchValue(profissional);
-        this.route.navigate(['/tabelas/listaprofexecutante']);
+        this.route.navigate(['/listaprofexecutante']);
       });
   }
 
@@ -132,6 +132,6 @@ export class CadExecutanteComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

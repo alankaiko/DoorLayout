@@ -1,3 +1,4 @@
+import { TextolivreComponent } from './modelosdetexto/textolivre/textolivre.component';
 import { ProcedimentoCadApendComponent } from './atendimentos/procedimento-cad-apend/procedimento-cad-apend.component';
 import { ListaGrupoexameComponent } from './grupoexames/lista-grupoexame/lista-grupoexame.component';
 import { ListaSiglaComponent } from './siglas/lista-sigla/lista-sigla.component';
@@ -108,7 +109,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListaLicenciadoComponent,
     ListaSiglaComponent,
     ListaGrupoexameComponent,
-    ProcedimentoCadApendComponent
+    ProcedimentoCadApendComponent,
+    TextolivreComponent
   ],
   imports: [
     BrowserModule,

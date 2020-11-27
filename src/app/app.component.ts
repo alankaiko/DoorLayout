@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DoorLayout';
+
+  constructor(private router: Router) {}
+
+  ExibindoNavbar() {
+    return this.router.url.indexOf('/operacoes/laudos')
+      && this.router.url.indexOf('/operacoes/captura');
+  }
+
+  ExibirRodape() {
+    return this.router.url.indexOf('/operacoes/laudos')
+      && this.router.url.indexOf('/operacoes/captura');
+  }
 }

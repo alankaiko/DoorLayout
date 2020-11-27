@@ -47,6 +47,11 @@
   position: relative;
 }
 
+:host /deep/ p-dialog.excluir .ui-dialog .ui-widget-content {
+  width: 100%;
+  position: relative;
+}
+
 :host /deep/ p-dialog .ui-dialog-titlebar > a {
   width: 18px;
   height: 18px;
@@ -66,16 +71,15 @@
   border: 1px solid #b9b8b8;
   margin-top: -1px;
   display: table;
-  font-size: 70%;
   position: static;
 }
 
 :host /deep/ p-table .ui-table {
   height: 260px;
+  font-size: 85%;
 }
 
 :host /deep/ p-table .ui-table .ui-table-scrollable-body{
-  font-size: 70%;
   height: 190px;
   background-color: #fff;
 }

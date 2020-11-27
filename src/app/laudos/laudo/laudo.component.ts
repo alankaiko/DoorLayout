@@ -21,8 +21,6 @@ export class LaudoComponent implements OnInit {
   atendimentos: any[];
   procedimentosAtd: any[];
   atendimento = new Atendimento();
-  atendimentoSelecionado: number;
-  procedimentoAtdSelecionado: number;
   procedimento = new ProcedimentoAtendimento();
   modelodelaudodoproc = new Array<ModeloDeLaudoDoProc>();
   modelodelaudo: any[];
@@ -42,12 +40,21 @@ export class LaudoComponent implements OnInit {
   ngOnInit(): void {
     const codatendimento = this.rota.snapshot.params.cod;
 
-    if (codatendimento) {
-
-    }
-
     this.CarregarAtendimentos();
     this.getImagemFromService();
+
+    if (codatendimento) {
+      this.CarregaAtendimento(codatendimento);
+    }
+
+  }
+
+  CarregaAtendimento(codigo: number) {
+    this.service.BuscarPorId(codigo)
+      .then(atendimento => {
+        this.atendimento = atendimento;
+        this.CarregarProcedimentos();
+      }).catch(erro => erro);
   }
 
   AtivarExcluir() {
@@ -61,7 +68,7 @@ export class LaudoComponent implements OnInit {
   }
 
   CarregarProcedimentos() {
-    this.service.BuscarProcedimentosPorAt(this.atendimentoSelecionado)
+    this.service.BuscarProcedimentosPorAt(this.atendimento.codigo)
       .then(
         response => {
           this.atendimento = response;
@@ -71,7 +78,7 @@ export class LaudoComponent implements OnInit {
   }
 
   ConfigurarVariavel() {
-    this.serviceproc.BuscarCodProcedimento(this.procedimentoAtdSelecionado)
+    this.serviceproc.BuscarCodProcedimento(this.procedimento.codigo)
       .then(
         response => {
           this.servicemodelo.BuscarPelaIdProcedimento(response)
@@ -91,7 +98,7 @@ export class LaudoComponent implements OnInit {
 
   FiltrandoProcedimento() {
     this.atendimento.procedimentos.filter(elo => {
-      if (elo.codigo === this.procedimentoAtdSelecionado) {
+      if (elo.codigo === this.procedimento.codigo) {
         this.procedimento = elo;
       }
     });
@@ -213,7 +220,7 @@ export class LaudoComponent implements OnInit {
   private ConfigurarLabelProcedimento() {
     let proc;
     this.procedimentosAtd.forEach(elo => {
-      if (elo.value === this.procedimentoAtdSelecionado) {
+      if (elo.value === this.procedimento.codigo) {
         proc = elo.label;
       }
     });

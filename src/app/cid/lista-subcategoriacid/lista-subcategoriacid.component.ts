@@ -1,11 +1,9 @@
 import { Subcategoriacid10Service } from './../../zservice/subcategoriacid10.service';
-import { FormGroup } from '@angular/forms';
-import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
-import { TextopessoalService, TextoPessoalFiltro } from './../../zservice/textopessoal.service';
-import { TextoPessoal, SubcategoriaCid10 } from './../../core/model';
+import { SubcategoriaCid10 } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, ConfirmationService, SelectItem } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/api';
+import {Location} from '@angular/common';
 import { SubcategoriascidFiltro } from '../../zservice/subcategoriacid10.service';
 
 
@@ -19,14 +17,14 @@ export class ListaSubcategoriacidComponent implements OnInit {
   subcategoria: SubcategoriaCid10;
   totalRegistros = 0;
   filtro = new SubcategoriascidFiltro();
-  visible = true;
   camposbusca: any[];
-  formulario: FormGroup;
   display = true;
   exclusao = false;
 
+
   constructor(private service: Subcategoriacid10Service,
-              private route: Router) { }
+              private route: Router,
+              private location: Location) { }
 
   ngOnInit() {
     this.camposbusca = [
@@ -46,13 +44,30 @@ export class ListaSubcategoriacidComponent implements OnInit {
 
   Alterar() {
     if (this.subcategoria?.codigo != null) {
-      this.route.navigate(['/operacoes/subcategoriacid', this.subcategoria.codigo]);
+      this.route.navigate(['/subcategoriacid', this.subcategoria.codigo]);
     }
+  }
+
+  PrimeiraSelecao() {
+    this.subcategoria = this.subcategorias[0];
+  }
+
+  UltimaSelecao() {
+    this.subcategoria = this.subcategorias[this.subcategorias.length - 1];
+  }
+
+  ProximaSelecao() {
+    const valor = this.subcategorias.indexOf(this.subcategoria);
+    this.subcategoria = this.subcategorias[valor + 1];
+  }
+
+  AnteriorSelecao() {
+    const valor = this.subcategorias.indexOf(this.subcategoria);
+    this.subcategoria = this.subcategorias[valor - 1];
   }
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
-
     return this.service.Consultar(this.filtro)
       .then(response => {
         this.totalRegistros = response.total;
@@ -88,23 +103,28 @@ export class ListaSubcategoriacidComponent implements OnInit {
   }
 
   AtivarExcluir() {
-    this.exclusao = true;
+    if (this.subcategoria.codigo != null) {
+      this.exclusao = true;
+    }
   }
 
 
   Excluir() {
     this.service.Remover(this.subcategoria.codigo).then(() => {}).catch(erro => erro);
     this.exclusao = false;
-    setTimeout (() => this.Consultar(), 0);
+    setTimeout (() => this.Consultar(), 100);
   }
-
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.Consultar(pagina);
   }
 
+  Voltar() {
+    this.location.back();
+  }
+
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

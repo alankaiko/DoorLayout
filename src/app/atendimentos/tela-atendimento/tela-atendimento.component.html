@@ -32,7 +32,7 @@
         <div class="blocodalinha" style="width: 50%;">
           <label>Paciente</label>
           <p-dropdown [style]="{'line-height': '10px', 'min-width':'98%'}" [options]="pacientes"
-            [filter]="true" [filter]="true" [(ngModel)]="pacienteselecionado" #idpatient="ngModel"
+            [filter]="true" [filter]="true" [(ngModel)]="atendimento.patient.idpatient" #idpatient="ngModel"
             name="idpatient" placeholder="Selecione..." (onChange)="InserirPacientes()"></p-dropdown>
         </div>
 
@@ -65,14 +65,14 @@
         <div class="blocodalinha" style="width: 50%;">
           <label>Prof. Solicitante</label>
           <p-dropdown [style]="{'line-height': '10px', 'min-width':'98%'}" [options]="solicitantes"
-            [filter]="true" [(ngModel)]="solicitanteselecionado" #codigo="ngModel" name="codigo"
+            [filter]="true" [(ngModel)]="atendimento.solicitante.codigo" #codigo="ngModel" name="codigo"
             placeholder="Selecione..." (onChange)="InserirProfSolicitante()"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 19.3%;">
           <label>Conselho</label>
           <p-dropdown [style]="{'line-height': '10px', 'min-width':'96%'}" [options]="conselhos"
-            [filter]="true" [(ngModel)]="atendimento.solicitante.conselho.sigla.descricao"
+            [filter]="true" [(ngModel)]="atendimento.solicitante.conselho.sigla.codigo"
             #descricao="ngModel" name="descricao" placeholder="Selecione"
             (onChange)="CarregarConselhos()"></p-dropdown>
         </div>
@@ -95,9 +95,8 @@
           <app-procedimento-cad-apend [procedimentos]="atendimento.procedimentos"></app-procedimento-cad-apend>
         </div>
 
-
         <div class="linhas">
-          <div style="text-align: right;">
+          <div style="text-align: right; margin-top: 1px;">
             <button pButton label="Imp. Atestado" icon="fa fa-plus" type="button"
               class="ui-button-primary botaotab"></button>
 
@@ -105,7 +104,7 @@
               class="ui-button-primary botaotab" (click)="VaiParaLaudos()"></button>
 
             <button pButton label="Captura" icon="fa fa-plus" type="button"
-              class="ui-button-primary botaotab"></button>
+              class="ui-button-primary botaotab" (click)="VaiCaptura()"></button>
           </div>
         </div>
       </div>
@@ -187,7 +186,7 @@
       <div>
         <button class="botaoprincipal" (click)="Voltar();">
           <img src="/assets/img/CANCELAR.png">
-          <span>Cancelar</span>
+          <span>Voltar</span>
         </button>
       </div>
 

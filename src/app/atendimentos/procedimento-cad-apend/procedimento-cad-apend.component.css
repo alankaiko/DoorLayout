@@ -5,7 +5,7 @@
 }
 
 :host /deep/ p-table .ui-table {
-  font-size: 80%;
+  font-size: 85%;
 }
 
 :host /deep/ p-table .ui-table .ui-table-scrollable-body{
@@ -33,12 +33,34 @@
 
 .botaoedicao {
   cursor: pointer;
-  border: 1px solid #4d4747;
   margin-left: 5px;
 }
 
 .botaoedicao i {
-  font-size: 110%;
+  font-size: 140%;
   text-align: center;
   vertical-align: middle;
+}
+
+:host /deep/ p-dialog.novoproc .ui-dialog .ui-widget-content {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.linhas {
+  width: 100%;
+  display: table;
+}
+
+.blocodalinha {
+  display: inline-grid;
+}
+
+:host /deep/ p-dropdown .ui-dropdown{
+
+}
+
+:host /deep/ p-dropdown .ui-dropdown.ui-dropdown-open {
+  z-index: 150;
 }

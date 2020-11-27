@@ -1,55 +1,66 @@
-<p-dialog header="CID10" [(visible)]="display" [baseZIndex]="10000" [style]="{width: '59vw'}">
-  <div>
-    <form role="form" autocomplete="off" [formGroup]="formulario">
-      <div class="ui-g ui-fluid">
-        <div class="ui-g-12 linhas">
-          <label>Nome da doença/ Subcategoria</label>
-          <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
-        </div>
-
-        <div class="ui-g-12 linhas" formGroupName="categoriacid10">
-          <label>Categoria</label>
-          <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
-        </div>
-
-        <div class="ui-g-12 linhas" formGroupName="categoriacid10">
-          <div formGroupName="grupocid10">
-            <label>Grupo</label>
-            <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
-          </div>
-        </div>
-
-        <div class="ui-g-12 linhas" formGroupName="categoriacid10">
-          <div formGroupName="grupocid10">
-            <div formGroupName="capitulocid">
-              <label>Assunto/ Capítulo</label>
-              <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+<p-dialog header="Subcategoria CID" [(visible)]="display">
+  <div class="corpo">
+    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+      <p-tabView>
+        <p-tabPanel header="Dados Principais">
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 100%;">
+              <label>Nome da doença/ Subcategoria</label>
+              <input style="width: 100%;" pInputTextarea  ng-model="text" type="text"
+                name="nome" formControlName="nome"/>
             </div>
           </div>
-        </div>
 
-        <div class="ui-g-12 linhas">
-          <div class="ui-g-3 linhas">
-            <label>Referência</label>
-            <input style="width: 90%;" pInputTextarea  ng-model="text" name="referencia" formControlName="referencia"/>
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 100%;" formGroupName="categoriacid10">
+              <label>Categoria</label>
+              <input style="width: 100%;" type="text" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+            </div>
           </div>
 
-          <div class="ui-g-3 linhas">
-            <label>Causa Óbito</label>
-            <input style="width: 90%;" pInputTextarea  ng-model="text" name="causaobito" formControlName="causaobito"/>
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 100%;" formGroupName="categoriacid10">
+              <div formGroupName="grupocid10">
+                <label>Grupo</label>
+                <input style="width: 100%;" pInputTextarea type="text"  ng-model="text" name="nome" formControlName="nome"/>
+              </div>
+            </div>
           </div>
 
-          <div class="ui-g-3 linhas">
-            <label>Restriç Sexo</label>
-            <input style="width: 90%;" pInputTextarea  ng-model="text" name="restrsexo" formControlName="restrsexo"/>
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 100%;" formGroupName="categoriacid10">
+              <div formGroupName="grupocid10">
+                <div formGroupName="capitulocid">
+                  <label>Assunto/ Capítulo</label>
+                  <input style="width: 100%;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="ui-g-3 linhas">
-            <label>Cód. CID</label>
-            <input style="width: 90%;" pInputTextarea  ng-model="text" name="codigotexto" formControlName="codigotexto"/>
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 25%;">
+              <label>Referência</label>
+              <input style="width: 90%;" pInputTextarea type="text" ng-model="text" name="referencia" formControlName="referencia"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 25%;">
+              <label>Causa Óbito</label>
+              <input style="width: 90%;" pInputTextarea type="text" ng-model="text" name="causaobito" formControlName="causaobito"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 25%;">
+              <label>Restriç Sexo</label>
+              <input style="width: 90%;" pInputTextarea type="text" ng-model="text" name="restrsexo" formControlName="restrsexo"/>
+            </div>
+
+            <div class="blocodalinha" style="width: 25%;">
+              <label>Cód. CID</label>
+              <input style="width: 90%;" pInputTextarea type="text" ng-model="text" name="codigotexto" formControlName="codigotexto"/>
+            </div>
           </div>
-        </div>
-      </div>
+        </p-tabPanel>
+      </p-tabView>
     </form>
   </div>
 
@@ -84,8 +95,8 @@
       </div>
 
       <div>
-        <button class="botaoprincipal" routerLink="/operacoes/listasubcategoriacid">
-          <img src="/assets/img/PRINT_VIEW.png">
+        <button class="botaoprincipal" (click)="Voltar();">
+          <img src="/assets/img/CANCELAR.png">
           <span>Voltar</span>
         </button>
       </div>

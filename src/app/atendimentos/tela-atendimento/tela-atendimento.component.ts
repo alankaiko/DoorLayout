@@ -26,9 +26,6 @@ export class TelaAtendimentoComponent implements OnInit {
   estados: any[];
   executantes: any[];
   solicitantes: any[];
-  pacienteselecionado: number;
-  convenioselecionado: number;
-  solicitanteselecionado: number;
   codigodecid: number;
   codigoprofexecutante: number;
 
@@ -143,7 +140,7 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   InserirPacientes() {
-    this.service.BuscarPorIdPatient(this.pacienteselecionado)
+    this.service.BuscarPorIdPatient(this.atendimento.patient.idpatient)
     .then( response => {
       this.atendimento.patient = response;
     }
@@ -151,7 +148,7 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   InserirProfSolicitante() {
-    this.service.BuscarPorIdProf(this.solicitanteselecionado)
+    this.service.BuscarPorIdProf(this.atendimento.solicitante.codigo)
       .then(response => {
         this.atendimento.solicitante = response;
       });
@@ -187,6 +184,10 @@ export class TelaAtendimentoComponent implements OnInit {
     this.route.navigate(['/operacoes/laudos', this.atendimento.codigo]);
   }
 
+  VaiCaptura() {
+    this.route.navigate(['/operacoes/captura', this.atendimento.codigo]);
+  }
+
   GerarAtendimento(form: FormControl) {
     this.Salvar(form);
 
@@ -200,7 +201,8 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
+    console.log(this.atendimento.solicitante.conselho.estado.uf);
   }
 
   Voltar() {

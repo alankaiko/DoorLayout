@@ -78,7 +78,7 @@ export class CadSolicitanteComponent implements OnInit {
   AdicionarProfissionalSolicitante() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/tabelas/listaprofsolicitante']);
+        this.route.navigate(['/listaprofsolicitante']);
       });
   }
 
@@ -86,7 +86,7 @@ export class CadSolicitanteComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(profissional => {
         this.formulario.patchValue(profissional);
-        this.route.navigate(['/tabelas/listaprofsolicitante']);
+        this.route.navigate(['/listaprofsolicitante']);
       });
   }
 
@@ -111,6 +111,6 @@ export class CadSolicitanteComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

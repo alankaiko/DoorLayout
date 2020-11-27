@@ -22,7 +22,6 @@ export class CadSubcategoriacidComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.CriarFormulario(new SubcategoriaCid10());
     const codconvenio = this.rota.snapshot.params.cod;
 
@@ -77,7 +76,7 @@ export class CadSubcategoriacidComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 
 }

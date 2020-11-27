@@ -96,7 +96,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'operacoes/listasubcategoriacid',
+        path: 'listasubcategoriacid',
         component: ListaSubcategoriacidComponent
       }
     ]
@@ -109,7 +109,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'operacoes/subcategoriacid/:cod',
+        path: 'subcategoriacid/:cod',
         component: CadSubcategoriacidComponent
       }
     ]

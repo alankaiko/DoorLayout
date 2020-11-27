@@ -2,26 +2,26 @@
   <p-table [value]="procedimentos" [scrollable]="true">
     <ng-template pTemplate="header">
       <tr>
-        <th style="width: 50%;">Procedimento</th>
+        <th style="width: 60%;">Procedimento</th>
         <th style="width: 15%;">Data Exec.</th>
-        <th style="width: 20%;">Prev. Ent. Laudo</th>
-        <th style="width: 15%;">Opções</th>
+        <th style="width: 15%;">Prev. Ent. Laudo</th>
+        <th style="width: 10%;">Opções</th>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-procedimento>
       <tr>
-        <td style="width: 50%;">{{ procedimento?.procedimentomedico?.nome}}</td>
-        <td style="width: 15%;">{{ procedimento?.dataexecucao | date:'dd/MM/yyyy' }}</td>
-        <td style="width: 20%;">{{ procedimento?.preventregalaudo | date:'dd/MM/yyyy' }}</td>
-        <td style="width: 15%; text-align: center;">
-          <button class="botaoedicao" (click)="PrepararEdicaoProcedimento(procedimento)">
+        <td style="width: 60%;">{{ procedimento?.procedimentomedico?.nome}}</td>
+        <td style="width: 15%; text-align: center;">{{ procedimento?.dataexecucao | date:'dd/MM/yyyy' }}</td>
+        <td style="width: 15%; text-align: center;">{{ procedimento?.preventregalaudo | date:'dd/MM/yyyy' }}</td>
+        <td style="width: 10%; text-align: center;">
+          <a class="botaoedicao" (click)="PrepararEdicaoProcedimento(procedimento)">
             <i class="fa fa-pencil-square-o" style="color: #428bca;"></i>
-          </button>
+          </a>
 
-          <button class="botaoedicao" (click)="RemoverProcedimento(rowIndex)">
+          <a class="botaoedicao" (click)="RemoverProcedimento(rowIndex)">
             <i class="fa fa-trash" style="color: #ee3e3e;"></i>
-          </button>
+          </a>
         </td>
       </tr>
     </ng-template>
@@ -41,13 +41,12 @@
   </div>
 </div>
 
-
-<p-dialog [header]="'Novo Procedimento'" [style]="{height: '18.2vw'}" [(visible)]="exbindoFormularioProcedimento">
-  <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="ConfirmarProcedimento()" class="formu">
+<p-dialog class="novoproc" [header]="'Novo Procedimento'" [style]="{'width': '30vw'}" [(visible)]="exbindoFormularioProcedimento">
+  <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="ConfirmarProcedimento()">
     <div class="linhas">
       <div class="blocodalinha" formGroupName="procedimentomedico" style="width: 90%;">
         <label>Procedimento Médico</label>
-        <p-dropdown [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '27%'}" [options]="procedimentomedicos" [filter]="true"  formControlName="codigo"
+        <p-dropdown [style]="{'line-height': '12px', 'width': '23%', 'position': 'fixed'}" [options]="procedimentomedicos" [filter]="true"  formControlName="codigo"
           placeholder="Selecione..." name="codigo" (onChange)="CarregarProcedimentosMedico()">
         </p-dropdown>
       </div>
@@ -63,7 +62,8 @@
     <div class="linhas">
       <div class="blocodalinha" formGroupName="profexecutante" style="width: 90%;">
         <label>Profissional Executante</label>
-        <p-dropdown [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '27%'}" [options]="profissionalexecutantes" [filter]="true"  formControlName="codigo"
+        <p-dropdown [style]="{'line-height': '12px', 'width': '23%', 'position': 'fixed'}"
+          [options]="profissionalexecutantes" [filter]="true"  formControlName="codigo"
           placeholder="Selecione..." name="codigo" (onChange)="CarregaProfissionalExecutante()"></p-dropdown>
       </div>
 
@@ -75,31 +75,30 @@
       </div>
     </div>
 
-
     <div class="linhas">
       <div class="blocodalinha" style="width: 33%;">
         <label>Valor Paciente</label>
-        <input style="width: 95%;" type="text" pInputText ng-model="text" name="valorpaciente" formControlName="valorpaciente" placeholder="0.00">
+        <input style="width: 95%; height: 24px;" type="text" pInputText ng-model="text" name="valorpaciente" formControlName="valorpaciente" placeholder="0.00">
       </div>
 
       <div class="blocodalinha" style="width: 33%;">
         <label>Prev. Ent. Laudo</label>
-        <p-calendar [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '10%'}"
+        <p-calendar [inputStyle]="{ 'width': '8.5%', 'height': '24px', 'position': 'fixed', 'border-radius': '2px' }" [style]="{'position': 'fixed', 'z-index': '100'}"
           placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="preventregalaudo"
           yearRange="1930:2020" name="preventregalaudo" class="preventregalaudo"></p-calendar>
       </div>
 
       <div class="blocodalinha" style="width: 33%;">
         <label>Data Execução</label>
-        <p-calendar [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '10%'}"
+        <p-calendar [inputStyle]="{ 'width': '9%', 'height': '24px', 'position': 'fixed', 'border-radius': '2px' }" [style]="{'position': 'fixed', 'z-index': '100'}"
           placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" formControlName="dataexecucao"
           yearRange="1930:2020" name="dataexecucao" [yearNavigator]="true"></p-calendar>
       </div>
     </div>
 
     <div class="linhas" style="margin-top: 5px; text-align: center;">
-      <button pButton type="submit" label="Confirmar"></button>
-      <button pButton type="button" label="Cancelar" (click)="BotaoCancelar()"></button>
+      <button pButton type="submit" label="Gravar" style="margin: 0 5px;"></button>
+      <button pButton type="button" label="Voltar" (click)="BotaoCancelar()" style="margin: 0 5px;"></button>
     </div>
   </form>
 </p-dialog>

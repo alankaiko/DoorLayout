@@ -61,7 +61,7 @@ export class CadTextopessoalComponent implements OnInit {
   AdicionarTextoPessoal() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/tabelas/listatextopessoal']);
+        this.route.navigate(['/listatextopessoal']);
       });
   }
 
@@ -69,7 +69,7 @@ export class CadTextopessoalComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(texto => {
         this.formulario.patchValue(texto);
-        this.route.navigate(['/tabelas/listatextopessoal']);
+        this.route.navigate(['/listatextopessoal']);
       });
   }
 
@@ -78,6 +78,6 @@ export class CadTextopessoalComponent implements OnInit {
   }
 
   Fechar() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   }
 }

@@ -28,8 +28,6 @@ procedimento = new ProcedimentoAtendimento();
 atendimentos: any[];
 procedimentosAtd: any[];
 cont: number;
-atendimentoSelecionado: number;
-procedimentosAtdSelecionado: number;
 imagemant: any;
 verifica = false;
 item = 0;
@@ -58,9 +56,9 @@ constructor(private service: AtendimentoService,
             private messageService: MessageService) { }
 
 ngOnInit() {
-  const codabreviatura = this.rota.snapshot.params.cod;
-  if (codabreviatura) {
-
+  const codigo = this.rota.snapshot.params.cod;
+  if (codigo) {
+    this.BuscarAtendimento(codigo);
   }
 
   this.CarregarAtendimentos();
@@ -70,6 +68,14 @@ ngOnInit() {
     });
 }
 
+BuscarAtendimento(codigo: number) {
+  this.service.BuscarPorId(codigo)
+    .then(atendimento => {
+      this.atendimento = atendimento;
+      this.CarregarProcedimentos();
+    }).catch(erro => erro);
+}
+
 GravandoImagens() {
   this.procedimento.listaimagem.forEach((el) => {
     el.imagem = el.imagem.imageAsBase64.replace('data:image/jpeg;base64,', '');
@@ -77,7 +83,7 @@ GravandoImagens() {
 
   try {
     this.serviceproc.AtualizarComImagens(this.procedimento);
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/home']);
   } catch (error) {
     console.log(error);
   }
@@ -111,7 +117,7 @@ ConfigurarVariavel() {
   this.verifica = true;
 
   this.atendimento.procedimentos.filter((elo) => {
-    if (elo.codigo === this.procedimentosAtdSelecionado) {
+    if (elo.codigo === this.procedimento.codigo) {
       this.procedimento = elo;
       this.procedimento.codigoatdteste = this.atendimento.codigo;
       this.procedimento.listaimagem.forEach((el) => {
@@ -196,7 +202,7 @@ CarregarAtendimentos() {
 }
 
 CarregarProcedimentos() {
-  this.service.BuscarPorId(this.atendimentoSelecionado)
+  this.service.BuscarPorId(this.atendimento.codigo)
     .then(
       response => {
         this.atendimento = response;

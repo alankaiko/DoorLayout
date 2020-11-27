@@ -22,7 +22,6 @@ export class CadConvenioComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.CriarFormulario(new Convenio());
     const codconvenio = this.rota.snapshot.params.cod;
 

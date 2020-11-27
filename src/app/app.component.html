@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div>
-    <div class="menu">
+    <div class="menu" *ngIf="ExibindoNavbar()">
       <app-navbar></app-navbar>
     </div>
 
@@ -9,7 +9,7 @@
       <router-outlet></router-outlet>
     </div>
 
-    <div class="rodape">
+    <div class="rodape" *ngIf="ExibirRodape()">
       <app-footer style="width: 100%;"></app-footer>
     </div>
   </div>
