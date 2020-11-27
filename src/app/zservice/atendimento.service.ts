@@ -6,7 +6,7 @@ import * as moment from 'moment';
 
 export class AtendimentoFilter {
   pagina = 0;
-  itensPorPagina = 7;
+  itensPorPagina = 14;
   patientname: string;
   solicitantename: string;
   datainicial: Date;

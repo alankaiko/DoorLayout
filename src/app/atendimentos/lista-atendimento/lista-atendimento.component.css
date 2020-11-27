@@ -76,11 +76,10 @@
 
 :host /deep/ p-table .ui-table {
   height: 260px;
-  font-size: 85%;
 }
 
 :host /deep/ p-table .ui-table .ui-table-scrollable-body{
-  height: 190px;
+  height: 240px;
   background-color: #fff;
 }
 

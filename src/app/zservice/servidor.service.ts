@@ -11,7 +11,7 @@ export class PatientFiltro {
   patientsex: string;
   servidor: boolean;
   pagina = 0;
-  itensPorPagina = 7;
+  itensPorPagina = 10;
 }
 
 

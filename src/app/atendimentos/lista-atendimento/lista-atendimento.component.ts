@@ -33,7 +33,7 @@ export class ListaAtendimentoComponent implements OnInit {
     this.camposbusca = [
       {label: 'Codigo'},
       {label: 'Paciente'},
-      {label: 'Prof. Executante'}
+      {label: 'Prof. Exec'}
     ];
 
     this.periodo = [

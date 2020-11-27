@@ -2,21 +2,21 @@
   <div class="menubuscar">
     <form #f="ngForm" autocomplete="off" class="formu">
       <div class="ui-g-8">
-        <label>Buscar: </label>
+        <label>Buscar  </label>
         <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
       </div>
 
       <div class="ui-g-4">
-        <label>no campo: </label>
+        <label>no campo  </label>
         <p-dropdown [style]="{'min-width': '65%'}" id="codigodrop" [options]="camposbusca"></p-dropdown>
       </div>
     </form>
   </div>
 
   <div class="table-responsive corpo">
-    <p-table [value]="patients" [responsive]="true" [scrollable]="true"
+    <p-table [value]="patients" [scrollable]="true"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
-      selectionMode="single" [(selection)]="patient" dataKey="idpatient" [virtualScroll]="true">
+      selectionMode="single" [(selection)]="patient" dataKey="idpatient">
 
       <ng-template pTemplate="header">
         <tr>

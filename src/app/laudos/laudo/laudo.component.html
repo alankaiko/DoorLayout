@@ -1,91 +1,56 @@
-<div class="ui-g geral">
+<div class="geral">
   <div class="topoprocedimento">
     <form #f="ngForm" autocomplete="off" class="formu">
-      <div class="ui-g-4 ui-fluid" style="display: inline-flex; padding: 0;">
-        <label>Atendimento: </label>
-        <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo" #atendimentocodigo="ngModel" name="atendimentocodigo"
-          placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
-      </div>
+      <div class="linhas">
+        <div class="blocodalinha" style="width: 40%;">
+          <label>Atendimento </label>
+          <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo"
+            #atendimentocodigo="ngModel" name="atendimentocodigo" placeholder="Selecione..."
+            (onChange)="CarregarProcedimentos()" [style]="{'line-height': '12px', 'width': '78%'}"></p-dropdown>
+        </div>
 
-      <div class="ui-g-8 ui-fluid" style="display: inline-flex; padding: 0;">
-        <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
-          placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
+        <div class="blocodalinha" style="width: 55%;">
+          <label>Procedimento selecionado </label>
+          <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo"
+            #procedimentoselecionado="ngModel" name="procedimentoselecionado" placeholder="Selecione..."
+            (onChange)="ConfigurarVariavel()" [style]="{'line-height': '12px', 'width': '70%'}"></p-dropdown>
+        </div>
 
+        <div class="blocodalinha" style="width: 5%;">
           <button class="botaosair" routerLink="/home">
             <img src="/assets/img/SAIR.png">
             <span>Sair</span>
           </button>
+        </div>
       </div>
     </form>
   </div>
 
   <div class="painelgeral">
     <div class="painelesquerda">
-      <div class="menubotoes" style="display: inline-flex;">
-        <div>
-          <button type="button" class="botaoprincipal" (click)="Salvar(f)">
-            <img src="/assets/img/SALVAR.png">
-            <span>Salvar</span>
-          </button>
-        </div>
+      <div class="menubotoes">
+        <p-toolbar>
+          <div class="ui-toolbar-group-left">
+              <button pButton type="button" label="Salvar" icon="pi pi-plus" (click)="Salvar(f)"></button>
+              <button style="background-color: #607D8B; border: 1px solid #607D8B;" pButton type="button" label="Imprimir" icon="pi pi-plus" (click)="GerarImpressao()"></button>
+              <button style="background-color: #537f2d; border: 1px solid #537f2d;" pButton type="button" label="Gerar PDF" icon="pi pi-plus" (click)="Salvar(f)"></button>
+              <button style="background-color: #8c239e; border: 1px solid #8c239e;" pButton type="button" label="Vlz Laudo" icon="pi pi-upload" class="ui-button-success" (click)="EscolherLaudo()"></button>
+              <button style="background-color: #aa2424; border: 1px solid #aa2424;" pButton type="button" label="Esc Img" icon="pi pi-plus" (click)="EscolherImagens()"></button>
+              <button style="background-color: #E91E63; border: 1px solid #E91E63;" pButton type="button" label="Modelo" icon="pi pi-plus" (click)="AtivarExcluir()"></button>
+              <button style="background-color: #8c239e; border: 1px solid #8c239e;" pButton type="button" label="Receita" icon="pi pi-plus"></button>
+          </div>
 
-        <div>
-          <button type="button" class="botaoprincipal">
-            <img src="/assets/img/CANCELAR.png">
-            <span>Cancelar</span>
-          </button>
-        </div>
-
-        <div>
-          <button type="button" class="botaoprincipal" (click)="GerarImpressao()">
-            <img src="/assets/img/IMPRESSORA.png">
-            <span>Imprimir</span>
-          </button>
-        </div>
-
-        <div>
-          <button type="button" class="botaoprincipal">
-            <img src="/assets/img/PDF_FILE.gif">
-            <span>Gerar PDF</span>
-          </button>
-        </div>
-
-        <div>
-          <button type="button" class="botaoprincipal" (click)="EscolherLaudo()">
-            <img src="/assets/img/PRINT_VIEW.png">
-            <span>Vlz Laudo</span>
-          </button>
-        </div>
-
-        <div>
-          <button type="button" class="botaoprincipal" (click)="EscolherImagens()">
-            <img src="/assets/img/ESCOLHER_IMAGENS.png">
-            <span>Esc Img</span>
-          </button>
-        </div>
-
-        <div>
-          <button (click)="AtivarExcluir()" type="button" class="botaoprincipal">
-            <img src="/assets/img/MODELO_LAUDO.png">
-            <span>Modelo</span>
-          </button>
-        </div>
-
-        <div>
-          <button type="button" class="botaoprincipal">
-            <img src="/assets/img/OPTIONS.png">
-            <span>Receita</span>
-          </button>
-        </div>
+          <div class="ui-toolbar-group-right">
+              <button pButton type="button" label="Cancelar" icon="pi pi-times" class="ui-button-danger" (click)="Voltar()"></button>
+          </div>
+        </p-toolbar>
       </div>
 
-      <div class="paineltexto">
-        <p-scrollPanel [style]="{width: '100%', height: '100%'}">
-          <app-textolivre *ngIf="conferindo" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-textolivre>
+      <div class="paineltexto" id="paineltexto">
+        <app-textolivre *ngIf="conferindo" [camposdolaudo]="procedimento.laudo.camposdolaudo"></app-textolivre>
 
-          <app-paginaimagens *ngIf="abrirpaginaimg" [paginadeimagens]="procedimento.paginadeimagens"
-            [listaimagem]="procedimento.listaimagem"></app-paginaimagens>
-        </p-scrollPanel>
+        <app-paginaimagens *ngIf="abrirpaginaimg" [paginadeimagens]="procedimento.paginadeimagens"
+          [listaimagem]="procedimento.listaimagem"></app-paginaimagens>
       </div>
     </div>
 

@@ -69,7 +69,6 @@
   font-weight: bold;
   transition: all 0.2s ease;
   cursor: pointer;
-
 }
 
 :host /deep/ p-table {
@@ -77,16 +76,15 @@
   border: 1px solid #b9b8b8;
   margin-top: -1px;
   display: table;
-  font-size: 70%;
   position: static;
 }
 
 :host /deep/ p-table .ui-table {
   height: 210px;
+  font-size: 85%;
 }
 
 :host /deep/ p-table .ui-table .ui-table-scrollable-body{
-  font-size: 70%;
   height: 190px;
   background-color: #fff;
 }

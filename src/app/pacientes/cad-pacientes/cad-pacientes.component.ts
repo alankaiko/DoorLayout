@@ -31,7 +31,6 @@ export class CadPacientesComponent implements OnInit {
     }
 
     this.enumsexo = [
-      {label: 'Selecione'},
       {label: 'Masculino'},
       {label: 'Feminino'}
     ];

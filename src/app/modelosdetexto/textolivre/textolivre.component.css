@@ -3,16 +3,7 @@
 }
 
 :host /deep/ p-editor .ui-editor-container .ui-editor-content {
+  width: 100%;
   border: 1px solid #555555;
-  position:  fixed;
-  width: 840px;
-  height: 70%;
-  background-color: #ffffff;
-  border: 1px solid #242323;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
+  background-color: #ad1c4d;
 }

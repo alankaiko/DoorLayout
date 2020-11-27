@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo } from './../../core/model';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-laudo',
@@ -29,13 +30,13 @@ export class LaudoComponent implements OnInit {
   conferindo = false;
   abrirpaginaimg = false;
 
-
   constructor(private service: AtendimentoService,
               private serviceproc: ProcedimentoatendimentoService,
               private servicemodelo: ModelodelaudodoprocService,
               private rota: ActivatedRoute,
               private route: Router,
-              private servicoparametro: ParametrodosistemaService) { }
+              private servicoparametro: ParametrodosistemaService,
+              private location: Location) { }
 
   ngOnInit(): void {
     const codatendimento = this.rota.snapshot.params.cod;
@@ -304,5 +305,9 @@ export class LaudoComponent implements OnInit {
     return  '<div class="page-footer" style="height: 25px; position: fixed; bottom: 0; width: 93%; border-top: 1px solid black; text-align: center; border-top: 1px solid #000; background-color: white;">'
       +       '<span id="labelrodape">Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264</span>'
       +     '</div>';
+  }
+
+  Voltar() {
+    this.location.back();
   }
 }

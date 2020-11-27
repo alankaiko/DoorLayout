@@ -2,12 +2,12 @@
   <div class="menubuscar">
     <form #f="ngForm" autocomplete="off" class="formu">
       <div class="ui-g-8">
-        <label>Buscar: </label>
+        <label>Buscar  </label>
         <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
       </div>
 
       <div class="ui-g-4">
-        <label>no campo: </label>
+        <label>no campo  </label>
         <p-dropdown id="codigodrop" [style]="{'min-width': '65%'}" [options]="camposbusca"></p-dropdown>
       </div>
     </form>

@@ -12,7 +12,13 @@ export class TextolivreComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.PegaAltura();
   }
 
+  PegaAltura() {
+    const painel = document.getElementById('paineltexto').clientHeight;
+    const editor = document.querySelector('div.ui-editor-content');
+    editor.setAttribute('style' , 'height: ' + painel + 'px;');
+  }
 }
 
