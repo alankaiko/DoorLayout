@@ -30,6 +30,13 @@ export class PaginaimagensComponent implements OnInit {
     }
 
     this.VerificaQualLayout(0);
+    this.PegaAltura();
+  }
+
+  PegaAltura() {
+    const painel = document.getElementById('painelgerallaudo').clientHeight;
+    const editor = document.getElementById('geral');
+    editor.setAttribute('style' , 'height: ' + painel + 'px;');
   }
 
 
@@ -140,13 +147,13 @@ export class PaginaimagensComponent implements OnInit {
       });
     });
 
-    this.listaimagem.filter((el) => {
-      this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {
-        el.imagem = data;
-      }, error => {
-        console.log(error);
-      });
-    });
+    // this.listaimagem.filter((el) => {
+    //  this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {
+    //    el.imagem = data;
+    //  }, error => {
+    //    console.log(error);
+    //  });
+    // });
 
     this.ConfigurarDimensoes();
   }
@@ -213,7 +220,7 @@ export class PaginaimagensComponent implements OnInit {
     }
 
     this.ConfigurarDimensoes();
-    this.RoteandoImagens(posicao);
+    // this.RoteandoImagens(posicao);
   }
 
   EscolhendoLayout() {
@@ -278,20 +285,7 @@ export class PaginaimagensComponent implements OnInit {
     }
   }
 
-  RoteandoImagens(numero: number) {
-    this.listaimagemsbase = new Array<Imagem>();
 
-    this.paginadeimagens[numero].imagemimpressa.forEach(alo => {
-      this.serviceproc.PegarImagemString(alo.imagem.codigo).subscribe(data => {
-        alo.imagem.imagem = data;
-        this.listaimagemsbase.push(alo.imagem);
-      }, error => {
-        console.log(error);
-      });
-
-    });
-
-  }
 
   private RetornaImagens(nome: string) {
     let valor;

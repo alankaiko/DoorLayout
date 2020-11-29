@@ -1,51 +1,31 @@
-
-:host /deep/ p-dialog .ui-dialog {
-  border: 1px solid rgba(0, 0, 0, 0.438);
-  border-radius: 2px;
-  background-color: #D6D9E0;
+:host /deep/ p-table {
+  background-color:#ffffff;
+  border: 1px solid #b9b8b8;
+  margin-top: -1px;
+  display: table;
+  position: static;
 }
 
-:host /deep/ p-dialog .ui-dialog-titlebar {
-  margin: 0 auto;
-  vertical-align: middle;
+:host /deep/ p-table .ui-table {
+  height: 50px;
+}
+
+:host /deep/ p-table .ui-table .ui-table-scrollable-body{
+  height: 240px;
+  background-color: #fff;
+}
+
+:host /deep/ p-table .ui-table-tbody .ui-selectable-row:hover{
+  background-color: rgba(84, 104, 138, 0.342);
+}
+
+:host /deep/ p-table .ui-table .ui-table-tbody > tr > td{
+  padding: 0 0.5em;
+}
+
+:host /deep/ p-table .ui-table .ui-table-thead > tr > th{
   padding: 0;
-  font-family: 'Source Sans Pro Semibold';
-  font-size: 105%;
-  color: rgb(10, 10, 10);
-  text-align: center;
-  background: #B4B8C1;
-  background: -webkit-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  background: -o-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  background: -moz-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  background: linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
 }
-
-:host /deep/ p-dialog .ui-dialog .ui-dialog-content {
-  border-left: 2px solid #A5A9B2;
-  border-bottom: 2px solid #A5A9B2;
-  border-right: 2px solid #A5A9B2;
-  position: relative;
-}
-
-:host /deep/ p-dialog .ui-dialog-titlebar > a {
-  width: 18px;
-  height: 18px;
-  border-radius: 4%;
-  vertical-align: middle;
-  text-align: center;
-  border: 1px solid #ccc;
-  background-color: #CC0000;
-  color: rgb(250, 246, 246);
-  font-weight: bold;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-:host /deep/ p-dialog {
-  background-color: #efefef;
-  border-radius: 3px;
-}
-
 
 .geral {
   color: #fff;
@@ -81,7 +61,7 @@
   font-size: 110%;
 }
 
-.painelgeral {
+.painelgerallaudo {
   width: 100%;
   height: 95%;
   padding-top: 4px;
@@ -96,8 +76,43 @@
 .paineldireita {
   width: 32%;
   height: 100%;
-  border-left: solid 2px;
-  box-shadow: 2px 4px 4px 3px black;
+  color: rgb(75, 71, 71);
+  border-left: solid 1px;
+}
+
+.carrosselimg {
+  width: 100%;
+  height: 40%;
+  border-bottom: 1px solid #585454;
+}
+
+.painelcarrossel {
+  height: 10%;
+  width: 100%; border: 1px solid;
+}
+
+.painelbotoesgrav {
+  border: 1px solid;
+  width: 100%;
+  height: 7%;
+  display: inline-table;
+}
+
+.tabelavideo {
+  width: 100%;
+  height: 53%;
+  display: inline-flex;
+}
+
+.quantidadevideo {
+  width: 30%;
+  height: 30px;
+  float: right;
+  border: 1px solid #4b4848;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
 }
 
 .botaoprincipal {

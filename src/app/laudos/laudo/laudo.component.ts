@@ -5,7 +5,7 @@ import { PaginaimagensComponent } from './../paginaimagens/paginaimagens.compone
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { isEmptyObject } from 'jquery';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo } from './../../core/model';
+import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo, Imagem } from './../../core/model';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Location} from '@angular/common';
@@ -39,15 +39,32 @@ export class LaudoComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit(): void {
-    const codatendimento = this.rota.snapshot.params.cod;
+    const codigo = this.rota.snapshot.params.cod;
 
     this.CarregarAtendimentos();
     this.getImagemFromService();
 
-    if (codatendimento) {
-      this.CarregaAtendimento(codatendimento);
+    if (codigo) {
+      this.BuscarProcedimento(codigo);
     }
+  }
 
+  BuscarProcedimento(codigo: number) {
+    this.serviceproc.BuscarPorId(codigo)
+      .then(procedimento => {
+        this.procedimento = procedimento;
+        this.BuscarAtendimento(procedimento.atendimento.codigo);
+        this.RenderizarModeloLaudo();
+        this.RoteandoImagens();
+      }).catch(erro => erro);
+  }
+
+  BuscarAtendimento(codigo: number) {
+    this.service.BuscarPorId(codigo)
+      .then(atendimento => {
+        this.atendimento = atendimento;
+        this.CarregarProcedimentos();
+      }).catch(erro => erro);
   }
 
   CarregaAtendimento(codigo: number) {
@@ -91,10 +108,22 @@ export class LaudoComponent implements OnInit {
 
                 this.FiltrandoProcedimento();
                 this.RenderizarModeloLaudo();
+                this.RoteandoImagens();
               }
             );
         }
       );
+
+  }
+
+  RoteandoImagens() {
+    this.procedimento.listaimagem.forEach(elo => {
+      this.serviceproc.PegarImagemString(elo.codigo).subscribe(data => {
+        elo.imagem = data;
+      }, error => {
+        console.log(error);
+      });
+    });
   }
 
   FiltrandoProcedimento() {
@@ -157,6 +186,10 @@ export class LaudoComponent implements OnInit {
       this.conferindo = false;
       this.abrirpaginaimg = true;
     }
+  }
+
+  AbrirTelaCaptura() {
+    this.route.navigate(['operacoes/captura', this.procedimento.codigo]);
   }
 
   EscolherLaudo() {

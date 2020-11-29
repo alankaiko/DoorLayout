@@ -1,9 +1,10 @@
+import { ProcedimentoCadApendComponent } from './../procedimento-cad-apend/procedimento-cad-apend.component';
 import { ConvenioService, ConvenioFiltro } from './../../zservice/convenio.service';
 import { Atendimento } from './../../core/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { FormArray, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {Location} from '@angular/common';
 import * as moment from 'moment';
 
@@ -14,6 +15,7 @@ import * as moment from 'moment';
   styleUrls: ['./tela-atendimento.component.css']
 })
 export class TelaAtendimentoComponent implements OnInit {
+  @ViewChild(ProcedimentoCadApendComponent) appendchild: ProcedimentoCadApendComponent;
   atendimento = new Atendimento();
   items: FormArray;
   filtroconvenio = new ConvenioFiltro();
@@ -181,11 +183,15 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   VaiParaLaudos() {
-    this.route.navigate(['/operacoes/laudos', this.atendimento.codigo]);
+    if (this.appendchild.procedimentoselecionado !== null && this.appendchild.procedimentoselecionado !== undefined) {
+      this.route.navigate(['/operacoes/laudos', this.appendchild.procedimentoselecionado.codigo]);
+    }
   }
 
   VaiCaptura() {
-    this.route.navigate(['/operacoes/captura', this.atendimento.codigo]);
+    if (this.appendchild.procedimentoselecionado !== null && this.appendchild.procedimentoselecionado !== undefined) {
+      this.route.navigate(['/operacoes/captura', this.appendchild.procedimentoselecionado.codigo]);
+    }
   }
 
   GerarAtendimento(form: FormControl) {

@@ -1,5 +1,6 @@
 <div class="corpo">
-  <p-table [value]="procedimentos" [scrollable]="true">
+  <p-table [value]="procedimentos" [scrollable]="true" selectionMode="single"
+    [(selection)]="procedimentoselecionado" dataKey="codigo">
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 60%;">Procedimento</th>
@@ -10,7 +11,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-procedimento>
-      <tr>
+      <tr [pSelectableRow]="procedimento">
         <td style="width: 60%;">{{ procedimento?.procedimentomedico?.nome}}</td>
         <td style="width: 15%; text-align: center;">{{ procedimento?.dataexecucao | date:'dd/MM/yyyy' }}</td>
         <td style="width: 15%; text-align: center;">{{ procedimento?.preventregalaudo | date:'dd/MM/yyyy' }}</td>

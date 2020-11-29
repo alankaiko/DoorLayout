@@ -1,157 +1,153 @@
 <p-confirmDialog></p-confirmDialog>
-<div style="text-align:left; margin-top: 0;" class="ui-g geral">
-  <div class="topoprocedimento ui-g-12">
+<div class="geral">
+  <div class="topoprocedimento">
     <form #f="ngForm" autocomplete="off" class="formu">
-      <div class="ui-g-4 ui-fluid" style="display: inline-flex; padding: 0;">
-        <label>Atendimento: </label>
-        <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo" #atendimentocodigo="ngModel" name="atendimentocodigo"
-          placeholder="Selecione..." (onChange)="CarregarProcedimentos()"></p-dropdown>
-      </div>
+      <div class="linhas">
+        <div class="blocodalinha" style="width: 40%;">
+          <label>Atendimento </label>
+          <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo"
+            #atendimentocodigo="ngModel" name="atendimentocodigo" placeholder="Selecione..."
+            (onChange)="CarregarProcedimentos()" [style]="{'line-height': '12px', 'width': '78%'}"></p-dropdown>
+        </div>
 
-      <div class="ui-g-8 ui-fluid" style="display: inline-flex; padding: 0;">
-        <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo" #procedimentoselecionado="ngModel" name="procedimentoselecionado"
-          placeholder="Selecione..." (onChange)="ConfigurarVariavel()"></p-dropdown>
+        <div class="blocodalinha" style="width: 55%;">
+          <label>Procedimento selecionado </label>
+          <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo"
+            #procedimentoselecionado="ngModel" name="procedimentoselecionado" placeholder="Selecione..."
+            (onChange)="ConfigurarVariavel()" [style]="{'line-height': '12px', 'width': '70%'}"></p-dropdown>
+        </div>
 
+        <div class="blocodalinha" style="width: 5%;" *ngIf="!abrirpaginaimg">
           <button class="botaosair" routerLink="/home">
             <img src="/assets/img/SAIR.png">
             <span>Sair</span>
           </button>
-      </div>
+        </div>
 
+        <div class="blocodalinha" style="width: 5%;" *ngIf="abrirpaginaimg">
+          <button class="botaosair" (click)="EscolherLaudo()">
+            <img src="/assets/img/VOLTAR.png">
+            <span>Voltar</span>
+          </button>
+        </div>
+      </div>
     </form>
   </div>
 
-  <div class="painelprincipal">
-    <div id="divisoria" style="margin-top: 10px;">
-      <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-      [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [height]="PegaLargura()" [width]="PegaLargura()"
-      [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
-      (initError)="handleInitError($event)"></webcam>
-    </div>
-  </div>
-
-  <div class="menulateral">
-    <div style="border: 1px solid; width: 100%; height: 195px;">
-      <p-carousel [value]="procedimento?.listaimagem" [numVisible]="1" [numScroll]="1" (onPage)="PegarPagina($event)">
-        <ng-template let-web pTemplate="item">
-          <div class="thumbnail-wrapper">
-            <img style="width: 100%; height: 165px;" [src]="web?.imagem?.imageAsDataUrl"/>
-            <button class="btn btn-outline-warning" title="Excluir" (click)="ConfirmarExclusao(web)"><i class="fa fa-fw fa-trash-o"></i></button>
-          </div>
-        </ng-template>
-      </p-carousel>
-    </div>
-
-    <div style="border: 1px solid; width: 100%;">
-      <p-toolbar>
-        <div style="display: inline-flex; float: left;">
-          <button class="botaoprincipal" style="padding-top: 15px; padding-bottom: 15px;"
-             routerLink="/operacoes/editarimagem" type="button">
-
-            <img src="/assets/img/IMG_EDIT.png">
-            <span>Editar</span>
-          </button>
-
-          <button disabled="true" type="button" class="botaoprincipal">
-            <span>Importar</span>
-            <span>ou</span>
-            <span>Mover</span>
-          </button>
-        </div>
-
-        <div class="quantidadedoarray">
-          <div id="quantidade">
-            <span>{{item}} de {{procedimento?.listaimagem?.length}}</span>
-          </div>
-
-        </div>
-      </p-toolbar>
-    </div>
-
-    <div style="height: 70px; width: 100%; border: 1px solid;">
-
-    </div>
-
-    <div style="border: 1px solid; width: 100%; display: inline-table;">
-      <button type="button" class="minibotao">
-        <img src="/assets/img/RECORD_RED.png">
-      </button>
-
-      <button type="button" class="minibotao">
-        <img src="/assets/img/PAUSE.png">
-      </button>
-
-      <button type="button" class="minibotao">
-        <img src="/assets/img/SOUND_OFF.png">
-      </button>
-
-      <button type="button" class="minibotao">
-        <img src="/assets/img/TV_CAPTURA.png">
-      </button>
-
-      <div class="quantidadevideo">
-        <div id="quantidadevideo">
-          <span>00:00:00</span>
-        </div>
+  <div class="painelgerallaudo" id="painelgerallaudo">
+    <div class="painelesquerda">
+      <div id="divisoria">
+        <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+        [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+        [height]="PegaLargura()" [width]="PegaLargura()" [videoOptions]="videoOptions"
+        [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+        (initError)="handleInitError($event)"></webcam>
       </div>
     </div>
 
-    <div style="border: 1px solid; width: 100%;">
-      <p-toolbar>
-        <button class="btn btn-success" type="button" (click)="TiraFoto();" *ngIf="verifica">Capturar</button>
-
-        <button class="btn btn-primary" (click)="toggleWebcam();">Alternar</button>
-        <button class="btn btn-danger" type="button" (click)="GravandoImagens();" *ngIf="verifica">Salvar</button>
-        <button class="btn btn-warning" (click)="toggleWebcam();">Mostrar Laudo</button>
-      </p-toolbar>
-    </div>
-
-    <div style="width: 100%; display: inline-flex;">
-      <div style="width: 90%; height: 180px; border: 1px solid rgb(48, 46, 46);">
-        <p-table [value]="videos" class="table table-striped table-bordered table-hover"
-        [scrollable]="true" scrollHeight="154px">
-          <ng-template pTemplate="header">
-            <tr>
-              <th style="width: 50%;">Vídeo</th>
-              <th style="width: 25%;">Duração</th>
-              <th style="width: 25%;">Tamanho</th>
-            </tr>
+    <div class="paineldireita">
+      <div class="carrosselimg">
+        <p-carousel [value]="procedimento?.listaimagem" [numVisible]="1" [numScroll]="1" (onPage)="PegarPagina($event)">
+          <ng-template let-web pTemplate="item">
+            <div class="thumbnail-wrapper">
+              <img style="width: 100%; height: 165px;" [src]="web?.imagem?.imageAsDataUrl"/>
+              <button class="btn btn-outline-warning" title="Excluir" (click)="ConfirmarExclusao(web)"><i class="fa fa-fw fa-trash-o"></i></button>
+            </div>
           </ng-template>
-
-          <ng-template pTemplate="body" let-video>
-            <tr>
-              <td style="width: 50%;">{{video?.codigo}}</td>
-              <td style="width: 25%;">{{video?.nome}}</td>
-              <td style="width: 25%;">{{video?.telefone}}</td>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="emptymessage">
-            <tr>
-              <td colspan="5">
-                Nenhum Vídeo Encontrado
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
+        </p-carousel>
       </div>
 
-      <div style="width: 10%; height: 180px; margin: 0 auto;">
+      <div style="border: 1px solid; width: 100%;">
+        <p-toolbar>
+          <div style="display: inline-flex; float: left;">
+            <button class="botaoprincipal" style="padding-top: 15px; padding-bottom: 15px;"
+               routerLink="/operacoes/editarimagem" type="button">
+
+              <img src="/assets/img/IMG_EDIT.png">
+              <span>Editar</span>
+            </button>
+
+            <button disabled="true" type="button" class="botaoprincipal">
+              <span>Importar</span>
+              <span>ou</span>
+              <span>Mover</span>
+            </button>
+          </div>
+
+          <div class="quantidadedoarray">
+            <div id="quantidade">
+              <span>{{item}} de {{procedimento?.listaimagem?.length}}</span>
+            </div>
+
+          </div>
+        </p-toolbar>
+      </div>
+
+      <div style="border: 1px solid; width: 100%; display: inline-table;">
         <button type="button" class="minibotao">
-          <img src="/assets/img/PLAY.png">
+          <img src="/assets/img/RECORD_RED.png">
         </button>
 
         <button type="button" class="minibotao">
-          <img src="/assets/img/APAGAR.png">
+          <img src="/assets/img/PAUSE.png">
         </button>
+
+        <button type="button" class="minibotao">
+          <img src="/assets/img/SOUND_OFF.png">
+        </button>
+
+        <button type="button" class="minibotao">
+          <img src="/assets/img/TV_CAPTURA.png">
+        </button>
+
+        <div class="quantidadevideo">
+          <div id="quantidadevideo">
+            <span>00:00:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="border: 1px solid; width: 100%;">
+        <p-toolbar>
+          <button class="botoes" type="button" (click)="TiraFoto();" *ngIf="verifica">Capturar</button>
+
+          <button class="botoes" (click)="toggleWebcam();">Alternar</button>
+          <button class="botoes" type="button" (click)="GravandoImagens();" *ngIf="verifica">Salvar</button>
+          <button class="botoes" (click)="MostrarLaudo();">Mostrar Laudo</button>
+        </p-toolbar>
+      </div>
+
+      <div class="tabelavideo">
+        <div style="width: 100%; height: 100%; border: 1px solid rgb(48, 46, 46);">
+          <p-table [value]="videos" class="table table-striped table-bordered table-hover"
+          [scrollable]="true" scrollHeight="154px">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 50%;">Vídeo</th>
+                <th style="width: 25%;">Duração</th>
+                <th style="width: 25%;">Tamanho</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-video>
+              <tr>
+                <td style="width: 50%;">{{video?.codigo}}</td>
+                <td style="width: 25%;">{{video?.nome}}</td>
+                <td style="width: 25%;">{{video?.telefone}}</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="5">
+                  Nenhum Vídeo Encontrado
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
       </div>
     </div>
   </div>
-
-  <div style="border: 1px solid; width: 100%;">
-    <div class="conta" *ngFor="let web of webcamImage">
-      <img class="imagem" [src]="web.imageAsDataUrl"/>
-    </div>
-  </div>
-
 </div>
+
 

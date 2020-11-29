@@ -13,7 +13,7 @@ import * as moment from 'moment';
 })
 export class ProcedimentoCadApendComponent implements OnInit {
   @Input() procedimentos: Array<ProcedimentoAtendimento>;
-
+  procedimentoselecionado: ProcedimentoAtendimento;
   formulario: FormGroup;
   exbindoFormularioProcedimento = false;
   procedimentoIndex: number;
@@ -60,6 +60,7 @@ export class ProcedimentoCadApendComponent implements OnInit {
   }
 
   PrepararEdicaoProcedimento(procedimento: ProcedimentoAtendimento) {
+    console.log(this.procedimentoselecionado);
     this.formulario.patchValue(procedimento);
     this.exbindoFormularioProcedimento = true;
     // this.procedimento = this.ClonarProcedimento(procedimento);
