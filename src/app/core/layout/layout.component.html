@@ -1,6 +1,7 @@
 <div id="fundo-externo">
   <div id="fundo">
-      <img src="/assets/img/IMAGEM_DE_FUNDO.jpg" alt="" />
+      <img src="/assets/img/IMAGEM_DE_FUNDO.jpg" alt="" *ngIf="ExibindoFundo()"/>
+      <div style="width: 100%; height: 100%; background-color: #283134;" *ngIf="!ExibindoFundo()"></div>
   </div>
 </div>
 

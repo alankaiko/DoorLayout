@@ -1,178 +1,44 @@
-<div class="ui-g principal">
-  <div class="ui-g-12" style="padding: 0;">
-    <nav class="navbar navbar-static-top" style="background-color:#171819; padding: 0; ">
-      <div class="navbar-custom-menu">
-        <ul class="navbar navbar-expand-lg" style="list-style: none;">
-          <li class="dropdown menuli">
-            <a title="Windowing" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-adjust"></i>
-              <span class="txt"><small>Windowing</small></span>
-            </a>
-            <ul class="dropdown-menu" style="text-align: center; top:60px; width: 5%; border-radius: 10px;">
-              <li>
-                <a title="Windowing" href="" tabIndex="1" data-toggle="dropdown"
-                  aria-expanded="false" (click)="AtivarToolEsp('bright')">
-                    <i class="fa fa-adjust"></i><br>Windowing
-                </a>
-              </li>
-              <li>
-                <a title="Invert" href="" data-toggle="dropdown" data-placement="bottom"
-                  aria-expanded="false" (click)="AtivarToolEsp('invert')">
-                    <i class="fa fa-eercast"></i><br>Invert
-                </a>
-              </li>
-            </ul>
-          </li>
+<div class="principal">
+  <p-toolbar>
+    <div class="ui-toolbar-group-left">
+      <p-splitButton label="Windowing" icon="fa fa-adjust" [model]="windowings"
+        styleClass="ui-button-secondary" (click)="AtivarToolEsp('bright')"></p-splitButton>
 
-          <li class="dropdown menuli">
-            <a title="Pan" href="" tabindex="1" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('pan')">
-              <i class="fa fa-hand-stop-o"></i>
-              <span class="txt"><small>Pan</small></span>
-            </a>
-          </li>
+      <p-button icon="fa fa-hand-stop-o" label="Pan" (click)="AtivarToolEsp('pan')"
+        styleClass="ui-button-secondary"></p-button>
 
-          <li class="dropdown menuli">
-            <a title="Zoom" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('zoom')">
-                <i class="fa fa-2x fa-search"></i>
-                <span class="txt"><small>Zoom</small></span>
-            </a>
-          </li>
+      <p-button icon="fa fa-search" label="Zoom" (click)="AtivarToolEsp('zoom')"
+        styleClass="ui-button-secondary"></p-button>
 
-          <li class="dropdown menuli">
-            <a title="Annotate" href="" tabIndex="1" class="dropdown-toggle"
-              data-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-2x fas fa-font"></i>
-                <span class="txt"><small>Annotate</small></span>
-            </a>
-            <ul class="dropdown-menu" style="text-align: center; top:60px; width: 10%; border-radius: 10px;">
-              <li>
-                <a title="Measure" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('rectangleRoi')">
-                  <i class="fa fa-2x fa-square"></i><br>RectangleRoi
-                </a>
-              </li>
-              <li>
-                <a title="Length Measure" href="" data-toggle="dropdown" data-placement="bottom"
-                  aria-expanded="false" (click)="AtivarToolEsp('length')">
-                    <i class="fa fa-arrows-v"></i><br>Length
-                </a>
-              </li>
-              <li>
-                <a title="Cobb Measure" href="" data-toggle="dropdown" data-placement="bottom"
-                  aria-expanded="false" (click)="AtivarToolEsp('cobb')">
-                    <i class="fa fa-expand"></i><br>Cobb
-                </a>
-              </li>
-              <li>
-                <a title="Angle" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('angle')">
-                  <i class="fa fa-2x fa-angle-left"></i><br>Angle
-                </a>
-              </li>
-              <li>
-                <a title="Text" href="" data-toggle="dropdown" data-placement="bottom"
-                  aria-expanded="false" (click)="AtivarToolEsp('text')">
-                    <i class="fa fa-2x fas fa-font"></i><br>Text
-                </a>
-              </li>
-              <li>
-                <a title="Elliptical Measure" href="" data-toggle="dropdown" data-placement="bottom"
-                  aria-expanded="false" (click)="AtivarToolEsp('elliptical')">
-                    <i class="fa fa-circle-o"></i><br>Elliptical
-                </a>
-              </li>
-              <li>
-                <a title="BiDirectional Measure" href="" data-toggle="dropdown" data-placement="bottom"
-                  aria-expanded="false" (click)="AtivarToolEsp('bi-directional')">
-                    <i class="fa fa-plus"></i><br>Bi-Directional
-                </a>
-              </li>
-              <li>
-                <a title="Arrow Annotation" href="" data-toggle="dropdown" data-placement="bottom"
-                  aria-expanded="false" (click)="AtivarToolEsp('arrow-annotation')">
-                    <i class="fa fa-long-arrow-left"></i><br>Arrow
-                </a>
-              </li>
-              <li>
-                <a title="Probe" href="" data-toggle="dropdown" data-placement="bottom"
-                  aria-expanded="false" (click)="AtivarToolEsp('probe')">
-                    <i class="fa fa-dot-circle-o"></i><br>Probe
-                </a>
-              </li>
-            </ul>
-          </li>
+      <p-splitButton label="Annotate" icon="fa fa-font" [model]="annotates"
+        styleClass="ui-button-secondary"></p-splitButton>
 
-          <li class="dropdown menuli">
-            <a title="Rotate" href="" tabIndex="1" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-rotate-right"></i>
-              <span class="txt"><small>Rotate</small></span>
-            </a>
-            <ul class="dropdown-menu" style="text-align: center;top:60px;width: 10%;border-radius: 10px;">
-              <li>
-                <a title="Rotate" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('rotate')">
-                  <i class="fa fa-rotate-right"></i><br>Rotate
-                </a>
-              </li>
-              <li>
-                <a title="HFlip" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('hFlip')">
-                  <i class="fa fa-shield fa-flip-horizontal"></i><br>HFlip
-                </a>
-              </li>
-              <li>
-                <a title="VFlip" href="" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('vFlip')">
-                  <i class="fa fa-shield fa-flip-vertical"></i><br>VFlip
-                </a>
-              </li>
-            </ul>
-          </li>
+      <p-splitButton label="Rotate" icon="fa fa-rotate-right" [model]="rotates"
+        styleClass="ui-button-secondary"></p-splitButton>
 
-          <li class="dropdown menuli">
-            <a title="Magnifier" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('magnify')">
-              <i class="fa fa-search-plus"></i>
-              <span class="txt"><small>Magnifier</small></span>
-            </a>
-          </li>
+      <p-button icon="fa fa-search-plus" label="Magnifier" (click)="AtivarToolEsp('magnify')"
+        styleClass="ui-button-secondary"></p-button>
 
-          <li class="dropdown menuli">
-            <a title="Drag Probe" href="" tabIndex="1" data-toggle="dropdown" data-placement="bottom"
-              aria-expanded="false" (click)="AtivarToolEsp('dragprobe')">
-                <i class="fa fa-mouse-pointer"></i>
-                <span class="txt"><small>Drag</small></span>
-            </a>
-          </li>
+      <p-button icon="fa fa-mouse-pointer" label="Drag" (click)="AtivarToolEsp('dragprobe')"
+        styleClass="ui-button-secondary"></p-button>
 
-          <li class="dropdown menuli">
-            <a title="Tags" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="MostrarTabela()">
-              <i class="fa fa-arrows-alt"></i>
-              <span class="txt"><small>Tags</small></span>
-            </a>
-          </li>
+      <p-button icon="fa fa-arrows-alt" label="Tags" (click)="MostrarTabela()"
+        styleClass="ui-button-secondary"></p-button>
 
-          <li class="dropdown menuli">
-            <a title="Imagem PNG" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="RecuperarPng()">
-              <i class="fa fa-file-image-o"></i>
-              <span class="txt"><small>Imagem PNG</small></span>
-            </a>
-          </li>
+      <p-button icon="fa fa-file-image-o" label="Imagem PNG" (click)="RecuperarPng()"
+        styleClass="ui-button-secondary"></p-button>
 
-          <li class="dropdown menuli">
-            <a title="Reset" href="" tabIndex="1" data-toggle="dropdown" aria-expanded="false" (click)="AtivarToolEsp('reset')">
-              <i class="fa fa-refresh"></i>
-              <span class="txt"><small>Reset</small></span>
-            </a>
-          </li>
-        </ul>
-
-      </div>
-
-      <div>
-        <button style="margin-top: 10px;" class="btn btn-primary pull-right customBtn" type="button" (click)="backClicked();">
-          <i class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp; Voltar</button>
-      </div>
-    </nav>
-  </div>
-
-  <div class="ui-g-12" style="padding: 0;">
-    <div class="image-canvas" id="image-canvas">
+      <p-button icon="fa fa-refresh" label="Reset" (click)="AtivarToolEsp('reset')"
+        styleClass="ui-button-warning"></p-button>
     </div>
+
+    <div class="ui-toolbar-group-right">
+      <p-button icon="fa fa-long-arrow-left" label="Voltar" (click)="backClicked()"></p-button>
+    </div>
+  </p-toolbar>
+
+  <div class="telaimagem">
+    <div class="image-canvas" id="image-canvas"></div>
   </div>
 
   <p-dialog header="Tabela de Tags" [style]="{width: '70%', minWidth: '200px'}" [(visible)]="display" [modal]="true" [responsive]="true" [minY]="70" [maximizable]="true" [baseZIndex]="10000">

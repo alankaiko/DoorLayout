@@ -1,42 +1,42 @@
-<div class="ui-g" style="margin-top: 100px;">
-  <div class="ui-g-12 clearfix">
-    <div class="pull-right tableTools-container"></div>
+<div class="geral">
+  <div class="titulotabela">
+    <i class="pi pi-list"></i>
+    <span>Lista</span>
   </div>
-  <div class="table-header row">
-    Lista Dicom
-  </div>
-  <div>
-  <div class="row">
+
+  <div class="tabeladicom">
     <p-table id="tabela" [responsive]="true" [paginator]="true" (onLazyLoad)="aoMudarPagina($event)"
-      [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" [value]="patients"
-      class="tabela table table-striped table-bordered table-hover">
+      [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" [value]="patients">
+
       <ng-template pTemplate="header">
         <tr>
-          <th class="center" style="width: 6%; text-align: center;">Show</th>
-          <th class="center" style="width: 11%;">Paciente Id</th>
-          <th class="center" style="width: 35%;">Nome</th>
-          <th class="center" style="width: 9%; text-align: center;">Data Nasc</th>
-          <th class="center" style="width: 7%; text-align: center;">Idade</th>
-          <th class="center" style="width: 7%; text-align: center;">Sexo</th>
-          <th class="center" style="width: 9%; text-align: center;">Data Criação</th>
+          <th style="width: 6%; text-align: center;">Show</th>
+          <th style="width: 11%; text-align: center;">Paciente Id</th>
+          <th style="width: 35%; text-align: center;">Nome</th>
+          <th style="width: 9%; text-align: center;">Data Nasc</th>
+          <th style="width: 7%; text-align: center;">Idade</th>
+          <th style="width: 7%; text-align: center;">Sexo</th>
+          <th style="width: 9%; text-align: center;">Data Criação</th>
         </tr>
       </ng-template>
+
       <ng-template pTemplate="body" let-patient>
         <tr>
-          <td>
+          <td style="text-align: center; font-size: 130%;">
             <a pTooltip="Pré-Visualização" [routerLink]="['/previsualizar', patient.idpatient]">
               <i class="fa fa-fw fa-eye icone" aria-hidden="true"></i>
             </a>
           </td>
-          <td class="center">{{patient.patientid}}</td>
-          <td class="center">{{patient.patientname}}</td>
-          <td class="center">{{patient.birthday}}</td>
-          <td class="center">{{patient.patientage}}</td>
-          <td class="center">{{patient.patientsex}}</td>
-          <td class="center">{{patient.datecreate}}</td>
+          <td style="text-align: center;">{{patient.patientid}}</td>
+          <td>{{patient.patientname}}</td>
+          <td style="text-align: center;">{{patient.birthday | date:'dd/MM/yyyy'}}</td>
+          <td style="text-align: center;">{{patient.patientage}}</td>
+          <td style="text-align: center;">{{patient.patientsex}}</td>
+          <td style="text-align: center;">{{patient.datecreate | date:'dd/MM/yyyy'}}</td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </div>
+
 

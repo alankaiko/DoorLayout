@@ -39,6 +39,7 @@ import { LayoutComponent } from './core/layout/layout.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { AppComponent } from './app.component';
+import {SplitButtonModule} from 'primeng/splitbutton';
 import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
@@ -148,7 +149,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SpinnerModule,
     AccordionModule,
     MenubarModule,
-    FormsModule
+    FormsModule,
+    SplitButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

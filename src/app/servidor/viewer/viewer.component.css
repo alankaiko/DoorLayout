@@ -1,41 +1,33 @@
-.principal{
-  margin-left: -12px;
+.principal {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: fixed;
 }
 
-.navbar {
-  padding: 0;
-}
-
-.menuli {
-  border-left-width: 0;
-  margin-left: 0;
-  padding: 0;
-  width: auto;
-}
-
-.menuli > a {
-  line-height: 22px;
-  height: auto;
-  padding: 10px 14px;
-}
-
-.menuli > a > i {
-  display: block;
-  margin: 1px 0 4px;
-  line-height: inherit;
-  width: auto;
-  text-align: center;
-  font-size: 140%;
-}
-
-.menuli > a > span {
-  line-height: 22px;
-  font-size: 120%;
-  padding: 5px;
+.telaimagem {
+  margin-top: 0.1%;
+  width: 100%;
+  height: 90.5%;
 }
 
 .image-canvas {
-  position:absolute;
-	width:100%;
-	height:100%;
+  width: 100%;
+  height: 100%;
+}
+
+:host /deep/ p-toolbar .ui-toolbar {
+  background-color: #20272a;
+  border: 1px solid #000;
+  border-radius: 0;
+}
+
+:host /deep/ p-splitbutton .ui-splitbutton {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+:host /deep/ p-button .ui-button {
+  margin-left: 3px;
+  margin-right: 3px;
 }

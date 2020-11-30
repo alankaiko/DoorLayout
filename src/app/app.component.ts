@@ -13,11 +13,13 @@ export class AppComponent {
 
   ExibindoNavbar() {
     return this.router.url.indexOf('/operacoes/laudos')
-      && this.router.url.indexOf('/operacoes/captura');
+      && this.router.url.indexOf('/operacoes/captura')
+      && this.router.url.indexOf('/viewer');
   }
 
   ExibirRodape() {
     return this.router.url.indexOf('/operacoes/laudos')
-      && this.router.url.indexOf('/operacoes/captura');
+      && this.router.url.indexOf('/operacoes/captura')
+      && this.router.url.indexOf('/viewer');
   }
 }

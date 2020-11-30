@@ -13,4 +13,10 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ExibindoFundo() {
+    return this.router.url.indexOf('/servidor')
+      && this.router.url.indexOf('/previsualizar')
+      && this.router.url.indexOf('/viewer');
+  }
+
 }

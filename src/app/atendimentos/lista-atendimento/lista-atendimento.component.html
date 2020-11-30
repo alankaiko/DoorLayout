@@ -59,6 +59,14 @@
           <td style="width: 20%;" class="col-data">{{ atendimento?.dataatendimento | date:'dd/MM/yyyy' }}</td>
         </tr>
       </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">
+            Nenhuma Imagem Dicom encontrado
+          </td>
+        </tr>
+      </ng-template>
     </p-table>
   </div>
 

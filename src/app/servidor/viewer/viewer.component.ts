@@ -1,3 +1,4 @@
+import { MenuItem } from 'primeng/components/common/menuitem';
 import { InstanceService } from './../../zservice/instance.service';
 import { ServidorService } from './../../zservice/servidor.service';
 import { TagImagemGamb, Instance } from './../../core/model';
@@ -29,6 +30,9 @@ cornerstoneWADOImageLoader.webWorkerManager.initialize(config);
   styleUrls: ['./viewer.component.css']
 })
 export class ViewerComponent implements OnInit {
+  windowings: MenuItem[];
+  annotates: MenuItem[];
+  rotates: MenuItem[];
   display: boolean;
   instance: Instance;
   tagsimagems: TagImagemGamb[];
@@ -41,9 +45,119 @@ export class ViewerComponent implements OnInit {
 
   ngOnInit() {
     const idinstance = this.route.snapshot.params.cod;
+    this.CriarMenu();
     this.ConfigureCornerBase();
     this.IniciarToolsBasicos();
     this.BuscarInstanciaResumida(idinstance);
+  }
+
+  CriarMenu() {
+    this.windowings = [
+      {
+          label: 'Windowing',
+          icon: 'fa fa-adjust',
+          command: () => {
+            this.AtivarToolEsp('bright');
+          }
+      },
+      {
+          label: 'Invert',
+          icon: 'fa fa-eercast',
+          command: () => {
+            this.AtivarToolEsp('invert');
+          }
+      }
+    ];
+
+    this.annotates = [
+      {
+        label: 'RectangleRoi',
+        icon: 'fa fa-2x fa-square',
+        command: () => {
+          this.AtivarToolEsp('rectangleRoi');
+        }
+      },
+      {
+        label: 'Length',
+        icon: 'fa fa-arrows-v',
+        command: () => {
+          this.AtivarToolEsp('length');
+        }
+      },
+      {
+        label: 'Cobb',
+        icon: 'fa fa-expand',
+        command: () => {
+          this.AtivarToolEsp('cobb');
+        }
+      },
+      {
+      label: 'Angle',
+      icon: 'fa fa-2x fa-angle-left',
+        command: () => {
+          this.AtivarToolEsp('angle');
+        }
+      },
+        {
+        label: 'Text',
+        icon: 'fa fa-2x fas fa-font',
+        command: () => {
+          this.AtivarToolEsp('text');
+        }
+      },
+      {
+        label: 'Elliptical',
+        icon: 'fa fa-circle-o',
+        command: () => {
+          this.AtivarToolEsp('elliptical');
+        }
+      },
+      {
+        label: 'Bi-Directional',
+        icon: 'fa fa-plus',
+        command: () => {
+          this.AtivarToolEsp('bi-directional');
+        }
+      },
+      {
+        label: 'Arrow',
+        icon: 'fa fa-long-arrow-left',
+        command: () => {
+          this.AtivarToolEsp('arrow-annotation');
+        }
+      },
+      {
+        label: 'Probe',
+        icon: 'fa fa-dot-circle-o',
+        command: () => {
+          this.AtivarToolEsp('probe');
+        }
+      }
+    ];
+
+    this.rotates = [
+      {
+        label: 'Rotate',
+        icon: 'fa fa-rotate-right',
+        command: () => {
+          this.AtivarToolEsp('rotate');
+        }
+      },
+      {
+        label: 'HFlip',
+        icon: 'fa fa-shield fa-flip-horizontal',
+        command: () => {
+          this.AtivarToolEsp('hFlip');
+        }
+      },
+      {
+        label: 'VFlip',
+        icon: 'fa fa-shield fa-flip-vertical',
+        command: () => {
+          this.AtivarToolEsp('vFlip');
+        }
+      }
+    ];
   }
 
   ConfigureCornerBase() {

@@ -1,3 +1,45 @@
+.geral {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 70px;
+  background: #f2f2f2;
+  border: 1px solid #756c6c59;
+  position: relative;
+}
+
+.titulotabela {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 10px 25px;
+  position: relative;
+  font-family: 'Source Sans Pro Semibold';
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.tabeladicom {
+  margin-top: 20px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  border: solid 1px #dfe6ee;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+:host /deep/ p-table .ui-table-tbody .ui-selectable-row:hover{
+  background-color: rgba(84, 104, 138, 0.342);
+}
+
+:host /deep/ p-table .ui-table .ui-table-tbody > tr > td{
+  padding: 0 0.5em;
+}
+
+:host /deep/ p-table .ui-table .ui-table-thead > tr > th{
+  padding: 0;
+}
+
 .icone {
   font-size: 22px;
   vertical-align: unset;
@@ -8,56 +50,3 @@
 	-webkit-transition: color 0.3s;
 	transition: color 0.3s;
 }
-
-.tabela {
-  background-color: #E2E2E2;
-  position: relative;
-}
-
-:host /deep/ p-table .ui-dataview-header{
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-    background-color: #333333;
-    background-image: -webkit-gradient(linear, left top, right top, from(#333333), to(#5A5D60));
-    background-image: -webkit-linear-gradient(left, #333333, #5A5D60);
-    border:1px solid #2C2C2C;
-}
-
-:host /deep/ p-table .ui-dataview-content{
-  border:1px solid #2C2C2C;
-}
-
-:host /deep/ p-table .ui-paginator-bottom {
-  border-bottom:1px solid rgba(44, 44, 44, 0.418);
-  border-left:1px solid rgba(44, 44, 44, 0.418);
-  border-right: 1px solid rgba(44, 44, 44, 0.418);
-}
-
-
-.page-content {
-  background-color: #FFF;
-  position: relative;
-  margin: 0;
-  padding: 8px 20px 24px;
-}
-
-.page-header {
-  margin: 0 0 12px;
-  border-bottom: 1px dotted #E2E2E2;
-  padding-bottom: 16px;
-  padding-top: 7px;
-}
-
-.page-header h1 {
-  padding: 0;
-  margin: 0 8px;
-  font-size: 24px;
-  font-weight: lighter;
-  color: #2679B5;
-}
-
-.row {
-  width: 95%;
-  margin: 0 auto;
-  background-color: #fff;
-}
-

@@ -40,7 +40,7 @@ export class Patient {
   patientname: string;
   birthday: Date;
   patientage: string;
-  sexo: EnumSexo;
+  patientsex: string;
   studyes = new Array<Study>();
   endereco = new Endereco();
   contato = new Contato();
@@ -503,11 +503,6 @@ export enum LAYOUT_IMG {
 export enum STATUS_LAUDO {
   pendente = 'PENDENTE',
   pronto = 'PRONTO'
-}
-
-export enum EnumSexo {
-  Masculino = 'MASCULINO',
-  Feminino = 'FEMININO'
 }
 
 export class CamposDoLaudo {

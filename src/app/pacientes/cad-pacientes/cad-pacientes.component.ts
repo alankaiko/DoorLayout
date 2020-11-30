@@ -51,7 +51,7 @@ export class CadPacientesComponent implements OnInit {
       birthday: [null, paciente.birthday],
       patientage: [null, paciente.patientage],
       datecreate: [null, paciente.datecreate],
-      sexo: [null, paciente.sexo],
+      patientsex: [null, paciente.patientsex],
       observacoes: [null, paciente.observacoes],
       contato: this.formbuilder.group({
         email: [paciente.contato.email],
