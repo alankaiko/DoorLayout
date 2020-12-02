@@ -1,3 +1,4 @@
+import { SelectItem } from 'primeng/api';
 import { ProfissionalexecutanteService } from './../../zservice/profissionalexecutante.service';
 import { ProcedimentomedicoService } from './../../zservice/procedimentomedico.service';
 import { ProcedimentoAtendimento, ProcedimentoMedico } from './../../core/model';
@@ -17,8 +18,8 @@ export class ProcedimentoCadApendComponent implements OnInit {
   formulario: FormGroup;
   exbindoFormularioProcedimento = false;
   procedimentoIndex: number;
-  profissionalexecutantes: [];
-  procedimentomedicos: ProcedimentoMedico[];
+  profissionalexecutantes: any[];
+  procedimentomedicos: any[];
   datadias;
 
   constructor(private formbuilder: FormBuilder,
@@ -29,7 +30,6 @@ export class ProcedimentoCadApendComponent implements OnInit {
     this.CriarFormulario(new ProcedimentoAtendimento());
     this.CarregarProcedimentosMedico();
     this.CarregaProfissionalExecutante();
-    this.AdicionandoDias();
   }
 
   CriarFormulario(procedimento: ProcedimentoAtendimento) {
@@ -46,11 +46,6 @@ export class ProcedimentoCadApendComponent implements OnInit {
         codigo: [null, Validators.required]
       })
     });
-
-    // if (procedimento.preventregalaudo === undefined) {
-    //  const dataprevi = new Date(new Date().getTime() + 8);
-    //  procedimento.preventregalaudo = dataprevi;
-    // }
   }
 
   PrepararNovoProcedimento() {
@@ -60,28 +55,20 @@ export class ProcedimentoCadApendComponent implements OnInit {
   }
 
   PrepararEdicaoProcedimento(procedimento: ProcedimentoAtendimento) {
-    console.log(this.procedimentoselecionado);
     this.formulario.patchValue(procedimento);
+    this.procedimentoIndex = this.procedimentos.indexOf(procedimento);
     this.exbindoFormularioProcedimento = true;
-    // this.procedimento = this.ClonarProcedimento(procedimento);
-    // this.CriarFormulario(this.ClonarProcedimento(procedimento));
-    // this.service.BuscarPorId(codigo).then(abreviatura => this.formulario.patchValue(abreviatura));
-    // this.procedimentoIndex = index;
   }
 
   ConfirmarProcedimento() {
-    // this.procedimentos[this.procedimentoIndex] = this.ClonarProcedimento(this.procedimento);
-
     this.procedimentos[this.procedimentoIndex] = this.formulario.value;
-    const aff = this.procedimentos[this.procedimentoIndex].procedimentomedico.codigo;
+    const codigo = this.procedimentos[this.procedimentoIndex].procedimentomedico.codigo;
 
-    this.procedimentomedicos.forEach(elo => {
-      if (elo.codigo === aff) {
-        this.procedimentos[this.procedimentoIndex].procedimentomedico = elo;
-      }
-    });
+    this.serviceProc.BuscarPorId(codigo).then(proc => {
+      this.procedimentos[this.procedimentoIndex].procedimentomedico = proc;
+    }).catch(erro => erro);
+
     this.exbindoFormularioProcedimento = false;
-
   }
 
   RemoverProcedimento(index: number) {
@@ -111,6 +98,7 @@ export class ProcedimentoCadApendComponent implements OnInit {
     const data = moment();
     data.add(8, 'days');
     moment(data, 'YYYY-MM-DD').toDate();
+    return new Date(data.toDate());
   }
 
   BotaoCancelar() {

@@ -97,24 +97,26 @@ export class ListaAtendimentoComponent implements OnInit {
   }
 
   BuscaDinamica() {
+    console.log('oia');
     const drop = $('#codigodrop :selected').text();
     const texto = document.getElementById('buscando') as HTMLInputElement;
     const dropperiodo = $('#codigoperiodo :selected').text();
 
     setTimeout (() => {
-      if (drop === 'Paciente') {
-        return this.service.BuscarListaPorNomePaciente(texto.value)
-          .then(response => {
-            this.atendimentos = response;
-          }).catch(erro => console.log(erro));
-      }
-
       if ((drop === 'Codigo') && (texto.value !== '')) {
         const numero = +texto.value;
         return this.service.BuscarListaPorId(numero)
           .then(response => {
             this.atendimentos = response;
           }).catch(erro => console.log(erro));
+      }
+
+      if (drop === 'Paciente') {
+        this.filtro.patientname = texto.value;
+      }
+
+      if (drop === 'Prof. Exec') {
+        this.filtro.solicitantenome = texto.value;
       }
 
       if (dropperiodo === 'Personalizado(todos)') {
@@ -142,7 +144,7 @@ export class ListaAtendimentoComponent implements OnInit {
         this.filtro.datafinal = data;
         this.filtro.datafinal = outraData;
       }
-    }, 0);
+    }, 10);
   }
 
 

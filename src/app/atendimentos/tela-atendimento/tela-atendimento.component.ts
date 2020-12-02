@@ -79,10 +79,7 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   CarregaAtendimento(codigo: number) {
-    this.service.BuscarPorId(codigo)
-      .then(atendimento => {
-        this.atendimento = atendimento;
-      }).catch(erro => erro);
+    this.service.BuscarPorId(codigo).then(atendimento => {this.atendimento = atendimento; }).catch(erro => erro);
   }
 
   Salvar(form: FormControl) {
@@ -208,7 +205,6 @@ export class TelaAtendimentoComponent implements OnInit {
 
   Fechar() {
     this.route.navigate(['/home']);
-    console.log(this.atendimento.solicitante.conselho.estado.uf);
   }
 
   Voltar() {

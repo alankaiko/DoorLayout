@@ -9,7 +9,7 @@
 
         <div class="blocodalinha" style="width: 25%;">
           <label style="margin-right: 2px;">Campo</label>
-          <p-dropdown [style]="{'line-height': '12px', 'min-width': '70%'}" id="codigodrop" [options]="camposbusca"></p-dropdown>
+          <p-dropdown [style]="{'line-height': '12px', 'min-width': '70%'}" id="codigodrop" [options]="camposbusca" (onChange)="BuscaDinamica()"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 25%;">
@@ -121,7 +121,7 @@
       </div>
 
       <div>
-        <button class="botaoprincipal" (click)="Voltar();">
+        <button class="botaoprincipal" routerLink="/home">
           <img src="/assets/img/CANCELAR.png">
           <span>Voltar</span>
         </button>

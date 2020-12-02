@@ -16,10 +16,6 @@
         <td style="width: 15%; text-align: center;">{{ procedimento?.dataexecucao | date:'dd/MM/yyyy' }}</td>
         <td style="width: 15%; text-align: center;">{{ procedimento?.preventregalaudo | date:'dd/MM/yyyy' }}</td>
         <td style="width: 10%; text-align: center;">
-          <a class="botaoedicao" (click)="PrepararEdicaoProcedimento(procedimento)">
-            <i class="fa fa-pencil-square-o" style="color: #428bca;"></i>
-          </a>
-
           <a class="botaoedicao" (click)="RemoverProcedimento(rowIndex)">
             <i class="fa fa-trash" style="color: #ee3e3e;"></i>
           </a>
@@ -86,7 +82,7 @@
         <label>Prev. Ent. Laudo</label>
         <p-calendar [inputStyle]="{ 'width': '8.5%', 'height': '24px', 'position': 'fixed', 'border-radius': '2px' }" [style]="{'position': 'fixed', 'z-index': '100'}"
           placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" formControlName="preventregalaudo"
-          yearRange="1930:2020" name="preventregalaudo" class="preventregalaudo"></p-calendar>
+          yearRange="1930:2020" name="preventregalaudo" id="preventregalaudo"></p-calendar>
       </div>
 
       <div class="blocodalinha" style="width: 33%;">

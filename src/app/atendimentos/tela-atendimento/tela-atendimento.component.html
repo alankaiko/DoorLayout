@@ -71,22 +71,20 @@
 
         <div class="blocodalinha" style="width: 19.3%;">
           <label>Conselho</label>
-          <p-dropdown [style]="{'line-height': '10px', 'min-width':'96%'}" [options]="conselhos"
-            [filter]="true" [(ngModel)]="atendimento.solicitante.conselho.sigla.codigo"
-            #descricao="ngModel" name="descricao" placeholder="Selecione"
-            (onChange)="CarregarConselhos()"></p-dropdown>
+          <input readonly="true" style="width: 95%;" type="text" pInputText name="descricaocrm"
+            [(ngModel)]="atendimento.solicitante.conselho.sigla.descricao" #descricaocrm="ngModel">
         </div>
 
         <div class="blocodalinha" style="width: 15.40%;">
           <label>UF</label>
-          <p-dropdown [style]="{'line-height': '10px', 'min-width':'95%'}" [options]="estados"
-            [filter]="true" [(ngModel)]="atendimento.solicitante.conselho.estado.uf" #uf="ngModel"
-            name="uf" placeholder="UF" (onChange)="CarregarEstados()"></p-dropdown>
+          <input readonly="true" style="width: 95%;" type="text" pInputText name="descricaouf"
+            [(ngModel)]="atendimento.solicitante.conselho.estado.uf" #descricaouf="ngModel">
         </div>
 
         <div class="blocodalinha" style="width: 15%;">
           <label>N. Conselho</label>
-          <input style="width: 100%;" type="text" pInputText [(ngModel)]="atendimento.solicitante.conselho.descricao" #descricao="ngModel" name="descricao">
+          <input readonly="true" style="width: 100%;" type="text" pInputText name="descricao"
+            [(ngModel)]="atendimento.solicitante.conselho.descricao" #descricao="ngModel">
         </div>
       </div>
 
@@ -97,13 +95,13 @@
 
         <div class="linhas">
           <div style="text-align: right; margin-top: 1px;">
-            <button pButton label="Imp. Atestado" icon="fa fa-plus" type="button"
+            <button pButton label="Imp. Atestado" icon="fa fa-wpforms" type="button"
               class="ui-button-primary botaotab"></button>
 
-            <button pButton label="Laudo/ Foto" icon="fa fa-plus" type="button"
+            <button pButton label="Laudo/ Foto" icon="fa fa-file-text" type="button"
               class="ui-button-primary botaotab" (click)="VaiParaLaudos()"></button>
 
-            <button pButton label="Captura" icon="fa fa-plus" type="button"
+            <button pButton label="Captura" icon="fa fa-camera" type="button" style="margin-right: 2px;"
               class="ui-button-primary botaotab" (click)="VaiCaptura()"></button>
           </div>
         </div>
@@ -197,12 +195,6 @@
         </button>
       </div>
 
-      <div>
-        <button class="botaoprincipal" routerLink="/operacoes/atendimento">
-          <img src="/assets/img/PRINT_VIEW.png">
-          <span>Voltar</span>
-        </button>
-      </div>
     </div>
   </div>
 </p-dialog>

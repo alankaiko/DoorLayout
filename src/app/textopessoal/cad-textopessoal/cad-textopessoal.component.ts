@@ -53,7 +53,7 @@ export class CadTextopessoalComponent implements OnInit {
       this.AtualizarTextoPessoal();
     } else {
       this.formulario.patchValue(this.AdicionarTextoPessoal());
-      this.route.navigate(['/tabelas/listatextopessoal/novo']);
+      this.route.navigate(['/listatextopessoal/novo']);
     }
     this.CriarFormulario(new TextoPessoal());
   }

@@ -14,9 +14,11 @@ export class ProcedimentoMedicoFiltro {
 })
 export class ProcedimentomedicoService {
   url: string;
+  urlprocmedico: string;
 
   constructor(private http: HttpClient) {
     this.url = `${environment.apiUrl}/procedimentomedicos`;
+    this.urlprocmedico = `${environment.apiUrl}/procedimentomedicos`;
   }
 
   Listar(): Promise<any> {
@@ -83,5 +85,14 @@ export class ProcedimentomedicoService {
     return this.http.delete(`${this.url}/${codigo}`)
       .toPromise()
       .then(() => null);
+  }
+
+  BuscarPorIdProcMedico(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/${codigo}`)
+      .toPromise()
+      .then(response => {
+        const procedimento = response as ProcedimentoMedico;
+        return procedimento;
+      });
   }
 }

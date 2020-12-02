@@ -24,7 +24,14 @@
 
 :host /deep/ p-table .ui-table .ui-table-tbody > tr > td{
   padding: 0 0.5em;
+}
 
+:host /deep/ p-dropdown .ui-dropdown .ui-dropdown-panel .ui-dropdown-items-wrapper .ui-dropdown-items {
+  display: unset;
+}
+
+:host /deep/ p-dropdown .ui-dropdown .ui-dropdown-panel {
+  top: 0 !important;
 }
 
 .botaotab {

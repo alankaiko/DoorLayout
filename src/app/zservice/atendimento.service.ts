@@ -8,7 +8,7 @@ export class AtendimentoFilter {
   pagina = 0;
   itensPorPagina = 14;
   patientname: string;
-  solicitantename: string;
+  solicitantenome: string;
   datainicial: Date;
   datafinal: Date;
 }
@@ -187,8 +187,13 @@ export class AtendimentoService {
       }
 
       for (const proc of atendimento.procedimentos) {
-        proc.dataexecucao = moment(proc.dataexecucao, 'YYYY-MM-DD').toDate();
-        proc.preventregalaudo = moment(proc.dataexecucao, 'YYYY-MM-DD').toDate();
+        if (proc.dataexecucao != null) {
+          proc.dataexecucao = moment(proc.dataexecucao, 'YYYY-MM-DD').toDate();
+        }
+
+        if (proc.preventregalaudo != null) {
+          proc.preventregalaudo = moment(proc.dataexecucao, 'YYYY-MM-DD').toDate();
+        }
       }
     }
   }

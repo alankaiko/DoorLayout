@@ -55,6 +55,7 @@ export class LaudoComponent implements OnInit {
         this.procedimento = procedimento;
         this.BuscarAtendimento(procedimento.atendimento.codigo);
         this.RenderizarModeloLaudo();
+        this.AbrirLaudo();
         this.RoteandoImagens();
       }).catch(erro => erro);
   }

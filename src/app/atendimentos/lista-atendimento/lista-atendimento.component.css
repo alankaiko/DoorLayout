@@ -104,6 +104,10 @@
   width: 17.4%;
 }
 
+:host /deep/ p-calendar .ui-datepicker .ui-datepicker-group .ui-datepicker-calendar-container .ui-datepicker-calendar{
+  font-size: 75%;
+}
+
 .linhas {
   width: 100%;
   display: table;
