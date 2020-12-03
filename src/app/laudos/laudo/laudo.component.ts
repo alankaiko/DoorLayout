@@ -57,6 +57,7 @@ export class LaudoComponent implements OnInit {
         this.RenderizarModeloLaudo();
         this.AbrirLaudo();
         this.RoteandoImagens();
+        this.ConfigurarVariavel();
       }).catch(erro => erro);
   }
 
@@ -76,7 +77,7 @@ export class LaudoComponent implements OnInit {
       }).catch(erro => erro);
   }
 
-  AtivarExcluir() {
+  AtivarModelo() {
     this.dropmodelo = true;
   }
 

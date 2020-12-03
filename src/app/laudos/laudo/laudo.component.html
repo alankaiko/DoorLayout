@@ -42,7 +42,7 @@
             <button style="background-color: #607D8B; border: 1px solid #607D8B;" pButton type="button" label="Imprimir" icon="pi pi-plus" (click)="GerarImpressao()"></button>
             <button style="background-color: #537f2d; border: 1px solid #537f2d;" pButton type="button" label="Gerar PDF" icon="pi pi-plus" (click)="Salvar(f)"></button>
             <button style="background-color: #aa2424; border: 1px solid #aa2424;" pButton type="button" label="Esc Img" icon="pi pi-plus" (click)="EscolherImagens()"></button>
-            <button style="background-color: #E91E63; border: 1px solid #E91E63;" pButton type="button" label="Modelo" icon="pi pi-plus" (click)="AtivarExcluir()"></button>
+            <button style="background-color: #E91E63; border: 1px solid #E91E63;" pButton type="button" label="Modelo" icon="pi pi-plus" (click)="AtivarModelo()"></button>
             <button style="background-color: #8c239e; border: 1px solid #8c239e;" pButton type="button" label="Receita" icon="pi pi-plus"></button>
           </div>
 
@@ -145,8 +145,8 @@
   </div>
 </div>
 
-<p-dialog header="Escolha o Modelo" [(visible)]="dropmodelo" [baseZIndex]="10001" [style]="{width: '20vw'}">
-  <p-dropdown [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999', 'width': '16%'}"
+<p-dialog class="modelo" header="Escolha o Modelo" [(visible)]="dropmodelo" [baseZIndex]="10001" [style]="{width: '20vw'}">
+  <p-dropdown [style]="{'position': 'fixed', 'width': '16%', 'line-height': '12px'}"
     [options]="modelodelaudo" [(ngModel)]="prioridade" name="modelocodigo"
     #modelocodigo="ngModel" (onChange)="AbrirLaudo()"></p-dropdown>
 </p-dialog>
