@@ -61,6 +61,7 @@ export class CapturaComponent implements OnInit {
 
     if (codigo) {
       this.BuscarProcedimento(codigo);
+      this.verifica = true;
     }
 
     this.CarregarAtendimentos();
@@ -93,6 +94,7 @@ export class CapturaComponent implements OnInit {
     });
 
     try {
+      this.procedimento.codigoatdteste = this.atendimento.codigo;
       this.serviceproc.AtualizarComImagens(this.procedimento);
       this.route.navigate(['/home']);
     } catch (error) {
@@ -141,7 +143,6 @@ export class CapturaComponent implements OnInit {
     this.atendimento.procedimentos.filter((elo) => {
       if (elo.codigo === this.procedimento.codigo) {
         this.procedimento = elo;
-        this.procedimento.codigoatdteste = this.atendimento.codigo;
         this.procedimento.listaimagem.forEach((el) => {
           this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {
             const web = new WebcamImage(data, data, null);

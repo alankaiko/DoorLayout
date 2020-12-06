@@ -34,6 +34,16 @@
   top: 0 !important;
 }
 
+:host /deep/ p-dialog.novoproc .ui-dialog .ui-widget-content {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+:host /deep/ p-calendar .ui-datepicker .ui-datepicker-group .ui-datepicker-calendar-container .ui-datepicker-calendar{
+  font-size: 75%;
+}
+
 .botaotab {
   font-size: 70%;
 }
@@ -47,12 +57,6 @@
   font-size: 140%;
   text-align: center;
   vertical-align: middle;
-}
-
-:host /deep/ p-dialog.novoproc .ui-dialog .ui-widget-content {
-  width: 100%;
-  height: auto;
-  position: relative;
 }
 
 .linhas {

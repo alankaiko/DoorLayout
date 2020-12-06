@@ -5,7 +5,7 @@ import { PaginaimagensComponent } from './../paginaimagens/paginaimagens.compone
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { isEmptyObject } from 'jquery';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo, Imagem } from './../../core/model';
+import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo, Imagem, LAYOUT_IMG } from './../../core/model';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Location} from '@angular/common';
@@ -20,6 +20,7 @@ export class LaudoComponent implements OnInit {
   @ViewChild(PaginaimagensComponent) paginaimagenschild: PaginaimagensComponent;
   imagelogo: any;
   atendimentos: any[];
+  testeimagems: Array<Imagem>;
   procedimentosAtd: any[];
   atendimento = new Atendimento();
   procedimento = new ProcedimentoAtendimento();
@@ -57,7 +58,9 @@ export class LaudoComponent implements OnInit {
         this.RenderizarModeloLaudo();
         this.AbrirLaudo();
         this.RoteandoImagens();
-        this.ConfigurarVariavel();
+        this.BuscandoModelosLaudo(codigo);
+
+        this.testeimagems = this.procedimento.listaimagem;
       }).catch(erro => erro);
   }
 
@@ -97,25 +100,19 @@ export class LaudoComponent implements OnInit {
       );
   }
 
-  ConfigurarVariavel() {
-    this.serviceproc.BuscarCodProcedimento(this.procedimento.codigo)
+  BuscandoModelosLaudo(codigo) {
+    this.servicemodelo.BuscarPelaIdProcedimento(codigo)
       .then(
-        response => {
-          this.servicemodelo.BuscarPelaIdProcedimento(response)
-            .then(
-              resp => {
-                this.modelodelaudodoproc = resp;
-                this.prioridade = this.modelodelaudodoproc[0].prioridade;
-                this.modelodelaudo = resp.map(modelo => ({label: modelo.descricao, value: modelo.prioridade}));
+        resp => {
+          this.modelodelaudodoproc = resp;
+          this.prioridade = this.modelodelaudodoproc[0].prioridade;
+          this.modelodelaudo = resp.map(modelo => ({label: modelo.descricao, value: modelo.prioridade}));
 
-                this.FiltrandoProcedimento();
-                this.RenderizarModeloLaudo();
-                this.RoteandoImagens();
-              }
-            );
+          this.FiltrandoProcedimento();
+          this.RenderizarModeloLaudo();
+          this.RoteandoImagens();
         }
       );
-
   }
 
   RoteandoImagens() {
@@ -183,8 +180,7 @@ export class LaudoComponent implements OnInit {
   }
 
   EscolherImagens() {
-    if (this.atendimento?.codigo != null) {
-      // this.route.navigate(['/operacoes/laudos-teste', this.procedimento.codigo]);
+    if (this.atendimento?.codigo != null && !isEmptyObject(this.procedimento.listaimagem)) {
       this.conferindo = false;
       this.abrirpaginaimg = true;
     }
@@ -195,6 +191,7 @@ export class LaudoComponent implements OnInit {
   }
 
   EscolherLaudo() {
+    this.procedimento.listaimagem = this.testeimagems;
     this.abrirpaginaimg = false;
     this.conferindo = true;
   }
@@ -203,21 +200,32 @@ export class LaudoComponent implements OnInit {
     const win = window.open();
     win.document.write(this.ConfigurarCabecalho());
     win.document.write(this.ConfigurarLaudo());
-    if (this.paginaimagenschild !== undefined) {
-      this.paginaimagenschild.PegarImagemPraImpressao();
 
-      setTimeout(() => {
-        this.procedimento.paginadeimagens.forEach(elo => {
-          win.document.write(this.ConfigurarPaginaImg(this.procedimento.paginadeimagens.indexOf(elo)));
-        });
-      }, 5);
-    }
+    this.PegarImagemPraImpressao();
+
+    setTimeout(() => {
+      this.procedimento.paginadeimagens.forEach(elo => {
+        win.document.write(this.ConfigurarPaginaImg(this.procedimento.paginadeimagens.indexOf(elo)));
+      });
+    }, 25);
 
     setTimeout(() => {
       win.document.write(this.ConfigurarRodape());
       win.document.close();
       win.print();
     }, 50);
+  }
+
+  PegarImagemPraImpressao() {
+    this.procedimento.paginadeimagens.forEach(elo => {
+      elo.imagemimpressa.forEach(alo => {
+        this.serviceproc.PegarImagemString(alo.imagem.codigo).subscribe(data => {
+          alo.imagem.imagem =  data;
+        }, error => {
+          console.log(error);
+        });
+      });
+    });
   }
 
   private ConfigurarCabecalho() {
@@ -314,7 +322,7 @@ export class LaudoComponent implements OnInit {
       +       '<tbody>'
       +         '<tr>'
       +           '<td>'
-      +             '<div class="page" style="width: 210mm; margin: 0 auto; margin-top: 2px; flex-direction: row; justify-content: center; align-items: center">' + this.paginaimagenschild.SalvarPagina(posicao) + '</div>'
+      +             '<div class="page" style="width: 210mm; margin: 0 auto; margin-top: 2px; flex-direction: row; justify-content: center; align-items: center">' + this.SalvarPagina(posicao) + '</div>'
       +           '</td>'
       +         '</tr>'
       +       '</tbody>'
@@ -340,6 +348,608 @@ export class LaudoComponent implements OnInit {
     return  '<div class="page-footer" style="height: 25px; position: fixed; bottom: 0; width: 93%; border-top: 1px solid black; text-align: center; border-top: 1px solid #000; background-color: white;">'
       +       '<span id="labelrodape">Para adquirir este software acesse www.novaopcaomed.com.br (62)3643-6264</span>'
       +     '</div>';
+  }
+
+  SalvarPagina(posicao: number) {
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_1_GRANDE) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm;">'
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab1" style="display: block" class="foto1grande">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_1_MEDIA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;">'
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab1" style="display: block" class="foto1media">'
+                    + '<img style="width:100mm; height: 73mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_2_GRANDE) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 10mm;">'
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab1" style="display: block" class="foto2grande">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab1" style="display: block" class="foto2grande">'
+                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_2_MEDIA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 45mm;">'
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab1" style="display: block" class="foto2media">'
+                    + '<img style="width: 100mm; height: 73mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab2" style="display: block" class="foto2media">'
+                    + '<img style="width: 100mm; height: 73mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_3_MEDIA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 15mm;">'
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab1" style="display: block" class="foto3media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab2" style="display: block" class="foto3media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm;">'
+                  + '<div id="lab3" style="display: block" class="foto3media">'
+                    +  '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_GRANDE) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 50mm; width: 190mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto4grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto4grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto4grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto4grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_MEDIA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 55mm; width: 170mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto4media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto4media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto4media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto4media">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_PEQUENA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 140mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto4pequena">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto4pequena">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto4pequena">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto4pequena">'
+                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_6_GRANDE) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 10mm; width: 190mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto6grande">'
+                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_6_MEDIA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 15mm; width: 170mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto6media grade1">'
+                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_8_GRANDE) {
+      return  '<div>'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; width: 180mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto8grande">'
+                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_8_PEQUENA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 10mm; width: 140mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto8pequena">'
+                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_9_PEQUENA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 180mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab9" style="display: block" class="foto9pequena">'
+                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[8].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_12_PEQUENA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 180mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab9" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[8].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab10" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[9].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab11" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[10].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab12" style="display: block" class="foto12pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[11].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
+
+    if (this.procedimento.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_15_PEQUENA) {
+      return  '<div class="papela4" id="papela4">'
+              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 5mm; width: 180mm; height: auto; display: block;">'
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab1" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab2" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab3" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab4" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab5" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab6" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab7" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab8" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab9" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[8].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab10" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[9].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab11" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[10].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab12" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[11].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab13" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[12].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab14" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[13].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+
+                + '<div style="display:block; padding: 2mm; float: left;">'
+                  + '<div id="lab15" style="display: block" class="foto15pequena">'
+                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.procedimento.paginadeimagens[posicao].imagemimpressa[14].imagem.imagem + '">'
+                  + '</div>'
+                + '</div>'
+              + '</div>'
+            + '</div>';
+    }
   }
 
   Voltar() {

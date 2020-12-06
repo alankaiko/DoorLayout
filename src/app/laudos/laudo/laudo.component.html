@@ -13,7 +13,7 @@
           <label>Procedimento selecionado </label>
           <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo"
             #procedimentoselecionado="ngModel" name="procedimentoselecionado" placeholder="Selecione..."
-            (onChange)="ConfigurarVariavel()" [style]="{'line-height': '12px', 'width': '70%'}"></p-dropdown>
+            (onChange)="BuscandoModelosLaudo(procedimento.codigo)" [style]="{'line-height': '12px', 'width': '70%'}"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 5%;" *ngIf="!abrirpaginaimg">
@@ -41,7 +41,7 @@
             <button pButton type="button" label="Salvar" icon="pi pi-plus" (click)="Salvar(f)"></button>
             <button style="background-color: #607D8B; border: 1px solid #607D8B;" pButton type="button" label="Imprimir" icon="pi pi-plus" (click)="GerarImpressao()"></button>
             <button style="background-color: #537f2d; border: 1px solid #537f2d;" pButton type="button" label="Gerar PDF" icon="pi pi-plus" (click)="Salvar(f)"></button>
-            <button style="background-color: #aa2424; border: 1px solid #aa2424;" pButton type="button" label="Esc Img" icon="pi pi-plus" (click)="EscolherImagens()"></button>
+            <button style="background-color: #aa2424; border: 1px solid #aa2424;" pButton type="button" label="Pagina de Img" icon="pi pi-plus" (click)="EscolherImagens()"></button>
             <button style="background-color: #E91E63; border: 1px solid #E91E63;" pButton type="button" label="Modelo" icon="pi pi-plus" (click)="AtivarModelo()"></button>
             <button style="background-color: #8c239e; border: 1px solid #8c239e;" pButton type="button" label="Receita" icon="pi pi-plus"></button>
           </div>

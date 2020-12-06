@@ -151,7 +151,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AccordionModule,
     MenubarModule,
     FormsModule,
-    SplitButtonModule
+    SplitButtonModule,
+    ConfirmDialogModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

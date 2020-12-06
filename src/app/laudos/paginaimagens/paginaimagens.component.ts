@@ -1,5 +1,5 @@
-import { SelectItem } from 'primeng/api';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
+import { SelectItem } from 'primeng/api';
 import { Imagem, PaginaDeImagens, LAYOUT_IMG, ImagemImpressa } from './../../core/model';
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
@@ -12,14 +12,14 @@ import { Location } from '@angular/common';
 export class PaginaimagensComponent implements OnInit {
   @Input() paginadeimagens: Array<PaginaDeImagens>;
   @Input('listaimagem') listaimagem: Array<Imagem>;
-  pagina: PaginaDeImagens;
+  pagina = new PaginaDeImagens();
   listaimagemsbase = new Array<Imagem>();
   qtdimagems: SelectItem[];
   qtdimagemselecionada = 1;
   paginaselecionada = 0;
 
-  constructor(private serviceproc: ProcedimentoatendimentoService,
-              private location: Location) {}
+  constructor(private location: Location,
+              private serviceproc: ProcedimentoatendimentoService) {}
 
   ngOnInit() {
     this.OpcoesQtdImagens();
@@ -38,7 +38,6 @@ export class PaginaimagensComponent implements OnInit {
     const editor = document.getElementById('geral');
     editor.setAttribute('style' , 'height: ' + painel + 'px;');
   }
-
 
   OpcoesQtdImagens() {
     this.qtdimagems = [
@@ -76,7 +75,6 @@ export class PaginaimagensComponent implements OnInit {
     this.VerificaQualLayout(index);
   }
 
-
   PermiteArrastar(ev) {
     ev.preventDefault();
   }
@@ -105,11 +103,10 @@ export class PaginaimagensComponent implements OnInit {
           this.listaimagemsbase[valor] = this.listaimagem[i];
           this.listaimagem.splice(i, 1);
 
-          const imagemimpressa = new ImagemImpressa();
-          imagemimpressa.indice = valor;
+          this.paginadeimagens[this.paginaselecionada].imagemimpressa[i].indice = valor;
           this.pagina.layout = this.EscolhendoLayout();
-          imagemimpressa.imagem = this.listaimagemsbase[valor];
-          this.pagina.imagemimpressa.push(imagemimpressa);
+          this.paginadeimagens[this.paginaselecionada].imagemimpressa[i].imagem = this.listaimagemsbase[valor];
+          this.pagina.imagemimpressa.push(this.paginadeimagens[this.paginaselecionada].imagemimpressa[i]);
         }
       }
     }
@@ -146,14 +143,6 @@ export class PaginaimagensComponent implements OnInit {
         }
       });
     });
-
-    // this.listaimagem.filter((el) => {
-    //  this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {
-    //    el.imagem = data;
-    //  }, error => {
-    //    console.log(error);
-    //  });
-    // });
 
     this.ConfigurarDimensoes();
   }
@@ -220,7 +209,22 @@ export class PaginaimagensComponent implements OnInit {
     }
 
     this.ConfigurarDimensoes();
-    // this.RoteandoImagens(posicao);
+    this.RoteandoImagens(posicao);
+  }
+
+  RoteandoImagens(numero: number) {
+    this.listaimagemsbase = new Array<Imagem>();
+
+    this.paginadeimagens[numero].imagemimpressa.forEach(alo => {
+      this.serviceproc.PegarImagemString(alo.imagem.codigo).subscribe(data => {
+        alo.imagem.imagem = data;
+        this.listaimagemsbase.push(alo.imagem);
+      }, error => {
+        console.log(error);
+      });
+
+    });
+
   }
 
   EscolhendoLayout() {
@@ -283,29 +287,6 @@ export class PaginaimagensComponent implements OnInit {
     if (this.qtdimagemselecionada === 15) {
       return LAYOUT_IMG.LAYOUT_15_PEQUENA;
     }
-  }
-
-
-
-  private RetornaImagens(nome: string) {
-    let valor;
-
-    this.listaimagem.filter(elo => {
-      if (elo.nomeimagem === nome) {
-        valor =  elo;
-        this.listaimagem.splice(this.listaimagem.indexOf(elo), 1);
-      }
-    });
-
-    return valor;
-  }
-
-  SalvarPaginaDeImpressoes() {
-    // this.procedimento.modelosalvo.paginas = this.paginasdeimagens;
-
-    // this.servicemodelo.Atualizar(this.procedimento.modelosalvo).then(response => {
-    //  console.log('deu certo agora');
-    // });
   }
 
   ConfigurarDimensoes() {
@@ -494,619 +475,7 @@ export class PaginaimagensComponent implements OnInit {
     }
   }
 
-  SalvarPagina(posicao: number) {
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_1_GRANDE) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm;">'
-                + '<div style="display:block; padding: 2mm;">'
-                  + '<div id="lab1" style="display: block" class="foto1grande">'
-                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
 
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_1_MEDIA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 61mm;">'
-                + '<div style="display:block; padding: 2mm;">'
-                  + '<div id="lab1" style="display: block" class="foto1media">'
-                    + '<img style="width:100mm; height: 73mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_2_GRANDE) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 10mm;">'
-                + '<div style="display:block; padding: 2mm;">'
-                  + '<div id="lab1" style="display: block" class="foto2grande">'
-                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm;">'
-                  + '<div id="lab1" style="display: block" class="foto2grande">'
-                    + '<img style="width: 140mm; height: 105mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_2_MEDIA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 45mm;">'
-                + '<div style="display:block; padding: 2mm;">'
-                  + '<div id="lab1" style="display: block" class="foto2media">'
-                    + '<img style="width: 100mm; height: 73mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm;">'
-                  + '<div id="lab2" style="display: block" class="foto2media">'
-                    + '<img style="width: 100mm; height: 73mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_3_MEDIA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin:  0 auto; position: relative; text-align: center; margin-top: 15mm;">'
-                + '<div style="display:block; padding: 2mm;">'
-                  + '<div id="lab1" style="display: block" class="foto3media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm;">'
-                  + '<div id="lab2" style="display: block" class="foto3media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm;">'
-                  + '<div id="lab3" style="display: block" class="foto3media">'
-                    +  '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_GRANDE) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 50mm; width: 190mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto4grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto4grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto4grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto4grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_MEDIA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 55mm; width: 170mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto4media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto4media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto4media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto4media">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_4_PEQUENA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 140mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto4pequena">'
-                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto4pequena">'
-                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto4pequena">'
-                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto4pequena">'
-                    + '<img style="width: 65mm; height: 50mm" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_6_GRANDE) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 10mm; width: 190mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab5" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab6" style="display: block" class="foto6grande">'
-                    + '<img style="width: 90mm; height: 68mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_6_MEDIA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 15mm; width: 170mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab5" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab6" style="display: block" class="foto6media grade1">'
-                    + '<img style="width: 80mm; height: 66mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_8_GRANDE) {
-      return  '<div>'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; width: 180mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab5" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab6" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab7" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab8" style="display: block" class="foto8grande">'
-                    + '<img style="width: 80mm; height: 55mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_8_PEQUENA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 10mm; width: 140mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab5" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab6" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab7" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab8" style="display: block" class="foto8pequena">'
-                    + '<img style="width: 65mm; height: 50mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_9_PEQUENA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 61mm; width: 180mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab5" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab6" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab7" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab8" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab9" style="display: block" class="foto9pequena">'
-                    + '<img style="width:55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[8].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_12_PEQUENA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 30mm; width: 180mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab5" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab6" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab7" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab8" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab9" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[8].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab10" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[9].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab11" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[10].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab12" style="display: block" class="foto12pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[11].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-
-    if (this.paginadeimagens[posicao].layout === LAYOUT_IMG.LAYOUT_15_PEQUENA) {
-      return  '<div class="papela4" id="papela4">'
-              + '<div id="gradeimg" style="margin: 0 auto; position: relative; text-align: center; margin-top: 5mm; width: 180mm; height: auto; display: block;">'
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab1" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[0].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab2" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[1].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab3" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[2].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab4" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[3].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab5" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[4].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab6" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[5].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab7" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[6].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab8" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[7].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab9" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[8].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab10" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[9].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab11" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[10].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab12" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[11].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab13" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[12].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab14" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[13].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-
-                + '<div style="display:block; padding: 2mm; float: left;">'
-                  + '<div id="lab15" style="display: block" class="foto15pequena">'
-                    + '<img style="width: 55mm; height: 40mm;" class="imagem" src="' + this.paginadeimagens[posicao].imagemimpressa[14].imagem.imagem + '">'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</div>';
-    }
-  }
-
-  PegarImagemPraImpressao() {
-    this.paginadeimagens.forEach(elo => {
-      elo.imagemimpressa.forEach(alo => {
-        this.serviceproc.PegarImagemString(alo.imagem.codigo).subscribe(data => {
-          alo.imagem.imagem =  data;
-        }, error => {
-          console.log(error);
-        });
-      });
-    });
-  }
 
   Voltar() {
     this.location.back();
