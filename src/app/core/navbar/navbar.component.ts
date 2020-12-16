@@ -31,9 +31,9 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Operações',
         items: [
-          {label: 'Atendimento', icon: 'fa fa-fw fa-file-image-o', routerLink: ['operacoes/atendimento']},
-          {label: 'Laudo', icon: 'fa fa-fw fa-file-image-o', routerLink: ['operacoes/laudos']},
-          {label: 'Captura', icon: 'fa fa-fw fa-file-image-o', routerLink: ['operacoes/captura']}
+          {label: 'Atendimento', icon: 'fa fa-fw fa-clipboard', routerLink: ['operacoes/atendimento']},
+          {label: 'Laudo', icon: 'fa fa-fw fa-clipboard', routerLink: ['operacoes/laudos']},
+          {label: 'Captura', icon: 'fa fa-fw fa-clipboard', routerLink: ['operacoes/captura']}
         ]
       },
       {
@@ -46,9 +46,9 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Ferramentas',
         items: [
-          {label: 'Licenciados', icon: 'fa fa-fw fa-file-image-o', routerLink: ['listalicenciado']},
-          {label: 'Estados', icon: 'fa fa-fw fa-file-image-o', routerLink: ['listaestado']},
-          {label: 'Siglas', icon: 'fa fa-fw fa-file-image-o', routerLink: ['listasigla']}
+          {label: 'Licenciados', icon: 'fa fa-fw fa-linode', routerLink: ['listalicenciado']},
+          {label: 'Estados', icon: 'fa fa-fw fa-linode', routerLink: ['listaestado']},
+          {label: 'Siglas', icon: 'fa fa-fw fa-linode', routerLink: ['listasigla']}
         ]
       }
     ];

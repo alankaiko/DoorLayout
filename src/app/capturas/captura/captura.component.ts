@@ -200,6 +200,7 @@ export class CapturaComponent implements OnInit {
     imagem.procedimentoatendimento.codigo = this.procedimento.codigo;
     imagem.nomeimagem = nomeprocedimento + contador;
     imagem.extensao = extensao;
+    imagem.dicom = false;
     imagem.imagem = webcamImage;
     this.procedimento.listaimagem.push(imagem);
 

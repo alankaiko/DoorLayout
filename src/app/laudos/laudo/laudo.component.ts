@@ -1,3 +1,4 @@
+import { ImagemService } from './../../zservice/imagem.service';
 import { TextolivreComponent } from './../../modelosdetexto/textolivre/textolivre.component';
 import { ModelodelaudodoprocService } from './../../zservice/modelodelaudodoproc.service';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
@@ -37,7 +38,8 @@ export class LaudoComponent implements OnInit {
               private rota: ActivatedRoute,
               private route: Router,
               private servicoparametro: ParametrodosistemaService,
-              private location: Location) { }
+              private location: Location,
+              private serviceimg: ImagemService) { }
 
   ngOnInit(): void {
     const codigo = this.rota.snapshot.params.cod;
@@ -69,6 +71,7 @@ export class LaudoComponent implements OnInit {
       .then(atendimento => {
         this.atendimento = atendimento;
         this.CarregarProcedimentos();
+        this.serviceimg.ListarPorCodigouid(this.atendimento.patient.studyes[0].series[0].instance[0].mediastoragesopinstanceuid).then(response => response);
       }).catch(erro => erro);
   }
 
@@ -98,6 +101,8 @@ export class LaudoComponent implements OnInit {
           this.procedimentosAtd = this.atendimento.procedimentos.map(procedimento => ({label: procedimento.procedimentomedico.nome, value: procedimento.codigo}));
         }
       );
+
+    this.BuscarImagensDicom();
   }
 
   BuscandoModelosLaudo(codigo) {
@@ -194,6 +199,22 @@ export class LaudoComponent implements OnInit {
     this.procedimento.listaimagem = this.testeimagems;
     this.abrirpaginaimg = false;
     this.conferindo = true;
+  }
+
+  private BuscarImagensDicom() {
+    this.atendimento.patient.studyes.forEach(estudo => {
+      estudo.series.forEach(serie => {
+        serie.instance.forEach(instancia => {
+          this.serviceimg.ListarPorCodigouid(instancia.mediastoragesopinstanceuid).then(response => {
+            this.serviceproc.PegarImagemString(response.codigo).subscribe(data => {
+              response.imagem = data;
+            });
+
+            this.procedimento.listaimagem.push(response);
+          });
+        });
+      });
+    });
   }
 
   ImprimirDocumento() {

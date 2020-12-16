@@ -244,6 +244,8 @@ export class Imagem {
   nomeimagem: string;
   extensao: string;
   imagem: any;
+  dicom: boolean;
+  codigouid: string;
   procedimentoatendimento = new ProcedimentoAtendimento();
 }
 

@@ -1,6 +1,7 @@
+import { ImagemService } from './../../zservice/imagem.service';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { SelectItem } from 'primeng/api';
-import { Imagem, PaginaDeImagens, LAYOUT_IMG, ImagemImpressa } from './../../core/model';
+import { Imagem, PaginaDeImagens, LAYOUT_IMG, ImagemImpressa, Study } from './../../core/model';
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
@@ -103,9 +104,8 @@ export class PaginaimagensComponent implements OnInit {
           this.listaimagemsbase[valor] = this.listaimagem[i];
           this.listaimagem.splice(i, 1);
 
-          this.paginadeimagens[this.paginaselecionada].imagemimpressa[i].indice = valor;
           this.pagina.layout = this.EscolhendoLayout();
-          this.paginadeimagens[this.paginaselecionada].imagemimpressa[i].imagem = this.listaimagemsbase[valor];
+          this.paginadeimagens[this.paginaselecionada].imagemimpressa[valor].imagem = this.listaimagemsbase[valor];
           this.pagina.imagemimpressa.push(this.paginadeimagens[this.paginaselecionada].imagemimpressa[i]);
         }
       }
@@ -137,9 +137,9 @@ export class PaginaimagensComponent implements OnInit {
     });
 
     lista.forEach(elo => {
-      this.listaimagem.forEach(aff => {
-        if (elo === aff.codigo) {
-          this.listaimagem.splice(this.listaimagem.indexOf(aff), 1);
+      this.listaimagem.forEach(alo => {
+        if (elo === alo.codigo) {
+          this.listaimagem.splice(this.listaimagem.indexOf(alo), 1);
         }
       });
     });
@@ -474,8 +474,6 @@ export class PaginaimagensComponent implements OnInit {
       }
     }
   }
-
-
 
   Voltar() {
     this.location.back();
