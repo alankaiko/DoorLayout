@@ -1,5 +1,5 @@
-export class Study {
-  idstudy: number;
+export class Estudo {
+  codigo: number;
   accessionnumber: string;
   studyid: string;
   studyinstanceuid: string;
@@ -10,14 +10,14 @@ export class Study {
   studystatusid: string;
   additionalpatienthistory: string;
   admittingdiagnosesdescription: string;
-  datecreate: Date;
-  datemodify: Date;
-  patient = new Patient();
-  series = new Array<Series>();
+  datacriacao: Date;
+  datamodificacao: Date;
+  paciente = new Paciente();
+  series = new Array<Serie>();
 }
 
-export class Series {
-  idseries: number;
+export class Serie {
+  codigo: number;
   seriesinstanceuid: string;
   seriesdescription: string;
   seriesnumber: number;
@@ -27,30 +27,32 @@ export class Series {
   operatorsname: string;
   protocolname: string;
   seriesdatetime: Date;
-  datecreate: Date;
-  datemodify: Date;
-  study = new Study();
-  dispositive = new Dispositive();
-  instance = new Array<Instance>();
+  datacriacao: Date;
+  datamodicifacao: Date;
+  estudo = new Estudo();
+  instancias = new Array<Instancia>();
+  equipamento = new Equipamento();
 }
 
-export class Patient {
-  idpatient: number;
-  patientid: string;
-  patientname: string;
-  birthday: Date;
-  patientage: string;
-  patientsex: string;
-  studyes = new Array<Study>();
+export class Paciente {
+  codigo: number;
+  pacienteid: string;
+  nome: string;
+  datanasc: Date;
+  idade: string;
+  sexo: string;
+  estudos = new Array<Estudo>();
   endereco = new Endereco();
   contato = new Contato();
-  datecreate: Date;
-  datemodify: Date;
+  datacriacao: Date;
+  datamodificacao: Date;
   observacoes: string;
+  tamanho: string;
+  peso: string;
 }
 
-export class Instance {
-  idinstance: number;
+export class Instancia {
+  codigo: number;
   instancenumber: number;
   patientorientation: string;
   mediastoragesopinstanceuid: string;
@@ -70,27 +72,27 @@ export class Instance {
   windowcenter: string;
   windowwidth: string;
   contentdatetime: Date;
-  datecreate: Date;
-  datemodify: Date;
-  series = new Series();
+  datacriacao: Date;
+  datamodificacao: Date;
+  serie = new Serie();
   tagimagem = new Tagimagem();
 }
 
-export class Dispositive {
-  iddispositive: number;
-  institutionname: string;
-  institutionaddress: string;
-  institutionaldepartmentname: string;
-  modality: string;
+export class Equipamento {
+  codigo: number;
+  instituicao: string;
+  endereco: string;
+  departamento: string;
+  nomemodality: string;
   conversiontype: string;
-  manufacturer: string;
-  manufacturermodelname: string;
+  fabricante: string;
+  modelo: string;
   stationname: string;
-  deviceserialnumber: string;
+  serial: string;
   softwareversion: string;
-  datecreation: Date;
-  datemodify: Date;
-  series = new Series();
+  datacriacao: Date;
+  datamodificacao: Date;
+  serie = new Serie();
 }
 
 export class Abreviatura {
@@ -257,9 +259,6 @@ export class ProfissionalExecutante {
   endereco = new Endereco();
   conselho = new TissConselho();
   frasepessoal: string;
-  asswidth: number;
-  assheight: number;
-  espacoass: number;
 }
 
 export class TissConselho {
@@ -340,7 +339,7 @@ export class TagImagemGamb {
 
 export class Atendimento {
   codigo: number;
-  patient = new Patient();
+  paciente = new Paciente();
   convenio = new Convenio();
   solicitante = new ProfissionalSolicitante();
   procedimentos = new Array<ProcedimentoAtendimento>();

@@ -14,9 +14,9 @@
   </div>
 
   <div class="table-responsive corpo">
-    <p-table [value]="patients" [scrollable]="true"
+    <p-table [value]="pacientes" [scrollable]="true"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
-      selectionMode="single" [(selection)]="patient" dataKey="idpatient">
+      selectionMode="single" [(selection)]="paciente" dataKey="codigo">
 
       <ng-template pTemplate="header">
         <tr>
@@ -27,12 +27,12 @@
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="body" let-patient>
-        <tr [pSelectableRow]="patient">
-          <td style="width: 10%;">{{patient?.idpatient}}</td>
-          <td style="text-transform: uppercase; width: 45%;"><a [routerLink]="['/listapaciente', patient.idpatient]">{{patient?.patientname}}</a></td>
-          <td style="width: 25%;">{{patient?.birthday | date:'dd/MM/yyyy' }}</td>
-          <td style="width: 20%;">{{patient?.datecreate | date:'dd/MM/yyyy' }}</td>
+      <ng-template pTemplate="body" let-paciente>
+        <tr [pSelectableRow]="paciente">
+          <td style="width: 10%;">{{paciente?.codigo}}</td>
+          <td style="text-transform: uppercase; width: 45%;"><a [routerLink]="['/listapaciente', paciente.codigo]">{{paciente?.nome}}</a></td>
+          <td style="width: 25%;">{{paciente?.datanasc | date:'dd/MM/yyyy' }}</td>
+          <td style="width: 20%;">{{paciente?.datacriacao | date:'dd/MM/yyyy' }}</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
@@ -120,11 +120,11 @@
 </p-dialog>
 
 
-<p-dialog class="excluir" header="Excluir {{patient?.patientname}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '30vw'}">
-  <span>DESEJA EXCLUIR O REGISTRO => {{patient?.patientname}}?</span>
+<p-dialog class="excluir" header="Excluir {{paciente?.nome}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '30vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{paciente?.nome}}?</span>
 
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" *ngIf="patient?.idpatient != null" (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-check" *ngIf="paciente?.codigo != null" (click)="Excluir()" label="Yes"></button>
     <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

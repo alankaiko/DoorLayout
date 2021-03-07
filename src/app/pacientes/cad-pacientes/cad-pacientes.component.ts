@@ -1,6 +1,6 @@
 import { PacienteService } from './../../zservice/paciente.service';
 import { Component, OnInit } from '@angular/core';
-import { Patient } from './../../core/model';
+import { Paciente } from './../../core/model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
@@ -23,11 +23,11 @@ export class CadPacientesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.CriarFormulario(new Patient());
-    const idpatient = this.rota.snapshot.params.cod;
+    this.CriarFormulario(new Paciente());
+    const codigo = this.rota.snapshot.params.cod;
 
-    if (idpatient) {
-      this.CarregarPaciente(idpatient);
+    if (codigo) {
+      this.CarregarPaciente(codigo);
     }
 
     this.enumsexo = [
@@ -40,24 +40,24 @@ export class CadPacientesComponent implements OnInit {
 
 
   get editando() {
-    return Boolean(this.formulario.get('idpatient').value);
+    return Boolean(this.formulario.get('codigo').value);
   }
 
-  CriarFormulario(paciente: Patient) {
+  CriarFormulario(paciente: Paciente) {
     this.formulario = this.formbuilder.group({
-      idpatient: [null, paciente.idpatient],
-      patientid: [null, paciente.patientid],
-      patientname: [null, paciente.patientname],
-      birthday: [null, paciente.birthday],
-      patientage: [null, paciente.patientage],
-      datecreate: [null, paciente.datecreate],
-      patientsex: [null, paciente.patientsex],
+      codigo: [null, paciente.codigo],
+      pacienteid: [null, paciente.pacienteid],
+      nome: [null, paciente.nome],
+      datanasc: [null, paciente.datanasc],
+      idade: [null, paciente.idade],
+      datacriacao: [null, paciente.datacriacao],
+      sexo: [null, paciente.sexo],
       observacoes: [null, paciente.observacoes],
       contato: this.formbuilder.group({
         email: [paciente.contato.email],
-        telefone: [paciente.contato.telefone],
-        telefone2: [paciente.contato.telefone2],
-        celular: [paciente.contato.celular],
+        telefone: [paciente.contato.telefone] + '',
+        telefone2: [paciente.contato.telefone2] + '',
+        celular: [paciente.contato.celular] + '',
       }),
       endereco: this.formbuilder.group({
         logradouro: [paciente.endereco.logradouro],
@@ -66,17 +66,17 @@ export class CadPacientesComponent implements OnInit {
         bairro: [paciente.endereco.bairro],
         cidade: [paciente.endereco.cidade],
         estado: [paciente.endereco.estado],
-        cep: [paciente.endereco.cep]
+        cep: [paciente.endereco.cep] + ''
       })
     });
 
-    if (paciente.datecreate === undefined) {
-      this.formulario.get('datecreate').setValue(new Date());
+    if (paciente.datacriacao === undefined) {
+      this.formulario.get('datacriacao').setValue(new Date());
     }
   }
 
-  CarregarPaciente(idpatient: number) {
-    this.service.BuscarPorId(idpatient).then(texto => this.formulario.patchValue(texto));
+  CarregarPaciente(codigo: number) {
+    this.service.BuscarPorId(codigo).then(paciente => this.formulario.patchValue(paciente));
   }
 
   Salvar() {
@@ -85,7 +85,7 @@ export class CadPacientesComponent implements OnInit {
     } else {
       this.formulario.patchValue(this.AdicionarPaciente());
     }
-    this.CriarFormulario(new Patient());
+    this.CriarFormulario(new Paciente());
   }
 
   AdicionarPaciente() {
@@ -97,8 +97,8 @@ export class CadPacientesComponent implements OnInit {
 
   AtualizarPaciente() {
     this.service.Atualizar(this.formulario.value)
-      .then(patient => {
-        this.formulario.patchValue(patient);
+      .then(paciente => {
+        this.formulario.patchValue(paciente);
         this.route.navigate(['/listapaciente']);
       });
   }

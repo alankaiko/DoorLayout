@@ -69,7 +69,7 @@ export class CadEstadoComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(sigla => {
         this.formulario.patchValue(sigla);
-        this.route.navigate(['/listatextopessoal']);
+        this.route.navigate(['/listaestado']);
       });
   }
 

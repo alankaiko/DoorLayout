@@ -71,7 +71,7 @@ export class LaudoComponent implements OnInit {
       .then(atendimento => {
         this.atendimento = atendimento;
         this.CarregarProcedimentos();
-        this.serviceimg.ListarPorCodigouid(this.atendimento.patient.studyes[0].series[0].instance[0].mediastoragesopinstanceuid).then(response => response);
+        this.serviceimg.ListarPorCodigouid(this.atendimento.paciente.estudos[0].series[0].instancias[0].mediastoragesopinstanceuid).then(response => response);
       }).catch(erro => erro);
   }
 
@@ -89,7 +89,7 @@ export class LaudoComponent implements OnInit {
 
   CarregarAtendimentos() {
     this.service.ListarAtendimentos().then(lista => {
-      this.atendimentos = lista.map(atendimento => ({label: 'atend: ' + atendimento.codigo + ' ' + atendimento.patient.patientname, value: atendimento.codigo}));
+      this.atendimentos = lista.map(atendimento => ({label: 'atend: ' + atendimento.codigo + ' ' + atendimento.paciente.nome, value: atendimento.codigo}));
     }).catch(erro => erro);
   }
 
@@ -202,9 +202,9 @@ export class LaudoComponent implements OnInit {
   }
 
   private BuscarImagensDicom() {
-    this.atendimento.patient.studyes.forEach(estudo => {
+    this.atendimento.paciente.estudos.forEach(estudo => {
       estudo.series.forEach(serie => {
-        serie.instance.forEach(instancia => {
+        serie.instancias.forEach(instancia => {
           this.serviceimg.ListarPorCodigouid(instancia.mediastoragesopinstanceuid).then(response => {
             this.serviceproc.PegarImagemString(response.codigo).subscribe(data => {
               response.imagem = data;
@@ -257,13 +257,13 @@ export class LaudoComponent implements OnInit {
 
           +   '<div class="cabecalho" id="cabecalho" style="width: 100%; margin: 0 auto; text-align: center; border-top: 2px solid #000000; border-bottom: 2px solid #000000; margin-top: 10px; padding-top: 5px; padding-bottom: 5px;">'
           +     '<div id="linha1" style="width: 98%; display: inline-flex;">'
-          +       '<span style="width: 50%; text-align: left; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">PACIENTE: ' + this.atendimento.patient.patientname.toUpperCase() + '</span>'
+          +       '<span style="width: 50%; text-align: left; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">PACIENTE: ' + this.atendimento.paciente.nome.toUpperCase() + '</span>'
           +       '<span style="width: 50%; text-align: right; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">ATENDIMENTO: ' + this.ConfereAtendimento() + '</span>'
           +     '</div>'
 
           +     '<div id="linha2" style="width: 98%; display: inline-flex;">'
           +       '<span style="width: 50%; text-align: left; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">Data Atendimento: ' + this.atendimento.dataatendimento + '</span>'
-          +       '<span style="width: 50%; text-align: right; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">Data Nasc: ' + this.atendimento.patient.birthday + ' Idade: ' + this.atendimento.patient.patientage + '</span>'
+          +       '<span style="width: 50%; text-align: right; font-famitly: Tahoma; font-size: 12pt; font-weight: bold;">Data Nasc: ' + this.atendimento.paciente.datanasc + ' Idade: ' + this.atendimento.paciente.idade + '</span>'
           +     '</div>'
 
           +     '<div id="linha3" style="width: 98%; display: inline-flex;">'

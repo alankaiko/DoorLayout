@@ -68,6 +68,8 @@
 
 :host /deep/ p-tabview .ui-tabview-panels {
   height: 220px;
+  background-color: #ece9e9;
+  border: 3px solid #cc0000;
 }
 
 :host /deep/ p-tabview .ui-tabview-nav .ui-tabview-selected{
@@ -146,7 +148,7 @@ input {
   padding: 2px 0 2px;
   line-height: 1.7;
   position: relative;
-  margin: 0 auto;
+  margin: 0 0.5px;
 }
 
 .botaoprincipal:hover {
@@ -164,6 +166,12 @@ input {
   text-align: center;
   vertical-align: middle;
   margin: 0 auto;
+}
+
+.desabilitado {
+  opacity: 0.3;
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(161, 161, 161);
 }
 
 .minibotao {

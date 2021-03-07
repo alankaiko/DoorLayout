@@ -1,14 +1,14 @@
 import { environment } from './../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Patient } from '../core/model';
+import { Paciente } from '../core/model';
 
-export class PatientFiltro {
-  patientid: string;
-  patientname: string;
-  birthday: Date;
-  patientage: string;
-  patientsex: string;
+export class PacienteFiltro {
+  pacienteid: string;
+  nome: string;
+  datanasc: Date;
+  idade: string;
+  sexo: string;
   servidor: boolean;
   pagina = 0;
   itensPorPagina = 10;
@@ -29,7 +29,7 @@ export class ServidorService {
     return this.http.get(`${this.url}`).toPromise().then(response => response);
   }
 
-  Consultar(filtro: PatientFiltro): Promise<any> {
+  Consultar(filtro: PacienteFiltro): Promise<any> {
     let params = new HttpParams({
       fromObject: {
         page: filtro.pagina.toString(),
@@ -37,8 +37,8 @@ export class ServidorService {
       }
     });
 
-    if (filtro.patientid) {
-      params = params.append('patientid', filtro.patientid);
+    if (filtro.pacienteid) {
+      params = params.append('pacienteid', filtro.pacienteid);
     }
 
     if (filtro.servidor) {
@@ -48,23 +48,22 @@ export class ServidorService {
     return this.http.get<any>(`${this.url}?resumo`, { params })
       .toPromise()
       .then(response => {
-        const patients = response;
+        const pacientes = response;
 
         const resultado = {
-          patients,
+          pacientes,
           total: response.totalElements
         };
-
         return resultado;
       });
   }
 
-  BuscarPorId(idpatient: number): Promise<any> {
-    return this.http.get(`${this.url}/${idpatient}`)
+  BuscarPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/${codigo}`)
       .toPromise()
       .then(response => {
-        const patient = response as Patient;
-        return patient;
+        const paciente = response as Paciente;
+        return paciente;
       });
   }
 
@@ -72,12 +71,11 @@ export class ServidorService {
     return `${this.url}/dicom/${instanceuid}`;
   }
 
-  BuscarInstanciasDoPaciente(idpatient: number): Promise<any> {
-    return this.http.get<any>(`${this.url}/series/${idpatient}`).toPromise().then(response => response);
+  BuscarInstanciasDoPaciente(codigo: number): Promise<any> {
+    return this.http.get<any>(`${this.url}/series/${codigo}`).toPromise().then(response => response);
   }
 
   urlUploadAnexo(valor) {
-    return this.http.post(`${this.url}/teste`, valor)
-        .subscribe(resposta => console.log('Upload ok.'));
+    return this.http.post(`${this.url}/teste`, valor).subscribe(resposta => console.log('Upload ok.'));
   }
 }

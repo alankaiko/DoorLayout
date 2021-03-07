@@ -132,16 +132,14 @@ export class TelaAtendimentoComponent implements OnInit {
 
   CarregarPacientes() {
     this.service.ListarPacientes().then(lista => {
-      this.pacientes = lista.map(patient => ({label: patient.patientname, value: patient.idpatient}));
+      this.pacientes = lista.map(paciente => ({label: paciente.nome, value: paciente.codigo}));
     }).catch(erro => erro);
-
-
   }
 
   InserirPacientes() {
-    this.service.BuscarPorIdPatient(this.atendimento.patient.idpatient)
+    this.service.BuscarPorIdPatient(this.atendimento.paciente.codigo)
     .then( response => {
-      this.atendimento.patient = response;
+      this.atendimento.paciente = response;
     }
     );
   }

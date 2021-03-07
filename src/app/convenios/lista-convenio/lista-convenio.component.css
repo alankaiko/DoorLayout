@@ -113,6 +113,7 @@
 :host /deep/ p-checkbox .ui-chkbox-box .ui-chkbox-icon{
   font-size: 16px;
 }
+
 .formu {
   width: 100%;
 }
@@ -122,6 +123,7 @@
   width: 80%;
   height: 24px;
   border:1px solid #428bca;
+  text-transform: uppercase;
 }
 
 .menubuscar {
@@ -171,7 +173,7 @@
   padding: 2px 0 2px;
   line-height: 1.7;
   position: relative;
-  margin: 0 auto;
+  margin: 0 0.5px;
 }
 
 .botaoprincipal:hover {

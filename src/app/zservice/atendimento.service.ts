@@ -1,4 +1,4 @@
-import { Atendimento, Patient, Convenio, ProfissionalSolicitante, Crm, Sigla, Estado, SubcategoriaCid10, ProfissionalExecutante } from './../core/model';
+import { Atendimento, Paciente, Convenio, ProfissionalSolicitante, Crm, Sigla, Estado, SubcategoriaCid10, ProfissionalExecutante } from './../core/model';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -70,8 +70,8 @@ export class AtendimentoService {
     return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
   }
 
-  BuscarListaPorNomePaciente(patientname: string): Promise<any> {
-    return this.http.get(`${this.url}/listapac/${patientname}`).toPromise().then(response => response);
+  BuscarListaPorNomePaciente(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/listapac/${nome}`).toPromise().then(response => response);
   }
 
   Adicionar(atendimento: Atendimento): Promise<Atendimento> {
@@ -115,8 +115,8 @@ export class AtendimentoService {
       .then(() => null);
   }
 
-  ListarPacientes(): Promise<Patient[]> {
-    return this.http.get<Patient[]>(this.pacienteurl).toPromise();
+  ListarPacientes(): Promise<Paciente[]> {
+    return this.http.get<Paciente[]>(this.pacienteurl).toPromise();
   }
 
   ListarAtendimentos(): Promise<Atendimento[]> {
@@ -147,13 +147,13 @@ export class AtendimentoService {
     return this.http.get<SubcategoriaCid10[]>(this.urlcids).toPromise();
   }
 
-  BuscarPorIdPatient(idpatient: number): Promise<Patient> {
-    return this.http.get<Patient>(`${this.pacienteurl}/${idpatient}`)
+  BuscarPorIdPatient(codigo: number): Promise<Paciente> {
+    return this.http.get<Paciente>(`${this.pacienteurl}/${codigo}`)
       .toPromise()
       .then(response => {
-        const patient = response as Patient;
-        this.converterStringsParaDatasPat([patient]);
-        return patient;
+        const paciente = response as Paciente;
+        this.converterStringsParaDatasPat([paciente]);
+        return paciente;
       });
   }
 
@@ -166,13 +166,13 @@ export class AtendimentoService {
       });
   }
 
-  private converterStringsParaDatasPat(patients: Patient[]) {
-    for (const patient of patients) {
-      if (patient.birthday !== null) {
-        patient.birthday = moment(patient.birthday, 'YYYY-MM-DD').toDate();
+  private converterStringsParaDatasPat(pacientes: Paciente[]) {
+    for (const paciente of pacientes) {
+      if (paciente.datanasc !== null) {
+        paciente.datanasc = moment(paciente.datanasc, 'YYYY-MM-DD').toDate();
       }
 
-      patient.datecreate = moment(patient.datecreate, 'YYYY-MM-DD').toDate();
+      paciente.datacriacao = moment(paciente.datacriacao, 'YYYY-MM-DD').toDate();
     }
   }
 
@@ -181,8 +181,8 @@ export class AtendimentoService {
       atendimento.dataatendimento = moment(atendimento.dataatendimento, 'YYYY-MM-DD').toDate();
       atendimento.datacadastro = moment(atendimento.datacadastro, 'YYYY-MM-DD').toDate();
 
-      if (atendimento.patient.birthday != null) {
-        atendimento.patient.birthday = moment(atendimento.patient.birthday, 'YYYY-MM-DD').toDate();
+      if (atendimento.paciente.datanasc != null) {
+        atendimento.paciente.datanasc = moment(atendimento.paciente.datanasc, 'YYYY-MM-DD').toDate();
       }
 
       for (const proc of atendimento.procedimentos) {

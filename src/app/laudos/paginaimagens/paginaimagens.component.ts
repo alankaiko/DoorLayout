@@ -1,7 +1,7 @@
 import { ImagemService } from './../../zservice/imagem.service';
 import { ProcedimentoatendimentoService } from './../../zservice/procedimentoatendimento.service';
 import { SelectItem } from 'primeng/api';
-import { Imagem, PaginaDeImagens, LAYOUT_IMG, ImagemImpressa, Study } from './../../core/model';
+import { Imagem, PaginaDeImagens, LAYOUT_IMG, ImagemImpressa, Estudo } from './../../core/model';
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
@@ -19,8 +19,7 @@ export class PaginaimagensComponent implements OnInit {
   qtdimagemselecionada = 1;
   paginaselecionada = 0;
 
-  constructor(private location: Location,
-              private serviceproc: ProcedimentoatendimentoService) {}
+  constructor(private location: Location, private serviceproc: ProcedimentoatendimentoService) {}
 
   ngOnInit() {
     this.OpcoesQtdImagens();

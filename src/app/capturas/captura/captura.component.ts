@@ -221,7 +221,7 @@ export class CapturaComponent implements OnInit {
 
   CarregarAtendimentos() {
     this.service.ListarAtendimentos().then(lista => {
-      this.atendimentos = lista.map(atendimento => ({label: atendimento.codigo + ' ' + atendimento.patient.patientname, value: atendimento.codigo}));
+      this.atendimentos = lista.map(atendimento => ({label: atendimento.codigo + ' ' + atendimento.paciente.nome, value: atendimento.codigo}));
     }).catch(erro => erro);
   }
 

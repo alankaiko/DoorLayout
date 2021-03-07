@@ -1,13 +1,13 @@
 import { MenuItem } from 'primeng/components/common/menuitem';
 import { InstanceService } from './../../zservice/instance.service';
 import { ServidorService } from './../../zservice/servidor.service';
-import { TagImagemGamb, Instance } from './../../core/model';
+import { TagImagemGamb, Instancia } from './../../core/model';
 import cornerstone from 'cornerstone-core';
 import cornerstoneMath from 'cornerstone-math';
 import cornerstoneTools from 'cornerstone-tools';
 import Hammer from 'hammerjs';
 import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
-import dicomParser from 'dicom-parser';
+import * as dicomParser from 'dicom-parser';
 import {Location} from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -34,7 +34,7 @@ export class ViewerComponent implements OnInit {
   annotates: MenuItem[];
   rotates: MenuItem[];
   display: boolean;
-  instance: Instance;
+  instancia: Instancia;
   tagsimagems: TagImagemGamb[];
 
   constructor(private router: Router,
@@ -171,7 +171,7 @@ export class ViewerComponent implements OnInit {
   }
 
   MostrarTabela() {
-    this.BuscarTabeladeTags(this.instance.tagimagem);
+    this.BuscarTabeladeTags(this.instancia.tagimagem);
     this.display = true;
   }
 
@@ -189,7 +189,7 @@ export class ViewerComponent implements OnInit {
     this.serviceInst.ResumoProDicom(idinstance)
       .then(
         instance => {
-          this.instance = instance;
+          this.instancia = instance;
           this.CriarTelaVisualizarDicom(instance.mediastoragesopinstanceuid);
         }
       );

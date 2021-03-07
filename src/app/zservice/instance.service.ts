@@ -1,9 +1,9 @@
-import { Instance } from './../core/model';
+import { Instancia } from './../core/model';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export class ResumoInstance {
+export class ResumoInstancia {
   idinstance: number;
   mediastoragesopinstanceuid: string;
   tagimagem: number;
@@ -25,16 +25,16 @@ export class InstanceService {
     return this.http.get(`${this.url}`).toPromise().then(response => response);
   }
 
-  Adicionar(instance) {
-    return this.http.post(`${this.url}`, instance).subscribe(response => response);
+  Adicionar(instancia) {
+    return this.http.post(`${this.url}`, instancia).subscribe(response => response);
   }
 
-  BuscarPorId(idinstance: number): Promise<any> {
-    return this.http.get(`${this.url}/${idinstance}`)
+  BuscarPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/${codigo}`)
       .toPromise()
       .then(response => {
-        const instance = response as Instance;
-        return instance;
+        const instancia = response as Instancia;
+        return instancia;
       });
   }
 
@@ -42,17 +42,17 @@ export class InstanceService {
     return this.http.get(`${this.url}/${codigo}?resumo`)
       .toPromise()
       .then(response => {
-        const instance = response as ResumoInstance;
-        return instance;
+        const instancia = response as ResumoInstancia;
+        return instancia;
       });
   }
 
-  Atualizar(instance: Instance): Promise<any> {
-    return this.http.put(`${this.url}/${instance.idinstance}`, instance)
+  Atualizar(instancia: Instancia): Promise<any> {
+    return this.http.put(`${this.url}/${instancia.codigo}`, instancia)
       .toPromise()
       .then(response => {
-        const instancealterado = response as Instance;
-        return instancealterado;
+        const instanciaalterado = response as Instancia;
+        return instanciaalterado;
       });
   }
 

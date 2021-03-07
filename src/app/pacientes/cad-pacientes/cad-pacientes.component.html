@@ -7,36 +7,33 @@
             <div class="linhas">
               <div class="blocodalinha" style="width: 25%;">
                 <label>Código</label>
-                <input style="width: 95%;" [readonly]= "true" type="text" pInputText ng-model="text" name="idpatient" formControlName="idpatient">
+                <input style="width: 95%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
               </div>
 
               <div class="blocodalinha" style="width: 25%;">
                 <label>Data Cad.</label>
-                <p-calendar id="datadecadastro" [showOnFocus]="false" [readonlyInput]="true"
-                  placeholder="00/00/0000" dateFormat="dd/mm/yy"
-                  name="datecreate" formControlName="datecreate"
-                  [inputStyle]="{ 'width': '95%', 'height': '20px', 'border-radius': '2px' }"></p-calendar>
+                <p-calendar id="datadecadastro" [showOnFocus]="false" [readonlyInput]="true" placeholder="00/00/0000" dateFormat="dd/mm/yy"
+                  name="datacriacao" formControlName="datacriacao" [inputStyle]="{ 'width': '95%', 'height': '20px', 'border-radius': '2px' }"></p-calendar>
               </div>
             </div>
 
             <div class="linhas">
               <div class="blocodalinha" style="width: 98.7%;">
                 <label>Nome</label>
-                <input style="text-transform: uppercase;" type="text" pInputText ng-model="text" name="patientname" formControlName="patientname">
+                <input style="text-transform: uppercase;" type="text" pInputText ng-model="text" name="nome" formControlName="nome">
               </div>
             </div>
 
             <div class="linhas">
               <div class="blocodalinha" style="width: 25%;">
                 <label>Sexo</label>
-                <input style="text-transform: uppercase; width: 95%;" type="text" pInputText ng-model="text" name="patientsex" formControlName="patientsex">
+                <input style="text-transform: uppercase; width: 95%;" type="text" pInputText ng-model="text" name="sexo" formControlName="sexo">
               </div>
 
               <div class="blocodalinha" style="width: 25%;">
                 <label>Data Nasc.</label>
-                <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true"
-                yearRange="1930:2020"  name="birthday" formControlName="birthday"
-                [inputStyle]="{ 'width': '75%', 'height': '20px', 'border-radius': '2px' }" [style]="{'position': 'fixed', 'z-index': '100'}"></p-calendar>
+                <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [style]="{'position': 'fixed', 'z-index': '100'}"
+                yearRange="1930:2020"  name="datanasc" formControlName="datanasc" [inputStyle]="{ 'width': '75%', 'height': '20px', 'border-radius': '2px' }"></p-calendar>
               </div>
 
               <div class="blocodalinha" formGroupName="contato" style="width: 25%;">
@@ -125,28 +122,28 @@
   <div class="botoes ui-g-12">
     <div class="botao">
       <div>
-        <button type="button" class="botaoprincipal">
+        <button disabled="true" type="button" class="botaoprincipal desabilitado">
           <img src="assets/img/primeiro.png">
           <span>Primeiro</span>
         </button>
       </div>
 
       <div>
-        <button disabled="true" type="button" class="botaoprincipal">
+        <button disabled="true" type="button" class="botaoprincipal desabilitado">
           <img src="assets/img/ANTERIOR.png">
           <span>Anterior</span>
         </button>
       </div>
 
       <div>
-        <button disabled="true" type="button" class="botaoprincipal">
+        <button disabled="true" type="button" class="botaoprincipal desabilitado">
           <img src="assets/img/PROXIMO.png">
           <span>Próximo</span>
         </button>
       </div>
 
       <div>
-        <button disabled="true" type="button" class="botaoprincipal" style="margin-right: 10px;">
+        <button disabled="true" type="button" class="botaoprincipal desabilitado" style="margin-right: 10px;">
           <img src="assets/img/ultimo.png">
           <span>Último</span>
         </button>
@@ -159,7 +156,7 @@
       </div>
 
       <div>
-        <button disabled="true" class="botaoprincipal">
+        <button disabled="true" class="botaoprincipal desabilitado">
           <img src="assets/img/ALTERAR.png">
           <span>Alterar</span>
         </button>
@@ -174,21 +171,21 @@
 
 
       <div>
-        <button disabled="true" class="botaoprincipal">
+        <button disabled="true" class="botaoprincipal desabilitado">
           <img src="assets/img/APAGAR.png">
           <span>Apagar</span>
         </button>
       </div>
 
       <div>
-        <button class="botaoprincipal" (click)="Voltar();">
+        <button class="botaoprincipal" routerLink="/listapaciente">
           <img src="assets/img/CANCELAR.png">
           <span>Voltar</span>
         </button>
       </div>
 
       <div>
-        <button disabled="true" class="botaoprincipal">
+        <button disabled="true" class="botaoprincipal desabilitado">
           <img src="assets/img/IMPRESSORA.png">
           <span>Imprimir</span>
         </button>

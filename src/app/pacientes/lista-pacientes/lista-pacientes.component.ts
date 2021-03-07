@@ -1,8 +1,8 @@
 import { FormGroup } from '@angular/forms';
-import { PatientFiltro } from './../../zservice/servidor.service';
+import { PacienteFiltro } from './../../zservice/servidor.service';
 import { Router } from '@angular/router';
 import { PacienteService } from './../../zservice/paciente.service';
-import { Patient } from './../../core/model';
+import { Paciente } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 import {Location} from '@angular/common';
@@ -13,10 +13,10 @@ import {Location} from '@angular/common';
   styleUrls: ['./lista-pacientes.component.css']
 })
 export class ListaPacientesComponent implements OnInit {
-  patients = [];
-  patient: Patient;
+  pacientes = [];
+  paciente: Paciente;
   totalRegistros = 0;
-  filtro = new PatientFiltro();
+  filtro = new PacienteFiltro();
   camposbusca: any[];
   formulario: FormGroup;
   display = true;
@@ -27,42 +27,46 @@ export class ListaPacientesComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit() {
+    this.CriarCamposBusca();
+
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
+  }
+
+  private CriarCamposBusca() {
     this.camposbusca = [
       {label: 'Nome'},
       {label: 'Prontuario'},
       {label: 'Data Nasc'},
       {label: 'Data Cad'}
     ];
-
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   onRowSelect(event) {
-    this.patient = event.data;
+    this.paciente = event.data;
   }
 
   Alterar() {
-    if (this.patient.idpatient != null) {
-      this.route.navigate(['/listapaciente', this.patient.idpatient]);
+    if (this.paciente.codigo != null) {
+      this.route.navigate(['/listapaciente', this.paciente.codigo]);
     }
   }
 
   PrimeiraSelecao() {
-    this.patient = this.patients[0];
+    this.paciente = this.pacientes[0];
   }
 
   UltimaSelecao() {
-    this.patient = this.patients[this.patients.length - 1];
+    this.paciente = this.pacientes[this.pacientes.length - 1];
   }
 
   ProximaSelecao() {
-    const valor = this.patients.indexOf(this.patient);
-    this.patient = this.patients[valor + 1];
+    const valor = this.pacientes.indexOf(this.paciente);
+    this.paciente = this.pacientes[valor + 1];
   }
 
   AnteriorSelecao() {
-    const valor = this.patients.indexOf(this.patient);
-    this.patient = this.patients[valor - 1];
+    const valor = this.pacientes.indexOf(this.paciente);
+    this.paciente = this.pacientes[valor - 1];
   }
 
   Consultar(pagina = 0): Promise<any> {
@@ -72,7 +76,7 @@ export class ListaPacientesComponent implements OnInit {
     return this.service.Consultar(this.filtro)
       .then(response => {
         this.totalRegistros = response.total;
-        this.patients = response.pacientes.content;
+        this.pacientes = response.pacientes.content;
       }).catch(erro => console.log(erro));
   }
 
@@ -82,8 +86,8 @@ export class ListaPacientesComponent implements OnInit {
 
     setTimeout (() => {
       if (drop === 'Nome') {
-        this.filtro.birthday = null;
-        this.filtro.patientname = texto.value;
+        this.filtro.datanasc = null;
+        this.filtro.nome = texto.value;
         this.Consultar();
       }
 
@@ -91,21 +95,21 @@ export class ListaPacientesComponent implements OnInit {
         const numero = +texto.value;
         return this.service.BuscarListaPorId(numero)
           .then(response => {
-            this.patients = response;
+            this.pacientes = response;
           }).catch(erro => console.log(erro));
       }
     }, 1000);
   }
 
   AtivarExcluir() {
-    if (this.patient.idpatient != null) {
+    if (this.paciente.codigo != null) {
       this.exclusao = true;
     }
   }
 
 
   Excluir() {
-    this.service.Remover(this.patient.idpatient)
+    this.service.Remover(this.paciente.codigo)
       .then(() => {})
       .catch(erro => erro);
     this.exclusao = false;

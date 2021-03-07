@@ -1,5 +1,5 @@
-import { ServidorService, PatientFiltro } from './../../zservice/servidor.service';
-import { Patient } from './../../core/model';
+import { ServidorService, PacienteFiltro } from './../../zservice/servidor.service';
+import { Paciente } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
@@ -9,9 +9,9 @@ import { LazyLoadEvent } from 'primeng/api';
   styleUrls: ['./lista-servidor.component.css']
 })
 export class ListaServidorComponent implements OnInit {
-  patients = [];
+  pacientes = [];
   totalRegistros = 0;
-  filtro = new PatientFiltro();
+  filtro = new PacienteFiltro();
 
   constructor(private service: ServidorService) { }
 
@@ -24,13 +24,13 @@ export class ListaServidorComponent implements OnInit {
     return this.service.Consultar(this.filtro)
       .then(response => {
         this.totalRegistros = response.total;
-        this.patients = response.patients.content;
+        this.pacientes = response.pacientes.content;
     }).catch(erro => console.log(erro));
   }
 
 
-  BuscarPeloId(patient: Patient) {
-    this.service.BuscarPorId(patient.idpatient).then(response => this.patients = response);
+  BuscarPeloId(paciente: Paciente) {
+    this.service.BuscarPorId(paciente.codigo).then(response => this.pacientes = response);
   }
 
   aoMudarPagina(event: LazyLoadEvent) {

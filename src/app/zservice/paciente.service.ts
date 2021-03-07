@@ -1,5 +1,5 @@
-import { PatientFiltro } from './servidor.service';
-import { Patient } from './../core/model';
+import { PacienteFiltro } from './servidor.service';
+import { Paciente } from './../core/model';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -20,7 +20,7 @@ export class PacienteService {
     return this.http.get(`${this.url}`).toPromise().then(response => response);
   }
 
-  Consultar(filtro: PatientFiltro): Promise<any> {
+  Consultar(filtro: PacienteFiltro): Promise<any> {
     let params = new HttpParams({
       fromObject: {
         page: filtro.pagina.toString(),
@@ -29,25 +29,24 @@ export class PacienteService {
     });
 
 
-    if (filtro.patientname) {
-      params = params.append('patientname', filtro.patientname);
+    if (filtro.nome) {
+      params = params.append('nome', filtro.nome);
     }
 
-    if (filtro.patientage) {
-      params = params.append('patientage', filtro.patientage);
+    if (filtro.idade) {
+      params = params.append('idade', filtro.idade);
     }
 
     if (filtro.servidor) {
       params = params.append('servidor', 'true');
     }
 
-    if (filtro.birthday) {
-      params = params.append('birthday',
-        moment(filtro.birthday).format('YYYY-MM-DD'));
+    if (filtro.datanasc) {
+      params = params.append('datanasc', moment(filtro.datanasc).format('YYYY-MM-DD'));
     }
 
-    if (filtro.patientsex) {
-      params = params.append('patientsex', filtro.patientsex);
+    if (filtro.sexo) {
+      params = params.append('sexo', filtro.sexo);
     }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })
@@ -64,48 +63,48 @@ export class PacienteService {
       });
   }
 
-  Adicionar(patient): Promise<Patient> {
-    return this.http.post<Patient>(`${this.url}`, patient).toPromise();
+  Adicionar(paciente): Promise<Paciente> {
+    return this.http.post<Paciente>(`${this.url}`, paciente).toPromise();
   }
 
-  BuscarPorId(idpatient: number): Promise<Patient> {
-    return this.http.get<Patient>(`${this.url}/${idpatient}`)
+  BuscarPorId(codigo: number): Promise<Paciente> {
+    return this.http.get<Paciente>(`${this.url}/${codigo}`)
       .toPromise()
       .then(response => {
-        const patient = response as Patient;
-        this.converterStringsParaDatas([patient]);
-        return patient;
+        const paciente = response as Paciente;
+        this.converterStringsParaDatas([paciente]);
+        return paciente;
       });
   }
 
-  BuscarListaPorId(idpatient: number): Promise<any> {
-    return this.http.get(`${this.url}/lista/${idpatient}`).toPromise().then(response => response);
+  BuscarListaPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
   }
 
-  Atualizar(patient: Patient): Promise<any> {
-    return this.http.put(`${this.url}/${patient.idpatient}`, patient)
+  Atualizar(paciente: Paciente): Promise<any> {
+    return this.http.put(`${this.url}/${paciente.codigo}`, paciente)
       .toPromise()
       .then(response => {
-        const patientalterado = response as Patient;
-        this.converterStringsParaDatas([patientalterado]);
+        const pacientealterado = response as Paciente;
+        this.converterStringsParaDatas([pacientealterado]);
 
-        return patientalterado;
+        return pacientealterado;
       });
   }
 
-  Remover(idpatient: number): Promise<any> {
-    return this.http.delete(`${this.url}/${idpatient}`)
-      .toPromise()
-      .then(() => null);
+  Remover(codigo: number): Promise<any> {
+    return this.http.delete(`${this.url}/${codigo}`).toPromise().then(() => null);
   }
 
-  private converterStringsParaDatas(patients: Patient[]) {
-    for (const patient of patients) {
-      if (patient.birthday !== null) {
-        patient.birthday = moment(patient.birthday, 'YYYY-MM-DD').toDate();
+  private converterStringsParaDatas(pacientes: Paciente[]) {
+    for (const paciente of pacientes) {
+      if (paciente.datanasc !== null) {
+        paciente.datanasc = moment(paciente.datanasc, 'YYYY-MM-DD').toDate();
       }
 
-      patient.datecreate = moment(patient.datecreate, 'YYYY-MM-DD').toDate();
+      if (paciente.datacriacao !== null) {
+        paciente.datacriacao = moment(paciente.datacriacao, 'YYYY-MM-DD').toDate();
+      }
     }
   }
 

@@ -52,7 +52,7 @@ export class CadSiglaComponent implements OnInit {
       this.AtualizarSigla();
     } else {
       this.formulario.patchValue(this.AdicionarSigla());
-      this.route.navigate(['/listatextopessoal/novo']);
+      this.route.navigate(['/listasigla/novo']);
     }
     this.CriarFormulario(new Sigla());
   }
@@ -60,7 +60,7 @@ export class CadSiglaComponent implements OnInit {
   AdicionarSigla() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/listatextopessoal']);
+        this.route.navigate(['/listasigla']);
       });
   }
 
@@ -68,7 +68,7 @@ export class CadSiglaComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(sigla => {
         this.formulario.patchValue(sigla);
-        this.route.navigate(['/listatextopessoal']);
+        this.route.navigate(['/listasigla']);
       });
   }
 

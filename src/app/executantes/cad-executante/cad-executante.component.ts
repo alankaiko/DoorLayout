@@ -51,9 +51,6 @@ export class CadExecutanteComponent implements OnInit {
       nome: [null, profissional.nome],
       frasepessoal: [null, profissional.frasepessoal],
       numnoconselho: [null, profissional.numnoconselho],
-      asswidth: [null, profissional.asswidth],
-      assheight: [null, profissional.assheight],
-      espacoass: [null, profissional.espacoass],
       contato: this.formbuilder.group({
         email: [profissional.contato.email],
         telefone: [profissional.contato.telefone],

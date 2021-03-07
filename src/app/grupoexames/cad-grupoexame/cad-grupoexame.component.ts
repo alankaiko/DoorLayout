@@ -59,7 +59,7 @@ export class CadGrupoexameComponent implements OnInit {
   AdicionarGrupoProcedimento() {
     return this.service.Adicionar(this.formulario.value)
       .then(salvo => {
-        this.route.navigate(['/tabelas/listagrupoexame']);
+        this.route.navigate(['/listagrupoexame']);
       });
   }
 
@@ -67,7 +67,7 @@ export class CadGrupoexameComponent implements OnInit {
     this.service.Atualizar(this.formulario.value)
       .then(grupo => {
         this.formulario.patchValue(grupo);
-        this.route.navigate(['/tabelas/listagrupoexame']);
+        this.route.navigate(['/listagrupoexame']);
       });
   }
 
