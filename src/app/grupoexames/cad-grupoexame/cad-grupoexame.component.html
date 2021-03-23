@@ -1,3 +1,5 @@
+<p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
+
 <p-dialog header="Grupo de Exames e Procedimentos" [(visible)]="display">
   <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
@@ -12,7 +14,7 @@
             <div class="linhas">
               <div class="blocodalinha" style="width: 100%;">
                 <label>Nome</label>
-                <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="nomegrupo" formControlName="nomegrupo"/>
+                <input id="nome" style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="nomegrupo" formControlName="nomegrupo"/>
               </div>
             </div>
           </div>

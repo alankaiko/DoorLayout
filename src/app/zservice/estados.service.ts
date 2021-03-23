@@ -86,4 +86,12 @@ export class EstadosService {
       .then(() => null);
   }
 
+  VerificarSeNomeExiste(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/verificar/${nome}`)
+      .toPromise()
+      .then(response => {
+        const valor = response as boolean;
+        return valor;
+      });
+  }
 }

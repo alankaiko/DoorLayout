@@ -1,3 +1,5 @@
+<p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
+
 <p-dialog header="Estados" [(visible)]="display">
   <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
@@ -6,21 +8,21 @@
           <div class="linhas">
             <div class="blocodalinha" style="width: 20%;">
               <label>Código</label>
-              <input style="width: 90%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+              <input style="width: 95%;" [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
             </div>
           </div>
 
           <div class="linhas">
-            <div class="blocodalinha" style="width: 80%;">
+            <div class="blocodalinha" style="width: 100%;">
               <label>UF</label>
-              <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="uf" formControlName="uf"/>
+              <input id="uf" style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="uf" formControlName="uf"/>
             </div>
           </div>
 
           <div class="linhas">
-            <div class="blocodalinha" style="width: 80%;">
+            <div class="blocodalinha" style="width: 100%;">
               <label>Descrição</label>
-              <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="descricao" formControlName="descricao"/>
+              <input id="descricao" style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="descricao" formControlName="descricao"/>
             </div>
           </div>
         </p-tabPanel>

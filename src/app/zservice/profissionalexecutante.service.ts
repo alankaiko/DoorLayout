@@ -62,6 +62,15 @@ export class ProfissionalexecutanteService {
     return this.http.post<ProfissionalExecutante>(`${this.url}`, profissionalexecutante).toPromise();
   }
 
+  VerificarSeNomeExiste(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/verificar/${nome}`)
+      .toPromise()
+      .then(response => {
+        const valor = response as boolean;
+        return valor;
+      });
+  }
+
   BuscarPorId(codigo: number): Promise<ProfissionalExecutante> {
     return this.http.get(`${this.url}/${codigo}`)
       .toPromise()

@@ -254,7 +254,7 @@ export class Imagem {
 export class ProfissionalExecutante {
   codigo: number;
   nome: string;
-  numnoconselho: string;
+  titulo: EnumTitulo;
   contato = new Contato();
   endereco = new Endereco();
   conselho = new TissConselho();
@@ -271,7 +271,6 @@ export class TissConselho {
 export class ProfissionalSolicitante {
   codigo: number;
   nome: string;
-  numnoconselho: string;
   conselho = new TissConselho();
 }
 
@@ -509,4 +508,10 @@ export enum STATUS_LAUDO {
 export class CamposDoLaudo {
   codigo: number;
   campo1: string;
+}
+
+export enum EnumTitulo {
+  DR = 'DR',
+  DRA = 'DRA',
+  Nenhum = 'Nenhum'
 }

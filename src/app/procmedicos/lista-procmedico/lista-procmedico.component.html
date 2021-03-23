@@ -29,8 +29,8 @@
       <ng-template pTemplate="body" let-procedimento>
         <tr [pSelectableRow]="procedimento">
           <td style="width: 10%;">{{procedimento?.codigo}}</td>
-          <td style="width: 35%;"><a [routerLink]="['/listaexameprocmedico', procedimento.codigo]">{{procedimento?.nome}}</a></td>
-          <td style="width: 15%;">{{procedimento?.grupo?.nomegrupo}}</td>
+          <td style="width: 35%; text-transform: uppercase;"><a [routerLink]="['/listaexameprocmedico', procedimento.codigo]">{{procedimento?.nome}}</a></td>
+          <td style="width: 15%; text-transform: uppercase;">{{procedimento?.grupo?.nomegrupo}}</td>
         </tr>
       </ng-template>
 

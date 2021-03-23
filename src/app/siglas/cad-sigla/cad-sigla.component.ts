@@ -1,3 +1,5 @@
+import { isEmptyObject } from 'jquery';
+import { MessageService } from 'primeng/api';
 import { Sigla } from './../../core/model';
 import { SiglaService } from './../../zservice/sigla.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,7 +10,8 @@ import {Location} from '@angular/common';
 @Component({
   selector: 'app-cad-sigla',
   templateUrl: './cad-sigla.component.html',
-  styleUrls: ['./cad-sigla.component.css']
+  styleUrls: ['./cad-sigla.component.css'],
+  providers: [MessageService]
 })
 export class CadSiglaComponent implements OnInit {
   formulario: FormGroup;
@@ -18,7 +21,8 @@ export class CadSiglaComponent implements OnInit {
               private rota: ActivatedRoute,
               private formbuilder: FormBuilder,
               private route: Router,
-              private location: Location) {
+              private location: Location,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -48,26 +52,61 @@ export class CadSiglaComponent implements OnInit {
   }
 
   Salvar() {
-    if (this.editando) {
-      this.AtualizarSigla();
-    } else {
-      this.formulario.patchValue(this.AdicionarSigla());
-      this.route.navigate(['/listasigla/novo']);
+    if(this.ValidaCampoVazio()){
+      return;
     }
-    this.CriarFormulario(new Sigla());
+
+    if(this.editando){
+      this.AtualizarSigla();
+      return;
+    }
+
+    this.VerificaDuplicidade();
   }
 
+  ValidaCampoVazio() {
+    if (isEmptyObject(this.formulario.controls['descricao'].value)){
+      this.CamposErro('Descrição');
+      const editor = document.getElementById('nome');
+      editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
+      return true;
+    }
+
+    return false;
+  }
+
+  VerificaDuplicidade(){
+    this.service.VerificarSeNomeExiste(this.formulario.controls['descricao'].value)
+      .then(
+        valor => {
+          if(valor){
+            this.CamposAviso(this.formulario.controls['descricao'].value);
+            const editor = document.getElementById('nome');
+            editor.setAttribute('style' , 'background-color: #fcf6a1; text-transform: uppercase;');
+          } else {
+            this.formulario.patchValue(this.AdicionarSigla());
+          }
+        }
+      );
+  }
+
+  private CamposErro(campo: string) {
+    this.messageService.add({severity:'error', summary: 'Erro', detail:'Preencher campo ' + campo.toUpperCase(), life:6000});
+  }
+
+  private CamposAviso(campo: string) {
+    this.messageService.add({severity:'warn', summary: 'Aviso', detail:'Valor ' + campo.toUpperCase() + ' já existe no banco de dados', life:10000});
+  }
   AdicionarSigla() {
     return this.service.Adicionar(this.formulario.value)
-      .then(salvo => {
+      .then(() => {
         this.route.navigate(['/listasigla']);
       });
   }
 
   AtualizarSigla() {
     this.service.Atualizar(this.formulario.value)
-      .then(sigla => {
-        this.formulario.patchValue(sigla);
+      .then(() => {
         this.route.navigate(['/listasigla']);
       });
   }

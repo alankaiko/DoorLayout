@@ -30,7 +30,6 @@ import { ListaSubcategoriacidComponent } from './cid/lista-subcategoriacid/lista
 import { ViewerComponent } from './servidor/viewer/viewer.component';
 import { PrevisualizacaoComponent } from './servidor/previsualizacao/previsualizacao.component';
 import { ListaServidorComponent } from './servidor/lista-servidor/lista-servidor.component';
-import { LayoutComponent } from './core/layout/layout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -38,7 +37,6 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Página Inicial'
     },
@@ -51,7 +49,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Servidor'
     },
@@ -64,7 +61,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'PreVisualizar'
     },
@@ -77,7 +73,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Viewer'
     },
@@ -90,7 +85,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Lista CID10'
     },
@@ -103,7 +97,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Lista CID10'
     },
@@ -116,7 +109,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Editar Imagem'
     },
@@ -129,7 +121,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Laudos'
     },
@@ -142,7 +133,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Laudos'
     },
@@ -155,7 +145,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Laudos'
     },
@@ -168,7 +157,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Laudos'
     },
@@ -181,7 +169,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Captura'
     },
@@ -194,7 +181,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Captura'
     },
@@ -207,7 +193,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Atendimentos'
     },
@@ -220,7 +205,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Incluir Atendimento'
     },
@@ -233,7 +217,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Incluir Atendimento'
     },
@@ -246,7 +229,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Convênio'
     },
@@ -259,7 +241,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Convênio'
     },
@@ -272,7 +253,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Editar Convênio'
     },
@@ -285,7 +265,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Grupos de Procedimento'
     },
@@ -298,7 +277,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Editar Grupos de Procedimento'
     },
@@ -311,7 +289,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Grupos de Procedimento'
     },
@@ -324,7 +301,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Procedimento Médico'
     },
@@ -337,7 +313,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Procedimento Médico'
     },
@@ -350,7 +325,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Procedimento Médico'
     },
@@ -363,7 +337,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Profissional Executante'
     },
@@ -376,7 +349,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Editar Profissional Executante'
     },
@@ -389,7 +361,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Editar Profissional Executante'
     },
@@ -402,7 +373,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Profissional Solicitante'
     },
@@ -415,7 +385,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Profissional Solicitante'
     },
@@ -428,7 +397,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Editar Profissional Solicitante'
     },
@@ -441,7 +409,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Texto Pessoal'
     },
@@ -454,7 +421,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Texto Pessoal'
     },
@@ -467,7 +433,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Texto Pessoal'
     },
@@ -480,7 +445,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Paciente'
     },
@@ -493,7 +457,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Paciente'
     },
@@ -506,7 +469,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Paciente'
     },
@@ -519,7 +481,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Licenciado'
     },
@@ -532,7 +493,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Editar Licenciado'
     },
@@ -545,7 +505,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Lista Licenciado'
     },
@@ -558,7 +517,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Estado'
     },
@@ -571,7 +529,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Editar Estado'
     },
@@ -584,7 +541,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Lista Estado'
     },
@@ -597,7 +553,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Cadastrar Sigla'
     },
@@ -610,7 +565,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Editar Sigla'
     },
@@ -623,7 +577,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     data: {
       title: 'Lista Sigla'
     },

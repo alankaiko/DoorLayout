@@ -17,6 +17,12 @@ export class AppComponent {
       && this.router.url.indexOf('/viewer');
   }
 
+  ExibindoFundo() {
+    return this.router.url.indexOf('/servidor')
+      && this.router.url.indexOf('/previsualizar')
+      && this.router.url.indexOf('/viewer');
+  }
+
   ExibirRodape() {
     return this.router.url.indexOf('/operacoes/laudos')
       && this.router.url.indexOf('/operacoes/captura')

@@ -68,6 +68,12 @@ export class ConvenioService {
       });
   }
 
+  VerificarSeNomeExiste(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/verificar/${nome}`)
+      .toPromise()
+      .then(response => response);
+  }
+
   BuscarListaPorId(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/lista/${codigo}`).toPromise().then(response => response);
   }

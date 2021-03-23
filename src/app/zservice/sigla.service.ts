@@ -81,4 +81,10 @@ export class SiglaService {
       .then(() => null);
   }
 
+  VerificarSeNomeExiste(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/verificar/${nome}`)
+      .toPromise()
+      .then(response => response);
+  }
+
 }

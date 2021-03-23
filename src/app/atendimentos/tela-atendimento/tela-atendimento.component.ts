@@ -92,7 +92,7 @@ export class TelaAtendimentoComponent implements OnInit {
 
   Adicionar(form: FormControl) {
     this.service.Adicionar(this.atendimento)
-      .then(atendimentoaAdicionado => {
+      .then(() => {
         this.route.navigate(['/operacoes/atendimento']);
       })
       .catch(erro => erro);
@@ -101,8 +101,7 @@ export class TelaAtendimentoComponent implements OnInit {
 
   Atualizar(form: FormControl) {
     this.service.Atualizar(this.atendimento)
-      .then(atendimento => {
-        this.atendimento = atendimento;
+      .then(() => {
         this.route.navigate(['/operacoes/atendimento']);
       })
       .catch(erro => erro);

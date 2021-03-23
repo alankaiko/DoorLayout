@@ -5,6 +5,7 @@ import { ListaSiglaComponent } from './siglas/lista-sigla/lista-sigla.component'
 import { ListaLicenciadoComponent } from './licenciados/lista-licenciado/lista-licenciado.component';
 import { ListaEstadoComponent } from './estados/lista-estado/lista-estado.component';
 import { CadSiglaComponent } from './siglas/cad-sigla/cad-sigla.component';
+import {ToastModule} from 'primeng/toast';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CadEstadoComponent } from './estados/cad-estado/cad-estado.component';
 import { CadLicenciadoComponent } from './licenciados/cad-licenciado/cad-licenciado.component';
@@ -36,7 +37,6 @@ import { MenubarModule } from 'primeng/menubar';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { PaginainicioComponent } from './paginainicio/paginainicio.component';
-import { LayoutComponent } from './core/layout/layout.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { AppComponent } from './app.component';
@@ -78,7 +78,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    LayoutComponent,
     PaginainicioComponent,
     ListaServidorComponent,
     PrevisualizacaoComponent,
@@ -152,7 +151,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MenubarModule,
     FormsModule,
     SplitButtonModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ToastModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

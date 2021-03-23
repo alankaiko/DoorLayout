@@ -1,14 +1,17 @@
+import { isEmptyObject } from 'jquery';
 import { ConvenioService } from './../../zservice/convenio.service';
 import { Component, OnInit } from '@angular/core';
 import { Convenio } from './../../core/model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-cad-convenio',
   templateUrl: './cad-convenio.component.html',
-  styleUrls: ['./cad-convenio.component.css']
+  styleUrls: ['./cad-convenio.component.css'],
+  providers: [MessageService]
 })
 export class CadConvenioComponent implements OnInit {
   formulario: FormGroup;
@@ -18,7 +21,8 @@ export class CadConvenioComponent implements OnInit {
               private rota: ActivatedRoute,
               private formbuilder: FormBuilder,
               private route: Router,
-              private location: Location) {
+              private location: Location,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -66,27 +70,64 @@ export class CadConvenioComponent implements OnInit {
   }
 
   Salvar() {
-    if (this.editando) {
-      this.AtualizarConvenios();
-    } else {
-      this.formulario.patchValue(this.AdicionarConvenios());
+    if(this.ValidaCampoVazio()){
+      return;
     }
-    this.CriarFormulario(new Convenio());
+
+    if(this.editando){
+      this.AtualizarConvenios();
+      return;
+    }
+
+    this.VerificaDuplicidade();
+  }
+
+  ValidaCampoVazio() {
+    if (isEmptyObject(this.formulario.controls['nome'].value)){
+      this.CamposErro('Nome');
+      const editor = document.getElementById('nome');
+      editor.setAttribute('style' , 'background-color: #f8b7be4d; text-transform: uppercase;');
+      return true;
+    }
+
+    return false;
+  }
+
+  VerificaDuplicidade(){
+    this.service.VerificarSeNomeExiste(this.formulario.controls['nome'].value)
+      .then(
+        valor => {
+          if(valor){
+            this.CamposAviso(this.formulario.controls['nome'].value);
+            const editor = document.getElementById('nome');
+            editor.setAttribute('style' , 'background-color: #ffe399; text-transform: uppercase;');
+          } else {
+            this.formulario.patchValue(this.AdicionarConvenios());
+          }
+        }
+      );
   }
 
   AdicionarConvenios() {
     return this.service.Adicionar(this.formulario.value)
-      .then(salvo => {
+      .then(() => {
         this.route.navigate(['/listaconvenio']);
       });
   }
 
   AtualizarConvenios() {
     this.service.Atualizar(this.formulario.value)
-      .then(convenio => {
-        this.formulario.patchValue(convenio);
+      .then(() => {
         this.route.navigate(['/listaconvenio']);
       });
+  }
+
+  private CamposErro(campo: string) {
+    this.messageService.add({severity:'error', summary: 'Erro', detail:'Preencher campo ' + campo.toUpperCase(), life:6000});
+  }
+
+  private CamposAviso(campo: string) {
+    this.messageService.add({severity:'warn', summary: 'Aviso', detail:'Valor ' + campo.toUpperCase() + ' já existe no banco de dados', life:10000});
   }
 
   Voltar() {

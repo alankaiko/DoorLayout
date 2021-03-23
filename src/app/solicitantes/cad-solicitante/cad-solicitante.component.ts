@@ -1,3 +1,4 @@
+import { isEmptyObject } from 'jquery';
 import { EstadosService } from './../../zservice/estados.service';
 import { SiglaService } from './../../zservice/sigla.service';
 import { ProfissionalSolicitante } from './../../core/model';
@@ -6,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
+import {MessageService} from 'primeng/api';
+
 
 @Component({
   selector: 'app-cad-solicitante',
   templateUrl: './cad-solicitante.component.html',
-  styleUrls: ['./cad-solicitante.component.css']
+  styleUrls: ['./cad-solicitante.component.css'],
+  providers: [MessageService]
 })
 export class CadSolicitanteComponent implements OnInit {
   formulario: FormGroup;
@@ -24,7 +28,8 @@ export class CadSolicitanteComponent implements OnInit {
               private rota: ActivatedRoute,
               private formbuilder: FormBuilder,
               private route: Router,
-              private location: Location) {
+              private location: Location,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -48,15 +53,14 @@ export class CadSolicitanteComponent implements OnInit {
     this.formulario = this.formbuilder.group({
       codigo: [null, profissional.codigo],
       nome: [null, profissional.nome],
-      numnoconselho: [null, profissional.numnoconselho],
       conselho: this.formbuilder.group({
-        codigo: [profissional.conselho.codigo],
+        codigo: [null, profissional.conselho.codigo],
         descricao: [profissional.conselho.descricao],
         sigla: this.formbuilder.group({
-          codigo: [profissional.conselho.sigla.codigo]
+          codigo: [null, profissional.conselho.sigla.codigo]
         }),
         estado: this.formbuilder.group({
-          codigo: [profissional.conselho.estado.codigo]
+          codigo: [null, profissional.conselho.estado.codigo]
         })
       })
     });
@@ -67,12 +71,73 @@ export class CadSolicitanteComponent implements OnInit {
   }
 
   Salvar() {
-    if (this.editando) {
-      this.AtualizarProfissionalSolicitante();
-    } else {
-      this.formulario.patchValue(this.AdicionarProfissionalSolicitante());
+    if(this.ValidaCampoVazio()){
+      return;
     }
-    this.CriarFormulario(new ProfissionalSolicitante());
+
+    if(this.editando){
+      this.AtualizarProfissionalSolicitante();
+      return;
+    }
+
+    this.VerificaDuplicidade();
+  }
+
+  ValidaCampoVazio() {
+    if (isEmptyObject(this.formulario.controls['nome'].value)){
+      this.CamposErro('Nome');
+      const editor = document.getElementById('nome');
+      editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
+      return true;
+    }
+
+    if (this.formulario.controls['conselho'].value.sigla.codigo == null){
+      this.CamposErro('Sigla');
+      const editor = document.querySelector('#sigla .ui-inputtext') as HTMLElement;
+      editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
+
+      return true;
+    }
+
+    if (this.formulario.controls['conselho'].value.estado.codigo == null){
+      this.CamposErro('Estado');
+      const editor = document.querySelector('#estado .ui-inputtext') as HTMLElement;
+      editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
+
+      return true;
+    }
+
+    if (isEmptyObject(this.formulario.controls['conselho'].value.descricao)){
+      this.CamposErro('Num. do conselho');
+      const editor = document.getElementById('conselho');
+      editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
+      return true;
+    }
+
+    return false;
+  }
+
+  VerificaDuplicidade(){
+    this.service.VerificarSeNomeExiste(this.formulario.controls['nome'].value)
+      .then(
+        valor => {
+          if(valor){
+            this.CamposAviso(this.formulario.controls['nome'].value);
+            const editor = document.getElementById('nome');
+            editor.setAttribute('style' , 'background-color: #fcf6a1; text-transform: uppercase;');
+          } else {
+            this.formulario.patchValue(this.AdicionarProfissionalSolicitante());
+          }
+        }
+      );
+  }
+
+  private CamposErro(campo: string) {
+    this.messageService.add({severity:'error', summary: 'Erro', detail:'Preencher campo ' + campo.toUpperCase(), life:6000});
+  }
+
+  private CamposAviso(campo: string) {
+    this.messageService.add({severity:'warn', summary: 'Aviso', detail:'Valor ' + campo.toUpperCase() + ' já existe no banco de dados', life:10000});
   }
 
   AdicionarProfissionalSolicitante() {

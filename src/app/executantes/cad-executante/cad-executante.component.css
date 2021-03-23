@@ -5,9 +5,10 @@
 
 :host /deep/ p-inputmask .ui-inputtext{
   width: 98%;
-  height: 20px;
+  height: 25px;
   color: #000;
   border-radius: 1px;
+  border: 1px solid rgb(110, 110, 110);
   padding: 0;
 }
 
@@ -30,6 +31,7 @@
   background: -o-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
   background: -moz-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
   background: linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  border-bottom: 1px solid rgb(114, 114, 112);
 }
 
 :host /deep/ p-dialog .ui-dialog .ui-dialog-content {
@@ -108,6 +110,7 @@ label {
 
 input {
   font-size: 90%;
+  height: 25px;
 }
 
 .botoes {
@@ -171,11 +174,11 @@ input {
 }
 
 .minibotao {
-  height: 20px;
+  height: 25px;
   color: rgb(73, 71, 71);
   background-color: rgb(233, 233, 233);
   text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
-  border: 1px solid #949393;
+  border: 1px solid rgb(110, 110, 110);
   border-radius: 2px;
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);

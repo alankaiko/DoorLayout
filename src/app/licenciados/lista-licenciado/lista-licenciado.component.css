@@ -192,3 +192,9 @@
   vertical-align: middle;
   margin: 0 auto;
 }
+
+.desabilitado {
+  opacity: 0.3;
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(161, 161, 161);
+}

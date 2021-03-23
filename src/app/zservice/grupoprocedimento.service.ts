@@ -47,8 +47,16 @@ export class GrupoprocedimentoService {
 
         return resultado;
       });
-    }
+  }
 
+  VerificarSeNomeExiste(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/verificar/${nome}`)
+      .toPromise()
+      .then(response => {
+        const valor = response as boolean;
+        return valor;
+      });
+  }
 
   Adicionar(grupoprocedimento): Promise<GrupoProcedimento> {
     return this.http.post<GrupoProcedimento>(`${this.url}`, grupoprocedimento).toPromise();

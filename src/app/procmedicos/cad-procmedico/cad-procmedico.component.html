@@ -1,29 +1,36 @@
+<p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
+
 <p-dialog header="Exames e Procedimentos Médicos" [(visible)]="display">
   <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
           <div class="linhas">
-            <div class="blocodalinha">
+            <div class="blocodalinha" style="width: 10%;">
               <label>Código</label>
-              <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
+              <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo"
+                formControlName="codigo">
             </div>
           </div>
 
           <div class="linhas">
             <div class="blocodalinha" style="width: 100%;">
               <label>Nome</label>
-              <input style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="nome" formControlName="nome"/>
+              <input id="nome" style="width: 100%; text-transform: uppercase;" pInputTextarea
+                ng-model="text" name="nome" formControlName="nome"/>
             </div>
           </div>
 
           <div class="linhas">
-            <div class="blocodalinha" formGroupName="grupo">
+            <div class="blocodalinha" formGroupName="grupo" style="width: 35%">
               <label>Grupo</label>
-              <p-dropdown [style]="{'min-width': '90%', 'line-height': '10px'}" required formControlName="codigo" [options]="grupos" placeholder="Selecione o grupo" name="grupo"></p-dropdown>
+              <p-dropdown id="grupo" [style]="{'width': '260px', 'line-height': '12px', 'position': 'fixed',
+                 'z-index': '999', 'border': '1px solid rgb(110, 110, 110)'}"
+                 required formControlName="codigo" [options]="grupos" placeholder="Selecione o grupo"
+                 name="grupo"></p-dropdown>
             </div>
 
-            <div class="blocodalinha" style="margin-left: 5px;">
+            <div class="blocodalinha" style="margin-left: 5px;" style="width: 10%">
               <label style="opacity: 1%;">_</label>
               <button type="button" class="minibotao" routerLink="/listagrupoexame/novo">
                 <img src="assets/img/FKEY_WINDOW.png">

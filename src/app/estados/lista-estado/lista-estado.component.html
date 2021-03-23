@@ -30,7 +30,7 @@
         <tr [pSelectableRow]="estado">
           <td style="text-align: right; width: 10%;">{{estado?.codigo}}</td>
           <td style="text-transform: uppercase;"><a [routerLink]="['/listaestado', estado.codigo]">{{estado?.uf}}</a></td>
-          <td style="width: 70%;">{{estado?.descricao}}</td>
+          <td style="width: 70%; text-transform: uppercase;">{{estado?.descricao}}</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">

@@ -1,3 +1,5 @@
+<p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
+
 <p-dialog header="Texto Pessoal" [(visible)]="display">
   <div class="corpo">
     <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
@@ -11,14 +13,14 @@
 
             <div class="blocodalinha" style="width: 80%;">
               <label>Abreviatura</label>
-              <input style="width: 100%; text-transform: uppercase;" pInputTextarea ng-model="text" name="abreviatura" formControlName="abreviatura"/>
+              <input id="nome" style="width: 100%; text-transform: uppercase;" pInputTextarea ng-model="text" name="abreviatura" formControlName="abreviatura"/>
             </div>
           </div>
 
           <div class="linhas">
             <div class="blocodalinha" style="width: 100%;">
               <label>Observações</label>
-              <textarea style="width: 100% ;height: 70px; text-transform: uppercase;" pInputTextarea ng-model="text" name="texto" formControlName="texto"></textarea>
+              <textarea style="width: 100% ;height: 135px; text-transform: uppercase;" pInputTextarea ng-model="text" name="texto" formControlName="texto"></textarea>
             </div>
           </div>
         </p-tabPanel>

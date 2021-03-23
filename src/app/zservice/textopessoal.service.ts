@@ -53,6 +53,14 @@ export class TextopessoalService {
       });
   }
 
+  VerificarSeNomeExiste(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/verificar/${nome}`)
+      .toPromise()
+      .then(response => {
+        const valor = response as boolean;
+        return valor;
+      });
+  }
 
   Adicionar(textopessoal): Promise<TextoPessoal> {
     return this.http.post<TextoPessoal>(`${this.url}`, textopessoal).toPromise();

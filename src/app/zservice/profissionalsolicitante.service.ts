@@ -53,6 +53,14 @@ export class ProfissionalsolicitanteService {
       });
   }
 
+  VerificarSeNomeExiste(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/verificar/${nome}`)
+      .toPromise()
+      .then(response => {
+        const valor = response as boolean;
+        return valor;
+      });
+  }
 
   Adicionar(profissionalsolicitante): Promise<ProfissionalSolicitante> {
     return this.http.post<ProfissionalSolicitante>(`${this.url}`, profissionalsolicitante).toPromise();

@@ -63,6 +63,15 @@ export class PacienteService {
       });
   }
 
+  VerificarSeNomeExiste(nome: string): Promise<any> {
+    return this.http.get(`${this.url}/verificar/${nome}`)
+      .toPromise()
+      .then(response => {
+        const valor = response as boolean;
+        return valor;
+      });
+  }
+
   Adicionar(paciente): Promise<Paciente> {
     return this.http.post<Paciente>(`${this.url}`, paciente).toPromise();
   }
