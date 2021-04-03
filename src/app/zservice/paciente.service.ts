@@ -63,8 +63,18 @@ export class PacienteService {
       });
   }
 
-  VerificarSeNomeExiste(nome: string): Promise<any> {
-    return this.http.get(`${this.url}/verificar/${nome}`)
+  VerificarSeNomeExiste(filtro: PacienteFiltro): Promise<any> {
+    let params = new HttpParams();
+
+    if (filtro.nome) {
+      params = params.append('nome', filtro.nome);
+    }
+
+    if (filtro.datanasc) {
+      params = params.append('datanasc', moment(filtro.datanasc).format('YYYY-MM-DD'));
+    }
+
+    return this.http.get<any>(`${this.url}?verificarexistencia`,{ params })
       .toPromise()
       .then(response => {
         const valor = response as boolean;

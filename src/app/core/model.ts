@@ -40,7 +40,7 @@ export class Paciente {
   nome: string;
   datanasc: Date;
   idade: string;
-  sexo: string;
+  sexo: EnumSexo;
   estudos = new Array<Estudo>();
   endereco = new Endereco();
   contato = new Contato();
@@ -174,7 +174,7 @@ export class Endereco {
   bairro: string;
   cidade: string;
   estado: string;
-  cep: string;
+  cep: string = '';
 }
 
 export class Crm {
@@ -514,4 +514,9 @@ export enum EnumTitulo {
   DR = 'DR',
   DRA = 'DRA',
   Nenhum = 'Nenhum'
+}
+
+export enum EnumSexo {
+  MASCULINO = 'MASCULINO',
+  FEMININO = 'FEMININO'
 }

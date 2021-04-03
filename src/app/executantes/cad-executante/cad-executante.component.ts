@@ -20,7 +20,6 @@ export class CadExecutanteComponent implements OnInit {
   siglas = [];
   estados = [];
   executanteselecionado: number;
-  radioselecionado: string;
   display = true;
 
   constructor(private service: ProfissionalexecutanteService,
@@ -41,7 +40,7 @@ export class CadExecutanteComponent implements OnInit {
 
     this.BuscarEstados();
     this.BuscarSiglas();
-    //setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
+    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {
