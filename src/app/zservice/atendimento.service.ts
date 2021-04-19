@@ -7,10 +7,11 @@ import * as moment from 'moment';
 export class AtendimentoFilter {
   pagina = 0;
   itensPorPagina = 14;
-  patientname: string;
+  pacientenome: string;
   solicitantenome: string;
   datainicial: Date;
   datafinal: Date;
+  datanascpaciente: Date;
 }
 
 export class PdfFiltroDados {
@@ -45,12 +46,29 @@ export class AtendimentoService {
 
 
    Consultar(filtro: AtendimentoFilter): Promise<any> {
-    const params = new HttpParams({
+    let params = new HttpParams({
       fromObject: {
         page: filtro.pagina.toString(),
         size: filtro.itensPorPagina.toString()
       }
     });
+
+
+    if (filtro.pacientenome) {
+      params = params.append('pacientenome', filtro.pacientenome);
+    }
+
+    if (filtro.solicitantenome) {
+      params = params.append('solicitantenome', filtro.solicitantenome);
+    }
+
+    if (filtro.datainicial) {
+      params = params.append('datainicial', moment(filtro.datainicial).format('YYYY-MM-DD'));
+    }
+
+    if (filtro.datafinal) {
+      params = params.append('datafinal', moment(filtro.datafinal).format('YYYY-MM-DD'));
+    }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })
       .toPromise()
@@ -78,18 +96,17 @@ export class AtendimentoService {
     return this.http.post<Atendimento>(this.url, atendimento).toPromise();
   }
 
-   BuscarPorId(codigo: number): Promise<any> {
-     return this.http.get(`${this.url}/${codigo}`)
+  BuscarPorId(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/${codigo}`)
       .toPromise()
       .then(response => {
         const atendimento = response as Atendimento;
         this.converterStringsParaDatas([atendimento]);
         return atendimento;
       });
-
    }
 
-   BuscarProcedimentosPorAt(codigo: number): Promise<any> {
+  BuscarProcedimentosPorAt(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/${codigo}`)
      .toPromise()
      .then(response => {
@@ -147,7 +164,7 @@ export class AtendimentoService {
     return this.http.get<SubcategoriaCid10[]>(this.urlcids).toPromise();
   }
 
-  BuscarPorIdPatient(codigo: number): Promise<Paciente> {
+  BuscarPorIdPaciente(codigo: number): Promise<Paciente> {
     return this.http.get<Paciente>(`${this.pacienteurl}/${codigo}`)
       .toPromise()
       .then(response => {
@@ -198,9 +215,7 @@ export class AtendimentoService {
   }
 
   PorAtestado(codigo: number) {
-    return this.http.get(`${this.url}/relatorios/atestado/${codigo}`,
-      { responseType: 'blob' })
-      .toPromise();
+    return this.http.get(`${this.url}/relatorios/atestado/${codigo}`,{ responseType: 'blob' }).toPromise();
   }
 
   PdfLaudo(codigo: number, pdfdados: PdfFiltroDados) {
@@ -222,6 +237,33 @@ export class AtendimentoService {
     }
 
     return this.http.get(`${this.url}/pdflaudo/${codigo}?pdff`, { params: params, responseType: 'blob' }).toPromise();
+  }
+
+  VerificarSeNomeExiste(filtro: AtendimentoFilter): Promise<boolean> {
+    let params = new HttpParams();
+
+    if (filtro.pacientenome) {
+      params = params.append('pacientenome', filtro.pacientenome);
+    }
+
+    if (filtro.datafinal) {
+      params = params.append('datafinal', moment(filtro.datafinal).format('YYYY-MM-DD'));
+    }
+
+    if (filtro.datainicial) {
+      params = params.append('datainicial', moment(filtro.datainicial).format('YYYY-MM-DD'));
+    }
+
+    if (filtro.datanascpaciente) {
+      params = params.append('datanascpaciente', moment(filtro.datanascpaciente).format('YYYY-MM-DD'));
+    }
+
+    return this.http.get<boolean>(`${this.url}?verificarexistencia`,{ params })
+      .toPromise()
+      .then(response => {
+        const valor = response as boolean;
+        return valor;
+      });
   }
 
 }

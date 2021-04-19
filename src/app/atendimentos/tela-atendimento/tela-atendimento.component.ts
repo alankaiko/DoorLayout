@@ -1,22 +1,26 @@
+import { isEmptyObject } from 'jquery';
 import { ProcedimentoCadApendComponent } from './../procedimento-cad-apend/procedimento-cad-apend.component';
 import { ConvenioService, ConvenioFiltro } from './../../zservice/convenio.service';
 import { Atendimento } from './../../core/model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AtendimentoService } from './../../zservice/atendimento.service';
+import { AtendimentoService, AtendimentoFilter } from './../../zservice/atendimento.service';
 import { FormArray, FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Location} from '@angular/common';
 import * as moment from 'moment';
-
+import {MessageService} from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-tela-atendimento',
   templateUrl: './tela-atendimento.component.html',
-  styleUrls: ['./tela-atendimento.component.css']
+  styleUrls: ['./tela-atendimento.component.css'],
+  providers: [MessageService, ConfirmationService]
 })
 export class TelaAtendimentoComponent implements OnInit {
   @ViewChild(ProcedimentoCadApendComponent) appendchild: ProcedimentoCadApendComponent;
   atendimento = new Atendimento();
+  filtro = new AtendimentoFilter();
   items: FormArray;
   filtroconvenio = new ConvenioFiltro();
   display = true;
@@ -36,7 +40,9 @@ export class TelaAtendimentoComponent implements OnInit {
               private serviceconv: ConvenioService,
               private rota: ActivatedRoute,
               private route: Router,
-              private location: Location) {
+              private location: Location,
+              private messageService: MessageService,
+              private confirmService: ConfirmationService) {
   }
 
   ngOnInit() {
@@ -82,16 +88,87 @@ export class TelaAtendimentoComponent implements OnInit {
     this.service.BuscarPorId(codigo).then(atendimento => {this.atendimento = atendimento; }).catch(erro => erro);
   }
 
-  Salvar(form: FormControl) {
-    if (this.editando) {
-      this.Atualizar(form);
-    } else {
-      this.Adicionar(form);
+  Salvar() {
+    if(this.ValidaCampoVazio()){
+      return;
     }
+
+
+    if(this.editando){
+      this.Atualizar();
+      return;
+    }
+
+    this.Adicionar();
   }
 
-  Adicionar(form: FormControl) {
-    this.service.Adicionar(this.atendimento)
+
+  ValidaCampoVazio() {
+    if (this.atendimento.convenio.codigo == null){
+      this.CamposErro('Convênio');
+      const editor = document.querySelector('#convenio .ui-inputtext') as HTMLElement;
+      editor.setAttribute('style' , 'background-color: #fcd5d5;');
+      return true;
+    }
+
+    if (this.atendimento.paciente.nome == null){
+      this.CamposErro('Nome Paciente');
+      const editor = document.querySelector('#paciente .ui-inputtext') as HTMLElement;
+      editor.setAttribute('style' , 'background-color: #fcd5d5;');
+
+      return true;
+    }
+
+    if (this.atendimento.paciente.nome == null){
+      this.CamposErro('Data Nascimento');
+      const editor = document.querySelector('#datanasc .ui-inputtext') as HTMLElement;
+      editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
+
+      return true;
+    }
+
+    if (isEmptyObject(this.atendimento.procedimentos)){
+      this.CamposErro('Procedimentos');
+      const editor = document.querySelector('#tabelaproc .corpo .tabelas') as HTMLElement;
+      editor.setAttribute('style' , 'background-color: #fcd5d5; border: 1px solid #cc0000');
+      return true;
+    }
+
+    return false;
+  }
+
+  VerificaDuplicidade(){
+    this.filtro.pacientenome = this.atendimento.paciente.nome;
+    this.filtro.datainicial = this.atendimento.datacadastro;
+    this.filtro.datafinal = this.atendimento.datacadastro;
+    this.filtro.datanascpaciente = this.atendimento.paciente.datanasc;
+
+    this.service.VerificarSeNomeExiste(this.filtro)
+      .then(
+        valor => {
+          if(valor){
+            this.CamposAviso(this.atendimento.paciente.nome);
+            const editor = document.getElementById('paciente');
+            editor.setAttribute('style' , 'background-color: #fcf6a1; text-transform: uppercase;');
+
+            this.confirmService.confirm({
+              message: 'Alerta: já existe um atendimento cadastrado para esse paciente com a data de hoje!'
+            });
+          }
+        }
+      );
+  }
+
+  private CamposErro(campo: string) {
+    this.messageService.add({severity:'error', summary: 'Erro', detail:'Preencher campo ' + campo.toUpperCase(), life:6000});
+  }
+
+  private CamposAviso(campo: string) {
+    this.messageService.add({severity:'warn', summary: 'Aviso', detail:'Valor ' + campo.toUpperCase() + ' já existe no banco de dados', life:10000});
+  }
+
+  Adicionar() {
+      this.service.Adicionar(this.atendimento)
       .then(() => {
         this.route.navigate(['/operacoes/atendimento']);
       })
@@ -99,7 +176,7 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
 
-  Atualizar(form: FormControl) {
+  Atualizar() {
     this.service.Atualizar(this.atendimento)
       .then(() => {
         this.route.navigate(['/operacoes/atendimento']);
@@ -136,11 +213,14 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   InserirPacientes() {
-    this.service.BuscarPorIdPatient(this.atendimento.paciente.codigo)
+    this.service.BuscarPorIdPaciente(this.atendimento.paciente.codigo)
     .then( response => {
       this.atendimento.paciente = response;
-    }
-    );
+    });
+
+    setTimeout(() => {
+      this.VerificaDuplicidade();
+    }, 500);
   }
 
   InserirProfSolicitante() {
@@ -177,19 +257,19 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   VaiParaLaudos() {
-    if (this.appendchild.procedimentoselecionado !== null && this.appendchild.procedimentoselecionado !== undefined) {
-      this.route.navigate(['/operacoes/laudos', this.appendchild.procedimentoselecionado.codigo]);
+    if (this.appendchild.procedimento !== null && this.appendchild.procedimento !== undefined) {
+      this.route.navigate(['/operacoes/laudos', this.appendchild.procedimento.codigo]);
     }
   }
 
   VaiCaptura() {
-    if (this.appendchild.procedimentoselecionado !== null && this.appendchild.procedimentoselecionado !== undefined) {
-      this.route.navigate(['/operacoes/captura', this.appendchild.procedimentoselecionado.codigo]);
+    if (this.appendchild.procedimento !== null && this.appendchild.procedimento !== undefined) {
+      this.route.navigate(['/operacoes/captura', this.appendchild.procedimento.codigo]);
     }
   }
 
-  GerarAtendimento(form: FormControl) {
-    this.Salvar(form);
+  GerarAtendimento() {
+    this.Salvar();
 
     this.service.PorAtestado(1)
       .then(relatorio => {

@@ -4,34 +4,43 @@
       <div class="linhas">
         <div class="blocodalinha" style="width: 50%;">
           <label style="margin-right: 8px;">Buscar</label>
-          <input style="width: 83%; height: 27px;" id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
+          <input style="width: 83%; height: 27px;" id="buscando" pInputText ng-model="text"
+          [(ngModel)]="campotextobuscar" name="campotextobuscar" (keypress)="BuscaDinamica()"/>
         </div>
 
         <div class="blocodalinha" style="width: 25%;">
           <label style="margin-right: 2px;">Campo</label>
-          <p-dropdown [style]="{'line-height': '12px', 'min-width': '70%'}" id="codigodrop" [options]="camposbusca" (onChange)="BuscaDinamica()"></p-dropdown>
+          <p-dropdown [style]="{'line-height': '12px', 'min-width': '70%'}" id="codigodrop" [options]="dropbusca"
+            (onChange)="BuscaDinamica()" [(ngModel)]="camposelecionado" name="camposelecionado"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 25%;">
           <label style="margin-right: 2px;">Laudo</label>
-          <p-dropdown [style]="{'line-height': '12px', 'min-width': '76%'}" id="codigostatus" [options]="status"></p-dropdown>
+          <p-dropdown [style]="{'line-height': '12px', 'min-width': '76%'}" id="codigostatus"
+            [options]="laudoperiodo"></p-dropdown>
         </div>
       </div>
 
       <div class="linhas" style="margin-top: 2px;">
         <div class="blocodalinha" style="width: 50%;">
           <label style="margin-right: 2px;">Período</label>
-          <p-dropdown [style]="{'line-height': '12px', 'min-width':'82.8%', 'margin-top': '2px'}" id="codigoperiodo" [options]="periodo"></p-dropdown>
+          <p-dropdown [style]="{'line-height': '12px', 'min-width':'82.8%', 'margin-top': '2px'}"
+            id="codigoperiodo" [options]="dropperiodo" (onChange)="BuscaDinamica()"
+            [(ngModel)]="periodoselecionado" name="periodoselecionado"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 25%;">
           <label style="margin-left: 15.8px; margin-right: 2px;">Data</label>
-          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ 'width': '9.6%', 'height': '24px', 'border': '1px solid #428bca', 'position': 'fixed', 'border-radius': '2px' }" [style]="{'position': 'fixed', 'z-index': '100'}" name="datainicio" [(ngModel)]="filtro.datainicial"></p-calendar>
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{  'width': '131px', 'height': '24px',
+            'border': '1px solid #428bca', 'border-radius': '2px' }" name="datainicio"
+            [(ngModel)]="filtro.datainicial"></p-calendar>
         </div>
 
         <div class="blocodalinha" style="width: 25%;">
           <label style="margin-left: 20px; margin-right: 2px;">até</label>
-          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ 'width': '10.5%', 'height': '24px', 'border': '1px solid #428bca', 'position': 'fixed', 'border-radius': '2px' }" [style]="{'position': 'fixed', 'z-index': '100'}" name="datafim" [(ngModel)]="filtro.datafinal"></p-calendar>
+          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ 'width': '143px', 'height': '24px',
+            'border': '1px solid #428bca', 'border-radius': '2px' }"
+             name="datafim" [(ngModel)]="filtro.datafinal"></p-calendar>
         </div>
       </div>
     </form>
@@ -54,7 +63,7 @@
       <ng-template pTemplate="body" let-atendimento>
         <tr [pSelectableRow]="atendimento">
           <td style="text-align: right; width: 10%;">{{atendimento?.codigo}}</td>
-          <td style="text-transform: uppercase; width: 50%;">{{atendimento?.patient?.patientname}}</td>
+          <td style="text-transform: uppercase; width: 50%;">{{atendimento?.paciente?.nome}}</td>
           <td style="width: 20%; text-transform: uppercase;">{{atendimento?.convenio?.nome}}</td>
           <td style="width: 20%;" class="col-data">{{ atendimento?.dataatendimento | date:'dd/MM/yyyy' }}</td>
         </tr>
@@ -145,11 +154,14 @@
 </p-dialog>
 
 
-<p-dialog class="excluir" header="Excluir {{atendimento?.patient?.patientname}}" [(visible)]="exclusao" [baseZIndex]="10001" [style]="{width: '30vw'}">
-  <span>DESEJA EXCLUIR O REGISTRO => {{atendimento?.patient?.patientname}}?</span>
+<p-dialog class="excluir" header="Excluir {{atendimento?.paciente?.nome}}" [(visible)]="exclusao"
+  [baseZIndex]="10001" [style]="{width: '30vw'}">
+  <span>DESEJA EXCLUIR O REGISTRO => {{atendimento?.paciente?.nome}}?</span>
 
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" *ngIf="atendimento?.patient?.idpatient != null" (click)="Excluir()" label="Yes"></button>
-    <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No" class="ui-button-secondary"></button>
+    <button type="button" pButton icon="pi pi-check" *ngIf="atendimento?.paciente?.codigo != null"
+      (click)="Excluir()" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="exclusao=false" label="No"
+      class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

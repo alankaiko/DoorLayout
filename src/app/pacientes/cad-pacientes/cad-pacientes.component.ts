@@ -81,22 +81,22 @@ export class CadPacientesComponent implements OnInit {
       return true;
     }
 
-    if (isEmptyObject(this.paciente.sexo)){
-      this.CamposErro('Sexo');
-      const editor = document.querySelector('#sexo .ui-inputtext') as HTMLElement;
-      editor.setAttribute('style' , 'background-color: #fcd5d5;');
+    // if (isEmptyObject(this.paciente.sexo)){
+    //   this.CamposErro('Sexo');
+    //   const editor = document.querySelector('#sexo .ui-inputtext') as HTMLElement;
+    //   editor.setAttribute('style' , 'background-color: #fcd5d5;');
 
-      return true;
-    }
+    //   return true;
+    // }
 
-    if (this.paciente.datanasc == null){
-      this.CamposErro('Data Nascimento');
-      const editor = document.querySelector('#datanasc .ui-inputtext') as HTMLElement;
-      editor.setAttribute('style' , 'background-color: #fcd5d5; width: 127px; height: 25px;' +
-       'border-radius:2px; border: 1px solid rgb(110, 110, 110);');
+    // if (this.paciente.datanasc == null){
+    //   this.CamposErro('Data Nascimento');
+    //   const editor = document.querySelector('#datanasc .ui-inputtext') as HTMLElement;
+    //   editor.setAttribute('style' , 'background-color: #fcd5d5; width: 127px; height: 25px;' +
+    //    'border-radius:2px; border: 1px solid rgb(110, 110, 110);');
 
-      return true;
-    }
+    //   return true;
+    // }
 
     return false;
   }

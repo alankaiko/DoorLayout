@@ -17,50 +17,55 @@ export class ListaAtendimentoComponent implements OnInit {
   atendimento: Atendimento;
   totalRegistros = 0;
   filtro = new AtendimentoFilter();
-  camposbusca: any[];
-  periodo: any[];
-  status: any[];
-  quantidades: any[];
+  dropbusca: any[];
+  dropperiodo: any[];
+  laudoperiodo: any[];
   formulario: FormGroup;
   display: boolean = true;
   exclusao: boolean = false;
+  periodoselecionado: string;
+  camposelecionado: string;
+  campotextobuscar: string;
+  laudoselecionado: string;
 
   constructor(private service: AtendimentoService,
               private route: Router,
               private location: Location) { }
 
   ngOnInit() {
-    this.camposbusca = [
-      {label: 'Codigo'},
-      {label: 'Paciente'},
-      {label: 'Prof. Exec'}
-    ];
+    this.IniciarDrops();
+    this.IniciarParametroBasico();
 
-    this.periodo = [
-      {label: 'Personalizado(todos)'},
-      {label: 'Hoje'},
-      {label: 'Ultima Semana'},
-      {label: 'Ultimo mês'}
-    ];
-
-    this.status = [
-      {label: 'Indiferente'},
-      {label: 'Pendente'},
-      {label: 'Pronto'}
-    ];
-
-    this.quantidades = [
-      {label: '100'},
-      {label: '5'},
-      {label: '30'},
-      {label: '50'},
-      {label: '70'},
-      {label: '500'}
-    ];
-
+    this.BuscaDinamica();
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
+  private IniciarParametroBasico(){
+    this.periodoselecionado = 'hoje';
+    this.camposelecionado = 'codigo';
+    this.laudoselecionado = 'indiferente';
+  }
+
+  private IniciarDrops(){
+    this.dropbusca = [
+      {label: 'Codigo', value: 'codigo'},
+      {label: 'Paciente', value: 'paciente'},
+      {label: 'Prof. Exec', value: 'profexecutante'}
+    ];
+
+    this.dropperiodo = [
+      {label: 'Personalizado(todos)', value: 'todos'},
+      {label: 'Hoje', value: 'hoje'},
+      {label: 'Ultima Semana', value: 'semana'},
+      {label: 'Ultimo mês', value: 'mes'}
+    ];
+
+    this.laudoperiodo = [
+      {label: 'Indiferente', value: 'indiferente'},
+      {label: 'Pendente', value: 'pendente'},
+      {label: 'Pronto', value: 'pronto'}
+    ];
+  }
 
   Alterar() {
     if (this.atendimento?.codigo != null) {
@@ -97,52 +102,54 @@ export class ListaAtendimentoComponent implements OnInit {
   }
 
   BuscaDinamica() {
-    console.log('oia');
-    const drop = $('#codigodrop :selected').text();
-    const texto = document.getElementById('buscando') as HTMLInputElement;
-    const dropperiodo = $('#codigoperiodo :selected').text();
-
-    setTimeout (() => {
-      if ((drop === 'Codigo') && (texto.value !== '')) {
-        const numero = +texto.value;
+    setTimeout(() => {
+      if ((this.camposelecionado === 'codigo') && (this.campotextobuscar !== undefined) && (this.campotextobuscar !== '')) {
+        const numero = +this.campotextobuscar;
         return this.service.BuscarListaPorId(numero)
           .then(response => {
             this.atendimentos = response;
           }).catch(erro => console.log(erro));
-      }
 
-      if (drop === 'Paciente') {
-        this.filtro.patientname = texto.value;
-      }
+      } else {
+        if (this.camposelecionado === 'paciente') {
+          this.filtro.pacientenome = this.campotextobuscar;
+        }
 
-      if (drop === 'Prof. Exec') {
-        this.filtro.solicitantenome = texto.value;
-      }
+        if (this.camposelecionado === 'profexecutante') {
+          this.filtro.solicitantenome = this.campotextobuscar;
+        }
 
-      if (dropperiodo === 'Personalizado(todos)') {
+        if (this.periodoselecionado === 'todos') {
+          this.filtro.datafinal = null;
+          this.filtro.datainicial = null;
+          this.Consultar();
+        }
+
+        if (this.periodoselecionado === 'hoje') {
+          const final = new Date();
+          this.filtro.datafinal = final;
+          this.filtro.datainicial = final;
+        }
+
+        if (this.periodoselecionado === 'semana') {
+          const final = new Date();
+          const inicial = new Date();
+          inicial.setDate(new Date().getDate() - 7);
+
+          this.filtro.datainicial = inicial;
+          this.filtro.datafinal = final;
+        }
+
+        if (this.periodoselecionado === 'mes') {
+          const final = new Date();
+          const inicial = new Date();
+          inicial.setDate(new Date().getDate() - 30);
+
+          this.filtro.datainicial = inicial;
+          this.filtro.datafinal = final;
+        }
+
         this.Consultar();
-      }
-
-      if (dropperiodo === 'Hoje') {
-        const data = new Date();
-        this.filtro.datafinal = data;
-        this.filtro.datainicial = data;
-      }
-
-      if (dropperiodo === 'Ultima Semana') {
-        const data = new Date();
-        const outraData = new Date(data.getTime() - 7);
-
-        this.filtro.datafinal = data;
-        this.filtro.datafinal = outraData;
-      }
-
-      if (dropperiodo === 'Ultimo mês') {
-        const data = new Date();
-        const outraData = new Date(data.getTime() - 30);
-
-        this.filtro.datafinal = data;
-        this.filtro.datafinal = outraData;
       }
     }, 10);
   }

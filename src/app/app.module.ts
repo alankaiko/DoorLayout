@@ -64,13 +64,14 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import {TreeTableModule} from 'primeng/treetable';
 import {SpinnerModule} from 'primeng/spinner';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {EditorModule} from 'primeng/editor';
 import {InputMaskModule} from 'primeng/inputmask';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FieldsetModule } from 'primeng/fieldset';
 import { FormsModule } from '@angular/forms';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -151,7 +152,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MenubarModule,
     FormsModule,
     SplitButtonModule,
-    ConfirmDialogModule,
     ToastModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],

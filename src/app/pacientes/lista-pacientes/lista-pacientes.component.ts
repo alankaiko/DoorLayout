@@ -107,15 +107,11 @@ export class ListaPacientesComponent implements OnInit {
     }
   }
 
-
   Excluir() {
-    this.service.Remover(this.paciente.codigo)
-      .then(() => {})
-      .catch(erro => erro);
+    this.service.Remover(this.paciente.codigo).then(() => {}).catch(erro => erro);
     this.exclusao = false;
     setTimeout (() => this.Consultar(), 100);
   }
-
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;

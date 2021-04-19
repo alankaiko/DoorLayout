@@ -46,9 +46,13 @@ export class Paciente {
   contato = new Contato();
   datacriacao: Date;
   datamodificacao: Date;
+  datamenstruacao: Date
   observacoes: string;
   tamanho: string;
   peso: string;
+  atributoextra1: string;
+  atributoextra2: string;
+  atributoextra3: string;
 }
 
 export class Instancia {
@@ -364,24 +368,6 @@ export class ProcedimentoAtendimento {
   listaimagem = new Array<Imagem>();
   laudo = new Laudo();
   codigoatdteste: number;
-
-  constructor(codigo?: number, profexecutante?: ProfissionalExecutante,
-              procedimentoMedico?: ProcedimentoMedico, valorpaciente?: string,
-              valorconvenio?: string, preventreglaudo?: Date,
-              dataexecucao?: Date, atendimento?: Atendimento,
-              listaimagem?: Array<Imagem>, laudo?: Laudo, paginadeimagens?: Array<PaginaDeImagens>) {
-                this.codigo = codigo;
-                this.profexecutante = profexecutante;
-                this.procedimentomedico = procedimentoMedico;
-                this.valorpaciente = valorpaciente;
-                this.valorconvenio = valorconvenio;
-                this.preventregalaudo = preventreglaudo;
-                this.dataexecucao = dataexecucao;
-                this.atendimento = atendimento;
-                this.listaimagem = listaimagem;
-                this.laudo = laudo;
-                this.paginadeimagens = paginadeimagens;
-              }
 }
 
 export class Modality {
