@@ -96,6 +96,12 @@ export class AtendimentoService {
     return this.http.post<Atendimento>(this.url, atendimento).toPromise();
   }
 
+  private VerificaSeTemSolicitante(atendimento: Atendimento){
+    if(atendimento.solicitante.codigo === undefined){
+      delete atendimento.solicitante;
+    }
+  }
+
   BuscarPorId(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/${codigo}`)
       .toPromise()

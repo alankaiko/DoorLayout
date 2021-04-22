@@ -1,3 +1,5 @@
+<p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
+
 <div class="corpo">
   <p-table [value]="procedimentos" [scrollable]="true" selectionMode="single"
     [(selection)]="procedimentoselecionado" dataKey="codigo" class="tabelas">
@@ -16,6 +18,9 @@
         <td style="width: 15%; text-align: center;">{{ procedimento?.dataexecucao | date:'dd/MM/yyyy' }}</td>
         <td style="width: 15%; text-align: center;">{{ procedimento?.preventregalaudo | date:'dd/MM/yyyy' }}</td>
         <td style="width: 10%; text-align: center;">
+          <a class="botaoedicao" (click)="PrepararEdicaoProcedimento(procedimento)">
+            <i class="fa fa-pencil" style="color: #3e67ee;"></i> </a>
+
           <a class="botaoedicao" (click)="RemoverProcedimento(rowIndex)">
             <i class="fa fa-trash" style="color: #ee3e3e;"></i>
           </a>
@@ -45,10 +50,10 @@
     <div class="linhas">
       <div class="blocodalinha" style="width: 90%;">
         <label>Procedimento Médico</label>
-        <p-dropdown [style]="{'line-height': '12px', 'width': '23%', 'position': 'fixed'}"
-          [options]="procedimentomedicos" [filter]="true" [(ngModel)]="procedimento.procedimentomedico.codigo"
-          #codigo="ngModel" placeholder="Selecione..." name="codigo"
-          (onChange)="CarregarProcedimentosMedico(); AdicionandoDias()">
+        <p-dropdown id="procedimentomedico" [style]="{'line-height': '12px', 'width': '23%', 'position': 'fixed'}"
+          [options]="procedimentomedicos" [filter]="true" [(ngModel)]="procedimento.procedimentomedico"
+          #procedimentomedico="ngModel" placeholder="Selecione..." name="procedimentomedico"
+          (onChange)="CarregarProcedimentosMedico(); AdicionandoDias()" [disabled]="editando">
         </p-dropdown>
       </div>
 
@@ -65,8 +70,8 @@
         <label>Profissional Executante</label>
 
         <p-dropdown [style]="{'line-height': '12px', 'width': '23%', 'position': 'fixed'}" [filter]="true"
-          [options]="profissionalexecutantes" [(ngModel)]="procedimento.profexecutante.codigo"
-          placeholder="Selecione..." name="codigo" #codigo="ngModel"
+          [options]="profissionalexecutantes" [(ngModel)]="procedimento.profexecutante"
+          placeholder="Selecione..." name="profexecutante" #profexecutante="ngModel"
           (onChange)="CarregaProfissionalExecutante();"></p-dropdown>
       </div>
 

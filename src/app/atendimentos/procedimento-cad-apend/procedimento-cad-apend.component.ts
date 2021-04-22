@@ -1,13 +1,14 @@
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { ProfissionalexecutanteService } from './../../zservice/profissionalexecutante.service';
 import { ProcedimentomedicoService } from './../../zservice/procedimentomedico.service';
 import { ProcedimentoAtendimento } from './../../core/model';
 import { Component, OnInit, Input } from '@angular/core';
-import { isEmptyObject } from 'jquery';
 
 @Component({
   selector: 'app-procedimento-cad-apend',
   templateUrl: './procedimento-cad-apend.component.html',
-  styleUrls: ['./procedimento-cad-apend.component.css']
+  styleUrls: ['./procedimento-cad-apend.component.css'],
+  providers: [MessageService, ConfirmationService]
 })
 export class ProcedimentoCadApendComponent implements OnInit {
   @Input() procedimentos: Array<ProcedimentoAtendimento>;
@@ -18,7 +19,8 @@ export class ProcedimentoCadApendComponent implements OnInit {
   procedimentomedicos: any[];
 
   constructor(private serviceProc: ProcedimentomedicoService,
-              private serviceProf: ProfissionalexecutanteService) { }
+              private serviceProf: ProfissionalexecutanteService,
+              private messageService: MessageService) { }
 
   ngOnInit() {
     this.CarregarProcedimentosMedico();
@@ -40,13 +42,35 @@ export class ProcedimentoCadApendComponent implements OnInit {
   }
 
   ConfirmarProcedimento() {
-    this.procedimentos[this.procedimentoIndex] = this.procedimento;
-    const codigo = this.procedimentos[this.procedimentoIndex].procedimentomedico.codigo;
-    this.serviceProc.BuscarPorId(codigo).then(proc => {
-      this.procedimentos[this.procedimentoIndex].procedimentomedico = proc;
-    }).catch(erro => erro);
+    if(this.ValidaCampoVazio()){
+      return;
+    }
 
+    this.ValidarProfExecutante();
+
+    this.procedimentos[this.procedimentoIndex] = this.procedimento;
     this.exbindoFormularioProcedimento = false;
+  }
+
+  private ValidarProfExecutante() {
+    if(this.procedimento.profexecutante.codigo === undefined) {
+      delete this.procedimento.profexecutante;
+    }
+  }
+
+  private ValidaCampoVazio(){
+    if (this.procedimento.profexecutante.codigo == null){
+      this.CamposErro('Procedimento Médico');
+      const editor = document.querySelector('#procedimentomedico .ui-inputtext') as HTMLElement;
+      editor.setAttribute('style' , 'background-color: #fcd5d5;');
+      return true;
+    }
+
+    return false;
+  }
+
+  private CamposErro(campo: string) {
+    this.messageService.add({severity:'error', summary: 'Erro', detail:'Preencher campo ' + campo.toUpperCase(), life:6000});
   }
 
   RemoverProcedimento(index: number) {
@@ -55,26 +79,26 @@ export class ProcedimentoCadApendComponent implements OnInit {
 
   CarregarProcedimentosMedico() {
     this.serviceProc.Listar().then(lista => {
-      this.procedimentomedicos = lista.map(proc => ({label: proc.nome, value: proc.codigo}));
+      this.procedimentomedicos = lista.map(proc => ({label: proc.nome, value: proc}));
     }).catch(erro => erro);
   }
 
   CarregaProfissionalExecutante() {
     this.serviceProf.Listar().then(lista => {
-      this.profissionalexecutantes = lista.map(prof => ({label: prof.nome, value: prof.codigo}));
+      this.profissionalexecutantes = lista.map(prof => ({label: prof.nome, value: prof}));
     }).catch(erro => erro);
   }
 
   AdicionandoDias() {
     this.procedimento.preventregalaudo = new Date();
     this.procedimento.dataexecucao = new Date();
-    // const data = moment();
-    // data.add(8, 'days');
-    // moment(data, 'YYYY-MM-DD').toDate();
-    // return new Date(data.toDate());
   }
 
   BotaoCancelar() {
     this.exbindoFormularioProcedimento = false;
+  }
+
+  get editando() {
+    return this.procedimento && this.procedimento.codigo;
   }
 }

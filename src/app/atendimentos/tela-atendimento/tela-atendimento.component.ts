@@ -93,7 +93,6 @@ export class TelaAtendimentoComponent implements OnInit {
       return;
     }
 
-
     if(this.editando){
       this.Atualizar();
       return;
@@ -103,7 +102,7 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
 
-  ValidaCampoVazio() {
+  private ValidaCampoVazio() {
     if (this.atendimento.convenio.codigo == null){
       this.CamposErro('Convênio');
       const editor = document.querySelector('#convenio .ui-inputtext') as HTMLElement;
@@ -137,7 +136,7 @@ export class TelaAtendimentoComponent implements OnInit {
     return false;
   }
 
-  VerificaDuplicidade(){
+  private VerificaDuplicidade(){
     this.filtro.pacientenome = this.atendimento.paciente.nome;
     this.filtro.datainicial = this.atendimento.datacadastro;
     this.filtro.datafinal = this.atendimento.datacadastro;
@@ -240,7 +239,7 @@ export class TelaAtendimentoComponent implements OnInit {
 
   CarregarSolicitantes() {
     this.service.ListarSolicitantes().then(lista => {
-      this.solicitantes = lista.map(solicitante => ({label: solicitante.nome, value: solicitante.codigo}));
+      this.solicitantes = lista.map(solicitante => ({label: solicitante.nome, value: solicitante}));
     }).catch(erro => erro);
   }
 

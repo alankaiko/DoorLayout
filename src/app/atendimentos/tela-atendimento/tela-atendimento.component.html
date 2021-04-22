@@ -74,7 +74,7 @@
         <div class="blocodalinha" style="width: 50%;">
           <label>Prof. Solicitante</label>
           <p-dropdown [style]="{'line-height': '10px', 'min-width':'98%'}" [options]="solicitantes"
-            [filter]="true" [(ngModel)]="atendimento.solicitante.codigo" #codigo="ngModel" name="codigo"
+            [filter]="true" [(ngModel)]="atendimento.solicitante" #solicitante="ngModel" name="solicitante"
             placeholder="Selecione..." (onChange)="InserirProfSolicitante()"></p-dropdown>
         </div>
 
