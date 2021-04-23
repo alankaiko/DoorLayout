@@ -59,7 +59,7 @@ export class ProcedimentoCadApendComponent implements OnInit {
   }
 
   private ValidaCampoVazio(){
-    if (this.procedimento.profexecutante.codigo == null){
+    if (this.procedimento.procedimentomedico.codigo == null){
       this.CamposErro('Procedimento Médico');
       const editor = document.querySelector('#procedimentomedico .ui-inputtext') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5;');

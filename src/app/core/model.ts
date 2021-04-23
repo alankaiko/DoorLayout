@@ -178,7 +178,7 @@ export class Endereco {
   bairro: string;
   cidade: string;
   estado: string;
-  cep: string = '';
+  cep: string;
 }
 
 export class Crm {

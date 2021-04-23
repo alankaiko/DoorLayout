@@ -3,7 +3,6 @@ import { isEmptyObject } from 'jquery';
 import { PacienteService } from './../../zservice/paciente.service';
 import { Component, OnInit } from '@angular/core';
 import { Paciente, EnumSexo } from './../../core/model';
-import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
 import {MessageService} from 'primeng/api';
@@ -21,7 +20,6 @@ export class CadPacientesComponent implements OnInit {
 
   constructor(private service: PacienteService,
               private rota: ActivatedRoute,
-              private formbuilder: FormBuilder,
               private route: Router,
               private location: Location,
               private messageService: MessageService) {
@@ -46,11 +44,9 @@ export class CadPacientesComponent implements OnInit {
     setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
-
   get editando() {
     return Boolean(this.paciente.codigo)
   }
-
 
   CarregarPaciente(codigo: number) {
     this.service.BuscarPorId(codigo)

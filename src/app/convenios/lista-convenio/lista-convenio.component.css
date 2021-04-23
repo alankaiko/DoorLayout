@@ -22,15 +22,13 @@
 :host /deep/ p-dialog .ui-dialog {
   border: 1px solid rgba(0, 0, 0, 0.438);
   border-radius: 2px;
-  background-color: #D6D9E0;
+  background-color: #8b7e7d;
 }
 
 :host /deep/ p-dialog .ui-dialog-titlebar {
   margin: 0 auto;
   vertical-align: middle;
   padding: 0;
-  font-family: 'Source Sans Pro Semibold';
-  font-size: 105%;
   color: rgb(10, 10, 10);
   text-align: center;
   background: #B4B8C1;
@@ -46,6 +44,7 @@
   border-left: 2px solid #A5A9B2;
   border-bottom: 2px solid #A5A9B2;
   border-right: 2px solid #A5A9B2;
+  background-color: #dfdede;
   position: relative;
 }
 
