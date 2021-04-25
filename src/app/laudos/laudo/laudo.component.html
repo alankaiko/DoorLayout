@@ -1,19 +1,18 @@
 <div class="geral">
   <div class="topoprocedimento">
-    <form #f="ngForm" autocomplete="off" class="formu">
       <div class="linhas">
-        <div class="blocodalinha" style="width: 40%;">
-          <label>Atendimento </label>
+        <form #f="ngForm" autocomplete="off" class="formularios">
+        <div style="width: 40%;">
+          <span style="font-weight: bold;">Atendimento:</span>
           <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo"
             #atendimentocodigo="ngModel" name="atendimentocodigo" placeholder="Selecione..."
-            (onChange)="CarregarProcedimentos()" [style]="{'line-height': '12px', 'width': '78%'}"></p-dropdown>
+            (onChange)="CarregarProcedimentos()" [style]="{'line-height': '90%', 'width': '78%'}"></p-dropdown>
         </div>
 
-        <div class="blocodalinha" style="width: 55%;">
-          <label>Procedimento selecionado </label>
+        <div style="width: 55%;">
           <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo"
             #procedimentoselecionado="ngModel" name="procedimentoselecionado" placeholder="Selecione..."
-            (onChange)="BuscandoModelosLaudo(procedimento.codigo)" [style]="{'line-height': '12px', 'width': '70%'}"></p-dropdown>
+            (onChange)="BuscandoModelosLaudo(procedimento.codigo)" [style]="{'line-height': '90%', 'width': '95%'}"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 5%;" *ngIf="!abrirpaginaimg">
@@ -29,27 +28,47 @@
             <span>Voltar</span>
           </button>
         </div>
+      </form>
       </div>
-    </form>
   </div>
 
   <div class="painelgerallaudo" id="painelgerallaudo" *ngIf="conferindo">
     <div class="painelesquerda">
       <div class="menubotoes">
-        <p-toolbar>
-          <div class="ui-toolbar-group-left">
-            <button pButton type="button" label="Salvar" icon="pi pi-plus" (click)="Salvar(f)"></button>
-            <button style="background-color: #607D8B; border: 1px solid #607D8B;" pButton type="button" label="Imprimir" icon="pi pi-plus" (click)="GerarImpressao()"></button>
-            <button style="background-color: #537f2d; border: 1px solid #537f2d;" pButton type="button" label="Gerar PDF" icon="pi pi-plus" (click)="Salvar(f)"></button>
-            <button style="background-color: #aa2424; border: 1px solid #aa2424;" pButton type="button" label="Pagina de Img" icon="pi pi-plus" (click)="EscolherImagens()"></button>
-            <button style="background-color: #E91E63; border: 1px solid #E91E63;" pButton type="button" label="Modelo" icon="pi pi-plus" (click)="AtivarModelo()"></button>
-            <button style="background-color: #8c239e; border: 1px solid #8c239e;" pButton type="button" label="Receita" icon="pi pi-plus"></button>
-          </div>
+        <button type="button" class="botaoprincipal" (click)="Salvar(f)">
+          <img src="assets/img/SALVAR.png">
+          <span>Salvar</span>
+        </button>
 
-          <div class="ui-toolbar-group-right">
-            <button pButton type="button" label="Cancelar" icon="pi pi-times" class="ui-button-danger" (click)="Voltar()"></button>
-          </div>
-        </p-toolbar>
+        <button type="button" class="botaoprincipal" (click)="GerarImpressao()">
+          <img src="assets/img/IMPRESSORA.png">
+          <span>Imprimir</span>
+        </button>
+
+        <button type="button" class="botaoprincipal" (click)="Salvar(f)">
+          <img src="assets/img/PDF_FILE.gif">
+          <span>Gerar PDF</span>
+        </button>
+
+        <button type="button" style="width: 85px;" class="botaoprincipal" (click)="EscolherImagens()">
+          <img src="assets/img/ESCOLHER_IMAGENS.png">
+          <span>Escolher Img</span>
+        </button>
+
+        <button type="button" class="botaoprincipal" (click)="AtivarModelo()">
+          <img src="assets/img/MODELO_LAUDO.png">
+          <span>Modelo</span>
+        </button>
+
+        <button class="botaoprincipal">
+          <img src="assets/img/OPTIONS.png">
+          <span>Receita</span>
+        </button>
+
+        <button class="botaoprincipal" >
+          <img src="assets/img/CANCELAR.png">
+          <span>Cancelar</span>
+        </button>
       </div>
 
       <div class="paineltexto" id="paineltexto">
@@ -58,82 +77,154 @@
     </div>
 
     <div class="paineldireita">
-      <div class="carrosselimg">
-        <p-carousel [value]="procedimento?.listaimagem">
-          <ng-template let-imagem pTemplate="item">
-            <div class="thumbnail-wrapper">
-              <img style="width: 100%; height: 165px;" [src]="imagem?.imagem"/>
+      <div class="paineldedentro">
+        <div class="carrosseldeimagens">
+          <p-carousel [value]="procedimento?.listaimagem" [page]="paginafoto">
+            <ng-template let-imagem pTemplate="item">
+              <img style="width: 100%; height: 95%; margin: 0 auto;" [src]="imagem?.imagem"/>
+            </ng-template>
+          </p-carousel>
+        </div>
+
+        <div class="botoesdeeditar">
+          <div class="botaoeditar">
+            <button type="button" class="botaoprincipal" (click)="Salvar(f)">
+              <img src="assets/img/IMG_EDIT.png">
+              <span>Editar</span>
+            </button>
+          </div>
+
+          <div class="botaoeditar">
+            <button type="button" class="botaoprincipal" (click)="Salvar(f)" style="background-color: #FFFF14;">
+              <span>Importar</span>
+              <span>ou</span>
+              <span>Mover</span>
+            </button>
+          </div>
+
+          <div class="botaoeditar especial">
+            <div class="esquerda">
+              <button type="button" class="minibotao"  (click)="FotoAnterior()">
+                <img src="assets/img/ANTERIOR.png">
+              </button>
+
+              <button type="button" class="minibotao">
+                <img src="assets/img/FULLSCREEN.png">
+              </button>
             </div>
-          </ng-template>
-        </p-carousel>
-      </div>
 
-      <div class="painelcarrossel">
+            <div class="direita">
+              <button type="button" class="minibotao" (click)="FotoPosterior()">
+                <img src="assets/img/PROXIMO.png">
+              </button>
 
-      </div>
+              <button type="button" class="minibotao">
+                <img src="assets/img/APAGAR.png">
+              </button>
+            </div>
+          </div>
 
-      <div class="painelbotoesgrav">
-        <button type="button" class="minibotao">
-          <img src="assets/img/RECORD_RED.png">
-        </button>
-
-        <button type="button" class="minibotao">
-          <img src="assets/img/PAUSE.png">
-        </button>
-
-        <button type="button" class="minibotao">
-          <img src="assets/img/SOUND_OFF.png">
-        </button>
-
-        <button type="button" class="minibotao">
-          <img src="assets/img/TV_CAPTURA.png">
-        </button>
-
-        <div class="quantidadevideo" style="margin-top: 4px;">
-          <div id="quantidadevideo">
-            <span>00:00:00</span>
+          <div class="botaoeditar">
+            <div class="contadordalista">
+              <span *ngIf="procedimento?.listaimagem?.length == 0">0 de 0</span>
+              <span *ngIf="procedimento?.listaimagem?.length != 0">{{paginafoto}} de {{procedimento?.listaimagem?.length}}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div style="border: 1px solid; width: 100%;">
-        <p-toolbar>
-          <button style="background-color: #607D8B; border: 1px solid #607D8B;"
-            pButton type="button" label="Capturar Imagem" icon="fa fa-camera"
-            (click)="AbrirTelaCaptura()"></button>
+        <div class="imagenslistadas">
+          <div class="imagems" *ngFor="let img of procedimento?.listaimagem; let i=index" (focus)="Testes(i)">
+            <img [src]="img?.imagem">
+          </div>
+        </div>
 
-          <button style="background-color: #607D8B; border: 1px solid #607D8B;"
-            pButton type="button" label="Mostrar Laudo" icon="fa fa-file"></button>
-        </p-toolbar>
-      </div>
+        <div class="botoesgravacao">
+          <div class="gravar">
+            <button type="button" class="minibotao" style="height: 85%;">
+              <img src="assets/img/RECORD_RED.png">
+            </button>
 
-      <div class="tabelavideo">
-        <div style="width: 100%; height: 100%; border: 1px solid rgb(48, 46, 46);">
-          <p-table [value]="videos" class="table table-striped table-bordered table-hover"
-          [scrollable]="true" scrollHeight="154px">
-            <ng-template pTemplate="header">
-              <tr>
-                <th style="width: 50%;">Vídeo</th>
-                <th style="width: 25%;">Duração</th>
-                <th style="width: 25%;">Tamanho</th>
-              </tr>
-            </ng-template>
+            <button type="button" class="minibotao">
+              <img src="assets/img/PAUSE.png">
+            </button>
 
-            <ng-template pTemplate="body" let-video>
-              <tr>
-                <td style="width: 50%;">{{video?.codigo}}</td>
-                <td style="width: 25%;">{{video?.nome}}</td>
-                <td style="width: 25%;">{{video?.telefone}}</td>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-              <tr>
-                <td colspan="5">
-                  Nenhum Vídeo Encontrado
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
+            <button type="button" class="minibotao">
+              <img src="assets/img/SOUND_OFF.png">
+            </button>
+
+            <button type="button" class="minibotao">
+              <img src="assets/img/TV_CAPTURA.png">
+            </button>
+          </div>
+
+          <div class="temporizar">
+            <span style="font-weight: bold;">00:00:00</span>
+          </div>
+
+          <div class="telacheia">
+            <button type="button" class="minibotao">
+              <img src="assets/img/FULLSCREEN.png">
+            </button>
+          </div>
+        </div>
+
+        <div class="botoeslaudo">
+          <button type="button" class="minibotao" (click)="AbrirTelaCaptura()">
+            <img src="assets/img/CAMERA_FOTO.png">
+            <span>Capturar Imagem</span>
+          </button>
+
+          <button type="button" class="minibotao" style="background-color: #FFFF14;">
+            <img src="assets/img/CAPTURA.png">
+            <span>Mostrar Laudo</span>
+          </button>
+        </div>
+
+        <div class="tabelavideo">
+          <div class="esquerda">
+            <p-table [value]="videos" [scrollable]="true">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 50%; padding: 0;">Vídeo</th>
+                  <th style="width: 25%;">Duração</th>
+                  <th style="width: 25%;">Tamanho</th>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="body" let-video>
+                <tr>
+                  <td style="width: 50%;">{{video?.codigo}}</td>
+                  <td style="width: 25%;">{{video?.nome}}</td>
+                  <td style="width: 25%;">{{video?.telefone}}</td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="5">
+                    Nenhum Vídeo Encontrado
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+
+          <div class="direita">
+            <button type="button" class="minibotao">
+              <img src="assets/img/PLAY.png">
+            </button>
+
+            <button type="button" class="minibotao">
+              <img src="assets/img/APAGAR.png">
+            </button>
+
+            <button type="button" class="minibotao">
+              <img src="assets/img/PAUSE.png">
+            </button>
+
+            <button type="button" class="minibotao">
+              <img src="assets/img/DOWNLOAD.png">
+            </button>
+          </div>
         </div>
       </div>
     </div>

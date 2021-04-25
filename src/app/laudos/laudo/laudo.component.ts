@@ -31,6 +31,7 @@ export class LaudoComponent implements OnInit {
   dropmodelo = false;
   conferindo = false;
   abrirpaginaimg = false;
+  paginafoto = 0;
 
   constructor(private service: AtendimentoService,
               private serviceproc: ProcedimentoatendimentoService,
@@ -50,6 +51,24 @@ export class LaudoComponent implements OnInit {
     if (codigo) {
       this.BuscarProcedimento(codigo);
     }
+  }
+
+  PegarPagina(event) {
+    this.paginafoto = event.page;
+  }
+
+  FotoAnterior() {
+    if(this.paginafoto >= 1)
+      this.paginafoto--;
+  }
+
+  FotoPosterior() {
+    if(this.paginafoto < this.procedimento.listaimagem.length)
+      this.paginafoto++;
+  }
+
+  Testes(event){
+    console.log('tihsss ' + event);
   }
 
   BuscarProcedimento(codigo: number) {
