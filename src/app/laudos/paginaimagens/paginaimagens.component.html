@@ -1,3 +1,191 @@
+<div class="principal">
+  <div class="menubotoes">
+    <div class="esquerda">
+      <button type="button" class="botaoprincipal desabilitado">
+        <img src="assets/img/IMPRESSORA.png">
+        <span>Imprimir</span>
+      </button>
+  
+      <button type="button" class="botaoprincipal desabilitado">
+        <img src="assets/img/PDF_FILE.gif">
+        <span>Gerar PDF</span>
+      </button>
+  
+      <button type="button" class="botaoprincipal desabilitado">
+        <img src="assets/img/ESCOLHER_IMAGENS.png">
+        <span>Escolher Aut.</span>
+      </button>
+  
+      <button type="button" class="botaoprincipal desabilitado">
+        <img src="assets/img/LIMPAR.png">
+        <span>Limpar Página</span>
+      </button>
+    </div>
+    
+    <div class="direita">
+      <div class="spinnerpagina">
+        <span style="margin-right: 5px;">Página</span>
+        <p-spinner [(ngModel)]="valorspinner" [inputStyle]="{ 'width': '70px', 'height': '25px',
+          'border-radius': '2px' }" ></p-spinner>
+      </div>
+
+      <div class="botaos">
+        <button type="button" class="minibotao"  (click)="AdicionarPagina()">
+          <img src="assets/img/ADICIONAR.png">
+        </button>
+
+        <button type="button" class="minibotao"  (click)="RemoverPagina()">
+          <img src="assets/img/APAGAR.png">
+        </button>
+      </div>
+
+      <div class="droplayout" style="width: 55%;">
+        <span style="margin-right: 5px; margin-left: 5px;">Layout de Imagens</span>
+        <p-dropdown [style]="{'line-height': '70%', 'width':'90%', 'border-radius': '2px'}" [options]="qtdimagems"
+          [(ngModel)]="qtdimagemselecionada" (onChange)="ConfigurarDimensoes()"></p-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="paineldapagina">
+    <div cdkDropListGroup style="width: 100%; height: 100%; margin: 0 auto; overflow: auto;">
+      <div class="papela4">
+        <div style="width: 80%; height: auto; color: #000; margin-top: 10px;">
+          <span style="margin-left: 10px;">Pag. selecionada: {{paginaselecionada + 1}}</span>
+        </div>
+        <div id="gradeimg">
+          <div>
+            <div id="lab1" (drop)="Dropar($event, 0)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="0" class="imagem" [src]="listaimagemsbase[0]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab2" (drop)="Dropar($event, 1)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="1" class="imagem" [src]="listaimagemsbase[1]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab3" (drop)="Dropar($event, 2)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="2" class="imagem" [src]="listaimagemsbase[2]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab4" (drop)="Dropar($event, 3)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="3" class="imagem" [src]="listaimagemsbase[3]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab5" (drop)="Dropar($event, 4)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="4" class="imagem" [src]="listaimagemsbase[4]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab6" (drop)="Dropar($event, 5)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="5" class="imagem" [src]="listaimagemsbase[5]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab7" (drop)="Dropar($event, 6)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="6" class="imagem" [src]="listaimagemsbase[6]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab8" (drop)="Dropar($event, 7)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="7" class="imagem" [src]="listaimagemsbase[7]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab9" (drop)="Dropar($event, 8)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="8" class="imagem" [src]="listaimagemsbase[8]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab10" (drop)="Dropar($event, 9)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="9" class="imagem" [src]="listaimagemsbase[9]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab11" (drop)="Dropar($event, 10)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="10" class="imagem" [src]="listaimagemsbase[10]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab12" (drop)="Dropar($event, 11)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="11" class="imagem" [src]="listaimagemsbase[11]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab13" (drop)="Dropar($event, 12)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="12" class="imagem" [src]="listaimagemsbase[12]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab14" (drop)="Dropar($event, 13)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="13" class="imagem" [src]="listaimagemsbase[13]?.imagem">
+            </div>
+          </div>
+
+          <div>
+            <div id="lab15" (drop)="Dropar($event, 14)" (dragstart)="Arrastar($event)" (dragover)="PermiteArrastar($event)">
+              <img id="14" class="imagem" [src]="listaimagemsbase[14]?.imagem">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="basedeescolha">
+    <div class="botaoesquerda">
+      <button type="button" class="minibotao"  (click)="AdicionarPagina()">
+        <img src="assets/img/BTN_ANTERIOR.png">
+      </button>
+    </div>
+
+
+    <div class="baseimagensescolha" (drop)="DropRetorno($event)" (dragover)="PermiteArrastar($event)">
+      <div *ngFor="let image of listaimagem" draggable="true" (dragstart)="Arrastar($event)">
+        <img [attr.id]="image.nomeimagem" class="imagemarray" [src]="image?.imagem"/>
+      </div>
+    </div>
+
+    <div class="botaodireita">
+      <button type="button" class="minibotao"  (click)="AdicionarPagina()">
+        <img src="assets/img/BTN_PROXIMO.png">
+      </button>
+    </div>
+
+    <div class="cantobotoes">
+      <div class="contadordaimagem">
+        <span>Imagem 1 de 6</span>
+      </div>
+
+      <button type="button" class="botaoprincipal" style="height: 30%;">
+        <img src="assets/img/IMG_EDIT.png">
+        <span>Editar Imagem Selecionada</span>
+      </button>
+
+      <button type="button" class="botaoprincipal" style="height: 20%;">
+        <img src="assets/img/FULLSCREEN.png">
+        <span>Ver Imagens Ampliadas</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <div class="geral" id="geral">
   <div class="painelesquerda">
     <div class="painelprincipal">
@@ -104,39 +292,12 @@
 
   <div class="paineldireita">
     <div class="topoopcoes">
-      <div class="paginaescolhida">
-        <div style="width: 25%; font-family: Source Sans Pro Semibold; padding-top: 5px;">
-          <span>Pág: {{paginaselecionada + 1}} de {{paginadeimagens.length}}</span>
-        </div>
-
-        <div style="width: 20%; padding-top: 3px;">
-          <button type="button" class="minibotao" (click)="AdicionarPagina()">
-            <img src="assets/img/ADICIONAR.png">
-          </button>
-
-          <button type="button" class="minibotao" (click)="RemoverPagina()">
-            <img src="assets/img/APAGAR.png">
-          </button>
-        </div>
-
-        <div style="width: 55%;">
-          <p-dropdown [style]="{'line-height': '12px', 'width':'100%', 'margin-top': '2px'}" [options]="qtdimagems" [(ngModel)]="qtdimagemselecionada" (onChange)="ConfigurarDimensoes()"></p-dropdown>
-        </div>
-      </div>
-
+     
       <div class="arraydepaginas">
         <div style="display: inline-flex;" *ngFor="let pagina of paginadeimagens; let i = index">
           <a (click)="EscolherPagina(i)">
             <img class="imagempag" src="assets/img/pag.jpg"/>
           </a>
-        </div>
-      </div>
-
-      <div class="baseescolha">
-        <div class="baseimagensescolha" (drop)="DropRetorno($event)" (dragover)="PermiteArrastar($event)">
-          <div *ngFor="let image of listaimagem" draggable="true" (dragstart)="Arrastar($event)">
-            <img [attr.id]="image.nomeimagem" class="imagemarray" [src]="image?.imagem"/>
-          </div>
         </div>
       </div>
     </div>

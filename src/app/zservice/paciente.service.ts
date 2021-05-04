@@ -37,8 +37,8 @@ export class PacienteService {
       params = params.append('idade', filtro.idade);
     }
 
-    if (filtro.servidor) {
-      params = params.append('servidor', 'true');
+    if (filtro.dicom) {
+      params = params.append('dicom', 'true');
     }
 
     if (filtro.datanasc) {

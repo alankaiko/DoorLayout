@@ -10,7 +10,7 @@ import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
 import * as dicomParser from 'dicom-parser';
 import {Location} from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 const config = {
@@ -37,18 +37,17 @@ export class ViewerComponent implements OnInit {
   instancia: Instancia;
   tagsimagems: TagImagemGamb[];
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private service: ServidorService,
               private serviceInst: InstanceService,
               private location: Location) {}
 
   ngOnInit() {
-    const idinstance = this.route.snapshot.params.cod;
+    const codigo = this.route.snapshot.params.cod;
     this.CriarMenu();
     this.ConfigureCornerBase();
     this.IniciarToolsBasicos();
-    this.BuscarInstanciaResumida(idinstance);
+    this.BuscarInstanciaResumida(codigo);
   }
 
   CriarMenu() {

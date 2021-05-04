@@ -3,6 +3,7 @@ import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
+import { ResumoInstancia } from './instance.service';
 
 export class AtendimentoFilter {
   pagina = 0;
@@ -32,6 +33,7 @@ export class AtendimentoService {
   estadosurl: string;
   urlcids: string;
   executanteurl: string;
+  urlinstancia: string;
 
   constructor(private http: HttpClient) {
     this.url = `${environment.apiUrl}/atendimentos`;
@@ -42,6 +44,7 @@ export class AtendimentoService {
     this.urlcids = `${environment.apiUrl}/subcategoriacid`;
     this.estadosurl = `${environment.apiUrl}/estados`;
     this.executanteurl = `${environment.apiUrl}/profissionaisexecutantes`;
+    this.urlinstancia = `${environment.apiUrl}/instances`;
    }
 
 
@@ -272,4 +275,16 @@ export class AtendimentoService {
       });
   }
 
+  BuscarUrlBuscaImagem(instanceuid: any) {
+    return `${this.pacienteurl}/dicom/${instanceuid}`;
+  }
+
+  ResumoProDicom(codigo: number): Promise<any> {
+    return this.http.get(`${this.urlinstancia}/${codigo}?resumo`)
+      .toPromise()
+      .then(response => {
+        const instancia = response as ResumoInstancia;
+        return instancia;
+      });
+  }
 }

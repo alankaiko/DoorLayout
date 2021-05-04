@@ -19,7 +19,7 @@ export class ListaServidorComponent implements OnInit {
 
   Consultar(pagina = 0): Promise<any> {
     this.filtro.pagina = pagina;
-    this.filtro.servidor = true;
+    this.filtro.dicom = true;
 
     return this.service.Consultar(this.filtro)
       .then(response => {

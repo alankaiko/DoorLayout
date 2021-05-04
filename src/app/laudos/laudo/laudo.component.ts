@@ -6,15 +6,26 @@ import { PaginaimagensComponent } from './../paginaimagens/paginaimagens.compone
 import { ParametrodosistemaService } from './../../zservice/parametrodosistema.service';
 import { isEmptyObject } from 'jquery';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo, Imagem, LAYOUT_IMG } from './../../core/model';
+import { Atendimento, ProcedimentoAtendimento, ModeloDeLaudoDoProc, Laudo, Imagem, LAYOUT_IMG, Instancia } from './../../core/model';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Location} from '@angular/common';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/components/common/messageservice';
+import { InstanceService } from './../../zservice/instance.service';
+import { ServidorService } from './../../zservice/servidor.service';
+import cornerstone from 'cornerstone-core';
+import cornerstoneMath from 'cornerstone-math';
+import cornerstoneTools from 'cornerstone-tools';
+import Hammer from 'hammerjs';
+import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
+import * as dicomParser from 'dicom-parser';
 
 @Component({
   selector: 'app-laudo',
   templateUrl: './laudo.component.html',
-  styleUrls: ['./laudo.component.css']
+  styleUrls: ['./laudo.component.css'],
+  providers: [ MessageService , ConfirmationService]
 })
 export class LaudoComponent implements OnInit {
   @ViewChild(TextolivreComponent) textolivrechild: TextolivreComponent;
@@ -32,6 +43,8 @@ export class LaudoComponent implements OnInit {
   conferindo = false;
   abrirpaginaimg = false;
   paginafoto = 0;
+  instancia: Instancia;
+  gosto: boolean = true;
 
   constructor(private service: AtendimentoService,
               private serviceproc: ProcedimentoatendimentoService,
@@ -51,6 +64,37 @@ export class LaudoComponent implements OnInit {
     if (codigo) {
       this.BuscarProcedimento(codigo);
     }
+
+    this.ConfigureCornerBase();
+    this.BuscarInstanciaResumida(1);
+  }
+
+  ConfigureCornerBase() {
+    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+    cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
+    cornerstoneTools.external.cornerstone = cornerstone;
+    cornerstoneTools.external.Hammer = Hammer;
+    cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
+  }
+
+  BuscarInstanciaResumida(idinstance: number, ) {
+    this.service.ResumoProDicom(idinstance)
+      .then(
+        instance => {
+          this.instancia = instance;
+          this.CriarTelaVisualizarDicom(instance.mediastoragesopinstanceuid);
+        }
+      );
+  }
+
+  CriarTelaVisualizarDicom(instanceuid: string) {
+    const element = document.querySelector('.image-canvas');
+    const DCMPath = this.service.BuscarUrlBuscaImagem(instanceuid);
+    cornerstone.enable(element);
+
+    cornerstone.loadAndCacheImage('wadouri:' + DCMPath).then(imageData => {
+      cornerstone.displayImage(element, imageData);
+    }).catch( error => { console.error(error); });
   }
 
   PegarPagina(event) {

@@ -13,10 +13,10 @@ export class Estudo {
   datacriacao: Date;
   datamodificacao: Date;
   paciente = new Paciente();
-  series = new Array<Serie>();
+  series = new Array<Series>();
 }
 
-export class Serie {
+export class Series {
   codigo: number;
   seriesinstanceuid: string;
   seriesdescription: string;
@@ -78,7 +78,7 @@ export class Instancia {
   contentdatetime: Date;
   datacriacao: Date;
   datamodificacao: Date;
-  serie = new Serie();
+  serie = new Series();
   tagimagem = new Tagimagem();
 }
 
@@ -96,7 +96,7 @@ export class Equipamento {
   softwareversion: string;
   datacriacao: Date;
   datamodificacao: Date;
-  serie = new Serie();
+  serie = new Series();
 }
 
 export class Abreviatura {
@@ -503,6 +503,7 @@ export enum EnumTitulo {
 }
 
 export enum EnumSexo {
+  INDEFINIDO = 'INDEFINIDO',
   MASCULINO = 'MASCULINO',
   FEMININO = 'FEMININO'
 }

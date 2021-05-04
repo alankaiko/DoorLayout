@@ -1,6 +1,6 @@
 import { element } from 'protractor';
 import { ActivatedRoute } from '@angular/router';
-import { Paciente, Serie, Instancia } from './../../core/model';
+import { Paciente, Series, Instancia } from './../../core/model';
 import { ServidorService } from './../../zservice/servidor.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -23,15 +23,15 @@ export class PrevisualizacaoComponent implements OnInit {
   constructor(private service: ServidorService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const codigo = this.route.snapshot.params.codigo;
+    const codigo = this.route.snapshot.params.cod;
 
     if (codigo) {
-      this.CarregarDadosPatient(codigo);
+      this.CarregarDadosPaciente(1);
     }
   }
 
-  CarregarDadosPatient(codigo: number) {
-    this.service.BuscarPorId(codigo).then(response => {
+  CarregarDadosPaciente(codigo: number) {
+    return this.service.BuscarPorId(codigo).then(response => {
       this.paciente = response;
       this.lista = this.CriarTabela().data;
     });
@@ -45,7 +45,7 @@ export class PrevisualizacaoComponent implements OnInit {
 
   CriarLinhaEstudo() {
     const lista = [];
-
+    console.log('lista aqui ' + this.paciente);
     this.paciente.estudos.forEach((el) => {
       const pega = {
         data: {
@@ -61,7 +61,7 @@ export class PrevisualizacaoComponent implements OnInit {
     return lista;
   }
 
-  CriarLinhaSeries(serie: Array<Serie>) {
+  CriarLinhaSeries(serie: Array<Series>) {
     const listadenovo = [];
 
     serie.forEach((el) => {

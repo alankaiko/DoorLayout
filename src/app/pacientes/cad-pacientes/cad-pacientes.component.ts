@@ -33,6 +33,7 @@ export class CadPacientesComponent implements OnInit {
     }
 
     this.enumsexo = [
+      {label: 'Indefinido', value: EnumSexo.INDEFINIDO},
       {label: 'Masculino', value: EnumSexo.MASCULINO},
       {label: 'Feminino', value: EnumSexo.FEMININO}
     ];

@@ -1,76 +1,88 @@
-.geral {
+.principal {
   width: 100%;
-  text-align: center;
+  height: 100%;
   margin: 0 auto;
-  padding: 0;
-  background-color: #D6D9DF;
-  display: flex;
 }
 
-.painelesquerda {
-  width: 68%;
-  height: 100%;
-}
-
-.paineldireita {
-  width: 32%;
-  height: 100%;
-  border-left: solid 2px;
-}
-
-.painelprincipal {
+.menubotoes {
   width: 100%;
-  height: 100%;
-}
-
-.topoopcoes {
-  width: 100%;
-  height: 100%;
-  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  -moz-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  background: #ffffff;
-  color: #242323;
-  margin-bottom: 1em;
-  box-sizing: border-box;
-}
-
-.paginaescolhida {
-  width: 100%;
-  height: 6%;
+  height: 8%;
+  border: double;
   display: inline-flex;
 }
 
-.arraydepaginas {
-  margin-top: 5px;
-  margin-bottom: 3px;
-  width: 100%;
-  height: 19%;
-  overflow: auto;
-  display: inline-flex;
-  border: 0 none;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-}
-
-.baseescolha {
-  width: 100%;
-  height: 75%;
-  margin: 0px auto;
-}
-
-.baseimagensescolha {
-  width: 100%;
+.menubotoes .esquerda {
+  width: 35%;
   height: 100%;
-  overflow-x: auto;
-  display: inline-grid;
-  margin: 0 auto;
-  text-align: center;
+  display: inline-flex;
+  border: ridge;
 }
 
-.papela4 {
+.menubotoes .direita {
+  width: 65%;
+  height: 100%;
+  display: inline-flex;
+  border: ridge;
+}
+
+.menubotoes .direita .spinnerpagina {
+  width: 30%;
+  height: 100%;
+  display: inline-flex;
+  border: ridge;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menubotoes .direita .botaos {
+  width: 15%;
+  height: 100%;
+  display: inline-flex;
+  border: ridge;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menubotoes .direita .droplayout {
+  width: 55%;
+  height: 100%;
+  display: inline-flex;
+  border: ridge;
+  align-items: center;
+}
+
+.menubotoes .direita .botaos .minibotao {
+  width: 40%;
+  height: 70%;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+}
+
+.menubotoes .direita .botaos .minibotao:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+
+.principal .paineldapagina {
+  width: 100%;
+  height: 72%;
+  border: ridge;
+}
+
+.principal .paineldapagina .papela4 {
   width: 210mm;
   height: 300mm;
   margin: 0 auto;
@@ -299,9 +311,63 @@
   height: 100%;
 }
 
-.imagemarray {
+.principal .basedeescolha {
+  width: 100%;
+  height: 20%;
+  display: inline-flex;
+  border: 2px ridge;
+}
+
+.principal .basedeescolha .botaoesquerda,
+.principal .basedeescolha .botaodireita {
+  width: 7%;
+  height: 100%;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.principal .basedeescolha .listadasimagens{
+  width: 70%;
+  height: 100%;
+}
+
+.principal .basedeescolha .cantobotoes{
+  width: 16%;
+  height: 100%;
+  display: inline-grid;
+}
+
+.principal .basedeescolha .minibotao {
+  color: rgb(73, 71, 71);
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+}
+
+.principal .basedeescolha .minibotao:hover {
+  background-color: rgb(255, 249, 249);
+}
+
+.principal .basedeescolha .baseimagensescolha {
+  width: 70%;
+  height: 100%;
+  overflow-x: auto;
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.principal .basedeescolha .imagemarray {
   width: 300px;
-  height: 130px;
+  height: 100%;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+span {
+  font-weight: bold;
 }
 
 .cdk-drag-preview {

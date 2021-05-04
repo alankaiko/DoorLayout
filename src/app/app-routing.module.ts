@@ -66,7 +66,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'previsualizar/:idpatient',
+        path: 'previsualizar/:cod',
         component: PrevisualizacaoComponent
       }
     ]

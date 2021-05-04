@@ -68,10 +68,6 @@
   display: inline-grid;
 }
 
-:host /deep/ p-dropdown .ui-dropdown{
-
-}
-
 :host /deep/ p-dropdown .ui-dropdown.ui-dropdown-open {
   z-index: 150;
 }

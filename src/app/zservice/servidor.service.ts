@@ -9,9 +9,10 @@ export class PacienteFiltro {
   datanasc: Date;
   idade: string;
   sexo: string;
-  servidor: boolean;
+  dicom: boolean;
   pagina = 0;
   itensPorPagina = 10;
+
 }
 
 
@@ -41,8 +42,8 @@ export class ServidorService {
       params = params.append('pacienteid', filtro.pacienteid);
     }
 
-    if (filtro.servidor) {
-      params = params.append('servidor', 'true');
+    if (filtro.dicom) {
+      params = params.append('dicom', 'true');
     }
 
     return this.http.get<any>(`${this.url}?resumo`, { params })

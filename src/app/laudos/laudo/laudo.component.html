@@ -1,7 +1,8 @@
+<p-confirmDialog></p-confirmDialog>
 <div class="geral">
   <div class="topoprocedimento">
-      <div class="linhas">
-        <form #f="ngForm" autocomplete="off" class="formularios">
+    <div class="linhas">
+      <form #f="ngForm" autocomplete="off" class="formularios">
         <div style="width: 40%;">
           <span style="font-weight: bold;">Atendimento:</span>
           <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo"
@@ -29,7 +30,11 @@
           </button>
         </div>
       </form>
-      </div>
+    </div>
+  </div>
+
+  <div class="telaimagem" style="display: none;">
+    <div class="image-canvas" id="image-canvas"></div>
   </div>
 
   <div class="painelgerallaudo" id="painelgerallaudo" *ngIf="conferindo">
@@ -40,7 +45,7 @@
           <span>Salvar</span>
         </button>
 
-        <button type="button" class="botaoprincipal" (click)="GerarImpressao()">
+        <button type="button" class="botaoprincipal desabilitado">
           <img src="assets/img/IMPRESSORA.png">
           <span>Imprimir</span>
         </button>
@@ -60,12 +65,12 @@
           <span>Modelo</span>
         </button>
 
-        <button class="botaoprincipal">
+        <button class="botaoprincipal desabilitado">
           <img src="assets/img/OPTIONS.png">
           <span>Receita</span>
         </button>
 
-        <button class="botaoprincipal" >
+        <button class="botaoprincipal" (click)="Voltar();">
           <img src="assets/img/CANCELAR.png">
           <span>Cancelar</span>
         </button>
@@ -88,14 +93,14 @@
 
         <div class="botoesdeeditar">
           <div class="botaoeditar">
-            <button type="button" class="botaoprincipal" (click)="Salvar(f)">
+            <button type="button" class="botaoprincipal desabilitado">
               <img src="assets/img/IMG_EDIT.png">
               <span>Editar</span>
             </button>
           </div>
 
           <div class="botaoeditar">
-            <button type="button" class="botaoprincipal" (click)="Salvar(f)" style="background-color: #FFFF14;">
+            <button type="button" class="botaoprincipal desabilitado" style="background-color: #FFFF14;">
               <span>Importar</span>
               <span>ou</span>
               <span>Mover</span>
@@ -108,7 +113,7 @@
                 <img src="assets/img/ANTERIOR.png">
               </button>
 
-              <button type="button" class="minibotao">
+              <button type="button" class="minibotao desabilitado">
                 <img src="assets/img/FULLSCREEN.png">
               </button>
             </div>
@@ -118,7 +123,7 @@
                 <img src="assets/img/PROXIMO.png">
               </button>
 
-              <button type="button" class="minibotao">
+              <button type="button" class="minibotao desabilitado">
                 <img src="assets/img/APAGAR.png">
               </button>
             </div>
@@ -140,19 +145,19 @@
 
         <div class="botoesgravacao">
           <div class="gravar">
-            <button type="button" class="minibotao" style="height: 85%;">
+            <button type="button" class="minibotao desabilitado" style="height: 85%;">
               <img src="assets/img/RECORD_RED.png">
             </button>
 
-            <button type="button" class="minibotao">
+            <button type="button" class="minibotao desabilitado">
               <img src="assets/img/PAUSE.png">
             </button>
 
-            <button type="button" class="minibotao">
+            <button type="button" class="minibotao desabilitado">
               <img src="assets/img/SOUND_OFF.png">
             </button>
 
-            <button type="button" class="minibotao">
+            <button type="button" class="minibotao desabilitado">
               <img src="assets/img/TV_CAPTURA.png">
             </button>
           </div>
@@ -162,21 +167,21 @@
           </div>
 
           <div class="telacheia">
-            <button type="button" class="minibotao">
+            <button type="button" class="minibotao desabilitado">
               <img src="assets/img/FULLSCREEN.png">
             </button>
           </div>
         </div>
 
         <div class="botoeslaudo">
-          <button type="button" class="minibotao" (click)="AbrirTelaCaptura()">
+          <button type="button" class="minibotao desabilitado">
             <img src="assets/img/CAMERA_FOTO.png">
             <span>Capturar Imagem</span>
           </button>
 
-          <button type="button" class="minibotao" style="background-color: #FFFF14;">
+          <button type="button" class="minibotao" (click)="AbrirTelaCaptura()" style="background-color: #FFFF14;">
             <img src="assets/img/CAPTURA.png">
-            <span>Mostrar Laudo</span>
+            <span>Mostrar Captura</span>
           </button>
         </div>
 
@@ -209,19 +214,19 @@
           </div>
 
           <div class="direita">
-            <button type="button" class="minibotao">
+            <button type="button" class="minibotao desabilitado">
               <img src="assets/img/PLAY.png">
             </button>
 
-            <button type="button" class="minibotao">
+            <button type="button" class="minibotao desabilitado">
               <img src="assets/img/APAGAR.png">
             </button>
 
-            <button type="button" class="minibotao">
+            <button type="button" class="minibotao desabilitado">
               <img src="assets/img/PAUSE.png">
             </button>
 
-            <button type="button" class="minibotao">
+            <button type="button" class="minibotao desabilitado">
               <img src="assets/img/DOWNLOAD.png">
             </button>
           </div>
@@ -236,8 +241,9 @@
   </div>
 </div>
 
-<p-dialog class="modelo" header="Escolha o Modelo" [(visible)]="dropmodelo" [baseZIndex]="10001" [style]="{width: '20vw'}">
-  <p-dropdown [style]="{'position': 'fixed', 'width': '16%', 'line-height': '12px'}"
-    [options]="modelodelaudo" [(ngModel)]="prioridade" name="modelocodigo"
+<p-dialog class="novoproc" header="Escolha o Modelo" [(visible)]="dropmodelo" [baseZIndex]="10001"
+  [style]="{width: '20vw'}">
+  <p-dropdown [style]="{'line-height': '90%', 'width': '17%', 'position': 'fixed'}"
+    [options]="modelodelaudo" [(ngModel)]="prioridade" name="modelocodigo" id="modelocodigo"
     #modelocodigo="ngModel" (onChange)="AbrirLaudo()"></p-dropdown>
 </p-dialog>

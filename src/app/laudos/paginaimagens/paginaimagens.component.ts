@@ -18,6 +18,7 @@ export class PaginaimagensComponent implements OnInit {
   qtdimagems: SelectItem[];
   qtdimagemselecionada = 1;
   paginaselecionada = 0;
+  valorspinner: number = 1;
 
   constructor(private location: Location, private serviceproc: ProcedimentoatendimentoService) {}
 

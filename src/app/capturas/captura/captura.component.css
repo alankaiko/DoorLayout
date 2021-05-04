@@ -1,20 +1,63 @@
-.geral {
-  color: #fff;
-  background-color: rgb(255, 255, 255);
-  width: 100%;
-  height: 100%;
-  position: fixed;
+:host /deep/ p-dropdown .ui-dropdown{
+  border:1px solid #428bca;
+  background-color: #fff;
+  border-radius: 2px;
 }
 
-.topoprocedimento {
+:host /deep/ p-dropdown .ui-dropdown-items {
+  background-color: #fff;
+}
+
+:host /deep/ p-dropdown .ui-dropdown-items li:hover {
+  background-color: rgb(158, 150, 150);
+  border: 1px solid rgb(158, 150, 150);
+}
+
+:host /deep/ p-dialog .ui-dialog {
+  border: 1px solid rgba(0, 0, 0, 0.438);
+  border-radius: 2px;
+  background-color: #D6D9E0;
+}
+
+:host /deep/ p-dialog .ui-dialog-titlebar {
+  margin: 0 auto;
+  vertical-align: middle;
+  padding: 0;
+  color: rgb(10, 10, 10);
+  text-align: center;
+  background: #B4B8C1;
+  background: -webkit-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: -o-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: -moz-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+}
+
+:host /deep/ p-dialog .ui-dialog .ui-dialog-content {
+  height: 50px;
+  border-left: 2px solid #A5A9B2;
+  border-bottom: 2px solid #A5A9B2;
+  border-right: 2px solid #A5A9B2;
+  background-color: #dfdede;
+  position: relative;
+}
+
+:host /deep/ p-dialog.excluir .ui-dialog .ui-widget-content {
   width: 100%;
-  background-color: #607D8B;
-  height: 4.8%;
-  box-sizing: border-box;
-  z-index: 100;
-  -moz-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26), 0 2px 5px 0 rgba(0, 0, 0, 0.46);
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.70), 0 2px 5px 0 rgba(0, 0, 0, 0.40);
+  position: relative;
+}
+
+:host /deep/ p-dialog .ui-dialog-titlebar > a {
+  width: 18px;
+  height: 18px;
+  border-radius: 4%;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid #ccc;
+  background-color: #CC0000;
+  color: rgb(250, 246, 246);
+  font-weight: bold;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .linhas {
@@ -23,95 +66,82 @@
 }
 
 .blocodalinha {
-  display: inline-table;
+  display: inline-grid;
 }
 
-.blocodalinha label {
-  color: #fff;
-  font-family: Source Sans Pro Semibold;
-  font-size: 110%;
+:host /deep/ p-table .ui-table {
+  font-size: 70%;
 }
 
-.painelgerallaudo {
+:host /deep/ p-carousel .ui-carousel {
   width: 100%;
-  height: 95%;
-  padding-top: 4px;
-  display: flex;
-}
-
-.painelesquerda {
-  width: 68%;
   height: 100%;
 }
 
-.paineldireita {
-  width: 32%;
+:host /deep/ p-carousel .ui-carousel .ui-carousel-content {
+  width: 100%;
   height: 100%;
-  color: rgb(75, 71, 71);
-  border-left: solid 1px;
 }
 
-#divisoria {
-  display: flex;
+:host /deep/ p-carousel .ui-carousel .ui-carousel-content .ui-carousel-container {
+  width: 100%;
   height: 100%;
+}
+
+:host /deep/ p-carousel .ui-carousel .ui-carousel-content .ui-carousel-container .ui-carousel-prev,
+:host /deep/ p-carousel .ui-carousel .ui-carousel-content .ui-carousel-container .ui-carousel-next {
+  display: none;
+}
+
+:host /deep/ p-carousel .ui-carousel .ui-carousel-content .ui-carousel-dots-container {
+  display: none;
+}
+
+:host /deep/ p-carousel .ui-carousel .ui-carousel-content .ui-carousel-container .ui-carousel-items-content .ui-carousel-items-container {
+  height: 100%;
+}
+/* ======MEGA TOPICO======*/
+.geral {
+  background-color: #D6D9E0;
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  background-color: #283134;
+  height: 100%;
+  position: fixed;
 }
 
-.carrosselimg {
-  width: 100%;
-  height: 40%;
-  border-bottom: 1px solid #585454;
+.botaoprincipal {
+  width: 75px;
+  display: inline-grid;
+  font-size: 70%;
+  font-weight: bold;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  padding: 5px;
+  position: relative;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
-.painelcarrossel {
-  height: 10%;
-  width: 100%; border: 1px solid;
+.botaoprincipal:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
 }
 
-.painelbotoesgrav {
-  border: 1px solid;
-  width: 100%;
-  height: 7%;
-  display: inline-table;
+.botaoprincipal > img {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
 }
 
-.tabelavideo {
-  width: 100%;
-  height: 53%;
-  display: inline-flex;
-}
-
-.quantidadevideo {
-  width: 30%;
-  height: 30px;
-  float: right;
-  border: 1px solid #4b4848;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center
-}
-
-
-.thumbnail-wrapper {
-  display:inline-block;
-  position:relative;
-}
-
-.thumbnail-wrapper button {
-  position:absolute;
-  top:90%;
-  left:90%;
-  -webkit-transform:translate3d(-50%, -50%, 0);
-  -moz-transform:translate3d(-50%, -50%, 0);
-  transform:translate3d(-50%, -50%, 0);
-}
-
-.thumbnail-wrapper button i{
-  font-size: 140%;
+.botaoprincipal > a {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
 }
 
 .botaosair {
@@ -149,72 +179,214 @@
   margin: 0 auto;
 }
 
-.botaoprincipal {
-  width: 65px;
+.desabilitado {
+  opacity: 0.3;
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(161, 161, 161);
+}
+
+#divisoria {
   display: inline-grid;
-  font-size: 78%;
-  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #283134;
+}
+
+/* ======TOPICO======*/
+.topoprocedimento {
+  width: 100%;
+  background-color: #D6D9E0;
+  height: 5.8%;
+  border: double;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.topoprocedimento  .linhas {
+  width: 100%;
+}
+
+.topoprocedimento  .linhas .formularios {
+  width: 100%;
+  display: inline-flex;
+}
+
+/* ======TOPICO======*/
+.painelgerallaudo {
+  width: 100%;
+  height: 94.8%;
+  display: inline-flex;
+}
+
+/* ======SUB TOPICO======*/
+.painelgerallaudo .painelesquerda {
+  width: 72%;
+  height: 100%;
+}
+
+.painelgerallaudo .painelesquerda .menubotoes {
+  width: 99.7%;
+  height: 10%;
+  border: double;
+  display: inline-flex;
+  margin: 2px 2px 2px 2px;
+  padding: 1px;
+}
+
+.painelgerallaudo .painelesquerda .paineltexto {
+  border: double;
+  width: 100%;
+  height: 900%;
+}
+
+/* ======SUB TOPICO======*/
+.paineldireita {
+  width: 28%;
+  height: 100%;
+  border-left: double;
+}
+
+.paineldireita .paineldedentro {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  margin: 0 auto;
+  border: double;
+}
+
+.paineldireita .paineldedentro .carrosseldeimagens {
+  height: 32%;
+  border: double;
+  width: 100%;
+  background-color: #0e0e0e;
+}
+
+.paineldireita .paineldedentro .botoesdeeditar {
+  width: 100%;
+  height: 10%;
+  display: inline-flex;
+  margin-top: 5px;
+}
+
+.paineldireita .paineldedentro .botoesdeeditar .botaoeditar {
+  width: 25%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.paineldireita .paineldedentro .botoesdeeditar .especial {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.paineldireita .paineldedentro .botoesdeeditar .botaoeditar .esquerda {
+  width: 50%;
+  height: 90%;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.paineldireita .paineldedentro .botoesdeeditar .botaoeditar .direita {
+  width: 50%;
+  height: 90%;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.paineldireita .paineldedentro .botoesdeeditar .botaoeditar .botaoprincipal {
+  width: 90%;
+  height: 90%;
+  padding-top: 10px;
+}
+
+.paineldireita .paineldedentro .botoesdeeditar .botaoeditar .minibotao {
+  width: 95%;
+  height: 50%;
   color: rgb(73, 71, 71);
   background-color: rgb(233, 233, 233);
-  text-align: center;
   text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
   border: 1px solid #949393;
   border-radius: 5px;
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-  padding: 2px 0 2px;
-  line-height: 1.7;
-  position: relative;
   margin: 0 auto;
 }
 
-.botaoprincipal:hover {
+.paineldireita .paineldedentro .botoesdeeditar .botaoeditar .minibotao:hover {
   background-color: rgb(255, 249, 249);
   border: 1px solid rgb(80, 78, 78);
 }
 
-.botaoprincipal > img {
-  text-align: center;
-  vertical-align: middle;
-  margin: 0 auto;
-}
-
-.botaoprincipal > a {
-  text-align: center;
-  vertical-align: middle;
-  margin: 0 auto;
-}
-
-.quantidadedoarray {
-  width: 30%;
-  float: right;
-  height: 65px;
-  border: 1px solid #4b4848;
-  display: flex;
+.paineldireita .paineldedentro .botoesdeeditar .botaoeditar .contadordalista {
+  width: 90%;
+  height: 90%;
+  border: ridge;
+  align-items: center;
+  display: inline-flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center
+  float: right;
 }
 
-#quantidade {
-  color: #428bca;
-  font-weight: bold;
+.paineldireita .paineldedentro .imagenslistadas {
+  width: 100%;
+  height: 15%;
+  overflow-x: scroll;
+  display: -webkit-inline-box;
 }
 
-.imagem {
-  width: 40%;
-  height: 70px;
+.paineldireita .paineldedentro .imagenslistadas > div {
+  width: 30%;
+  height: 100%;
+  border: 1px ridge #111111;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
-.conta {
-	overflow-x: auto;
-  white-space: nowrap;
-  display: inline;
+.paineldireita .paineldedentro .imagenslistadas > div > img{
+  width: 100%;
+  height: 100%;
 }
 
+.paineldireita .paineldedentro .imagenslistadas > div > img:hover {
+  border: 4px solid rgb(2, 9, 105);
+}
 
-.minibotao {
+.paineldireita .paineldedentro .botoesgravacao{
+  width: 100%;
+  height: 8%;
+  display: inline-flex;
+}
+
+.paineldireita .paineldedentro .botoesgravacao .gravar {
+  width: 52%;
+  height: 100%;
+  border: ridge;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.paineldireita .paineldedentro .botoesgravacao .gravar .minibotao {
+  width: 24%;
+  height: 65%;
   color: rgb(73, 71, 71);
   background-color: rgb(233, 233, 233);
   text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
@@ -223,28 +395,136 @@
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-  line-height: 1.7;
   margin: 0 auto;
-  margin-right: 5px;
 }
 
-.minibotao:hover {
+.paineldireita .paineldedentro .botoesgravacao .gravar .minibotao:hover {
   background-color: rgb(255, 249, 249);
   border: 1px solid rgb(80, 78, 78);
 }
 
-.quantidadevideo {
+.paineldireita .paineldedentro .botoesgravacao .temporizar {
   width: 30%;
-  height: 30px;
-  float: right;
-  border: 1px solid #4b4848;
-  display: flex;
+  height: 100%;
+  border: ridge;
+  align-items: center;
+  display: inline-flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center
 }
 
-#quantidadevideo {
-  color: #696c6e;
+.paineldireita .paineldedentro .botoesgravacao .telacheia {
+  width: 18%;
+  height: 100%;
+  border: ridge;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.paineldireita .paineldedentro .botoesgravacao .telacheia .minibotao {
+  width: 70%;
+  height: 85%;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+}
+
+.paineldireita .paineldedentro .botoesgravacao .telacheia .minibotao:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+
+.paineldireita .paineldedentro .botoeslaudo {
+  width: 100%;
+  height: 8%;
+  margin: 0 auto;
+  border: ridge;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.paineldireita .paineldedentro .botoeslaudo .minibotao {
+  width: 45%;
+  height: 90%;
   font-weight: bold;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 8%);
+  padding: 5px;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.paineldireita .paineldedentro .botoeslaudo .minibotao:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+
+.paineldireita .paineldedentro .tabelavideo{
+  width: 100%;
+  height: 26.5%;
+  border: double;
+  display: inline-flex;
+}
+
+.paineldireita .paineldedentro .tabelavideo .esquerda{
+  width:85%;
+  height: 100%;
+  border: 1px solid;
+}
+
+.paineldireita .paineldedentro .tabelavideo .direita{
+  width: 15%;
+  height: 100%;
+  text-align: center;
+}
+
+.paineldireita .paineldedentro .tabelavideo .direita .minibotao {
+  width: 80%;
+  height: 18%;
+  font-weight: bold;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 8%);
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.paineldireita .paineldedentro .tabelavideo .direita .minibotao :hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+/*=====================CONF MEDIA SCREEN=========================*/
+@media screen and (min-height: 650px) {
+  .topoprocedimento {
+    height: 4.8%;
+  }
+
+  .painelgerallaudo {
+    height: 95.2%;
+  }
 }
