@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { MessageService } from 'primeng/components/common/messageservice';
+import { MessageService } from 'primeng/api';
 import { AtendimentoService } from './../../zservice/atendimento.service';
 import { Atendimento, Imagem, ProcedimentoAtendimento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';

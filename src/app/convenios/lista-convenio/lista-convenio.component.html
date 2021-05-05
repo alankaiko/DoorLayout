@@ -1,29 +1,28 @@
-<p-dialog header="Convênios" [(visible)]="display">
+<p-dialog header="Convênios" [(visible)]="display" [style]="{width: '788px', height: '365px'}">
   <div class="menubuscar">
-    <form #f="ngForm" autocomplete="off" class="formu">
-      <div class="ui-g-8">
-        <label>Buscar  </label>
-        <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
-      </div>
+    <div class="ladoesquerdo">
+      <label>Buscar</label>
+      <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
+    </div>
 
-      <div class="ui-g-4">
-        <label>no campo  </label>
-        <p-dropdown id="codigodrop" [style]="{'min-width': '65%'}" [options]="camposbusca"></p-dropdown>
-      </div>
-    </form>
+    <div class="ladodireito">
+      <label>No campo</label>
+      <p-dropdown id="codigodrop" [style]="{'width': '98%', 'line-height':'50%', 'border-radius':'2px',
+      'border': '1px solid rgb(110, 110, 110)','margin-left':'5px'}" [options]="camposbusca"></p-dropdown>
+    </div>
   </div>
 
-  <div class="table-responsive corpo">
+  <div class="corpo">
     <p-table [value]="convenios" [responsive]="true" [scrollable]="true"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)"
       selectionMode="single" [(selection)]="convenio" dataKey="codigo">
 
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 10%;">Código</th>
-          <th>Título</th>
-          <th style="width: 20%;">Telefone</th>
-          <th style="width: 10%;">Status</th>
+          <th style="width: 10%; text-align: center;">Código</th>
+          <th style="width: 60%;">Título</th>
+          <th style="width: 20%; text-align: center;">Telefone</th>
+          <th style="width: 10%; text-align: center;">Status</th>
         </tr>
       </ng-template>
 
@@ -45,7 +44,7 @@
     </p-table>
   </div>
 
-  <div class="botoes ui-g-12">
+  <div class="botoes">
     <div class="botao">
       <div>
         <button type="button" class="botaoprincipal" (click)="PrimeiraSelecao()">

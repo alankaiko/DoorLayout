@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { LicenciadoService } from './../../zservice/licenciado.service';
-import { MessageService } from 'primeng/components/common/messageservice';
+import { MessageService } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
 import {ConfirmationService} from 'primeng/api';
 import { Licenciado } from './../../core/model';

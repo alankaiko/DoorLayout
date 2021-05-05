@@ -1,4 +1,4 @@
-import { MenuItem } from 'primeng/components/common/menuitem';
+import { MenuItem } from 'primeng/api';
 import { InstanceService } from './../../zservice/instance.service';
 import { ServidorService } from './../../zservice/servidor.service';
 import { TagImagemGamb, Instancia } from './../../core/model';

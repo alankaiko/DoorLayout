@@ -1,152 +1,52 @@
-:host /deep/ p-paginator .ui-paginator-bottom {
-  box-sizing: border-box;
-  border-top: 1px solid #b9b8b8;
-}
 
-:host /deep/ p-dropdown .ui-dropdown{
-  border: 1px solid #428bca;
-  background-color: #fff;
-  border-radius: 3px;
-  line-height: 10px;
-}
-
-:host /deep/ p-dropdown .ui-dropdown-items {
-  background-color: #fff;
-}
-
-:host /deep/ p-dropdown .ui-dropdown-items li:hover {
-  background-color: rgb(158, 150, 150);
-  border: 1px solid rgb(158, 150, 150);
-}
-
-:host /deep/ p-dialog .ui-dialog {
-  border: 1px solid rgba(0, 0, 0, 0.438);
-  border-radius: 2px;
-  background-color: #8b7e7d;
-}
-
-:host /deep/ p-dialog .ui-dialog-titlebar {
-  margin: 0 auto;
-  vertical-align: middle;
-  padding: 0;
-  color: rgb(10, 10, 10);
-  text-align: center;
-  background: #B4B8C1;
-  background: -webkit-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  background: -o-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  background: -moz-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  background: linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  border-bottom: 1px solid rgb(114, 114, 112);
-}
-
-:host /deep/ p-dialog .ui-dialog .ui-dialog-content {
-  width: 788px;
-  border-left: 2px solid #A5A9B2;
-  border-bottom: 2px solid #A5A9B2;
-  border-right: 2px solid #A5A9B2;
-  background-color: #dfdede;
-  position: relative;
-}
-
-:host /deep/ p-dialog.excluir .ui-dialog .ui-widget-content {
-  width: 100%;
-  border-left: 2px solid #A5A9B2;
-  border-bottom: 2px solid #A5A9B2;
-  border-right: 2px solid #A5A9B2;
-  position: relative;
-}
-
-:host /deep/ p-dialog .ui-dialog-titlebar > a {
-  width: 18px;
-  height: 18px;
-  border-radius: 4%;
-  vertical-align: middle;
-  text-align: center;
-  border: 1px solid #ccc;
-  background-color: #CC0000;
-  color: rgb(250, 246, 246);
-  font-weight: bold;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-:host /deep/ p-table {
-  background-color:#ffffff;
-  border: 1px solid #b9b8b8;
-  margin-top: -1px;
-  display: table;
-  font-size: 70%;
-  position: static;
-}
-
-:host /deep/ p-table .ui-table {
-  height: 210px;
-}
-
-:host /deep/ p-table .ui-table .ui-table-scrollable-body{
-  font-size: 70%;
-  height: 190px;
-  background-color: #fff;
-}
-
-:host /deep/ p-table .ui-table-tbody .ui-selectable-row:hover{
-  background-color: rgba(84, 104, 138, 0.342);
-}
-
-:host /deep/ p-table .ui-table .ui-table-tbody > tr > td{
-  padding: 0 0.5em;
-}
-
-:host /deep/ p-table .ui-table .ui-table-thead > tr > th{
-  padding: 0;
-}
-
-:host /deep/ p-checkbox {
-  border-radius: 2px;
-}
-
-:host /deep/ p-checkbox .ui-chkbox-box{
-  width: 18px;
-  height: 18px;
-}
-
-:host /deep/ p-checkbox .ui-chkbox-box .ui-chkbox-icon{
-  font-size: 16px;
-}
-
-.formu {
-  width: 100%;
-}
-
-#buscando {
-  border-radius: 3px;
-  width: 80%;
-  height: 24px;
-  border:1px solid #428bca;
-  text-transform: uppercase;
-}
 
 .menubuscar {
   width: 100%;
   height: 40px;
   margin: 0 auto;
-  border: 1px solid #838383;
+  margin-top: 5px;
+  border: ridge;
+  display: inline-flex;
+}
+
+.menubuscar .ladoesquerdo {
+  width: 60%;
+  height: 100%;
+  align-items: center;
+  display: inline-flex;
+}
+
+.menubuscar .ladoesquerdo label {
+  margin-left: 5px;
+}
+
+.menubuscar input {
+  width: 85%;
+  height: 80%;
+  margin-left: 5px;
+}
+
+.menubuscar .ladodireito {
+  width: 40%;
+  height: 100%;
+  align-items: center;
+  display: inline-flex;
 }
 
 .corpo {
   width: 100%;
+  height: 220px;
   margin-top: 5px;
-  border: 1px solid #838383;
+  border: ridge;
 }
 
 .botoes {
   width: 100%;
   height: 54px;
-  margin: 0 auto;
-  text-align: center;
   margin-top: 5px;
-  border: 1px solid #838383;
-  position: relative;
+  border: ridge;
+  display: inline-flex;
+  align-items: center;
 }
 
 .botao {
@@ -191,4 +91,97 @@
   text-align: center;
   vertical-align: middle;
   margin: 0 auto;
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-header {
+  padding: 0;
+  height: 25px;
+  color: rgb(10, 10, 10);
+  text-align: center;
+  background: #B4B8C1;
+  background: -webkit-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: -o-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: -moz-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  border: 1px solid rgba(114, 114, 112, 0.658);
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-header .p-dialog-title {
+  width: 95%;
+  text-align: center;
+  font-size: 95%;
+  font-weight: bold;
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-header .p-dialog-header-icons {
+  width: 5%;
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-content {
+  width: 788px;
+  height: 100%;
+  padding-bottom: 0.5em;
+  border-left: 2px solid #A5A9B2;
+  border-bottom: 2px solid #A5A9B2;
+  border-right: 2px solid #A5A9B2;
+  background-color: #dfdede;
+  position: relative;
+}
+
+:host /deep/ p-dropdown {
+  width: 73%;
+}
+
+:host /deep/ p-dropdown .ui-dropdown-items {
+  background-color: #fff;
+}
+
+:host /deep/ p-dropdown .ui-dropdown-items li:hover {
+  background-color: rgb(158, 150, 150);
+  border: 1px solid rgb(158, 150, 150);
+}
+
+:host /deep/ p-table .p-datatable {
+  font-size: 90%;
+  width: 100%;
+  height: 100%;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-scrollable-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-scrollable-wrapper .p-datatable-scrollable-view {
+  width: 100%;
+  height: 100%;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-scrollable-wrapper .p-datatable-scrollable-view .p-datatable-scrollable-header {
+  width: 100%;
+  height: 10%;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-scrollable-wrapper .p-datatable-scrollable-view .p-datatable-scrollable-body {
+  width: 100%;
+  height: 90%;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-thead > tr > th{
+  padding: 0;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-tbody > tr > td{
+  padding: 0 0.5em;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-tbody > tr > td a{
+  text-decoration: none;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-tbody .p-selectable-row:hover{
+  background-color: #9c9c9c;
+  font-weight: bold;
+  color: #fff;
 }

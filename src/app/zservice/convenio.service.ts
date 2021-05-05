@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 export class ConvenioFiltro {
   pagina = 0;
-  itensPorPagina = 9;
+  itensPorPagina = 30;
   nome: string;
   ativo: boolean;
 }

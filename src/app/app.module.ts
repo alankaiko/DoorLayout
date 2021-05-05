@@ -45,7 +45,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {RatingModule } from 'primeng/rating';
-import { CardModule } from 'primeng/components/card/card';
+import {CardModule} from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import {CarouselModule} from 'primeng/carousel';
