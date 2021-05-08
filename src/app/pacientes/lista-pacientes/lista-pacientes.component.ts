@@ -28,8 +28,6 @@ export class ListaPacientesComponent implements OnInit {
 
   ngOnInit() {
     this.CriarCamposBusca();
-
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   private CriarCamposBusca() {

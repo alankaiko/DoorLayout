@@ -7,13 +7,14 @@
           <span style="font-weight: bold;">Atendimento:</span>
           <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo"
             #atendimentocodigo="ngModel" name="atendimentocodigo" placeholder="Selecione..."
-            (onChange)="CarregarProcedimentos()" [style]="{'line-height': '90%', 'width': '78%'}"></p-dropdown>
+            (onChange)="CarregarProcedimentos()" [style]="{'line-height': '50%', 'width': '78%'}"></p-dropdown>
         </div>
 
         <div style="width: 55%;">
           <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo"
             #procedimentoselecionado="ngModel" name="procedimentoselecionado" placeholder="Selecione..."
-            (onChange)="BuscandoModelosLaudo(procedimento.codigo)" [style]="{'line-height': '90%', 'width': '95%'}"></p-dropdown>
+            (onChange)="BuscandoModelosLaudo(procedimento.codigo)"
+            [style]="{'line-height': '50%', 'width': '95%'}"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 5%;" *ngIf="!abrirpaginaimg">
@@ -84,9 +85,9 @@
     <div class="paineldireita">
       <div class="paineldedentro">
         <div class="carrosseldeimagens">
-          <p-carousel [value]="procedimento?.listaimagem" [page]="paginafoto">
+          <p-carousel [value]="procedimento?.listaimagem" [page]="paginafoto - 1">
             <ng-template let-imagem pTemplate="item">
-              <img style="width: 100%; height: 95%; margin: 0 auto;" [src]="imagem?.imagem"/>
+              <img style="width: 100%; height: 100%;" [src]="imagem?.imagem"/>
             </ng-template>
           </p-carousel>
         </div>
@@ -123,7 +124,7 @@
                 <img src="assets/img/PROXIMO.png">
               </button>
 
-              <button type="button" class="minibotao desabilitado">
+              <button type="button" class="minibotao desabilitado" disabled="true">
                 <img src="assets/img/APAGAR.png">
               </button>
             </div>
@@ -138,9 +139,9 @@
         </div>
 
         <div class="imagenslistadas">
-          <div class="imagems" *ngFor="let img of procedimento?.listaimagem; let i=index" (focus)="Testes(i)">
-            <img [src]="img?.imagem">
-          </div>
+          <div class="imagems" *ngFor="let img of procedimento?.listaimagem; let i=index">
+            <img [src]="img?.imagem" (click)="PegarPagina(i)">
+          </div>      
         </div>
 
         <div class="botoesgravacao">

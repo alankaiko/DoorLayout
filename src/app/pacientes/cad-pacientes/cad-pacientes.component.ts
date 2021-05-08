@@ -41,8 +41,6 @@ export class CadPacientesComponent implements OnInit {
     if (this.paciente.datacriacao === undefined) {
       this.paciente.datacriacao = new Date;
     }
-
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {

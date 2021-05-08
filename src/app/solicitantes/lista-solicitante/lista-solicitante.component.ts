@@ -30,8 +30,6 @@ export class ListaSolicitanteComponent implements OnInit {
       {label: 'Nome'},
       {label: 'Num Conselho'}
     ];
-
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   onRowSelect(event) {

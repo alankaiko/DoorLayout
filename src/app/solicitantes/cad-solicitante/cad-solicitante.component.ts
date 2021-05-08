@@ -42,7 +42,6 @@ export class CadSolicitanteComponent implements OnInit {
 
     this.BuscarEstados();
     this.BuscarSiglas();
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {

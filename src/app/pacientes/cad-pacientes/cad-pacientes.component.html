@@ -1,8 +1,8 @@
 <p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
 
-<p-dialog header="Pacientes" [(visible)]="display">
+<p-dialog header="Pacientes" [(visible)]="display" [style]="{width: '788px', height: '365px'}">
   <div class="corpo">
-    <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar()">
+    <form class="formulario" #f="ngForm" autocomplete="off" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
           <div style="width: 75%; float: left;">
@@ -18,8 +18,7 @@
                 <p-calendar id="datadecadastro" [showOnFocus]="false" [readonlyInput]="true"
                   placeholder="00/00/0000" dateFormat="dd/mm/yy" name="datacriacao"
                   [(ngModel)]="paciente.datacriacao" #datacriacao="ngModel" id="datacriacao"
-                  [inputStyle]="{ 'width': '95%', 'height': '25px', 'border-radius': '2px',
-                  'border': '1px solid rgb(110, 110, 110)' }"></p-calendar>
+                  [style]="{width: '98%', height: '28px', border: '1px solid rgb(130 128 128)'}"></p-calendar>
               </div>
             </div>
 
@@ -35,7 +34,7 @@
               <div class="blocodalinha" style="width: 25%;">
                 <label>Sexo</label>
                 <p-dropdown [(ngModel)]="paciente.sexo" #sexo="ngModel" id="sexo" name="sexo"
-                  [style]="{'min-width': '95%', 'line-height': '11.5px', 'border':'1px solid
+                  [style]="{'min-width': '95%', 'line-height': '68%', 'border':'1px solid
                   rgb(110, 110, 110)'}" required [options]="enumsexo" placeholder="sexo"></p-dropdown>
               </div>
 
@@ -44,20 +43,21 @@
                 <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true"
                   [yearNavigator]="true" [style]="{'position': 'fixed', 'z-index': '100'}" name="datanasc"
                   yearRange="1930:2020" [(ngModel)]="paciente.datanasc" #datanasc="ngModel" id="datanasc"
-                  [inputStyle]="{ 'width': '127px', 'height': '25px', 'border-radius': '2px',
-                  'border': '1px solid rgb(110, 110, 110)' }"></p-calendar>
+                  [style]="{width: '98%', height: '28px', border: '1px solid rgb(130 128 128)'}"></p-calendar>
               </div>
 
               <div class="blocodalinha" style="width: 25%;">
                 <label>Telefone</label>
                 <p-inputMask placeholder=" telefone" mask="(99) 9 9999-9999" id="telefone" name="telefone"
-                  [(ngModel)]="paciente.contato.telefone " #telefone="ngModel"></p-inputMask>
+                  [(ngModel)]="paciente.contato.telefone " #telefone="ngModel"
+                  [style]="{width: '98%', height: '28px', border: '1px solid rgb(130 128 128)'}"></p-inputMask>
               </div>
 
               <div class="blocodalinha" style="width: 24.5%;">
                 <label>Telefone 2</label>
                 <p-inputMask placeholder=" telefone" mask="(99) 9999-9999" id="telefone2" name="telefone2"
-                  [(ngModel)]="paciente.contato.telefone2 " #telefone2="ngModel"></p-inputMask>
+                  [(ngModel)]="paciente.contato.telefone2 " #telefone2="ngModel"
+                  [style]="{width: '98%', height: '28px', border: '1px solid rgb(130 128 128)'}"></p-inputMask>
               </div>
             </div>
 
@@ -79,8 +79,8 @@
           <div class="linhas">
             <div class="blocodalinha" style="width: 12%;">
               <label>CEP</label>
-                <p-inputMask mask="99.999-999" [(ngModel)]="paciente.endereco.cep "
-                  #cep="ngModel" id="cep" name="cep"></p-inputMask>
+                <p-inputMask mask="99.999-999" [(ngModel)]="paciente.endereco.cep " #cep="ngModel" id="cep"
+                  name="cep" [style]="{width: '98%', height: '28px', border: '1px solid rgb(130 128 128)'}"></p-inputMask>
             </div>
 
             <div class="blocodalinha" style="width: 6%;">

@@ -34,8 +34,6 @@ export class CadConvenioComponent implements OnInit {
     } else {
       this.formulario.controls['ativo'].setValue('true');
     }
-
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {

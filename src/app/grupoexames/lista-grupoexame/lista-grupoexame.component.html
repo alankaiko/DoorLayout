@@ -1,16 +1,15 @@
-<p-dialog header="Grupo de Exames" [(visible)]="display">
+<p-dialog header="Grupo de Exames" [(visible)]="display" [style]="{width: '788px', height: '365px'}">
   <div class="menubuscar">
-    <form #f="ngForm" autocomplete="off" class="formu">
-      <div class="ui-g-8">
-        <label>Buscar  </label>
-        <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
-      </div>
+    <div class="ladoesquerdo">
+      <label>Buscar  </label>
+      <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
+    </div>
 
-      <div class="ui-g-4">
-        <label>no campo  </label>
-        <p-dropdown id="codigodrop" [style]="{'min-width': '65%'}" [options]="camposbusca"></p-dropdown>
-      </div>
-    </form>
+    <div class="ladodireito">
+      <label>No campo</label>
+      <p-dropdown id="codigodrop" [style]="{'width': '98%', 'line-height':'60%', 'border-radius':'2px',
+      'border': '1px solid rgb(110, 110, 110)','margin-left':'5px'}" [options]="camposbusca"></p-dropdown>
+    </div>
   </div>
 
   <div class="table-responsive corpo">

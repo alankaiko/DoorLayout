@@ -40,7 +40,7 @@ export class LaudoComponent implements OnInit {
   dropmodelo = false;
   conferindo = false;
   abrirpaginaimg = false;
-  paginafoto = 0;
+  paginafoto = 1;
   instancia: Instancia;
   gosto: boolean = true;
 
@@ -51,6 +51,8 @@ export class LaudoComponent implements OnInit {
               private route: Router,
               private servicoparametro: ParametrodosistemaService,
               private location: Location,
+              private confirmation: ConfirmationService,
+              private messageService: MessageService,
               private serviceimg: ImagemService) { }
 
   ngOnInit(): void {
@@ -63,8 +65,8 @@ export class LaudoComponent implements OnInit {
       this.BuscarProcedimento(codigo);
     }
 
-    this.ConfigureCornerBase();
-    this.BuscarInstanciaResumida(1);
+    //this.ConfigureCornerBase();
+    //this.BuscarInstanciaResumida(1);
   }
 
   ConfigureCornerBase() {
@@ -95,22 +97,14 @@ export class LaudoComponent implements OnInit {
     }).catch( error => { console.error(error); });
   }
 
-  PegarPagina(event) {
-    this.paginafoto = event.page;
-  }
-
   FotoAnterior() {
-    if(this.paginafoto >= 1)
+    if(this.paginafoto > 1)
       this.paginafoto--;
   }
 
   FotoPosterior() {
-    if(this.paginafoto < this.procedimento.listaimagem.length)
+    if (this.paginafoto < this.procedimento.listaimagem.length)
       this.paginafoto++;
-  }
-
-  Testes(event){
-    console.log('tihsss ' + event);
   }
 
   BuscarProcedimento(codigo: number) {
@@ -163,7 +157,7 @@ export class LaudoComponent implements OnInit {
         }
       );
 
-    this.BuscarImagensDicom();
+      // this.BuscarImagensDicom();
   }
 
   BuscandoModelosLaudo(codigo) {
@@ -207,6 +201,10 @@ export class LaudoComponent implements OnInit {
     } else {
       this.conferindo = true;
     }
+  }
+
+  PegarPagina(event){
+    this.paginafoto = event + 1;
   }
 
   Salvar() {

@@ -32,8 +32,6 @@ export class CadTextopessoalComponent implements OnInit {
     if (codtextopessoal) {
       this.CarretarTextoPessoal(codtextopessoal);
     }
-
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {

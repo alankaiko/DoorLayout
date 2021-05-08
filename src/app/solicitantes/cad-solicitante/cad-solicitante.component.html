@@ -1,8 +1,8 @@
 <p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
 
-<p-dialog header="Profissional Solicitante" [(visible)]="display">
+<p-dialog header="Profissional Solicitante" [(visible)]="display" [style]="{width: '788px', height: '365px'}">
   <div class="corpo">
-    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+    <form class="formulario" role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
           <div class="linhas">
@@ -17,19 +17,19 @@
             <div class="blocodalinha" formGroupName="conselho" style="width: 25%;">
               <label>Sigla</label>
               <div formGroupName="sigla">
-                <p-dropdown id="sigla" [style]="{'line-height':'11.5px','position': 'fixed','z-index': '999',
-                 'border': '1px solid rgb(110, 110, 110)'}" name="sigla" [options]="siglas" class="ng-dirty ng-invalid"
-                  required formControlName="codigo" placeholder="Selecione a sigla" id="sigla"></p-dropdown>
+                <p-dropdown id="sigla" [style]="{'width': '98%', 'line-height':'60%', 'border-radius':'2px',
+                'border': '1px solid rgb(110, 110, 110)'}" name="sigla" [options]="siglas"
+                class="ng-dirty ng-invalid" required formControlName="codigo" placeholder="Sel. Sigla"
+                id="sigla"></p-dropdown>
               </div>
             </div>
 
             <div class="blocodalinha" formGroupName="conselho" style="width: 25%;">
               <label>UF</label>
               <div formGroupName="estado">
-                <p-dropdown id="uf" [style]="{'line-height': '11.5px', 'position': 'fixed',
-                  'z-index': '999', 'border': '1px solid rgb(110, 110, 110)'}" required
-                  formControlName="codigo" [options]="estados" placeholder="Selecione o estado"
-                  name="estado" id="estado"></p-dropdown>
+                <p-dropdown id="uf" [style]="{'width': '98%', 'line-height':'60%', 'border-radius':'2px',
+                  'border': '1px solid rgb(110, 110, 110)'}" required formControlName="codigo"
+                  [options]="estados" placeholder="Sel. UF" name="estado" id="estado"></p-dropdown>
               </div>
             </div>
 

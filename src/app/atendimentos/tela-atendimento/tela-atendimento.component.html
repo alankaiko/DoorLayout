@@ -1,13 +1,14 @@
 <p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
 <p-confirmDialog [style]="{width: '50vw'}" [acceptVisible]="false" [rejectLabel]="'OK'"></p-confirmDialog>
 
-<p-dialog header="Atendimentos" [(visible)]="display">
+<p-dialog header="Atendimentos" [(visible)]="display" [style]="{width: '788px', height: '450px'}">
   <div class="corpo">
-    <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar()" class="formu">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar()" class="formulario">
       <div class="linhas">
         <div class="blocodalinha" style="width: 25%;">
           <label>Código Atend.</label>
-          <input style="width: 98%;" [readonly]= "true" type="text" pInputText
+          <input style="width: 98%; height: 24px; border: 1px solid #555555;
+            border-radius: 2px;" [readonly]= "true" type="text" pInputText
             [(ngModel)]="atendimento.codigo" #codigo="ngModel" name="codigo">
         </div>
 
@@ -15,18 +16,19 @@
           <label>Data Atend.</label>
           <p-calendar placeholder="00/00/0000" [showOnFocus]="false" [readonlyInput]="true"
             dateFormat="dd/mm/yy" name="datacadastro" [(ngModel)]="atendimento.datacadastro"
-            #datacadastro="ngModel" [inputStyle]="{ 'width': '105%', 'height': '24px',
-            'border-radius': '2px' }"></p-calendar>
+            #datacadastro="ngModel" [style]="{ width: '95%', height: '24px',
+            'border-radius': '2px', border:'1px solid #555555' }"></p-calendar>
         </div>
 
-        <div class="blocodalinha" style="width: 45%;">
+        <div class="blocodalinha" style="width: 46%;">
           <label>Convênio</label>
-            <p-dropdown [style]="{'line-height': '10px', 'min-width':'98%'}" [options]="convenios"
+            <p-dropdown [style]="{'line-height': '40%', 'width':'99%',
+              'border': '1px solid #555555', 'border-radius': '2px'}" [options]="convenios"
               [filter]="true" [(ngModel)]="atendimento.convenio.codigo" #codigo="ngModel" name="codigo"
               placeholder="Selecione..." (onChange)="CarregarConvenios()" id="convenio"></p-dropdown>
         </div>
 
-        <div class="blocodalinha" style="width: 5%;">
+        <div class="blocodalinha" style="width: 4%;">
           <label style="opacity: 1%; ">-</label>
           <button style="width: 96%;" type="button" class="minibotao" routerLink="/listaconvenio">
             <img src="/assets/img/FKEY_WINDOW.png">
@@ -37,7 +39,8 @@
       <div class="linhas">
         <div class="blocodalinha" style="width: 50%;">
           <label>Paciente</label>
-          <p-dropdown [style]="{'line-height': '10px', 'min-width':'98%'}" [options]="pacientes"
+          <p-dropdown [style]="{'line-height': '40%', 'width':'97.5%',
+            'border': '1px solid #555555', 'border-radius': '2px'}" [options]="pacientes"
             [filter]="true" [filter]="true" [(ngModel)]="atendimento.paciente.codigo"
             #codigo="ngModel" name="codigo" placeholder="Selecione..." id="paciente"
             (onChange)="InserirPacientes();"></p-dropdown>
@@ -54,18 +57,21 @@
           <label>Data Nasc.</label>
           <p-calendar placeholder="00/00/0000" [showOnFocus]="false" id="datanasc" name="datanasc"
             #datanasc="ngModel" dateFormat="dd/mm/yy" [(ngModel)]="atendimento.paciente.datanasc"
-            [inputStyle]="{ 'width': '95%', 'height': '24px', 'border-radius': '2px' }"></p-calendar>
+            [style]="{ 'width': '95%', 'height': '24px', 'border-radius': '2px',
+            'border': '1px solid #555555' }"></p-calendar>
         </div>
 
         <div class="blocodalinha" style="width: 15.40%;">
           <label>Sexo</label>
-          <input id="sexo" style="width: 96%;" type="text" pInputText
+          <input id="sexo" style="width: 96%; height: 24px; border: 1px solid #555555;
+            border-radius: 2px;" type="text" pInputText
             [(ngModel)]="atendimento.paciente.sexo" #sexo="ngModel" name="sexo">
         </div>
 
         <div class="blocodalinha" style="width: 15.33%;">
           <label>Telefone</label>
-          <input style="width: 99%;" type="text" pInputText
+          <input style="width: 99%; height: 24px; border: 1px solid #555555;
+            border-radius: 2px;" type="text" pInputText
             [(ngModel)]="atendimento.paciente.contato.telefone" #telefone="ngModel" name="telefone">
         </div>
       </div>
@@ -73,45 +79,55 @@
       <div class="linhas">
         <div class="blocodalinha" style="width: 50%;">
           <label>Prof. Solicitante</label>
-          <p-dropdown [style]="{'line-height': '10px', 'min-width':'98%'}" [options]="solicitantes"
+          <p-dropdown  [style]="{'line-height': '40%', 'width':'97.5%',
+            'border': '1px solid #555555', 'border-radius': '2px'}" [options]="solicitantes"
             [filter]="true" [(ngModel)]="atendimento.solicitante" #solicitante="ngModel" name="solicitante"
             placeholder="Selecione..." (onChange)="InserirProfSolicitante()"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 19.3%;">
           <label>Conselho</label>
-          <input readonly="true" style="width: 95%;" type="text" pInputText name="descricaocrm"
+          <input readonly="true" style="width: 96%; height: 24px;
+            border: 1px solid #555555; border-radius: 2px;" type="text" pInputText name="descricaocrm"
             [(ngModel)]="atendimento.solicitante.conselho.sigla.descricao" #descricaocrm="ngModel">
         </div>
 
         <div class="blocodalinha" style="width: 15.40%;">
           <label>UF</label>
-          <input readonly="true" style="width: 95%;" type="text" pInputText name="descricaouf"
+          <input readonly="true" style="width: 96%; height: 24px; border-radius: 2px;
+            border: 1px solid #555555;" type="text" pInputText name="descricaouf"
             [(ngModel)]="atendimento.solicitante.conselho.estado.uf" #descricaouf="ngModel">
         </div>
 
-        <div class="blocodalinha" style="width: 15%;">
+        <div class="blocodalinha" style="width: 15.40%;">
           <label>N. Conselho</label>
-          <input readonly="true" style="width: 100%;" type="text" pInputText name="descricao"
+          <input pInputText name="descricao" readonly="true" style="width: 100%; height: 24px;
+            border: 1px solid #555555; border-radius: 2px;" type="text"
             [(ngModel)]="atendimento.solicitante.conselho.descricao" #descricao="ngModel">
         </div>
       </div>
 
-      <div style="height: 165px; margin-top: 2px;">
-        <div style=" height: 140px;">
+      <div style="height: 145px; margin-top: 2px; border: ridge;">
+        <div style=" height: 110px; border: 1px solid">
           <app-procedimento-cad-apend [procedimentos]="atendimento.procedimentos" id="tabelaproc"></app-procedimento-cad-apend>
         </div>
 
         <div class="linhas">
-          <div style="text-align: right; margin-top: 1px;">
-            <button pButton label="Imp. Atestado" icon="fa fa-wpforms" type="button"
-              class="ui-button-primary botaotab"></button>
+          <div style="text-align: right; margin-top: 1px; width: 100%;">
+            <button type="button" class="botoesdatabela">
+              <img src="/assets/img/ATESTADO.png">
+              <span>Atestado</span>
+            </button>
 
-            <button pButton label="Laudo/ Foto" icon="fa fa-file-text" type="button"
-              class="ui-button-primary botaotab" (click)="VaiParaLaudos()"></button>
+            <button type="button" class="botoesdatabela" (click)="VaiParaLaudos()">
+              <img src="/assets/img/LAUDO_SMALL.png">
+              <span>Laudos</span>
+            </button>
 
-            <button pButton label="Captura" icon="fa fa-camera" type="button" style="margin-right: 2px;"
-              class="ui-button-primary botaotab" (click)="VaiCaptura()"></button>
+            <button type="button" class="botoesdatabela" (click)="VaiCaptura()">
+              <img src="/assets/img/CAPTURA_SMALL.png">
+              <span>Captura</span>
+            </button>
           </div>
         </div>
       </div>
@@ -132,7 +148,7 @@
     </form>
   </div>
 
-  <div class="botoes ui-g-12" style="margin-top: 80px;">
+  <div class="botoes">
     <div class="botao">
       <div>
         <button disabled="true" type="button" class="botaoprincipal desabilitado">

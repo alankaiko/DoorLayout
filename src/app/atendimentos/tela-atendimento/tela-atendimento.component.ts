@@ -62,13 +62,9 @@ export class TelaAtendimentoComponent implements OnInit {
       this.VerificarData();
     }
 
-    setTimeout (() => {
-      document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar());
-      if (this.atendimento.datacadastro === undefined) {
-        this.atendimento.datacadastro = new Date();
-      }
-    }, 10);
-
+    if (this.atendimento.datacadastro === undefined) {
+      this.atendimento.datacadastro = new Date();
+    }
   }
 
   AbrirDialogo() {

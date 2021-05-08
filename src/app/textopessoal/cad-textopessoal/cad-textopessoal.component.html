@@ -1,8 +1,8 @@
 <p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
 
-<p-dialog header="Texto Pessoal" [(visible)]="display">
+<p-dialog header="Texto Pessoal" [(visible)]="display" [style]="{width: '788px', height: '365px'}">
   <div class="corpo">
-    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+    <form class="formulario" role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
           <div class="linhas">

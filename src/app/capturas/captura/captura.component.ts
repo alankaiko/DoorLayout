@@ -8,7 +8,6 @@ import { WebcamInitError, WebcamUtil, WebcamImage } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
 import { ProcedimentoatendimentoService } from '../../zservice/procedimentoatendimento.service';
 import {Location} from '@angular/common';
-import { Instancia } from './../../core/model';
 
 
 @Component({
@@ -28,13 +27,12 @@ export class CapturaComponent implements OnInit {
   procedimento = new ProcedimentoAtendimento();
   atendimentos: any[];
   procedimentosAtd: any[];
-  cont: number = 0;
+  cont: number;
   imagemant: any;
   verifica = false;
-
+  item = 0;
   videos: any[];
-  paginafoto: number = 0;
-  validarsetemfoto: boolean;
+  paginafoto = 1;
 
   public errors: WebcamInitError[] = [];
 
@@ -50,8 +48,6 @@ export class CapturaComponent implements OnInit {
     // width: {ideal: 1024},
     // height: {ideal: 576}
   };
-
-  instancia: Instancia;
 
   constructor(private service: AtendimentoService,
               private rota: ActivatedRoute,
@@ -74,30 +70,6 @@ export class CapturaComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
-  }
-
-  ConfigurarContadorDeFotos(){
-    if(this.procedimento.listaimagem.length > 0){
-      const nome = this.procedimento.listaimagem[this.procedimento.listaimagem.length - 1].nomeimagem;
-      this.cont = parseInt(nome.substring(nome.length - 2));
-    }
-  }
-
-  FotoAnterior() {
-    console.log('variavel anterior ' + this.paginafoto);
-    if(this.paginafoto >= 1)
-      this.paginafoto--;
-
-    console.log('final anterior ' + this.paginafoto);
-  }
-
-  FotoPosterior() {
-    console.log('variavel posterior ' + this.paginafoto);
-
-
-      this.paginafoto++;
-
-    console.log('final posterior ' + this.paginafoto);
   }
 
   BuscarProcedimento(codigo: number) {
@@ -131,20 +103,31 @@ export class CapturaComponent implements OnInit {
     }
   }
 
+  PegarPagina(event){
+    this.paginafoto = event + 1;
+  }
+
+  FotoAnterior() {
+    if(this.paginafoto > 1)
+      this.paginafoto--;
+  }
+
+  FotoPosterior() {
+    if (this.paginafoto < this.procedimento.listaimagem.length)
+      this.paginafoto++;
+  }
 
   ConfirmarExclusao() {
     this.confirmation.confirm({
       message: 'Deseja Excluir esta Imagem?',
       accept: () => {
-        this.Excluir(this.paginafoto);
+        this.Excluir(this.paginafoto - 1);
       }
     });
   }
 
   Excluir(codigo: number) {
     this.procedimento.listaimagem.splice(codigo, 1);
-    this.messageService.add({ severity: 'success', detail: 'Imagem excluída com sucesso!' });
-    this.validarsetemfoto = true;
   }
 
   ConfigurarVariavelVindEdicao() {
@@ -160,6 +143,7 @@ export class CapturaComponent implements OnInit {
 
   ConfigurarVariavel() {
     this.procedimento.listaimagem = new Array<Imagem>();
+    this.cont = 1;
     this.verifica = true;
 
     this.atendimento.procedimentos.filter((elo) => {
@@ -175,10 +159,6 @@ export class CapturaComponent implements OnInit {
         });
       }
     });
-
-    setTimeout(() => {
-      this.ConfigurarContadorDeFotos();
-    }, 500);
   }
 
   PegaAltura() {
@@ -194,7 +174,10 @@ export class CapturaComponent implements OnInit {
 
   public TiraFoto(): void {
     this.trigger.next();
-    this.validarsetemfoto = true;
+
+    if (this.item === 0) {
+      this.item = 1;
+    }
   }
 
   public toggleWebcam(): void {
@@ -212,14 +195,10 @@ export class CapturaComponent implements OnInit {
     this.nextWebcam.next(directionOrDeviceId);
   }
 
-  Saindo() {
-    if(this.validarsetemfoto) {
-      this.GravandoImagens();
-    }
-  }
+
 
   public handleImage(webcamImage: WebcamImage): void {
-    this.cont++;
+    this.cont = this.procedimento.listaimagem.length + 1;
     const imagem = new Imagem();
     const nomeprocedimento = ('000' + this.procedimento.procedimentomedico.codigo).slice(-3);
     const contador = ('00' + this.cont).slice(-2);
@@ -230,10 +209,11 @@ export class CapturaComponent implements OnInit {
     imagem.dicom = false;
     imagem.imagem = webcamImage;
     this.procedimento.listaimagem.push(imagem);
+
   }
 
   public cameraWasSwitched(deviceId: string): void {
-    console.log('Dispositivo selecionado: ' + deviceId);
+    console.log('active device: ' + deviceId);
     this.deviceId = deviceId;
   }
 

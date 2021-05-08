@@ -1,49 +1,68 @@
-<p-dialog header="Atendimentos" [(visible)]="display">
+<p-dialog header="Atendimentos" [(visible)]="display" [style]="{width: '788px', height: '450px'}">
   <div class="menubuscar">
-    <form #f="ngForm" autocomplete="off" class="formu" style="margin-top: 5px;">
-      <div class="linhas">
-        <div class="blocodalinha" style="width: 50%;">
-          <label style="margin-right: 8px;">Buscar</label>
-          <input style="width: 83%; height: 27px;" id="buscando" pInputText ng-model="text"
-          [(ngModel)]="campotextobuscar" name="campotextobuscar" (keypress)="BuscaDinamica()"/>
-        </div>
-
-        <div class="blocodalinha" style="width: 25%;">
-          <label style="margin-right: 2px;">Campo</label>
-          <p-dropdown [style]="{'line-height': '12px', 'min-width': '70%'}" id="codigodrop" [options]="dropbusca"
-            (onChange)="BuscaDinamica()" [(ngModel)]="camposelecionado" name="camposelecionado"></p-dropdown>
-        </div>
-
-        <div class="blocodalinha" style="width: 25%;">
-          <label style="margin-right: 2px;">Laudo</label>
-          <p-dropdown [style]="{'line-height': '12px', 'min-width': '76%'}" id="codigostatus"
-            [options]="laudoperiodo"></p-dropdown>
-        </div>
+    <div class="linhas">
+      <div class="blocodalinha" style="width: 8%; text-align: right; padding-right: 2px;">
+        <label>Buscar</label>
       </div>
 
-      <div class="linhas" style="margin-top: 2px;">
-        <div class="blocodalinha" style="width: 50%;">
-          <label style="margin-right: 2px;">Período</label>
-          <p-dropdown [style]="{'line-height': '12px', 'min-width':'82.8%', 'margin-top': '2px'}"
-            id="codigoperiodo" [options]="dropperiodo" (onChange)="BuscaDinamica()"
-            [(ngModel)]="periodoselecionado" name="periodoselecionado"></p-dropdown>
-        </div>
-
-        <div class="blocodalinha" style="width: 25%;">
-          <label style="margin-left: 15.8px; margin-right: 2px;">Data</label>
-          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{  'width': '131px', 'height': '24px',
-            'border': '1px solid #428bca', 'border-radius': '2px' }" name="datainicio"
-            [(ngModel)]="filtro.datainicial"></p-calendar>
-        </div>
-
-        <div class="blocodalinha" style="width: 25%;">
-          <label style="margin-left: 20px; margin-right: 2px;">até</label>
-          <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ 'width': '143px', 'height': '24px',
-            'border': '1px solid #428bca', 'border-radius': '2px' }"
-             name="datafim" [(ngModel)]="filtro.datafinal"></p-calendar>
-        </div>
+      <div class="blocodalinha" style="width: 40%;">
+        <input style="width: 100%; height: 28px;" id="buscando" pInputText ng-model="text"
+        [(ngModel)]="campotextobuscar" name="campotextobuscar" (keypress)="BuscaDinamica()"/>
       </div>
-    </form>
+
+      <div class="blocodalinha" style="width: 8%; text-align: right; padding-right: 3px;">
+        <label>Campo</label>
+      </div>
+
+      <div class="blocodalinha" style="width: 17.5%;">
+        <p-dropdown [style]="{'line-height': '68%', 'width': '100%',
+          'border': '1px solid #428bca', 'border-radius': '2px'}" id="codigodrop" [options]="dropbusca"
+          (onChange)="BuscaDinamica()" [(ngModel)]="camposelecionado" name="camposelecionado"></p-dropdown>
+      </div>
+
+      <div class="blocodalinha" style="width: 8%; text-align: center;">
+        <label>Laudo</label>
+      </div>
+
+      <div class="blocodalinha" style="width: 17.5%;">
+        <p-dropdown [style]="{'line-height': '68%', 'width': '96%',
+          'border': '1px solid #428bca', 'border-radius': '2px'}" id="codigostatus"
+          [options]="laudoperiodo"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="linhas">
+      <div class="blocodalinha" style="width: 8%; text-align: right; padding-right: 2px;">
+        <label>Período</label>
+      </div>
+
+      <div class="blocodalinha" style="width: 40%;">
+        <p-dropdown [style]="{'line-height': '68%', 'width':'100%',
+          'border': '1px solid #428bca', 'border-radius': '2px'}"
+          id="codigoperiodo" [options]="dropperiodo" (onChange)="BuscaDinamica()"
+          [(ngModel)]="periodoselecionado" name="periodoselecionado"></p-dropdown>
+      </div>
+
+      <div class="blocodalinha" style="width: 8%; text-align: right; padding-right: 3px;">
+        <label>Data</label>
+      </div>
+
+      <div class="blocodalinha" style="width: 17.5%;">
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{  'width': '100%', 'height': '28px',
+          'border': '1px solid #428bca', 'border-radius': '2px' }" name="datainicio"
+          [(ngModel)]="filtro.datainicial"></p-calendar>
+      </div>
+
+      <div class="blocodalinha" style="width: 8%; text-align: center;">
+        <label>até</label>
+      </div>
+
+      <div class="blocodalinha" style="width: 17.5%;">
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ 'width': '100%', 'height': '28px',
+          'border': '1px solid #428bca', 'border-radius': '2px' }"
+            name="datafim" [(ngModel)]="filtro.datafinal"></p-calendar>
+      </div>
+    </div>
   </div>
 
   <div class="table-responsive corpo">

@@ -32,8 +32,6 @@ export class CadSiglaComponent implements OnInit {
     if (codsigla) {
       this.CarregarSigla(codsigla);
     }
-
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   get editando() {

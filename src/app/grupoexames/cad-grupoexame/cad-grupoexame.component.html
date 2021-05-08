@@ -1,8 +1,8 @@
 <p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
 
-<p-dialog header="Grupo de Exames e Procedimentos" [(visible)]="display">
+<p-dialog header="Grupo de Exames e Procedimentos" [(visible)]="display" [style]="{width: '788px', height: '365px'}">
   <div class="corpo">
-    <form role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
+    <form class="formulario" role="form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="Salvar()">
       <p-tabView>
         <p-tabPanel header="Dados Principais">
           <div class="linhas">
@@ -10,12 +10,13 @@
               <label>Código</label>
               <input [readonly]= "true" type="text" pInputText ng-model="text" name="codigo" formControlName="codigo">
             </div>
+          </div>
 
-            <div class="linhas">
-              <div class="blocodalinha" style="width: 100%;">
-                <label>Nome</label>
-                <input id="nome" style="width: 100%; text-transform: uppercase;" pInputTextarea  ng-model="text" name="nomegrupo" formControlName="nomegrupo"/>
-              </div>
+          <div class="linhas">
+            <div class="blocodalinha" style="width: 100%;">
+              <label>Nome</label>
+              <input id="nome" style="width: 100%; text-transform: uppercase;"
+                pInputTextarea  ng-model="text" name="nomegrupo" formControlName="nomegrupo"/>
             </div>
           </div>
         </p-tabPanel>
@@ -23,7 +24,7 @@
     </form>
   </div>
 
-  <div class="botoes ui-g-12">
+  <div class="botoes">
     <div class="botao">
       <div>
         <button disabled="true" type="button" class="botaoprincipal desabilitado">
@@ -85,13 +86,6 @@
         <button class="botaoprincipal" (click)="Voltar();">
           <img src="assets/img/CANCELAR.png">
           <span>Voltar</span>
-        </button>
-      </div>
-
-      <div>
-        <button disabled="true" class="botaoprincipal desabilitado">
-          <img src="assets/img/IMPRESSORA.png">
-          <span>Imprimir</span>
         </button>
       </div>
 

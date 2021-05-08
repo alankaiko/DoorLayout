@@ -1,28 +1,10 @@
-:host /deep/ p-dropdown .ui-dropdown{
-  border:1px solid #428bca;
-  background-color: #fff;
-  border-radius: 2px;
+:host /deep/ p-confirmdialog .p-dialog {
+  width: 350px;
 }
 
-:host /deep/ p-dropdown .ui-dropdown-items {
-  background-color: #fff;
-}
-
-:host /deep/ p-dropdown .ui-dropdown-items li:hover {
-  background-color: rgb(158, 150, 150);
-  border: 1px solid rgb(158, 150, 150);
-}
-
-:host /deep/ p-dialog .ui-dialog {
-  border: 1px solid rgba(0, 0, 0, 0.438);
-  border-radius: 2px;
-  background-color: #D6D9E0;
-}
-
-:host /deep/ p-dialog .ui-dialog-titlebar {
-  margin: 0 auto;
-  vertical-align: middle;
-  padding: 0;
+:host /deep/ p-confirmdialog .p-dialog .p-dialog-header {
+  padding: 0.5rem;
+  height: 25px;
   color: rgb(10, 10, 10);
   text-align: center;
   background: #B4B8C1;
@@ -30,55 +12,97 @@
   background: -o-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
   background: -moz-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
   background: linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  border: 1px solid rgba(114, 114, 112, 0.658);
 }
 
-:host /deep/ p-dialog .ui-dialog .ui-dialog-content {
-  height: 50px;
-  border-left: 2px solid #A5A9B2;
-  border-bottom: 2px solid #A5A9B2;
-  border-right: 2px solid #A5A9B2;
-  background-color: #dfdede;
-  position: relative;
+:host /deep/ p-confirmdialog .p-dialog .p-dialog-content {
+  padding: 1rem;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-:host /deep/ p-dialog.excluir .ui-dialog .ui-widget-content {
-  width: 100%;
-  position: relative;
-}
-
-:host /deep/ p-dialog .ui-dialog-titlebar > a {
-  width: 18px;
-  height: 18px;
-  border-radius: 4%;
-  vertical-align: middle;
-  text-align: center;
-  border: 1px solid #ccc;
-  background-color: #CC0000;
-  color: rgb(250, 246, 246);
-  font-weight: bold;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.linhas {
-  width: 100%;
-  display: table;
-}
-
-.blocodalinha {
-  display: inline-grid;
+:host /deep/ p-confirmdialog .p-dialog  .p-dialog-footer {
+  padding: 1rem;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 :host /deep/ p-table .ui-table {
   font-size: 70%;
 }
 
-:host /deep/ p-carousel .ui-carousel {
+:host /deep/ p-table .p-datatable {
+  font-size: 90%;
   width: 100%;
   height: 100%;
 }
 
-:host /deep/ p-carousel .ui-carousel .ui-carousel-content {
+:host /deep/ p-table .p-datatable .p-datatable-scrollable-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-scrollable-wrapper .p-datatable-scrollable-view {
+  width: 100%;
+  height: 100%;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-scrollable-wrapper .p-datatable-scrollable-view .p-datatable-scrollable-header {
+  width: 100%;
+  height: 10%;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-scrollable-wrapper .p-datatable-scrollable-view .p-datatable-scrollable-body {
+  width: 100%;
+  height: 90%;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-thead > tr > th{
+  padding: 0;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-tbody > tr > td{
+  padding: 0 0.5em;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-tbody > tr > td a{
+  text-decoration: none;
+}
+
+:host /deep/ p-table .p-datatable .p-datatable-tbody .p-selectable-row:hover{
+  background-color: #9c9c9c;
+  font-weight: bold;
+  color: #fff;
+}
+
+:host /deep/ p-carousel .p-carousel {
+  width: 100%;
+  height: 100%;
+}
+
+:host /deep/ p-carousel .p-carousel .p-carousel-content {
+  width: 100%;
+  height: 100%;
+}
+
+:host /deep/ p-carousel .p-carousel .p-carousel-content .p-carousel-container {
+  width: 100%;
+  height: 100%;
+}
+
+:host /deep/ p-carousel .p-carousel .p-carousel-content .p-carousel-container .p-carousel-items-content {
+  width: 100%;
+  height: 100%;
+}
+
+:host /deep/ p-carousel .p-carousel .p-carousel-content .p-carousel-container .p-carousel-items-content .p-carousel-items-container {
   width: 100%;
   height: 100%;
 }
@@ -88,17 +112,22 @@
   height: 100%;
 }
 
-:host /deep/ p-carousel .ui-carousel .ui-carousel-content .ui-carousel-container .ui-carousel-prev,
-:host /deep/ p-carousel .ui-carousel .ui-carousel-content .ui-carousel-container .ui-carousel-next {
+:host /deep/ p-carousel .p-carousel .p-carousel-content .p-carousel-prev,
+:host /deep/ p-carousel .p-carousel .p-carousel-content .p-carousel-next {
   display: none;
 }
 
-:host /deep/ p-carousel .ui-carousel .ui-carousel-content .ui-carousel-dots-container {
+:host /deep/ p-carousel .p-carousel .p-carousel-indicators {
   display: none;
 }
 
-:host /deep/ p-carousel .ui-carousel .ui-carousel-content .ui-carousel-container .ui-carousel-items-content .ui-carousel-items-container {
-  height: 100%;
+.linhas {
+  width: 100%;
+  display: table;
+}
+
+.blocodalinha {
+  display: inline-grid;
 }
 /* ======MEGA TOPICO======*/
 .geral {

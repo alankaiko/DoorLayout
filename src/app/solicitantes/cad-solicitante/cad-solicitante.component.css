@@ -1,125 +1,44 @@
-:host /deep/ p-paginator .ui-paginator-bottom {
-  box-sizing: border-box;
-  border-top: 1px solid #b9b8b8;
+
+.corpo input {
+  height: 28px;
 }
 
-:host /deep/ p-inputmask .ui-inputtext{
-  width: 98%;
-  height: 25px;
-  color: #000;
-  border: 1px solid rgb(110, 110, 110);
-  border-radius: 1px;
-  padding: 0;
-}
-
-:host /deep/ p-dialog .ui-dialog {
-  border: 1px solid rgba(0, 0, 0, 0.438);
-  border-radius: 2px;
-  background-color: #D6D9E0;
-}
-
-:host /deep/ p-dialog .ui-dialog-titlebar {
-  margin: 0 auto;
-  vertical-align: middle;
-  padding: 0;
-  color: rgb(10, 10, 10);
-  text-align: center;
-  background: #B4B8C1;
-  background: -webkit-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  background: -o-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  background: -moz-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  background: linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
-  border-bottom: 1px solid rgb(114, 114, 112);
-}
-
-:host /deep/ p-dialog .ui-dialog .ui-dialog-content {
-  width: 788px;
-  height: 344px;
-  border-left: 2px solid #A5A9B2;
-  border-bottom: 2px solid #A5A9B2;
-  border-right: 2px solid #A5A9B2;
-  background-color: #dfdede;
-  position: relative;
-}
-
-:host /deep/ p-dialog .ui-dialog-titlebar > a {
-  width: 18px;
-  height: 18px;
-  border-radius: 4%;
-  vertical-align: middle;
-  text-align: center;
-  border: 1px solid #ccc;
-  background-color: #CC0000;
-  color: rgb(250, 246, 246);
-  font-weight: bold;
-  transition: all 0.2s ease;
-  cursor: pointer;
-
-}
-
-:host /deep/ p-checkbox .ui-chkbox-box {
-  border: 1px solid;
-  border-radius: 2px;
-}
-
-:host /deep/ p-tabview .ui-tabview-nav{
-  font-size: 90%;
-  padding: 0;
-}
-
-:host /deep/ p-tabview .ui-tabview-panels {
-  height: 220px;
-  background-color: #ece9e9;
-  border: 3px solid #cc0000;
-}
-
-:host /deep/ p-tabview .ui-tabview-nav .ui-tabview-selected{
-  border: 1px solid;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  background-color: #B4B8C1;
-}
-
-:host /deep/ p-tabview .ui-tabview .ui-tabview-panels {
-  border: 1px solid #646464;
-  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
-  -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10), 0 10px 20px 0 rgba(0, 0, 0, 0.10);
+.corpo label {
+  color: 000;
 }
 
 .corpo {
   width: 100%;
-  margin: 0 auto;
-  height: 263px;
+  height: 255px;
+  margin-top: 10px;
 }
 
-.linhas {
+.corpo .formulario {
   width: 100%;
-  display: table;
+  height: 100%;
 }
 
-.blocodalinha {
+.corpo .formulario .linhas{
+  width: 100%;
+  display: inline-flex;
+}
+
+.corpo .formulario .blocodalinha {
   display: inline-grid;
 }
 
-label {
-  font-size: 85%;
-  font-weight: bold;
-}
-
-input {
-  font-size: 90%;
-  height: 25px;
+.corpo .formulario .blocoflag {
+  text-align: right;
 }
 
 .botoes {
   width: 100%;
   height: 54px;
-  margin: 0 auto;
-  text-align: center;
   margin-top: 5px;
-  border: 1px solid #838383;
-  position: relative;
+  border: ridge;
+  display: inline-flex;
+  background-color: #d1d1d1;
+  align-items: center;
 }
 
 .botao {
@@ -173,11 +92,12 @@ input {
 }
 
 .minibotao {
-  height: 20px;
+  height: 27px;
   color: rgb(73, 71, 71);
+  border: 1px solid rgb(110, 110, 110);
   background-color: rgb(233, 233, 233);
   text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
-  border: 1px solid rgb(110, 110, 110);
+  border: 1px solid #949393;
   border-radius: 2px;
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
@@ -188,4 +108,64 @@ input {
 .minibotao:hover {
   background-color: rgb(255, 249, 249);
   border: 1px solid rgb(80, 78, 78);
+}
+
+:host /deep/ p-checkbox {
+  display: block;
+}
+
+:host /deep/ p-tabview .p-tabview .p-tabview-panels {
+  border-top: 1px solid;
+  height: 230px;
+  border: ridge;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #d1d1d1;
+}
+
+:host /deep/ p-tabview .p-tabview .p-tabview-nav {
+  background: none;
+}
+
+:host /deep/ p-tabview .p-tabview .p-tabview-nav li {
+  margin-right: 2px;
+}
+
+:host /deep/ p-tabview .p-tabview .p-tabview-nav li a {
+  padding: 0.3rem;
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-header {
+  padding: 0;
+  height: 25px;
+  color: rgb(10, 10, 10);
+  text-align: center;
+  background: #B4B8C1;
+  background: -webkit-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: -o-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: -moz-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  border: 1px solid rgba(114, 114, 112, 0.658);
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-header .p-dialog-title {
+  width: 95%;
+  text-align: center;
+  font-size: 95%;
+  font-weight: bold;
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-header .p-dialog-header-icons {
+  width: 5%;
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-content {
+  padding-bottom: 0.5em;
+  height: 100%;
+  width: 100%;
+  border-left: 2px solid #A5A9B2;
+  border-bottom: 2px solid #A5A9B2;
+  border-right: 2px solid #A5A9B2;
+  background-color: #dfdede;
+  position: relative;
 }

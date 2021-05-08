@@ -30,8 +30,6 @@ export class ListaEstadoComponent implements OnInit {
       {label: 'Descrição'},
       {label: 'Codigo'}
     ];
-
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
   Alterar() {

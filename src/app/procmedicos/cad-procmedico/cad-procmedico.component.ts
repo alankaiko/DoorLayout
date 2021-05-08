@@ -37,7 +37,6 @@ export class CadProcmedicoComponent implements OnInit {
     }
 
     this.BuscarGrupos();
-    setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 10);
   }
 
   BuscarGrupos() {
