@@ -1,8 +1,8 @@
 <p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
 
-<div class="corpo">
+<div class="corpotabela">
   <p-table [value]="procedimentos" [scrollable]="true" selectionMode="single"
-    [(selection)]="procedimentoselecionado" dataKey="codigo" class="tabelas">
+    [(selection)]="procedimento" dataKey="codigo" class="tabelas">
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 60%;">Procedimento</th>
@@ -12,7 +12,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-procedimento>
+    <ng-template pTemplate="body" let-procedimento let-i="rowIndex">
       <tr [pSelectableRow]="procedimento">
         <td style="width: 60%;">{{ procedimento?.procedimentomedico?.nome}}</td>
         <td style="width: 15%; text-align: center;">{{ procedimento?.dataexecucao | date:'dd/MM/yyyy' }}</td>
@@ -21,7 +21,7 @@
           <a class="botaoedicao" (click)="PrepararEdicaoProcedimento(procedimento)">
             <i class="fa fa-pencil" style="color: #3e67ee;"></i> </a>
 
-          <a class="botaoedicao" (click)="RemoverProcedimento(rowIndex)">
+          <a class="botaoedicao" (click)="RemoverProcedimento(i)">
             <i class="fa fa-trash" style="color: #ee3e3e;"></i>
           </a>
         </td>
@@ -37,7 +37,7 @@
     </ng-template>
   </p-table>
 
-  <div>
+  <div style="margin-top: 4px;">
     <button type="button" class="botoesdatabela" (click)="PrepararNovoProcedimento()">
       <img src="/assets/img/ADICIONAR.png">
       <span>Adicionar</span>
@@ -45,17 +45,19 @@
   </div>
 </div>
 
-<p-dialog class="novoproc" [header]="'Novo Procedimento'" [style]="{'width': '30vw'}"
+<p-dialog class="novoproc" [header]="'Novo Procedimento'" [style]="{'width': '30vw', 'position': 'relative'}"
   [(visible)]="exbindoFormularioProcedimento">
 
   <form #frmContato="ngForm" (ngSubmit)="ConfirmarProcedimento()" autocomplete="off">
     <div class="linhas">
       <div class="blocodalinha" style="width: 90%;">
         <label>Procedimento Médico</label>
-        <p-dropdown id="procedimentomedico" [style]="{'line-height': '12px', 'width': '23%', 'position': 'fixed'}"
-          [options]="procedimentomedicos" [filter]="true" [(ngModel)]="procedimento.procedimentomedico"
+
+        <p-dropdown [style]="{'line-height': '60%', 'width': '75%', 'position': 'fixed', 'z-index':'1005'}"
+          [options]="procedimentomedicos" [filter]="true" id="procedimentomedico"
           #procedimentomedico="ngModel" placeholder="Selecione..." name="procedimentomedico"
-          (onChange)="CarregarProcedimentosMedico(); AdicionandoDias()" [disabled]="editando">
+          (onChange)="CarregarProcedimentosMedico(); AdicionandoDias()" [disabled]="editando"
+          [(ngModel)]="procedimento.procedimentomedico">
         </p-dropdown>
       </div>
 
@@ -71,7 +73,7 @@
       <div class="blocodalinha" style="width: 90%;">
         <label>Profissional Executante</label>
 
-        <p-dropdown [style]="{'line-height': '12px', 'width': '23%', 'position': 'fixed'}" [filter]="true"
+        <p-dropdown [style]="{'line-height': '60%', 'width': '75%', 'position': 'fixed', 'z-index':'700'}" [filter]="true"
           [options]="profissionalexecutantes" [(ngModel)]="procedimento.profexecutante"
           placeholder="Selecione..." name="profexecutante" #profexecutante="ngModel"
           (onChange)="CarregaProfissionalExecutante();"></p-dropdown>
@@ -88,26 +90,25 @@
     <div class="linhas">
       <div class="blocodalinha" style="width: 33%;">
         <label>Valor Paciente</label>
-        <input style="width: 95%; height: 24px;" type="text" pInputText name="valorpaciente"
+        <input style="width: 95%; height: 26px;" type="text" pInputText name="valorpaciente"
           [(ngModel)]="procedimento.valorpaciente" placeholder="0.00" #valorpaciente="ngModel">
       </div>
 
       <div class="blocodalinha" style="width: 33%;">
         <label>Prev. Ent. Laudo</label>
-        <p-calendar [inputStyle]="{ 'width': '8.5%', 'height': '24px', 'position': 'fixed',
-          'border-radius': '2px' }" [style]="{'position': 'fixed', 'z-index': '100'}"
-          placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true"
-          [yearNavigator]="true" yearRange="1930:2020" name="preventregalaudo" #preventregalaudo="ngModel"
+        <p-calendar [style]="{ 'width': '28%', 'height': '26px', 'position': 'fixed',
+          'border-radius': '2px', 'z-index':'150' }" placeholder="00/00/0000" dateFormat="dd/mm/yy"
+          [monthNavigator]="true" [yearNavigator]="true" yearRange="1930:2020"
+          name="preventregalaudo" #preventregalaudo="ngModel"
           [(ngModel)]="procedimento.preventregalaudo" id="preventregalaudo"></p-calendar>
       </div>
 
       <div class="blocodalinha" style="width: 33%;">
         <label>Data Execução</label>
-        <p-calendar [inputStyle]="{ 'width': '9%', 'height': '24px', 'position': 'fixed',
-          'border-radius': '2px' }" [style]="{'position': 'fixed', 'z-index': '100'}"
-          placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true"
-          [(ngModel)]="procedimento.dataexecucao" yearRange="1930:2020" name="dataexecucao"
-          [yearNavigator]="true" #dataexecucao="ngModel"></p-calendar>
+        <p-calendar [style]="{ 'width': '28.2%', 'height': '26px', 'position': 'fixed',
+          'border-radius': '2px', 'z-index': '150' }" placeholder="00/00/0000" dateFormat="dd/mm/yy"
+          [monthNavigator]="true" [(ngModel)]="procedimento.dataexecucao" yearRange="1930:2020"
+          name="dataexecucao" [yearNavigator]="true" #dataexecucao="ngModel"></p-calendar>
       </div>
     </div>
 

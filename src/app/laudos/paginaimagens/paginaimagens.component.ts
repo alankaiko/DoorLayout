@@ -19,6 +19,7 @@ export class PaginaimagensComponent implements OnInit {
   qtdimagemselecionada = 1;
   paginaselecionada = 0;
   valorspinner: number = 1;
+  valorselecionado: number = 0;
 
   constructor(private location: Location, private serviceproc: ProcedimentoatendimentoService) {}
 
@@ -473,6 +474,10 @@ export class PaginaimagensComponent implements OnInit {
         gradeimg.children[i - 1].setAttribute('style', 'display:block; padding: 2mm; float: left;');
       }
     }
+  }
+
+  PegarPosicao(event) {
+    this.valorselecionado = event + 1;
   }
 
   Voltar() {

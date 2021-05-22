@@ -169,3 +169,7 @@
   background-color: #dfdede;
   position: relative;
 }
+
+:host /deep/ p-dropdown .p-dropdown-items-wrapper {
+  height: 150px;
+}

@@ -16,6 +16,8 @@ export class ListaConvenioComponent implements OnInit {
   totalRegistros = 0;
   filtro = new ConvenioFiltro();
   camposbusca: any[];
+  textodocampo: string;
+  dropselecionado: string = 'nome';
   display = true;
   exclusao = false;
 
@@ -26,10 +28,10 @@ export class ListaConvenioComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Nome'},
-      {label: 'Codigo'}
+      {label: 'Nome', value: 'nome'},
+      {label: 'Codigo', value: 'codigo'}
     ];
-
+   
     //setTimeout (() => document.querySelector('.ui-dialog-titlebar-close').addEventListener('click', () => this.Fechar()), 0);
   }
 
@@ -67,17 +69,14 @@ export class ListaConvenioComponent implements OnInit {
   }
 
   BuscaDinamica() {
-    const drop = $('#codigodrop :selected').text();
-    const texto = document.getElementById('buscando') as HTMLInputElement;
-
     setTimeout (() => {
-      if (drop === 'Nome') {
-        this.filtro.nome = texto.value;
+      if (this.dropselecionado === 'nome') {
+        this.filtro.nome = this.textodocampo;
         this.Consultar();
       }
 
-      if ((drop === 'Codigo') && (texto.value !== '')) {
-        const numero = +texto.value;
+      if ((this.dropselecionado === 'codigo') && (this.textodocampo !== '')) {
+        const numero = +this.textodocampo;
         return this.service.BuscarListaPorId(numero)
           .then(response => {
             this.convenios = response;

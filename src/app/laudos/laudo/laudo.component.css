@@ -33,7 +33,6 @@
   justify-content: center;
 }
 
-
 :host /deep/ p-table .ui-table {
   font-size: 70%;
 }
@@ -120,6 +119,40 @@
 
 :host /deep/ p-carousel .p-carousel .p-carousel-indicators {
   display: none;
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-header {
+  padding: 0;
+  height: 25px;
+  color: rgb(10, 10, 10);
+  text-align: center;
+  background: #B4B8C1;
+  background: -webkit-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: -o-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: -moz-linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  background: linear-gradient(#E1E2E6, #B8BCC5, #A5A9B2);
+  border: 1px solid rgba(114, 114, 112, 0.658);
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-header .p-dialog-title {
+  width: 95%;
+  text-align: center;
+  font-size: 95%;
+  font-weight: bold;
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-header .p-dialog-header-icons {
+  width: 5%;
+}
+
+:host /deep/ p-dialog .p-dialog .p-dialog-content {
+  padding-bottom: 0.5em;
+  height: 100%;
+  border-left: 2px solid #A5A9B2;
+  border-bottom: 2px solid #A5A9B2;
+  border-right: 2px solid #A5A9B2;
+  background-color: #dfdede;
+  position: relative;
 }
 
 .linhas {

@@ -2,13 +2,15 @@
   <div class="menubuscar">
     <div class="ladoesquerdo">
       <label>Buscar</label>
-        <input id="buscando" pInputText ng-model="text" (keypress)="BuscaDinamica()"/>
+        <input id="buscando" [(ngModel)]="textodocampo" name="textodocampo"
+          pInputText (keypress)="BuscaDinamica()"/>
     </div>
 
     <div class="ladodireito">
       <label>No campo</label>
       <p-dropdown id="codigodrop" [style]="{'width': '98%', 'line-height':'50%', 'border-radius':'2px',
-      'border': '1px solid rgb(110, 110, 110)','margin-left':'5px'}" [options]="camposbusca"></p-dropdown>
+        'border': '1px solid rgb(110, 110, 110)','margin-left':'5px'}" [options]="camposbusca"
+        [(ngModel)]="dropselecionado" name="dropselecionado"></p-dropdown>
     </div>
   </div>
 

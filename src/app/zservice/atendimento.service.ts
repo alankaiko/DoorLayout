@@ -99,14 +99,18 @@ export class AtendimentoService {
     return this.http.post<Atendimento>(this.url, atendimento).toPromise();
   }
 
-  private VerificaSeTemSolicitante(atendimento: Atendimento){
-    if(atendimento.solicitante.codigo === undefined){
-      delete atendimento.solicitante;
-    }
-  }
-
   BuscarPorId(codigo: number): Promise<any> {
     return this.http.get(`${this.url}/${codigo}`)
+      .toPromise()
+      .then(response => {
+        const atendimento = response as Atendimento;
+        this.converterStringsParaDatas([atendimento]);
+        return atendimento;
+      });
+   }
+
+   BuscarPorIdParaAtd(codigo: number): Promise<any> {
+    return this.http.get(`${this.url}/atd/${codigo}`)
       .toPromise()
       .then(response => {
         const atendimento = response as Atendimento;

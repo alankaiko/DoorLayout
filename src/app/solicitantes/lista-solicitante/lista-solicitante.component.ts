@@ -16,6 +16,8 @@ export class ListaSolicitanteComponent implements OnInit {
   profissional: ProfissionalSolicitante;
   totalRegistros = 0;
   filtro = new ProfissionalSolicitanteFiltro();
+  textodocampo: string;
+  dropselecionado: string = 'nome';
   camposbusca: any[];
   formulario: FormGroup;
   display = true;
@@ -27,8 +29,8 @@ export class ListaSolicitanteComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Nome'},
-      {label: 'Num Conselho'}
+      {label: 'Nome', value: 'nome'},
+      {label: 'Num Conselho', value: 'conselho'}
     ];
   }
 
@@ -72,17 +74,17 @@ export class ListaSolicitanteComponent implements OnInit {
 
 
   BuscaDinamica() {
-    const drop = $('#codigodrop :selected').text();
-    const texto = document.getElementById('buscando') as HTMLInputElement;
+
+ 
 
     setTimeout (() => {
-      if (drop === 'Nome') {
-        this.filtro.nome = texto.value;
+      if (this.dropselecionado === 'nome') {
+        this.filtro.nome = this.textodocampo;
         this.Consultar();
       }
 
-      if ((drop === 'Num Conselho') && (texto.value !== '')) {
-        return this.service.BuscarListaPorId(texto.value)
+      if ((this.dropselecionado === 'conselho') && (this.textodocampo !== '')) {
+        return this.service.BuscarListaPorId(this.textodocampo)
           .then(response => {
             this.profissionaissol = response;
           }).catch(erro => console.log(erro));

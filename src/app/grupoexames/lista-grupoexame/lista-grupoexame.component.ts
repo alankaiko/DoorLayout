@@ -15,6 +15,8 @@ export class ListaGrupoexameComponent implements OnInit {
   grupo: GrupoProcedimento;
   totalRegistros = 0;
   filtro = new GrupoProcedimentoFiltro();
+  textodocampo: string;
+  dropselecionado: string = 'nome';
   camposbusca: any[];
   display = true;
   exclusao = false;
@@ -26,8 +28,8 @@ export class ListaGrupoexameComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Nome'},
-      {label: 'Codigo'}
+      {label: 'Nome', value: 'nome'},
+      {label: 'Codigo', value: 'codigo'}
     ];
   }
 
@@ -65,17 +67,14 @@ export class ListaGrupoexameComponent implements OnInit {
   }
 
   BuscaDinamica() {
-    const drop = $('#codigodrop :selected').text();
-    const texto = document.getElementById('buscando') as HTMLInputElement;
-
     setTimeout (() => {
-      if (drop === 'Nome') {
-        this.filtro.nomegrupo = texto.value;
+      if (this.dropselecionado === 'nome') {
+        this.filtro.nomegrupo = this.textodocampo;
         this.Consultar();
       }
 
-      if ((drop === 'Codigo') && (texto.value !== '')) {
-        const numero = +texto.value;
+      if ((this.dropselecionado === 'codigo') && (this.textodocampo !== '')) {
+        const numero = +this.textodocampo;
         return this.service.BuscarListaPorId(numero)
           .then(response => {
             this.grupos = response;

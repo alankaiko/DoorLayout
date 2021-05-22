@@ -1,7 +1,6 @@
 .corpo {
-  border: ridge;
   width: 100%;
-  height: 345px;
+  height: 330px;
   margin-top: 10px;
 }
 
@@ -79,7 +78,7 @@
 
 .botoesdatabela {
   cursor: pointer;
-  margin-left: 5px;
+  margin-right: 7px;
   padding: 5px 10px;
   display: inline-flex;
   font-weight: bold;

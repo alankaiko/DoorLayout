@@ -26,10 +26,8 @@
 }
 
 .menubotoes .direita .spinnerpagina {
-  width: 30%;
+  width: 15%;
   height: 100%;
-  display: inline-flex;
-  border: ridge;
   align-items: center;
   display: inline-flex;
   flex-direction: row;
@@ -41,7 +39,6 @@
   width: 15%;
   height: 100%;
   display: inline-flex;
-  border: ridge;
   align-items: center;
   display: inline-flex;
   flex-direction: row;
@@ -50,10 +47,24 @@
 }
 
 .menubotoes .direita .droplayout {
-  width: 55%;
+  width: 70%;
   height: 100%;
   display: inline-flex;
   border: ridge;
+  align-items: center;
+}
+
+.menubotoes .direita .droplayout .esquerda{
+  width: 25%;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
+.menubotoes .direita .droplayout .direita{
+  width: 75%;
+  height: 100%;
+  display: grid;
   align-items: center;
 }
 
@@ -398,3 +409,83 @@ span {
   display: none;
 }
 
+
+.principal .menubotoes .esquerda .botaoprincipal {
+  width: auto;
+  display: inline-grid;
+  font-size: 70%;
+  font-weight: bold;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  padding: 5px;
+  position: relative;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.principal .menubotoes .esquerda .botaoprincipal:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+
+.principal .menubotoes .esquerda .botaoprincipal > img {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+.principal .menubotoes .esquerda .botaoprincipal > a {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+.principal .cantobotoes .botaoprincipal {
+  width: auto;
+  height: 90%;
+  display: inline-grid;
+  font-size: 70%;
+  font-weight: bold;
+  color: rgb(73, 71, 71);
+  background-color: rgb(233, 233, 233);
+  text-shadow: 0 -1px -1px rgba(0,0,0,.2)!important;
+  border: 1px solid #949393;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  padding: 5px;
+  position: relative;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.principal .cantobotoes .botaoprincipal:hover {
+  background-color: rgb(255, 249, 249);
+  border: 1px solid rgb(80, 78, 78);
+}
+
+.principal .cantobotoes .botaoprincipal > img {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+.principal .cantobotoes .botaoprincipal > a {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+.contadordaimagem {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

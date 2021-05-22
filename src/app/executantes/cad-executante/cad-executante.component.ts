@@ -100,7 +100,7 @@ export class CadExecutanteComponent implements OnInit {
 
     if (this.profissional.conselho.sigla.codigo == null){
       this.CamposErro('Sigla');
-      const editor = document.querySelector('#sigla .ui-inputtext') as HTMLElement;
+      const editor = document.querySelector('#sigla .p-inputtext') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
 
       return true;
@@ -108,7 +108,7 @@ export class CadExecutanteComponent implements OnInit {
 
     if (this.profissional.conselho.estado.codigo == null){
       this.CamposErro('Estado');
-      const editor = document.querySelector('#estado .ui-inputtext') as HTMLElement;
+      const editor = document.querySelector('#estado .p-inputtext') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
 
       return true;

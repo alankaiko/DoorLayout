@@ -17,6 +17,8 @@ export class ListaPacientesComponent implements OnInit {
   paciente: Paciente;
   totalRegistros = 0;
   filtro = new PacienteFiltro();
+  textodocampo: string;
+  dropselecionado: string = 'nome';
   camposbusca: any[];
   formulario: FormGroup;
   display = true;
@@ -32,10 +34,10 @@ export class ListaPacientesComponent implements OnInit {
 
   private CriarCamposBusca() {
     this.camposbusca = [
-      {label: 'Nome'},
-      {label: 'Prontuario'},
-      {label: 'Data Nasc'},
-      {label: 'Data Cad'}
+      {label: 'Nome', value: 'nome'},
+      {label: 'Prontuario', value: 'prontuario'},
+      {label: 'Data Nasc', value: 'datanasc'},
+      {label: 'Data Cad', value: 'datacad'}
     ];
   }
 
@@ -79,18 +81,15 @@ export class ListaPacientesComponent implements OnInit {
   }
 
   BuscaDinamica() {
-    const drop = $('#codigodrop :selected').text();
-    const texto = document.getElementById('buscando') as HTMLInputElement;
-
     setTimeout (() => {
-      if (drop === 'Nome') {
+      if (this.dropselecionado === 'nome') {
         this.filtro.datanasc = null;
-        this.filtro.nome = texto.value;
+        this.filtro.nome = this.textodocampo;
         this.Consultar();
       }
 
-      if ((drop === 'Prontuario') && (texto.value !== '')) {
-        const numero = +texto.value;
+      if ((this.dropselecionado === 'prontuario') && (this.textodocampo !== '')) {
+        const numero = +this.textodocampo;
         return this.service.BuscarListaPorId(numero)
           .then(response => {
             this.pacientes = response;

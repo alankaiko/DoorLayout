@@ -41,16 +41,17 @@
               <div class="blocodalinha" style="width: 25%;">
                 <label>Data Nasc.</label>
                 <p-calendar placeholder="00/00/0000" dateFormat="dd/mm/yy" [monthNavigator]="true"
-                  [yearNavigator]="true" [style]="{'position': 'fixed', 'z-index': '100'}" name="datanasc"
-                  yearRange="1930:2020" [(ngModel)]="paciente.datanasc" #datanasc="ngModel" id="datanasc"
-                  [style]="{width: '98%', height: '28px', border: '1px solid rgb(130 128 128)'}"></p-calendar>
+                  [yearNavigator]="true" name="datanasc" yearRange="1930:2020" [(ngModel)]="paciente.datanasc"
+                  #datanasc="ngModel" id="datanasc"
+                  [style]="{'width': '128px', 'height': '28px', 'border': '1px solid rgb(130 128 128)',
+                  'position':'fixed', 'z-index':'1008'}"></p-calendar>
               </div>
 
               <div class="blocodalinha" style="width: 25%;">
                 <label>Telefone</label>
                 <p-inputMask placeholder=" telefone" mask="(99) 9 9999-9999" id="telefone" name="telefone"
                   [(ngModel)]="paciente.contato.telefone " #telefone="ngModel"
-                  [style]="{width: '98%', height: '28px', border: '1px solid rgb(130 128 128)'}"></p-inputMask>
+                  [style]="{'width': '98%', 'height': '28px', 'border': '1px solid rgb(130 128 128)'}"></p-inputMask>
               </div>
 
               <div class="blocodalinha" style="width: 24.5%;">

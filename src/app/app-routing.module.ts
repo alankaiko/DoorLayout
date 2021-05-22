@@ -186,7 +186,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'operacoes/captura/:cod',
+        path: 'operacoes/captura/:atendimentocodigo/:procedimentocodigo',
         component: CapturaComponent
       }
     ]

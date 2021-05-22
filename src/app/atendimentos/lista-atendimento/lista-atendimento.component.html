@@ -1,31 +1,31 @@
-<p-dialog header="Atendimentos" [(visible)]="display" [style]="{width: '788px', height: '450px'}">
+<p-dialog header="Atendimentos" [(visible)]="display" [style]="{width: '788px', height: '435px'}">
   <div class="menubuscar">
     <div class="linhas">
-      <div class="blocodalinha" style="width: 8%; text-align: right; padding-right: 2px;">
+      <div style="width: 8%; text-align: right; padding-right: 2px;">
         <label>Buscar</label>
       </div>
 
-      <div class="blocodalinha" style="width: 40%;">
+      <div style="width: 40%;">
         <input style="width: 100%; height: 28px;" id="buscando" pInputText ng-model="text"
         [(ngModel)]="campotextobuscar" name="campotextobuscar" (keypress)="BuscaDinamica()"/>
       </div>
 
-      <div class="blocodalinha" style="width: 8%; text-align: right; padding-right: 3px;">
+      <div style="width: 8%; text-align: right; padding-right: 3px;">
         <label>Campo</label>
       </div>
 
-      <div class="blocodalinha" style="width: 17.5%;">
+      <div style="width: 18%;">
         <p-dropdown [style]="{'line-height': '68%', 'width': '100%',
           'border': '1px solid #428bca', 'border-radius': '2px'}" id="codigodrop" [options]="dropbusca"
           (onChange)="BuscaDinamica()" [(ngModel)]="camposelecionado" name="camposelecionado"></p-dropdown>
       </div>
 
-      <div class="blocodalinha" style="width: 8%; text-align: center;">
+      <div style="width: 8%; text-align: center;">
         <label>Laudo</label>
-      </div>
+        </div>
 
-      <div class="blocodalinha" style="width: 17.5%;">
-        <p-dropdown [style]="{'line-height': '68%', 'width': '96%',
+      <div style="width: 18%;">
+        <p-dropdown [style]="{'line-height': '68%', 'width': '125px',
           'border': '1px solid #428bca', 'border-radius': '2px'}" id="codigostatus"
           [options]="laudoperiodo"></p-dropdown>
       </div>
@@ -47,20 +47,20 @@
         <label>Data</label>
       </div>
 
-      <div class="blocodalinha" style="width: 17.5%;">
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{  'width': '100%', 'height': '28px',
-          'border': '1px solid #428bca', 'border-radius': '2px' }" name="datainicio"
-          [(ngModel)]="filtro.datainicial"></p-calendar>
+      <div class="blocodalinha" style="width: 18%; height: 28px;">
+        <p-calendar dateFormat="dd/mm/yy" [style]="{'width': '131px', 'height': '28px',
+        'border': '1px solid #428bca', 'position':'fixed', 'z-index':'1008','border-radius':'2px'}"
+        name="datainicio" [(ngModel)]="filtro.datainicial"></p-calendar>
       </div>
 
       <div class="blocodalinha" style="width: 8%; text-align: center;">
         <label>até</label>
       </div>
 
-      <div class="blocodalinha" style="width: 17.5%;">
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ 'width': '100%', 'height': '28px',
-          'border': '1px solid #428bca', 'border-radius': '2px' }"
-            name="datafim" [(ngModel)]="filtro.datafinal"></p-calendar>
+      <div class="blocodalinha" style="width: 18%; height: 28px;">
+        <p-calendar dateFormat="dd/mm/yy" name="datafim" [(ngModel)]="filtro.datafinal"
+          [style]="{'width': '125px', 'height': '28px', 'border': '1px solid #428bca',
+          'position':'fixed', 'z-index':'1008','border-radius':'2px'}"></p-calendar>
       </div>
     </div>
   </div>
@@ -98,7 +98,7 @@
     </p-table>
   </div>
 
-  <div class="botoes ui-g-12">
+  <div class="botoes">
     <div class="botao">
       <div>
         <button type="button" class="botaoprincipal" (click)="PrimeiraSelecao()">

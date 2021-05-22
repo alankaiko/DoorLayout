@@ -53,7 +53,7 @@ export class ProcedimentoCadApendComponent implements OnInit {
   }
 
   private ValidarProfExecutante() {
-    if(this.procedimento.profexecutante.codigo === undefined) {
+    if(this.procedimento.profexecutante === null) {
       delete this.procedimento.profexecutante;
     }
   }
@@ -61,7 +61,7 @@ export class ProcedimentoCadApendComponent implements OnInit {
   private ValidaCampoVazio(){
     if (this.procedimento.procedimentomedico.codigo == null){
       this.CamposErro('Procedimento Médico');
-      const editor = document.querySelector('#procedimentomedico .ui-inputtext') as HTMLElement;
+      const editor = document.querySelector('#procedimentomedico .p-inputtext') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5;');
       return true;
     }
@@ -73,7 +73,7 @@ export class ProcedimentoCadApendComponent implements OnInit {
     this.messageService.add({severity:'error', summary: 'Erro', detail:'Preencher campo ' + campo.toUpperCase(), life:6000});
   }
 
-  RemoverProcedimento(index: number) {
+  RemoverProcedimento(index) {
     this.procedimentos.splice(index, 1);
   }
 

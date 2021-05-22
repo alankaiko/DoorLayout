@@ -1,7 +1,7 @@
 <p-toast [style]="{marginBottom: '50px'}" position="bottom-right"></p-toast>
 <p-confirmDialog [style]="{width: '50vw'}" [acceptVisible]="false" [rejectLabel]="'OK'"></p-confirmDialog>
 
-<p-dialog header="Atendimentos" [(visible)]="display" [style]="{width: '788px', height: '450px'}">
+<p-dialog header="Atendimentos" [(visible)]="display" [style]="{width: '788px', height: '435px'}">
   <div class="corpo">
     <form #f="ngForm" autocomplete="off" (ngSubmit)="Salvar()" class="formulario">
       <div class="linhas">
@@ -89,30 +89,30 @@
           <label>Conselho</label>
           <input readonly="true" style="width: 96%; height: 24px;
             border: 1px solid #555555; border-radius: 2px;" type="text" pInputText name="descricaocrm"
-            [(ngModel)]="atendimento.solicitante.conselho.sigla.descricao" #descricaocrm="ngModel">
+            [(ngModel)]="atendimento.solicitante?.conselho?.sigla.descricao" #descricaocrm="ngModel">
         </div>
 
         <div class="blocodalinha" style="width: 15.40%;">
           <label>UF</label>
           <input readonly="true" style="width: 96%; height: 24px; border-radius: 2px;
             border: 1px solid #555555;" type="text" pInputText name="descricaouf"
-            [(ngModel)]="atendimento.solicitante.conselho.estado.uf" #descricaouf="ngModel">
+            [(ngModel)]="atendimento.solicitante?.conselho?.estado.uf" #descricaouf="ngModel">
         </div>
 
         <div class="blocodalinha" style="width: 15.40%;">
           <label>N. Conselho</label>
           <input pInputText name="descricao" readonly="true" style="width: 100%; height: 24px;
             border: 1px solid #555555; border-radius: 2px;" type="text"
-            [(ngModel)]="atendimento.solicitante.conselho.descricao" #descricao="ngModel">
+            [(ngModel)]="atendimento.solicitante?.conselho.descricao" #descricao="ngModel">
         </div>
       </div>
 
       <div style="height: 145px; margin-top: 2px; border: ridge;">
-        <div style=" height: 110px; border: 1px solid">
+        <div style=" height: 77%; ">
           <app-procedimento-cad-apend [procedimentos]="atendimento.procedimentos" id="tabelaproc"></app-procedimento-cad-apend>
         </div>
 
-        <div class="linhas">
+        <div style="float: right;">
           <div style="text-align: right; margin-top: 1px; width: 100%;">
             <button type="button" class="botoesdatabela">
               <img src="/assets/img/ATESTADO.png">

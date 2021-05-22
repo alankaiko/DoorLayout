@@ -15,6 +15,8 @@ export class ListaSiglaComponent implements OnInit {
   sigla: Sigla;
   totalRegistros = 0;
   filtro = new SiglaFiltro();
+  textodocampo: string;
+  dropselecionado: string = 'descricao';
   camposbusca: any[];
   display = true;
   exclusao = false;
@@ -26,8 +28,8 @@ export class ListaSiglaComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Descrição'},
-      {label: 'Codigo'}
+      {label: 'Descrição', value: 'descricao'},
+      {label: 'Codigo', value: 'codigo'}
     ];
   }
 
@@ -65,17 +67,14 @@ export class ListaSiglaComponent implements OnInit {
   }
 
   BuscaDinamica() {
-    const drop = $('#codigodrop :selected').text();
-    const texto = document.getElementById('buscando') as HTMLInputElement;
-
     setTimeout (() => {
-      if (drop === 'Descrição') {
-        this.filtro.descricao = texto.value;
+      if (this.dropselecionado === 'descricao') {
+        this.filtro.descricao = this.textodocampo;
         this.Consultar();
       }
 
-      if ((drop === 'Codigo') && (texto.value !== '')) {
-        const numero = +texto.value;
+      if ((this.dropselecionado === 'codigo') && (this.textodocampo !== '')) {
+        const numero = +this.textodocampo;
         return this.service.BuscarListaPorId(numero)
           .then(response => {
             this.siglas = response;

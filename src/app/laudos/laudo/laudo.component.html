@@ -141,7 +141,7 @@
         <div class="imagenslistadas">
           <div class="imagems" *ngFor="let img of procedimento?.listaimagem; let i=index">
             <img [src]="img?.imagem" (click)="PegarPagina(i)">
-          </div>      
+          </div>
         </div>
 
         <div class="botoesgravacao">
@@ -243,8 +243,8 @@
 </div>
 
 <p-dialog class="novoproc" header="Escolha o Modelo" [(visible)]="dropmodelo" [baseZIndex]="10001"
-  [style]="{width: '20vw'}">
-  <p-dropdown [style]="{'line-height': '90%', 'width': '17%', 'position': 'fixed'}"
+  [style]="{width: '20vw', height: '5vw'}">
+  <p-dropdown [style]="{'line-height': '90%', 'width': '82%', 'position': 'fixed', 'margin-top': '5px'}"
     [options]="modelodelaudo" [(ngModel)]="prioridade" name="modelocodigo" id="modelocodigo"
     #modelocodigo="ngModel" (onChange)="AbrirLaudo()"></p-dropdown>
 </p-dialog>

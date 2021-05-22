@@ -17,7 +17,7 @@ export class TextolivreComponent implements OnInit {
 
   PegaAltura() {
     const painel = document.getElementById('paineltexto').clientHeight;
-    const editor = document.querySelector('div.ui-editor-content');
+    const editor = document.querySelector('div.p-editor-content');
     editor.setAttribute('style' , 'height: ' + painel + 'px;');
   }
 }

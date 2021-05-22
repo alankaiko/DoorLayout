@@ -81,10 +81,16 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   CarregaAtendimento(codigo: number) {
-    this.service.BuscarPorId(codigo).then(atendimento => {this.atendimento = atendimento; }).catch(erro => erro);
+    this.service.BuscarPorId(codigo).then(atendimento => {this.atendimento = atendimento;}).catch(erro => erro);
   }
 
   Salvar() {
+    this.atendimento.procedimentos.forEach(elo => {
+      delete elo.listaimagem;
+      delete elo.paginadeimagens;
+    });
+
+
     if(this.ValidaCampoVazio()){
       return;
     }
@@ -101,14 +107,14 @@ export class TelaAtendimentoComponent implements OnInit {
   private ValidaCampoVazio() {
     if (this.atendimento.convenio.codigo == null){
       this.CamposErro('Convênio');
-      const editor = document.querySelector('#convenio .ui-inputtext') as HTMLElement;
+      const editor = document.querySelector('#convenio .p-inputtext') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5;');
       return true;
     }
 
     if (this.atendimento.paciente.nome == null){
       this.CamposErro('Nome Paciente');
-      const editor = document.querySelector('#paciente .ui-inputtext') as HTMLElement;
+      const editor = document.querySelector('#paciente .p-inputtext') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5;');
 
       return true;
@@ -116,7 +122,7 @@ export class TelaAtendimentoComponent implements OnInit {
 
     if (this.atendimento.paciente.nome == null){
       this.CamposErro('Data Nascimento');
-      const editor = document.querySelector('#datanasc .ui-inputtext') as HTMLElement;
+      const editor = document.querySelector('#datanasc .p-inputtext') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
 
       return true;
@@ -124,7 +130,7 @@ export class TelaAtendimentoComponent implements OnInit {
 
     if (isEmptyObject(this.atendimento.procedimentos)){
       this.CamposErro('Procedimentos');
-      const editor = document.querySelector('#tabelaproc .corpo .tabelas') as HTMLElement;
+      const editor = document.querySelector('#tabelaproc .corpotabela .tabelas') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5; border: 1px solid #cc0000');
       return true;
     }
@@ -177,6 +183,12 @@ export class TelaAtendimentoComponent implements OnInit {
         this.route.navigate(['/operacoes/atendimento']);
       })
       .catch(erro => erro);
+  }
+
+  private Teste(){
+    this.atendimento.procedimentos.forEach(elo => {
+      elo.listaimagem.forEach(alo => {});
+    });
   }
 
   Nova(form: FormControl) {
@@ -252,14 +264,19 @@ export class TelaAtendimentoComponent implements OnInit {
   }
 
   VaiParaLaudos() {
-    if (this.appendchild.procedimento !== null && this.appendchild.procedimento !== undefined) {
+    if (this.appendchild.procedimento !== null
+        && this.appendchild.procedimento !== undefined
+        && this.appendchild.procedimento.codigo !== undefined) {
+
       this.route.navigate(['/operacoes/laudos', this.appendchild.procedimento.codigo]);
     }
   }
 
   VaiCaptura() {
-    if (this.appendchild.procedimento !== null && this.appendchild.procedimento !== undefined) {
-      this.route.navigate(['/operacoes/captura', this.appendchild.procedimento.codigo]);
+    if (this.appendchild.procedimento !== null
+        && this.appendchild.procedimento !== undefined
+        && this.appendchild.procedimento.codigo !== undefined) {
+      this.route.navigate(['/operacoes/captura', this.atendimento.codigo, this.appendchild.procedimento.codigo]);
     }
   }
 

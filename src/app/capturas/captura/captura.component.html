@@ -5,15 +5,15 @@
       <form #f="ngForm" autocomplete="off" class="formularios">
         <div style="width: 40%;">
           <span style="font-weight: bold; margin-right: 5px; margin-left: 5px;">Atendimento:</span>
-          <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento.codigo"
+          <p-dropdown [options]="atendimentos" [filter]="true" [(ngModel)]="atendimento"
             #atendimentocodigo="ngModel" name="atendimentocodigo" placeholder="Selecione..."
             (onChange)="CarregarProcedimentos()" [style]="{'line-height': '50%', 'width': '78%'}"></p-dropdown>
         </div>
 
         <div style="width: 55%;">
-          <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento.codigo"
+          <p-dropdown [options]="procedimentosAtd" [filter]="true" [(ngModel)]="procedimento"
             #procedimentoselecionado="ngModel" name="procedimentoselecionado" placeholder="Selecione..."
-            (onChange)="ConfigurarVariavel()" [style]="{'line-height': '50%', 'width': '95%'}"></p-dropdown>
+            (onChange)="BuscarImagens()" [style]="{'line-height': '50%', 'width': '95%'}"></p-dropdown>
         </div>
 
         <div class="blocodalinha" style="width: 5%;">
@@ -79,7 +79,7 @@
                 <img src="assets/img/PROXIMO.png">
               </button>
 
-              <button type="button" class="minibotao" (click)="ConfirmarExclusao()">
+              <button type="button" class="minibotao desabilitado">
                 <img src="assets/img/APAGAR.png">
               </button>
             </div>
@@ -191,5 +191,3 @@
     </div>
   </div>
 </div>
-
-

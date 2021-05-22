@@ -17,16 +17,20 @@ import {Location} from '@angular/common';
   providers: [ MessageService , ConfirmationService]
 })
 export class CapturaComponent implements OnInit {
-  // toggle webcam on/off
-  public showWebcam = true;
-  public allowCameraSwitch = true;
-  public multipleWebcamsAvailable = false;
-  public deviceId: string;
-  index: number;
   atendimento = new Atendimento();
   procedimento = new ProcedimentoAtendimento();
   atendimentos: any[];
   procedimentosAtd: any[];
+  showWebcam = true;
+  allowCameraSwitch = true;
+  multipleWebcamsAvailable = false;
+  errors: WebcamInitError[] = [];
+  webcamImage = new Array<Imagem>();
+  trigger: Subject<void> = new Subject<void>();
+  nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
+  videoOptions: MediaTrackConstraints = {};
+  deviceId: string;
+  index: number;
   cont: number;
   imagemant: any;
   verifica = false;
@@ -34,38 +38,23 @@ export class CapturaComponent implements OnInit {
   videos: any[];
   paginafoto = 1;
 
-  public errors: WebcamInitError[] = [];
-
-  // latest snapshot
-  webcamImage = new Array<Imagem>();
-
-  // webcam snapshot trigger
-  private trigger: Subject<void> = new Subject<void>();
-  // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
-  private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
-
-  public videoOptions: MediaTrackConstraints = {
-    // width: {ideal: 1024},
-    // height: {ideal: 576}
-  };
-
   constructor(private service: AtendimentoService,
               private rota: ActivatedRoute,
               private route: Router,
               private serviceproc: ProcedimentoatendimentoService,
               private confirmation: ConfirmationService,
-              private messageService: MessageService,
               private location: Location) { }
 
   ngOnInit() {
-    const codigo = this.rota.snapshot.params.cod;
-
-    if (codigo) {
-      this.BuscarProcedimento(codigo);
-      this.verifica = true;
-    }
+    const codigoatendimento = this.rota.snapshot.params.codigoatendimento;
+    const codigoprocedimento = this.rota.snapshot.params.codigoprocedimento;
 
     this.CarregarAtendimentos();
+
+    if (codigoatendimento)
+      this.BuscarProcedimento(codigoatendimento);
+
+   
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
@@ -77,7 +66,7 @@ export class CapturaComponent implements OnInit {
       .then(procedimento => {
         this.procedimento = procedimento;
         this.BuscarAtendimento(procedimento.atendimento.codigo);
-        this.ConfigurarVariavelVindEdicao();
+        this.BuscarImagens();
       }).catch(erro => erro);
   }
 
@@ -89,7 +78,20 @@ export class CapturaComponent implements OnInit {
       }).catch(erro => erro);
   }
 
+  CarregarAtendimentos() {
+    this.service.ListarAtendimentos().then(lista => {
+      this.atendimentos = lista.map(atendimento => ({label: atendimento.codigo + ' ' + atendimento.paciente.nome, value: atendimento}));
+    }).catch(erro => erro);
+  }
+
+  CarregarProcedimentos() {
+    this.procedimentosAtd = this.atendimento.procedimentos.map(procedimento => ({label: procedimento.procedimentomedico.nome, value: procedimento}));
+  }
+
   GravandoImagens() {
+    if(this.verifica === false)
+      return;
+
     this.procedimento.listaimagem.forEach((el) => {
       el.imagem = el.imagem.imageAsBase64.replace('data:image/jpeg;base64,', '');
     });
@@ -128,36 +130,20 @@ export class CapturaComponent implements OnInit {
 
   Excluir(codigo: number) {
     this.procedimento.listaimagem.splice(codigo, 1);
+    this.verifica = true;
   }
 
-  ConfigurarVariavelVindEdicao() {
+  BuscarImagens() {
     this.procedimento.listaimagem.forEach((el) => {
+      if(el.imagem !== null)
+        return;
+
       this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {
         const web = new WebcamImage(data, data, null);
         el.imagem = web;
       }, error => {
         console.log(error);
       });
-    });
-  }
-
-  ConfigurarVariavel() {
-    this.procedimento.listaimagem = new Array<Imagem>();
-    this.cont = 1;
-    this.verifica = true;
-
-    this.atendimento.procedimentos.filter((elo) => {
-      if (elo.codigo === this.procedimento.codigo) {
-        this.procedimento = elo;
-        this.procedimento.listaimagem.forEach((el) => {
-          this.serviceproc.PegarImagemString(el.codigo).subscribe(data => {
-            const web = new WebcamImage(data, data, null);
-            el.imagem = web;
-          }, error => {
-            console.log(error);
-          });
-        });
-      }
     });
   }
 
@@ -178,6 +164,8 @@ export class CapturaComponent implements OnInit {
     if (this.item === 0) {
       this.item = 1;
     }
+
+    this.verifica = true;
   }
 
   public toggleWebcam(): void {
@@ -223,22 +211,6 @@ export class CapturaComponent implements OnInit {
 
   public get nextWebcamObservable(): Observable<boolean|string> {
     return this.nextWebcam.asObservable();
-  }
-
-  CarregarAtendimentos() {
-    this.service.ListarAtendimentos().then(lista => {
-      this.atendimentos = lista.map(atendimento => ({label: atendimento.codigo + ' ' + atendimento.paciente.nome, value: atendimento.codigo}));
-    }).catch(erro => erro);
-  }
-
-  CarregarProcedimentos() {
-    this.service.BuscarPorId(this.atendimento.codigo)
-      .then(
-        response => {
-          this.atendimento = response;
-          this.procedimentosAtd = this.atendimento.procedimentos.map(procedimento => ({label: procedimento.procedimentomedico.nome, value: procedimento.codigo}));
-        }
-      );
   }
 
   MostrarLaudo() {

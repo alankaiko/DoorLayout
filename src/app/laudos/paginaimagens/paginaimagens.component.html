@@ -25,7 +25,7 @@
     <div class="direita">
       <div class="spinnerpagina">
         <span style="margin-right: 5px;">Página</span>
-        <p-spinner [(ngModel)]="valorspinner" [inputStyle]="{ 'width': '70px', 'height': '25px',
+        <p-spinner [(ngModel)]="valorspinner" [inputStyle]="{ 'width': '50px', 'height': '28px',
           'border-radius': '2px' }" ></p-spinner>
       </div>
 
@@ -39,10 +39,16 @@
         </button>
       </div>
 
-      <div class="droplayout" style="width: 55%;">
-        <span style="margin-right: 5px; margin-left: 5px;">Layout de Imagens</span>
-        <p-dropdown [style]="{'line-height': '70%', 'width':'90%', 'border-radius': '2px'}" [options]="qtdimagems"
+      <div class="droplayout">
+        <div class="esquerda">
+          <span style="margin-right: 5px; margin-left: 5px;">Layout de Imagens</span>
+        </div>
+
+        <div class="direita">
+          <p-dropdown [style]="{'line-height': '68%', 'width': '100%',
+          'border': '1px solid #428bca', 'border-radius': '2px'}" [options]="qtdimagems"
           [(ngModel)]="qtdimagemselecionada" (onChange)="ConfigurarDimensoes()"></p-dropdown>
+        </div>
       </div>
     </div>
   </div>
@@ -157,8 +163,8 @@
 
 
     <div class="baseimagensescolha" (drop)="DropRetorno($event)" (dragover)="PermiteArrastar($event)">
-      <div *ngFor="let image of listaimagem" draggable="true" (dragstart)="Arrastar($event)">
-        <img [attr.id]="image.nomeimagem" class="imagemarray" [src]="image?.imagem"/>
+      <div *ngFor="let image of listaimagem;  let i=index" draggable="true" (dragstart)="Arrastar($event)">
+        <img [attr.id]="image.nomeimagem" class="imagemarray" [src]="image?.imagem" (click)="PegarPosicao(i)"/>
       </div>
     </div>
 
@@ -170,15 +176,15 @@
 
     <div class="cantobotoes">
       <div class="contadordaimagem">
-        <span>Imagem 1 de 6</span>
+        <span>Imagem {{valorselecionado}} de {{listaimagem?.length}}</span>
       </div>
 
-      <button type="button" class="botaoprincipal" style="height: 30%;">
+      <button type="button" class="botaoprincipal">
         <img src="assets/img/IMG_EDIT.png">
         <span>Editar Imagem Selecionada</span>
       </button>
 
-      <button type="button" class="botaoprincipal" style="height: 20%;">
+      <button type="button" class="botaoprincipal">
         <img src="assets/img/FULLSCREEN.png">
         <span>Ver Imagens Ampliadas</span>
       </button>

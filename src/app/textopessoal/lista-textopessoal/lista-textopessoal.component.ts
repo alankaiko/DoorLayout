@@ -16,6 +16,8 @@ export class ListaTextopessoalComponent implements OnInit {
   texto: TextoPessoal;
   totalRegistros = 0;
   filtro = new TextoPessoalFiltro();
+  textodocampo: string;
+  dropselecionado: string = 'abreviatura';
   camposbusca: any[];
   formulario: FormGroup;
   display = true;
@@ -27,8 +29,8 @@ export class ListaTextopessoalComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'Abreviatura'},
-      {label: 'Codigo'}
+      {label: 'Abreviatura', value: 'abreviatura'},
+      {label: 'Codigo', value: 'codigo'}
     ];
   }
 
@@ -72,16 +74,14 @@ export class ListaTextopessoalComponent implements OnInit {
 
 
   BuscaDinamica() {
-    const drop = $('#codigodrop :selected').text();
-    const texto = document.getElementById('buscando') as HTMLInputElement;
     setTimeout (() => {
-      if (drop === 'Abreviatura') {
-        this.filtro.abreviatura = texto.value;
+      if (this.dropselecionado === 'abreviatura') {
+        this.filtro.abreviatura = this.textodocampo;
         this.Consultar();
       }
 
-      if ((drop === 'Codigo') && (texto.value !== '')) {
-        const numero = +texto.value;
+      if ((this.dropselecionado === 'codigo') && (this.textodocampo !== '')) {
+        const numero = +this.textodocampo;
         return this.service.BuscarListaPorId(numero)
           .then(response => {
             this.textospessoais = response;

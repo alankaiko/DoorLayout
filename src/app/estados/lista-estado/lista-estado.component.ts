@@ -15,6 +15,8 @@ export class ListaEstadoComponent implements OnInit {
   estado: Estado;
   totalRegistros = 0;
   filtro = new EstadosFiltro();
+  textodocampo: string;
+  dropselecionado: string = 'uf';
   camposbusca: any[];
   display = true;
   exclusao = false;
@@ -26,9 +28,9 @@ export class ListaEstadoComponent implements OnInit {
 
   ngOnInit() {
     this.camposbusca = [
-      {label: 'UF'},
-      {label: 'Descrição'},
-      {label: 'Codigo'}
+      {label: 'UF', value: 'uf'},
+      {label: 'Descrição', value: 'descricao'},
+      {label: 'Codigo', value: 'codigo'}
     ];
   }
 
@@ -66,22 +68,19 @@ export class ListaEstadoComponent implements OnInit {
   }
 
   BuscaDinamica() {
-    const drop = $('#codigodrop :selected').text();
-    const texto = document.getElementById('buscando') as HTMLInputElement;
-
     setTimeout (() => {
-      if (drop === 'UF') {
-        this.filtro.uf = texto.value;
+      if (this.dropselecionado === 'uf') {
+        this.filtro.uf = this.textodocampo;
         this.Consultar();
       }
 
-      if (drop === 'Descrição') {
-        this.filtro.descricao = texto.value;
+      if (this.dropselecionado === 'descricao') {
+        this.filtro.descricao = this.textodocampo;
         this.Consultar();
       }
 
-      if ((drop === 'Codigo') && (texto.value !== '')) {
-        const numero = +texto.value;
+      if ((this.dropselecionado === 'codigo') && (this.textodocampo !== '')) {
+        const numero = +this.textodocampo;
         return this.service.BuscarListaPorId(numero)
           .then(response => {
             this.estados = response;

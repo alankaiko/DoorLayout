@@ -92,7 +92,7 @@ export class CadSolicitanteComponent implements OnInit {
 
     if (this.formulario.controls['conselho'].value.sigla.codigo == null){
       this.CamposErro('Sigla');
-      const editor = document.querySelector('#sigla .ui-inputtext') as HTMLElement;
+      const editor = document.querySelector('#sigla .p-inputtext') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
 
       return true;
@@ -100,7 +100,7 @@ export class CadSolicitanteComponent implements OnInit {
 
     if (this.formulario.controls['conselho'].value.estado.codigo == null){
       this.CamposErro('Estado');
-      const editor = document.querySelector('#estado .ui-inputtext') as HTMLElement;
+      const editor = document.querySelector('#estado .p-inputtext') as HTMLElement;
       editor.setAttribute('style' , 'background-color: #fcd5d5; text-transform: uppercase;');
 
       return true;
